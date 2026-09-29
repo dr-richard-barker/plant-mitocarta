@@ -35,7 +35,6 @@ htmlcov/
 
 # Cache & Local runtime data
 .osdr_cache/
-.abai/
 
 # OS specific
 .DS_Store
