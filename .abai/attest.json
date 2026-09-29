@@ -4,6 +4,6 @@
   "verdict": "clear",
   "note": "Plant MitoCarta v0.1.0 CoSE Pages release audited with strict identifier binding, 100% DOI empirical coverage, and verified zero blocklist matches",
   "session": "",
-  "checked_at": "2026-09-29T14:06:09-0400",
-  "head": "f3a740d95fd5809a69291563bd34180cd431acbf"
+  "checked_at": "2026-09-29T14:06:47-0400",
+  "head": "a9e7a20e0ceb5b47a8135cf9e4ae64c4a60f782a"
 }
