@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1443.1 650.0" width="1443.1" height="650.0" class="pmc-svg" data-theme="light">
+<style>
+:root {
+  --pmc-bg: #ffffff;
+  --pmc-ink: #111827;
+  --pmc-ink-soft: #4b5563;
+  --pmc-node-fill: #f9fafb;
+  --pmc-node-stroke: #111827;
+  --pmc-hairline: #9ca3af;
+  --pmc-edge: #4b5563;
+  --pmc-card-bg: #ffffff;
+  --pmc-compartment-fill: rgba(0, 0, 0, 0.03);
+}
+:root[data-theme="dark"], body.dark-mode {
+  --pmc-bg: #0b0f19;
+  --pmc-ink: #f3f4f6;
+  --pmc-ink-soft: #9ca3af;
+  --pmc-node-fill: #151d2e;
+  --pmc-node-stroke: #f3f4f6;
+  --pmc-hairline: #4b5563;
+  --pmc-edge: #9ca3af;
+  --pmc-card-bg: #111827;
+  --pmc-compartment-fill: rgba(255, 255, 255, 0.04);
+}
+
+.pmc-canvas { fill: var(--pmc-bg); }
+text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; fill: var(--pmc-ink); }
+.pmc-title { font-size: 20px; font-weight: 700; }
+.pmc-subtitle { font-size: 13px; fill: var(--pmc-ink-soft); }
+.pmc-caption { font-size: 11.5px; fill: var(--pmc-ink-soft); }
+.pmc-label { font-size: 12.5px; font-weight: 600; text-anchor: middle; }
+.pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
+
+.pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+
+/* Evidence Tiers as Border Channels */
+.tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
+.tier-T2 { stroke-width: 1.8px; stroke: var(--pmc-node-stroke); }
+.tier-T3 { stroke-width: 1.8px; stroke-dasharray: 6 4; stroke: var(--pmc-node-stroke); }
+.tier-T4 { stroke-width: 1.5px; stroke-dasharray: 2 3; stroke: var(--pmc-ink-soft); }
+.tier-T5 { stroke-width: 0.8px; stroke: var(--pmc-hairline); }
+
+.pmc-compartment { fill: var(--pmc-compartment-fill); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
+.pmc-compartment-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--pmc-ink-soft); }
+
+.pmc-edge { fill: none; stroke: var(--pmc-edge); stroke-width: 1.6px; }
+.pmc-edge-electron_transfer { stroke: #0072B2; stroke-width: 2.2px; }
+.pmc-edge-metabolite_flux { stroke: #009E73; stroke-width: 1.8px; stroke-dasharray: 4 3; }
+.pmc-edge-activates { stroke: #E69F00; stroke-width: 1.8px; }
+.pmc-edge-inhibits { stroke: #D55E00; stroke-width: 2.0px; }
+.pmc-edge-cleaved_by { stroke: #CC79A7; stroke-dasharray: 5 3; }
+.pmc-edge-label { font-size: 9.5px; fill: var(--pmc-ink-soft); font-weight: 500; text-anchor: middle; }
+</style>
+<defs>
+<marker id="pmc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="var(--pmc-edge)" /></marker>
+<marker id="pmc-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#0072B2" /></marker>
+<marker id="pmc-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#009E73" /></marker>
+<marker id="pmc-arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#E69F00" /></marker>
+<marker id="pmc-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#D55E00" /></marker>
+<marker id="pmc-inhibit" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><line x1="5" y1="1" x2="5" y2="9" stroke="#D55E00" stroke-width="2.5" /></marker>
+</defs>
+<rect class="pmc-canvas" width="1443.1" height="650.0" />
+<text class="pmc-title" x="32" y="44">Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome</text>
+<text class="pmc-subtitle" x="32" y="66">Systematic alignment of conserved catalytic bioenergetics with plant-specific metabolic innovations, bypasses, and dual-targeted endosymbiotic machinery.</text>
+<rect class="pmc-compartment" x="24.0" y="90.0" width="565.6" height="313.9" stroke="#6b3f0d" />
+<text class="pmc-compartment-label" x="36.0" y="108.0">Mitochondrial Cristae</text>
+<rect class="pmc-compartment" x="569.6" y="90.0" width="287.0" height="406.5" stroke="#8c5618" />
+<text class="pmc-compartment-label" x="581.6" y="108.0">Mitochondrial Inner Membrane (IMM)</text>
+<rect class="pmc-compartment" x="836.6" y="90.0" width="566.5" height="301.4" stroke="#5c3407" />
+<text class="pmc-compartment-label" x="848.6" y="108.0">Mitochondrial Matrix</text>
+<line class="pmc-edge pmc-edge-activates" x1="294.6" y1="160.3" x2="330.6" y2="160.3" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="312.6" y="156.3">strict orthology (58-85% identity)</text>
+<line class="pmc-edge pmc-edge-activates" x1="283.0" y1="252.9" x2="330.6" y2="252.9" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="306.8" y="248.9">enzymatic homology</text>
+<line class="pmc-edge pmc-edge-activates" x1="294.6" y1="345.6" x2="864.6" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="579.6" y="245.8">functional analog -&gt; dual targeted</text>
+<line class="pmc-edge pmc-edge-activates" x1="561.6" y1="160.3" x2="597.6" y2="160.3" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="579.6" y="156.3">AOX bypasses CI-CIV</text>
+<line class="pmc-edge pmc-edge-activates" x1="561.6" y1="160.3" x2="597.6" y2="252.9" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="579.6" y="202.6">NDHs bypass CI</text>
+<line class="pmc-edge pmc-edge-activates" x1="561.6" y1="160.3" x2="597.6" y2="345.6" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="579.6" y="248.9">assembles with membrane arm</text>
+<line class="pmc-edge pmc-edge-activates" x1="555.8" y1="252.9" x2="597.6" y2="438.2" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="576.7" y="341.6">photorespiratory nitrogen cycle</text>
+<line class="pmc-edge pmc-edge-activates" x1="294.6" y1="160.3" x2="1130.1" y2="160.3" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="712.3" y="156.3">structural pathology</text>
+<line class="pmc-edge pmc-edge-activates" x1="828.6" y1="160.3" x2="1130.1" y2="260.8" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="979.3" y="206.5">heterologous gene therapy rescue</text>
+<g class="pmc-node-group" id="node-HUMAN_OXPHOS_CORE"><rect class="pmc-node tier-T4" x="52.0" y="130.0" width="242.6" height="60.6" />
+<text class="pmc-label" x="173.3" y="148.3">Human MitoCarta OXPHOS</text>
+<text class="pmc-sub" x="173.3" y="163.3">Complexes I-V core • 44 CI subunits •</text>
+<text class="pmc-sub" x="173.3" y="175.3">Leigh syndrome loci</text>
+</g>
+<g class="pmc-node-group" id="node-HUMAN_TCA_CYCLE"><rect class="pmc-node tier-T4" x="52.0" y="222.6" width="231.0" height="60.6" />
+<text class="pmc-label" x="167.5" y="240.9">Human MitoCarta TCA</text>
+<text class="pmc-sub" x="167.5" y="255.9">CS, ACO2, IDH3, OGDH, FH • strictly</text>
+<text class="pmc-sub" x="167.5" y="267.9">cyclic</text>
+</g>
+<g class="pmc-node-group" id="node-HUMAN_POLG_REPLICATION"><rect class="pmc-node tier-T4" x="52.0" y="315.2" width="242.6" height="60.6" />
+<text class="pmc-label" x="173.3" y="333.6">Human POLG / TWNK</text>
+<text class="pmc-sub" x="173.3" y="348.6">dedicated mitochondrial replication •</text>
+<text class="pmc-sub" x="173.3" y="360.6">PEO / Alpers</text>
+</g>
+<g class="pmc-node-group" id="node-PLANT_CONSERVED_OXPHOS"><rect class="pmc-node tier-T4" x="330.6" y="130.0" width="231.0" height="60.6" />
+<text class="pmc-label" x="446.1" y="148.3">Plant Conserved Core (Q1)</text>
+<text class="pmc-sub" x="446.1" y="163.3">14 catalytic CI subunits • SDH1-4 •</text>
+<text class="pmc-sub" x="446.1" y="175.3">Rieske [2Fe-2S] • ATP synthase</text>
+</g>
+<g class="pmc-node-group" id="node-PLANT_CONSERVED_TCA"><rect class="pmc-node tier-T4" x="330.6" y="222.6" width="225.2" height="60.6" />
+<text class="pmc-label" x="443.2" y="240.9">Plant Conserved TCA (Q1)</text>
+<text class="pmc-sub" x="443.2" y="255.9">open/non-cyclic in light • exports</text>
+<text class="pmc-sub" x="443.2" y="267.9">citrate via DTC</text>
+</g>
+<g class="pmc-node-group" id="node-PLANT_FE_S_ISC_CORE"><rect class="pmc-node tier-T4" x="330.6" y="315.2" width="231.0" height="60.6" />
+<text class="pmc-label" x="446.1" y="333.6">Plant ISC Machinery (Q1)</text>
+<text class="pmc-sub" x="446.1" y="348.6">NFS1, ISU1-3, ISA1 • conserved Fe-S</text>
+<text class="pmc-sub" x="446.1" y="360.6">biogenesis</text>
+</g>
+<g class="pmc-node-group" id="node-PLANT_AOX_INNOVATION"><rect class="pmc-node tier-T1" x="597.6" y="130.0" width="231.0" height="60.6" />
+<text class="pmc-label" x="713.1" y="148.3">Alternative Oxidase (Q2)</text>
+<text class="pmc-sub" x="713.1" y="163.3">AOX1a-d, AOX2 • absent in mammals •</text>
+<text class="pmc-sub" x="713.1" y="175.3">stress bypass</text>
+</g>
+<g class="pmc-node-group" id="node-PLANT_NDH_BYPASSES"><rect class="pmc-node tier-T1" x="597.6" y="222.6" width="221.8" height="60.6" />
+<text class="pmc-label" x="708.5" y="240.9">Type II NDH Bypasses (Q2)</text>
+<text class="pmc-sub" x="708.5" y="255.9">NDA1/2, NDB1-4, NDC1 •</text>
+<text class="pmc-sub" x="708.5" y="267.9">rotenone-insensitive</text>
+</g>
+<g class="pmc-node-group" id="node-PLANT_CA_DOMAIN_COMPLEX_I"><rect class="pmc-node tier-T1" x="597.6" y="315.2" width="214.0" height="60.6" />
+<text class="pmc-label" x="704.6" y="333.6">Complex I CA Domain (Q2)</text>
+<text class="pmc-sub" x="704.6" y="348.6">CAL1/2, CA1-3 • spherical matrix</text>
+<text class="pmc-sub" x="704.6" y="360.6">protuberance</text>
+</g>
+<g class="pmc-node-group" id="node-PLANT_GDC_PHOTORESP"><rect class="pmc-node tier-T1" x="597.6" y="407.9" width="225.2" height="60.6" />
+<text class="pmc-label" x="710.2" y="426.2">Photorespiratory GDC (Q2)</text>
+<text class="pmc-sub" x="710.2" y="441.2">P-, T-, H-, L-proteins • up to 50%</text>
+<text class="pmc-sub" x="710.2" y="453.2">soluble protein</text>
+</g>
+<g class="pmc-node-group" id="node-DUAL_TARGETED_POLIA_B"><rect class="pmc-node tier-T1" x="864.6" y="130.0" width="229.5" height="48.1" />
+<text class="pmc-label" x="979.4" y="148.1">Dual-Targeted PolIA/B (Q3)</text>
+<text class="pmc-sub" x="979.4" y="163.1">replicates BOTH mito &amp; chloro DNA</text>
+</g>
+<g class="pmc-node-group" id="node-DUAL_TARGETED_AARS"><rect class="pmc-node tier-T4" x="864.6" y="210.1" width="214.0" height="60.6" />
+<text class="pmc-label" x="971.6" y="228.4">Dual-Targeted AARSs (Q3)</text>
+<text class="pmc-sub" x="971.6" y="243.4">shared organellar aminoacyl-tRNA</text>
+<text class="pmc-sub" x="971.6" y="255.4">synthetases</text>
+</g>
+<g class="pmc-node-group" id="node-EXPANDED_PPR_FAMILY"><rect class="pmc-node tier-T4" x="864.6" y="302.8" width="219.4" height="60.6" />
+<text class="pmc-label" x="974.3" y="321.1">Expanded PPR Family (Q4)</text>
+<text class="pmc-sub" x="974.3" y="336.1">&gt;450 genes in Arabidopsis vs 7 in</text>
+<text class="pmc-sub" x="974.3" y="348.1">humans • ~500 C-to-U RNA edits</text>
+</g>
+<g class="pmc-node-group" id="node-HUMAN_DISEASE_INSIGHTS"><rect class="pmc-node tier-T4" x="1130.1" y="130.0" width="245.0" height="60.6" />
+<text class="pmc-label" x="1252.6" y="148.3">Human Mitochondrial Medicine</text>
+<text class="pmc-sub" x="1252.6" y="163.3">cryo-EM catalytic structures inform</text>
+<text class="pmc-sub" x="1252.6" y="175.3">plant active sites</text>
+</g>
+<g class="pmc-node-group" id="node-AOX_HUMAN_RESCUE_POTENTIAL"><rect class="pmc-node tier-T4" x="1130.1" y="222.6" width="207.8" height="76.2" />
+<text class="pmc-label" x="1234.0" y="241.2">Plant AOX Rescues Human</text>
+<text class="pmc-label" x="1234.0" y="256.2">Disease</text>
+<text class="pmc-sub" x="1234.0" y="271.2">AOX expression in human cybrids</text>
+<text class="pmc-sub" x="1234.0" y="283.2">rescues CI/CIII defects!</text>
+</g>
+</svg>

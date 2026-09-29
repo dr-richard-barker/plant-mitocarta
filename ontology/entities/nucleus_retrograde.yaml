@@ -1,0 +1,179 @@
+# PMCO Entities: Nucleus Digital Double & Retrograde Target Machinery
+# Featuring translocated transcription factors (ANAC017/013), promoter MDRE motifs,
+# plastid regulators (ABI4, GLK1/2, HY5), nuclear exoribonucleases (XRN2/3), and PhANGs/PhMNGs.
+
+- id: PMCO:ANAC017_NUCLEAR
+  label: "Translocated ANAC017 (Nuclear Form)"
+  kind: transcription_factor
+  compartment: nucleoplasm
+  evidence_tier: T1
+  description: >-
+    Master transcription factor of the mitochondrial retrograde response (MRR).
+    Following proteolytic cleavage from its ER/OMM transmembrane anchor, the soluble
+    N-terminal NAC domain translocates through nuclear pores to bind MDRE motifs.
+  xref:
+    agi: ["AT1G34190"]
+    uniprot: ["Q9FVC0"]
+    go_cc: ["GO:0005654"]
+  suba5:
+    consensus_compartment: "nucleus"
+    consensus_score: 0.95
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: true
+    dual_compartments: ["nucleus", "mitochondrion"]
+  retrograde:
+    circuit: mrr_mito_nuclear
+    role: "Master transcription factor driving AOX1a and mitochondrial stress gene induction"
+    signal_type: transcription_factor
+    cleavage_required: true
+    target_genes: ["AT3G22370", "AT5G40850", "AT4G05020"]
+  evidence:
+    - citation: "DeClercq2013"
+      doi: "10.1105/tpc.113.112011"
+      claim: "ANAC017 translocates to the nucleus upon mitochondrial dysfunction to drive AOX1a."
+    - citation: "Ng2013"
+      doi: "10.1104/pp.114.238493"
+      claim: "ANAC017 coordinates mitochondrial and chloroplast regulation of nuclear genes."
+
+- id: PMCO:ANAC013_NUCLEAR
+  label: "Translocated ANAC013"
+  kind: transcription_factor
+  compartment: nucleoplasm
+  evidence_tier: T1
+  description: >-
+    ER/OMM-tethered NAC transcription factor co-regulated with ANAC017. Binds MDRE
+    motifs to amplify mitochondrial retrograde signaling.
+  xref:
+    agi: ["AT1G32870"]
+    uniprot: ["Q9FYJ0"]
+    go_cc: ["GO:0005654"]
+  suba5:
+    consensus_compartment: "nucleus"
+    consensus_score: 0.94
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: mrr_mito_nuclear
+    role: "Secondary transcription factor reinforcing MDRE-driven transcription"
+    signal_type: transcription_factor
+    cleavage_required: true
+  evidence:
+    - citation: "DeClercq2013"
+      doi: "10.1105/tpc.113.112011"
+      claim: "ANAC013 binds MDRE elements in the AOX1a promoter."
+
+- id: PMCO:MDRE_MOTIF
+  label: "Mitochondrial Dysfunction Responsive Element (MDRE)"
+  kind: process
+  compartment: nucleoplasm
+  evidence_tier: T1
+  description: >-
+    Conserved 14-bp palindromic cis-regulatory promoter element (CTTGNNNNNCAG) enriched
+    in promoters of mitochondrial stress genes (AOX1a, NDB2, UPM1).
+  retrograde:
+    circuit: mrr_mito_nuclear
+    role: "Nuclear promoter target site bound directly by cleaved ANAC017 and ANAC013"
+    signal_type: promoter_element
+  evidence:
+    - citation: "DeClercq2013"
+      doi: "10.1105/tpc.113.112011"
+      claim: "Identification and functional characterization of the MDRE motif."
+
+- id: PMCO:ABI4_TF
+  label: "ABA-INSENSITIVE 4 (ABI4)"
+  kind: transcription_factor
+  compartment: nucleoplasm
+  evidence_tier: T1
+  description: >-
+    AP2/ERF-domain transcription factor acting downstream of plastid GUN1. Binds CCAC
+    core motifs to repress Photosynthesis-Associated Nuclear Genes (PhANGs) when
+    plastids are dysfunctional.
+  xref:
+    agi: ["AT2G40220"]
+    uniprot: ["Q9SLI3"]
+    go_cc: ["GO:0005654"]
+  suba5:
+    consensus_compartment: "nucleus"
+    consensus_score: 0.99
+    gfp_evidence: true
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Nuclear repressor of PhANGs downstream of the GUN1 plastid retrograde hub"
+    signal_type: transcription_factor
+  evidence:
+    - citation: "Shedge2010"
+      doi: "10.1111/j.1365-313X.2010.04374.x"
+      claim: "GUN1 acts upstream of ABI4 in plastid retrograde signaling."
+
+- id: PMCO:GLK1_TF
+  label: "GOLDEN2-LIKE 1 (GLK1)"
+  kind: transcription_factor
+  compartment: nucleoplasm
+  evidence_tier: T1
+  description: >-
+    GARP family transcription factor essential for chloroplast biogenesis, activating
+    nuclear genes encoding light-harvesting proteins and chlorophyll biosynthesis.
+    Repressed during severe plastid stress.
+  xref:
+    agi: ["AT2G20570"]
+    uniprot: ["Q9FIE4"]
+    go_cc: ["GO:0005654"]
+  suba5:
+    consensus_compartment: "nucleus"
+    consensus_score: 0.99
+    gfp_evidence: true
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Transcriptional activator of PhANGs antagonized by retrograde stress"
+    signal_type: transcription_factor
+  evidence:
+    - citation: "VanAken2016"
+      doi: "10.1104/pp.16.01223"
+      claim: "GLK1/2 coordinate plastid and mitochondrial nuclear gene expression."
+
+- id: PMCO:XRN2_EXORIBONUCLEASE
+  label: "Nuclear 5'-to-3' Exoribonuclease 2 (XRN2)"
+  kind: macromolecule
+  compartment: nucleoplasm
+  evidence_tier: T1
+  description: >-
+    Nuclear exoribonuclease involved in RNA turnover and transcriptional termination.
+    Directly inhibited by translocated PAP from chloroplasts, stabilizing stress transcripts.
+  xref:
+    agi: ["AT5G42540"]
+    uniprot: ["Q9SA28"]
+    ec: ["3.1.13.-"]
+    go_cc: ["GO:0005654"]
+  suba5:
+    consensus_compartment: "nucleus"
+    consensus_score: 0.98
+    ms_evidence: true
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Nuclear target of the SAL1-PAP retrograde pathway"
+    signal_type: transcription_factor
+  evidence:
+    - citation: "Estavillo2011"
+      doi: "10.1105/tpc.111.091033"
+      claim: "PAP directly inhibits nuclear XRN exoribonucleases to modulate gene expression."
+
+- id: PMCO:NPC_COMPLEX
+  label: "Nuclear Pore Complex (NPC & Transportins)"
+  kind: complex
+  compartment: nuclear_pore_complex
+  evidence_tier: T1
+  description: >-
+    Macromolecular basket spanning the nuclear envelope, regulating the import of
+    cleaved ANAC017/ANAC013 and export/import of retrograde metabolites.
+  xref:
+    agi: ["AT1G80080", "AT5G61790", "AT3G24090"]
+    go_cc: ["GO:0005643"]
+  suba5:
+    consensus_compartment: "nucleus"
+    consensus_score: 0.99
+    ms_evidence: true
+  evidence:
+    - citation: "Roncaglia2013"
+      doi: "10.1186/2041-1480-4-20"
+      claim: "Nuclear pore complex structural definition in GO-CCO."

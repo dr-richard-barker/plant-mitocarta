@@ -1,0 +1,157 @@
+{
+  "name": "Plant MitoCarta & Inter-Organellar Atlas",
+  "description": "Cross-compartment ontology, four digital doubles (Mitochondrion, Chloroplast, Nucleus, Plasma Membrane), retrograde signaling circuits, and mammalian MitoCarta comparative synthesis.",
+  "version": "0.1.0",
+  "base_url": "https://dr-richard-barker.github.io/plant-mitocarta",
+  "license": {
+    "maps": "CC-BY-4.0",
+    "ontology": "CC-BY-4.0",
+    "code": "MIT"
+  },
+  "evidence_tiers": [
+    {
+      "id": "T1",
+      "label": "Demonstrated Empirical (Plant)",
+      "definition": "Direct empirical measurement of the entity's presence, activity, flux, or translocation in Arabidopsis thaliana. Requires at least one resolved DOI in evidence.",
+      "border_style": "solid_heavy",
+      "border_width": 3.0,
+      "doi_required": true
+    },
+    {
+      "id": "T2",
+      "label": "Inferred from Pathway/Process (Plant)",
+      "definition": "Demonstrated for the containing multi-protein complex, organellar fraction, or metabolic pathway in plants, but not isolated directly to this single node. Requires at least one resolved DOI in evidence.",
+      "border_style": "solid_light",
+      "border_width": 1.5,
+      "doi_required": true
+    },
+    {
+      "id": "T3",
+      "label": "Orthology-Inferred (Mammalian/Yeast)",
+      "definition": "Inferred from human or mouse Broad MitoCarta 3.0 or yeast homologs with no direct plant biochemical assay. A cross-species inference.",
+      "border_style": "dashed",
+      "border_width": 2.0,
+      "dash_array": "4 3",
+      "doi_required": false
+    },
+    {
+      "id": "T4",
+      "label": "Mechanistic Hypothesis / Computational Prediction",
+      "definition": "Hypothesized physical route, predicted membrane contact site, candidate retrograde messenger, or SUBAcon computational prediction.",
+      "border_style": "dotted",
+      "border_width": 1.5,
+      "dash_array": "2 2",
+      "doi_required": false
+    },
+    {
+      "id": "T5",
+      "label": "Anatomical & Topological Context",
+      "definition": "Structural or spatial context (membranes, cristae, pores, compartments). No quantum or biochemical claim made on this node.",
+      "border_style": "hairline",
+      "border_width": 0.75,
+      "doi_required": false
+    }
+  ],
+  "totals": {
+    "maps": 10,
+    "digital_doubles": 4,
+    "entities": 48,
+    "distinct_agi_loci": 81,
+    "references": 16,
+    "nodes_by_tier": {
+      "T1": 48
+    }
+  },
+  "maps": [
+    {
+      "id": "PMM-01",
+      "title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+      "subtitle": "Conserved respiratory Complexes I\u2013V integrated with plant-specific bypasses (AOX, Type II NDHs, and the Complex I Carbonic Anhydrase domain).",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 17,
+      "n_edges": 21,
+      "n_compartments": 3
+    },
+    {
+      "id": "PMM-02",
+      "title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+      "subtitle": "Thylakoid electron transport coupled to RuBisCO carbon/oxygen fixation and the initiation of plastid retrograde messengers.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 18,
+      "n_edges": 19,
+      "n_compartments": 4
+    },
+    {
+      "id": "PMM-03",
+      "title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+      "subtitle": "The nuclear convergence hub where mitochondrial and plastid retrograde signals reprogram the genome to adjust bioenergetics.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 14,
+      "n_edges": 13,
+      "n_compartments": 2
+    },
+    {
+      "id": "PMM-04",
+      "title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+      "subtitle": "Cell surface mechanical and gravity sensing driving calcium spikes and apoplastic ROS waves that propagate inward to mitochondria and chloroplasts.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 15,
+      "n_edges": 15,
+      "n_compartments": 3
+    },
+    {
+      "id": "PMM-05",
+      "title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+      "subtitle": "From cristae respiratory stress to nuclear MDRE promoter activation via the rhomboid protease-cleaved ANAC017/013 transcription factor axis.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 13,
+      "n_edges": 13,
+      "n_compartments": 5
+    },
+    {
+      "id": "PMM-06",
+      "title": "The Plastid-to-Nucleus Retrograde Response (PRR) Circuits",
+      "subtitle": "Four parallel communication channels conveying chloroplast operational state, pigment biosynthesis, and redox stress to the nucleus.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 17,
+      "n_edges": 13,
+      "n_compartments": 4
+    },
+    {
+      "id": "PMM-07",
+      "title": "The 3-Organelle Photorespiratory Metabolic Loop",
+      "subtitle": "The obligatory metabolic partnership of Chloroplasts, Peroxisomes, and Mitochondria recycling 2-phosphoglycolate produced by RuBisCO oxygenation.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 15,
+      "n_edges": 14,
+      "n_compartments": 3
+    },
+    {
+      "id": "PMM-08",
+      "title": "Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking",
+      "subtitle": "Non-vesicular lipid and ion exchange across physical organellar contact sites, and dynamic chloroplast stromule docking directly onto the nuclear envelope.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 11,
+      "n_edges": 10,
+      "n_compartments": 5
+    },
+    {
+      "id": "PMM-09",
+      "title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+      "subtitle": "Systematic alignment of conserved catalytic bioenergetics with plant-specific metabolic innovations, bypasses, and dual-targeted endosymbiotic machinery.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 15,
+      "n_edges": 9,
+      "n_compartments": 3
+    },
+    {
+      "id": "PMM-10",
+      "title": "Integrated Multi-Organelle Digital Double Atlas",
+      "subtitle": "The unified plant cell: Mitochondrion, Chloroplast, Nucleus, and Plasma Membrane bound by retrograde signaling, metabolic shuttles, and systemic waves.",
+      "species_anchor": "arabidopsis_thaliana",
+      "n_nodes": 13,
+      "n_edges": 14,
+      "n_compartments": 5
+    }
+  ]
+}

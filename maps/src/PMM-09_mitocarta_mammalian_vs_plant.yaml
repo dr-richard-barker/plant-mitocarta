@@ -1,0 +1,111 @@
+# PMM-09 — Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome
+# Comparing the 149 human MitoPathways with Arabidopsis mitochondrial machinery.
+
+id: PMM-09
+title: "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome"
+subtitle: >-
+  Systematic alignment of conserved catalytic bioenergetics with plant-specific
+  metabolic innovations, bypasses, and dual-targeted endosymbiotic machinery.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  Comparison of the 1,136 human genes and 149 MitoPathways from Broad MitoCarta 3.0
+  with the plant mitochondrial proteome. Core bioenergetics (catalytic subunits of
+  Complexes I–V, TCA cycle, Fe-S ISC assembly) exhibit near-perfect 1:1 orthology.
+  In contrast, plants evolved vital metabolic innovations: cyanide-resistant AOX,
+  rotenone-insensitive internal/external NDHs, a matrix-facing Carbonic Anhydrase domain
+  on Complex I, and the massive photorespiratory GDC complex. Additionally, key organellar
+  machinery (DNA polymerase PolIA/B, aminoacyl-tRNA synthetases) evolved dual targeting
+  to simultaneously coordinate mitochondria and chloroplasts.
+
+lanes:
+  - id: mammalian_mitocarta_core
+    compartment: cristae
+    node_width: 220
+    nodes: [HUMAN_OXPHOS_CORE, HUMAN_TCA_CYCLE, HUMAN_POLG_REPLICATION]
+
+  - id: strict_plant_orthologs
+    compartment: cristae
+    node_width: 220
+    nodes: [PLANT_CONSERVED_OXPHOS, PLANT_CONSERVED_TCA, PLANT_FE_S_ISC_CORE]
+
+  - id: plant_specific_innovations
+    compartment: mitochondrial_inner_membrane
+    node_width: 230
+    nodes: [PLANT_AOX_INNOVATION, PLANT_NDH_BYPASSES, PLANT_CA_DOMAIN_COMPLEX_I, PLANT_GDC_PHOTORESP]
+
+  - id: dual_targeted_divergence
+    compartment: mitochondrial_matrix
+    node_width: 220
+    nodes: [DUAL_TARGETED_POLIA_B, DUAL_TARGETED_AARS, EXPANDED_PPR_FAMILY]
+
+  - id: translational_inference
+    compartment: mitochondrial_matrix
+    node_width: 220
+    nodes: [HUMAN_DISEASE_INSIGHTS, AOX_HUMAN_RESCUE_POTENTIAL]
+
+nodes:
+  - id: HUMAN_OXPHOS_CORE
+    label: "Human MitoCarta OXPHOS"
+    units: ["Complexes I-V core", "44 CI subunits", "Leigh syndrome loci"]
+  - id: HUMAN_TCA_CYCLE
+    label: "Human MitoCarta TCA"
+    units: ["CS, ACO2, IDH3, OGDH, FH", "strictly cyclic"]
+  - id: HUMAN_POLG_REPLICATION
+    label: "Human POLG / TWNK"
+    units: ["dedicated mitochondrial replication", "PEO / Alpers"]
+
+  - id: PLANT_CONSERVED_OXPHOS
+    label: "Plant Conserved Core (Q1)"
+    units: ["14 catalytic CI subunits", "SDH1-4", "Rieske [2Fe-2S]", "ATP synthase"]
+  - id: PLANT_CONSERVED_TCA
+    label: "Plant Conserved TCA (Q1)"
+    units: ["open/non-cyclic in light", "exports citrate via DTC"]
+  - id: PLANT_FE_S_ISC_CORE
+    label: "Plant ISC Machinery (Q1)"
+    units: ["NFS1, ISU1-3, ISA1", "conserved Fe-S biogenesis"]
+
+  - id: PLANT_AOX_INNOVATION
+    pmco: PMCO:AOX1A
+    label: "Alternative Oxidase (Q2)"
+    units: ["AOX1a-d, AOX2", "absent in mammals", "stress bypass"]
+  - id: PLANT_NDH_BYPASSES
+    pmco: PMCO:ALT_NADH_DH_INT
+    label: "Type II NDH Bypasses (Q2)"
+    units: ["NDA1/2, NDB1-4, NDC1", "rotenone-insensitive"]
+  - id: PLANT_CA_DOMAIN_COMPLEX_I
+    pmco: PMCO:COMPLEX_I_CA
+    label: "Complex I CA Domain (Q2)"
+    units: ["CAL1/2, CA1-3", "spherical matrix protuberance"]
+  - id: PLANT_GDC_PHOTORESP
+    pmco: PMCO:GDC_COMPLEX
+    label: "Photorespiratory GDC (Q2)"
+    units: ["P-, T-, H-, L-proteins", "up to 50% soluble protein"]
+
+  - id: DUAL_TARGETED_POLIA_B
+    pmco: PMCO:POLIA_POLYMERASE
+    label: "Dual-Targeted PolIA/B (Q3)"
+    units: ["replicates BOTH mito & chloro DNA"]
+  - id: DUAL_TARGETED_AARS
+    label: "Dual-Targeted AARSs (Q3)"
+    units: ["shared organellar aminoacyl-tRNA synthetases"]
+  - id: EXPANDED_PPR_FAMILY
+    label: "Expanded PPR Family (Q4)"
+    units: [">450 genes in Arabidopsis vs 7 in humans", "~500 C-to-U RNA edits"]
+
+  - id: HUMAN_DISEASE_INSIGHTS
+    label: "Human Mitochondrial Medicine"
+    units: ["cryo-EM catalytic structures inform plant active sites"]
+  - id: AOX_HUMAN_RESCUE_POTENTIAL
+    label: "Plant AOX Rescues Human Disease"
+    units: ["AOX expression in human cybrids rescues CI/CIII defects!"]
+
+edges:
+  - [HUMAN_OXPHOS_CORE, PLANT_CONSERVED_OXPHOS, activates, "strict orthology (58-85% identity)"]
+  - [HUMAN_TCA_CYCLE, PLANT_CONSERVED_TCA, activates, "enzymatic homology"]
+  - [HUMAN_POLG_REPLICATION, DUAL_TARGETED_POLIA_B, activates, "functional analog -> dual targeted"]
+  - [PLANT_CONSERVED_OXPHOS, PLANT_AOX_INNOVATION, activates, "AOX bypasses CI-CIV"]
+  - [PLANT_CONSERVED_OXPHOS, PLANT_NDH_BYPASSES, activates, "NDHs bypass CI"]
+  - [PLANT_CONSERVED_OXPHOS, PLANT_CA_DOMAIN_COMPLEX_I, activates, "assembles with membrane arm"]
+  - [PLANT_CONSERVED_TCA, PLANT_GDC_PHOTORESP, activates, "photorespiratory nitrogen cycle"]
+  - [HUMAN_OXPHOS_CORE, HUMAN_DISEASE_INSIGHTS, activates, "structural pathology"]
+  - [PLANT_AOX_INNOVATION, AOX_HUMAN_RESCUE_POTENTIAL, activates, "heterologous gene therapy rescue"]

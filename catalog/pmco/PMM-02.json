@@ -1,0 +1,375 @@
+{
+  "map_id": "PMM-02",
+  "title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+  "nodes": [
+    {
+      "id": "PHOTONS_H2O",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Photons & H2O",
+        "Substrate"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 184.6,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "LUMEN_PROTONS",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Thylakoid Lumen H+"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 225.75,
+        "w": 167.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PSII_OEC",
+      "pmco_id": "PMCO:PHOTOSYSTEM_II",
+      "tier": "T1",
+      "lines": [
+        "Photosystem II (PSII)"
+      ],
+      "box": {
+        "x": 272.6,
+        "y": 130.0,
+        "w": 196.2,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "CYT_B6F",
+      "pmco_id": "PMCO:CYTOCHROME_B6F",
+      "tier": "T1",
+      "lines": [
+        "Cytochrome b6f"
+      ],
+      "box": {
+        "x": 272.6,
+        "y": 210.125,
+        "w": 213.6,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PSI_COMPLEX",
+      "pmco_id": "PMCO:PHOTOSYSTEM_I",
+      "tier": "T1",
+      "lines": [
+        "Photosystem I (PSI)"
+      ],
+      "box": {
+        "x": 272.6,
+        "y": 290.25,
+        "w": 175.25,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "THYL_ATP_SYNTHASE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Thylakoid ATP Synthase"
+      ],
+      "box": {
+        "x": 272.6,
+        "y": 370.375,
+        "w": 198.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "EX1_SENSOR",
+      "pmco_id": "PMCO:EXECUTER_1",
+      "tier": "T1",
+      "lines": [
+        "EXECUTER 1 (EX1)"
+      ],
+      "box": {
+        "x": 272.6,
+        "y": 450.5,
+        "w": 178.79999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PLASTID_NADPH",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Stromal NADPH Pool"
+      ],
+      "box": {
+        "x": 522.2,
+        "y": 130.0,
+        "w": 167.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PLASTID_ATP",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Stromal ATP Pool"
+      ],
+      "box": {
+        "x": 522.2,
+        "y": 210.125,
+        "w": 152.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "STROMAL_ROS",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Stromal H2O2 / 1O2"
+      ],
+      "box": {
+        "x": 522.2,
+        "y": 290.25,
+        "w": 167.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "RUBISCO_ENZYME",
+      "pmco_id": "PMCO:RUBISCO_HOLOENZYME",
+      "tier": "T1",
+      "lines": [
+        "RuBisCO Holoenzyme"
+      ],
+      "box": {
+        "x": 758.2,
+        "y": 130.0,
+        "w": 231.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "CALVIN_BENSON_FLUX",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Calvin-Benson Cycle"
+      ],
+      "box": {
+        "x": 758.2,
+        "y": 210.125,
+        "w": 178.79999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "TPT_TRANSLOCATOR",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "TPT Translocator"
+      ],
+      "box": {
+        "x": 758.2,
+        "y": 290.25,
+        "w": 196.2,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "SAL1_NUCLEOTIDASE",
+      "pmco_id": "PMCO:SAL1_PHOSPHATASE",
+      "tier": "T1",
+      "lines": [
+        "SAL1 Phosphatase"
+      ],
+      "box": {
+        "x": 1025.2,
+        "y": 130.0,
+        "w": 202.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PAP_METABOLITE",
+      "pmco_id": "PMCO:PAP_METABOLITE",
+      "tier": "T1",
+      "lines": [
+        "PAP Retrograde Signal"
+      ],
+      "box": {
+        "x": 1025.2,
+        "y": 210.125,
+        "w": 190.75,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PAPST1_CHANNEL",
+      "pmco_id": "PMCO:PAPST1_TRANSPORTER",
+      "tier": "T1",
+      "lines": [
+        "PAPST1 Transporter"
+      ],
+      "box": {
+        "x": 1025.2,
+        "y": 290.25,
+        "w": 167.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "GUN1_INTEGRATOR",
+      "pmco_id": "PMCO:GUN1_HUB",
+      "tier": "T1",
+      "lines": [
+        "GUN1 PPR Hub"
+      ],
+      "box": {
+        "x": 1025.2,
+        "y": 370.375,
+        "w": 173.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MECPP_INTERMEDIATE",
+      "pmco_id": "PMCO:MECPP_METABOLITE",
+      "tier": "T1",
+      "lines": [
+        "MEcPP Metabolite"
+      ],
+      "box": {
+        "x": 1025.2,
+        "y": 450.5,
+        "w": 173.0,
+        "h": 48.125
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "PHOTONS_H2O",
+      "target": "PSII_OEC",
+      "kind": "electron_transfer",
+      "label": "h\u03bd -> 2 H2O split"
+    },
+    {
+      "source": "PSII_OEC",
+      "target": "CYT_B6F",
+      "kind": "electron_transfer",
+      "label": "PQH2"
+    },
+    {
+      "source": "CYT_B6F",
+      "target": "PSI_COMPLEX",
+      "kind": "electron_transfer",
+      "label": "plastocyanin"
+    },
+    {
+      "source": "PSI_COMPLEX",
+      "target": "PLASTID_NADPH",
+      "kind": "electron_transfer",
+      "label": "Fd -> FNR -> NADPH"
+    },
+    {
+      "source": "PSII_OEC",
+      "target": "LUMEN_PROTONS",
+      "kind": "activates",
+      "label": "pumps H+"
+    },
+    {
+      "source": "CYT_B6F",
+      "target": "LUMEN_PROTONS",
+      "kind": "activates",
+      "label": "pumps H+"
+    },
+    {
+      "source": "LUMEN_PROTONS",
+      "target": "THYL_ATP_SYNTHASE",
+      "kind": "activates",
+      "label": "drives ATP synthesis"
+    },
+    {
+      "source": "THYL_ATP_SYNTHASE",
+      "target": "PLASTID_ATP",
+      "kind": "activates",
+      "label": "yields ATP"
+    },
+    {
+      "source": "PLASTID_NADPH",
+      "target": "CALVIN_BENSON_FLUX",
+      "kind": "metabolite_flux",
+      "label": "reductive phase"
+    },
+    {
+      "source": "PLASTID_ATP",
+      "target": "CALVIN_BENSON_FLUX",
+      "kind": "metabolite_flux",
+      "label": "phosphorylation"
+    },
+    {
+      "source": "CALVIN_BENSON_FLUX",
+      "target": "RUBISCO_ENZYME",
+      "kind": "activates",
+      "label": "CO2 fixation"
+    },
+    {
+      "source": "CALVIN_BENSON_FLUX",
+      "target": "TPT_TRANSLOCATOR",
+      "kind": "metabolite_flux",
+      "label": "triose-P export"
+    },
+    {
+      "source": "PSII_OEC",
+      "target": "EX1_SENSOR",
+      "kind": "activates",
+      "label": "1O2 photodamage"
+    },
+    {
+      "source": "PSII_OEC",
+      "target": "STROMAL_ROS",
+      "kind": "activates",
+      "label": "ROS leakage"
+    },
+    {
+      "source": "STROMAL_ROS",
+      "target": "SAL1_NUCLEOTIDASE",
+      "kind": "inhibits",
+      "label": "oxidative inactivation"
+    },
+    {
+      "source": "SAL1_NUCLEOTIDASE",
+      "target": "PAP_METABOLITE",
+      "kind": "inhibits",
+      "label": "constitutive degradation"
+    },
+    {
+      "source": "PAP_METABOLITE",
+      "target": "PAPST1_CHANNEL",
+      "kind": "metabolite_flux",
+      "label": "envelope export"
+    },
+    {
+      "source": "STROMAL_ROS",
+      "target": "GUN1_INTEGRATOR",
+      "kind": "activates",
+      "label": "plastid protein stress"
+    },
+    {
+      "source": "STROMAL_ROS",
+      "target": "MECPP_INTERMEDIATE",
+      "kind": "activates",
+      "label": "MEP pathway stress"
+    }
+  ]
+}

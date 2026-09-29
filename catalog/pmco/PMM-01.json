@@ -1,0 +1,374 @@
+{
+  "map_id": "PMM-01",
+  "title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+  "nodes": [
+    {
+      "id": "MATRIX_NADH",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Matrix NADH Pool"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 152.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "SUCCINATE_POOL",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Succinate Pool"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 210.125,
+        "w": 155.6,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "O2_SUBSTRATE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Molecular Oxygen (O2)"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 290.25,
+        "w": 190.75,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "COMPLEX_I_CORE",
+      "pmco_id": "PMCO:COMPLEX_I",
+      "tier": "T1",
+      "lines": [
+        "Complex I (Catalytic Core)"
+      ],
+      "box": {
+        "x": 278.75,
+        "y": 130.0,
+        "w": 229.5,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "COMPLEX_I_CA_DOMAIN",
+      "pmco_id": "PMCO:COMPLEX_I_CA",
+      "tier": "T1",
+      "lines": [
+        "Complex I CA Domain"
+      ],
+      "box": {
+        "x": 278.75,
+        "y": 222.625,
+        "w": 225.2,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "COMPLEX_II_SDH",
+      "pmco_id": "PMCO:COMPLEX_II",
+      "tier": "T1",
+      "lines": [
+        "Complex II (SDH)"
+      ],
+      "box": {
+        "x": 278.75,
+        "y": 315.25,
+        "w": 161.39999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "ALT_NDH_INTERNAL",
+      "pmco_id": "PMCO:ALT_NADH_DH_INT",
+      "tier": "T1",
+      "lines": [
+        "Internal Type II NDH"
+      ],
+      "box": {
+        "x": 278.75,
+        "y": 395.375,
+        "w": 213.6,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "ALT_NDH_EXTERNAL",
+      "pmco_id": "PMCO:ALT_NADH_DH_EXT",
+      "tier": "T1",
+      "lines": [
+        "External Type II NDH"
+      ],
+      "box": {
+        "x": 278.75,
+        "y": 488.0,
+        "w": 236.79999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "UBIQUINONE_POOL",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Ubiquinone Pool (Q/QH2)"
+      ],
+      "box": {
+        "x": 551.55,
+        "y": 130.0,
+        "w": 206.25,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "AOX_BYPASS",
+      "pmco_id": "PMCO:AOX1A",
+      "tier": "T1",
+      "lines": [
+        "Alternative Oxidase",
+        "(AOX1a)"
+      ],
+      "box": {
+        "x": 551.55,
+        "y": 210.125,
+        "w": 213.6,
+        "h": 76.25
+      }
+    },
+    {
+      "id": "COMPLEX_III_BC1",
+      "pmco_id": "PMCO:COMPLEX_III",
+      "tier": "T1",
+      "lines": [
+        "Complex III (bc1 Complex)"
+      ],
+      "box": {
+        "x": 801.15,
+        "y": 130.0,
+        "w": 236.79999999999998,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "CYTOCHROME_C",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Cytochrome c"
+      ],
+      "box": {
+        "x": 801.15,
+        "y": 222.625,
+        "w": 132.39999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "COMPLEX_IV_COX",
+      "pmco_id": "PMCO:COMPLEX_IV",
+      "tier": "T1",
+      "lines": [
+        "Complex IV (COX)"
+      ],
+      "box": {
+        "x": 801.15,
+        "y": 302.75,
+        "w": 202.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "COMPLEX_V_ATPASE",
+      "pmco_id": "PMCO:COMPLEX_V",
+      "tier": "T1",
+      "lines": [
+        "ATP Synthase (F1Fo)"
+      ],
+      "box": {
+        "x": 1073.9499999999998,
+        "y": 130.0,
+        "w": 175.25,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PUMP_UNCOUPLING",
+      "pmco_id": "PMCO:PUMP1",
+      "tier": "T1",
+      "lines": [
+        "Plant UCP1 (PUMP1)"
+      ],
+      "box": {
+        "x": 1073.9499999999998,
+        "y": 210.125,
+        "w": 207.79999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MITO_ROS_BURST",
+      "pmco_id": "PMCO:MITO_ROS",
+      "tier": "T1",
+      "lines": [
+        "Mitochondrial",
+        "Superoxide/H2O2"
+      ],
+      "box": {
+        "x": 1073.9499999999998,
+        "y": 290.25,
+        "w": 196.2,
+        "h": 76.25
+      }
+    },
+    {
+      "id": "DTC_CITRATE_CARRIER",
+      "pmco_id": "PMCO:DTC_CARRIER",
+      "tier": "T1",
+      "lines": [
+        "DTC Translocator"
+      ],
+      "box": {
+        "x": 1073.9499999999998,
+        "y": 398.5,
+        "w": 190.39999999999998,
+        "h": 60.625
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "MATRIX_NADH",
+      "target": "COMPLEX_I_CORE",
+      "kind": "electron_transfer",
+      "label": "2e\u2212"
+    },
+    {
+      "source": "MATRIX_NADH",
+      "target": "ALT_NDH_INTERNAL",
+      "kind": "electron_transfer",
+      "label": "bypass"
+    },
+    {
+      "source": "COMPLEX_I_CORE",
+      "target": "COMPLEX_I_CA_DOMAIN",
+      "kind": "activates",
+      "label": "structural assembly"
+    },
+    {
+      "source": "SUCCINATE_POOL",
+      "target": "COMPLEX_II_SDH",
+      "kind": "electron_transfer",
+      "label": "2e\u2212"
+    },
+    {
+      "source": "COMPLEX_I_CORE",
+      "target": "UBIQUINONE_POOL",
+      "kind": "electron_transfer",
+      "label": "QH2"
+    },
+    {
+      "source": "COMPLEX_II_SDH",
+      "target": "UBIQUINONE_POOL",
+      "kind": "electron_transfer",
+      "label": "QH2"
+    },
+    {
+      "source": "ALT_NDH_INTERNAL",
+      "target": "UBIQUINONE_POOL",
+      "kind": "electron_transfer",
+      "label": "QH2"
+    },
+    {
+      "source": "ALT_NDH_EXTERNAL",
+      "target": "UBIQUINONE_POOL",
+      "kind": "electron_transfer",
+      "label": "QH2"
+    },
+    {
+      "source": "UBIQUINONE_POOL",
+      "target": "AOX_BYPASS",
+      "kind": "electron_transfer",
+      "label": "relief valve"
+    },
+    {
+      "source": "AOX_BYPASS",
+      "target": "O2_SUBSTRATE",
+      "kind": "electron_transfer",
+      "label": "4e\u2212 -> 2 H2O"
+    },
+    {
+      "source": "UBIQUINONE_POOL",
+      "target": "COMPLEX_III_BC1",
+      "kind": "electron_transfer",
+      "label": "Q cycle"
+    },
+    {
+      "source": "COMPLEX_III_BC1",
+      "target": "CYTOCHROME_C",
+      "kind": "electron_transfer",
+      "label": "1e\u2212"
+    },
+    {
+      "source": "CYTOCHROME_C",
+      "target": "COMPLEX_IV_COX",
+      "kind": "electron_transfer",
+      "label": "1e\u2212"
+    },
+    {
+      "source": "COMPLEX_IV_COX",
+      "target": "O2_SUBSTRATE",
+      "kind": "electron_transfer",
+      "label": "4e\u2212 -> 2 H2O"
+    },
+    {
+      "source": "COMPLEX_I_CORE",
+      "target": "COMPLEX_V_ATPASE",
+      "kind": "activates",
+      "label": "H+ gradient"
+    },
+    {
+      "source": "COMPLEX_III_BC1",
+      "target": "COMPLEX_V_ATPASE",
+      "kind": "activates",
+      "label": "H+ gradient"
+    },
+    {
+      "source": "COMPLEX_IV_COX",
+      "target": "COMPLEX_V_ATPASE",
+      "kind": "activates",
+      "label": "H+ gradient"
+    },
+    {
+      "source": "COMPLEX_V_ATPASE",
+      "target": "PUMP_UNCOUPLING",
+      "kind": "inhibits",
+      "label": "proton uncoupling"
+    },
+    {
+      "source": "COMPLEX_I_CORE",
+      "target": "MITO_ROS_BURST",
+      "kind": "activates",
+      "label": "electron leak"
+    },
+    {
+      "source": "COMPLEX_III_BC1",
+      "target": "MITO_ROS_BURST",
+      "kind": "activates",
+      "label": "electron leak"
+    },
+    {
+      "source": "MITO_ROS_BURST",
+      "target": "DTC_CITRATE_CARRIER",
+      "kind": "activates",
+      "label": "stress signaling"
+    }
+  ]
+}

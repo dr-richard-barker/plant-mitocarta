@@ -1,0 +1,134 @@
+# PMM-02 — Chloroplast Light Reactions, Carbon Fixation, and Plastid Retrograde Origins
+# Photosystems I/II, Cytochrome b6f, Calvin-Benson cycle (RuBisCO), and retrograde origins.
+
+id: PMM-02
+title: Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins
+subtitle: >-
+  Thylakoid electron transport coupled to RuBisCO carbon/oxygen fixation and
+  the initiation of plastid retrograde messengers.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  The photosynthetic machinery drawn to emphasize metabolic connections and retrograde
+  stress signaling. Light absorption by PSII and PSI drives the linear electron flow
+  producing NADPH and ATP for the Calvin-Benson cycle. Excess light or translational stress
+  generates singlet oxygen at PSII and redox stress in the stroma, inactivating SAL1
+  phosphatase and triggering the accumulation of 3'-phosphoadenosine 5'-phosphate (PAP)
+  and 2-C-methyl-D-erythritol 2,4-cyclodiphosphate (MEcPP). RuBisCO oxygenation initiates
+  the photorespiratory cycle.
+
+lanes:
+  - id: photon_inputs
+    compartment: thylakoid_lumen
+    node_width: 170
+    nodes: [PHOTONS_H2O, LUMEN_PROTONS]
+
+  - id: thylakoid_chain
+    compartment: thylakoid_membrane
+    node_width: 210
+    nodes: [PSII_OEC, CYT_B6F, PSI_COMPLEX, THYL_ATP_SYNTHASE, EX1_SENSOR]
+
+  - id: stromal_redox
+    compartment: chloroplast_stroma
+    node_width: 200
+    nodes: [PLASTID_NADPH, PLASTID_ATP, STROMAL_ROS]
+
+  - id: calvin_cycle
+    compartment: chloroplast_stroma
+    node_width: 220
+    nodes: [RUBISCO_ENZYME, CALVIN_BENSON_FLUX, TPT_TRANSLOCATOR]
+
+  - id: retrograde_origins
+    compartment: chloroplast_inner_envelope
+    node_width: 210
+    nodes: [SAL1_NUCLEOTIDASE, PAP_METABOLITE, PAPST1_CHANNEL, GUN1_INTEGRATOR, MECPP_INTERMEDIATE]
+
+nodes:
+  - id: PHOTONS_H2O
+    label: "Photons & H2O Substrate"
+    units: ["light harvest", "O2 evolving"]
+  - id: LUMEN_PROTONS
+    label: "Thylakoid Lumen H+"
+    units: ["proton accumulation"]
+
+  - id: PSII_OEC
+    pmco: PMCO:PHOTOSYSTEM_II
+    label: "Photosystem II (PSII)"
+    units: ["D1/PsbA turnover", "splits H2O"]
+  - id: CYT_B6F
+    pmco: PMCO:CYTOCHROME_B6F
+    label: "Cytochrome b6f"
+    units: ["plastoquinol oxidation", "Q cycle"]
+  - id: PSI_COMPLEX
+    pmco: PMCO:PHOTOSYSTEM_I
+    label: "Photosystem I (PSI)"
+    units: ["ferredoxin", "FNR", "NADPH"]
+  - id: THYL_ATP_SYNTHASE
+    label: "Thylakoid ATP Synthase"
+    units: ["CF1-CFo", "yields ATP"]
+  - id: EX1_SENSOR
+    pmco: PMCO:EXECUTER_1
+    label: "EXECUTER 1 (EX1)"
+    units: ["1O2 sensor", "grana margins"]
+
+  - id: PLASTID_NADPH
+    label: "Stromal NADPH Pool"
+    units: ["reducing power"]
+  - id: PLASTID_ATP
+    label: "Stromal ATP Pool"
+    units: ["energy charge"]
+  - id: STROMAL_ROS
+    label: "Stromal H2O2 / 1O2"
+    units: ["redox signal"]
+
+  - id: RUBISCO_ENZYME
+    pmco: PMCO:RUBISCO_HOLOENZYME
+    label: "RuBisCO Holoenzyme"
+    units: ["RbcL + RbcS", "carboxylase/oxygenase"]
+  - id: CALVIN_BENSON_FLUX
+    label: "Calvin-Benson Cycle"
+    units: ["triose phosphate synthesis"]
+  - id: TPT_TRANSLOCATOR
+    label: "TPT Translocator"
+    units: ["exports triose-P", "imports Pi"]
+
+  - id: SAL1_NUCLEOTIDASE
+    pmco: PMCO:SAL1_PHOSPHATASE
+    label: "SAL1 Phosphatase"
+    units: ["redox-regulated", "degrades PAP"]
+  - id: PAP_METABOLITE
+    pmco: PMCO:PAP_METABOLITE
+    label: "PAP Retrograde Signal"
+    units: ["accumulates under stress"]
+  - id: PAPST1_CHANNEL
+    pmco: PMCO:PAPST1_TRANSPORTER
+    label: "PAPST1 Transporter"
+    units: ["envelope export"]
+  - id: GUN1_INTEGRATOR
+    pmco: PMCO:GUN1_HUB
+    label: "GUN1 PPR Hub"
+    units: ["master plastid integrator"]
+  - id: MECPP_INTERMEDIATE
+    pmco: PMCO:MECPP_METABOLITE
+    label: "MEcPP Metabolite"
+    units: ["MEP pathway stress signal"]
+
+edges:
+  - [PHOTONS_H2O, PSII_OEC, electron_transfer, "hν -> 2 H2O split"]
+  - [PSII_OEC, CYT_B6F, electron_transfer, "PQH2"]
+  - [CYT_B6F, PSI_COMPLEX, electron_transfer, "plastocyanin"]
+  - [PSI_COMPLEX, PLASTID_NADPH, electron_transfer, "Fd -> FNR -> NADPH"]
+  - [PSII_OEC, LUMEN_PROTONS, activates, "pumps H+"]
+  - [CYT_B6F, LUMEN_PROTONS, activates, "pumps H+"]
+  - [LUMEN_PROTONS, THYL_ATP_SYNTHASE, activates, "drives ATP synthesis"]
+  - [THYL_ATP_SYNTHASE, PLASTID_ATP, activates, "yields ATP"]
+  - [PLASTID_NADPH, CALVIN_BENSON_FLUX, metabolite_flux, "reductive phase"]
+  - [PLASTID_ATP, CALVIN_BENSON_FLUX, metabolite_flux, "phosphorylation"]
+  - [CALVIN_BENSON_FLUX, RUBISCO_ENZYME, activates, "CO2 fixation"]
+  - [CALVIN_BENSON_FLUX, TPT_TRANSLOCATOR, metabolite_flux, "triose-P export"]
+  - [PSII_OEC, EX1_SENSOR, activates, "1O2 photodamage"]
+  - [PSII_OEC, STROMAL_ROS, activates, "ROS leakage"]
+  - [STROMAL_ROS, SAL1_NUCLEOTIDASE, inhibits, "oxidative inactivation"]
+  - [SAL1_NUCLEOTIDASE, PAP_METABOLITE, inhibits, "constitutive degradation"]
+  - [PAP_METABOLITE, PAPST1_CHANNEL, metabolite_flux, "envelope export"]
+  - [STROMAL_ROS, GUN1_INTEGRATOR, activates, "plastid protein stress"]
+  - [STROMAL_ROS, MECPP_INTERMEDIATE, activates, "MEP pathway stress"]

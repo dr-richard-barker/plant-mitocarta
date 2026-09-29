@@ -1,0 +1,38 @@
+[
+  {
+    "compartment_id": "mitochondrial_inner_membrane",
+    "label": "Mitochondrial Cristae & Bypass Machinery",
+    "n_loci": 5,
+    "mean_abs_log2fc": 0.902,
+    "background_mean": 0.899,
+    "p_value": 0.4913,
+    "significant": false
+  },
+  {
+    "compartment_id": "chloroplast_stroma",
+    "label": "Chloroplast Stroma & Retrograde Hubs",
+    "n_loci": 2,
+    "mean_abs_log2fc": 0.705,
+    "background_mean": 0.0,
+    "p_value": 1.0,
+    "significant": false
+  },
+  {
+    "compartment_id": "plasma_membrane",
+    "label": "Plasma Membrane Sensory Channels & RBOHD",
+    "n_loci": 7,
+    "mean_abs_log2fc": 1.211,
+    "background_mean": 0.899,
+    "p_value": 0.019,
+    "significant": true
+  },
+  {
+    "compartment_id": "nucleoplasm",
+    "label": "Nuclear Retrograde Transcription Factors",
+    "n_loci": 5,
+    "mean_abs_log2fc": 0.964,
+    "background_mean": 0.899,
+    "p_value": 0.3645,
+    "significant": false
+  }
+]

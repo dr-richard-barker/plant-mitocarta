@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1303.2 650.0" width="1303.2" height="650.0" class="pmc-svg" data-theme="dark">
+<style>
+:root {
+  --pmc-bg: #ffffff;
+  --pmc-ink: #111827;
+  --pmc-ink-soft: #4b5563;
+  --pmc-node-fill: #f9fafb;
+  --pmc-node-stroke: #111827;
+  --pmc-hairline: #9ca3af;
+  --pmc-edge: #4b5563;
+  --pmc-card-bg: #ffffff;
+  --pmc-compartment-fill: rgba(0, 0, 0, 0.03);
+}
+:root[data-theme="dark"], body.dark-mode {
+  --pmc-bg: #0b0f19;
+  --pmc-ink: #f3f4f6;
+  --pmc-ink-soft: #9ca3af;
+  --pmc-node-fill: #151d2e;
+  --pmc-node-stroke: #f3f4f6;
+  --pmc-hairline: #4b5563;
+  --pmc-edge: #9ca3af;
+  --pmc-card-bg: #111827;
+  --pmc-compartment-fill: rgba(255, 255, 255, 0.04);
+}
+
+.pmc-canvas { fill: var(--pmc-bg); }
+text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; fill: var(--pmc-ink); }
+.pmc-title { font-size: 20px; font-weight: 700; }
+.pmc-subtitle { font-size: 13px; fill: var(--pmc-ink-soft); }
+.pmc-caption { font-size: 11.5px; fill: var(--pmc-ink-soft); }
+.pmc-label { font-size: 12.5px; font-weight: 600; text-anchor: middle; }
+.pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
+
+.pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+
+/* Evidence Tiers as Border Channels */
+.tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
+.tier-T2 { stroke-width: 1.8px; stroke: var(--pmc-node-stroke); }
+.tier-T3 { stroke-width: 1.8px; stroke-dasharray: 6 4; stroke: var(--pmc-node-stroke); }
+.tier-T4 { stroke-width: 1.5px; stroke-dasharray: 2 3; stroke: var(--pmc-ink-soft); }
+.tier-T5 { stroke-width: 0.8px; stroke: var(--pmc-hairline); }
+
+.pmc-compartment { fill: var(--pmc-compartment-fill); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
+.pmc-compartment-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--pmc-ink-soft); }
+
+.pmc-edge { fill: none; stroke: var(--pmc-edge); stroke-width: 1.6px; }
+.pmc-edge-electron_transfer { stroke: #0072B2; stroke-width: 2.2px; }
+.pmc-edge-metabolite_flux { stroke: #009E73; stroke-width: 1.8px; stroke-dasharray: 4 3; }
+.pmc-edge-activates { stroke: #E69F00; stroke-width: 1.8px; }
+.pmc-edge-inhibits { stroke: #D55E00; stroke-width: 2.0px; }
+.pmc-edge-cleaved_by { stroke: #CC79A7; stroke-dasharray: 5 3; }
+.pmc-edge-label { font-size: 9.5px; fill: var(--pmc-ink-soft); font-weight: 500; text-anchor: middle; }
+</style>
+<defs>
+<marker id="pmc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="var(--pmc-edge)" /></marker>
+<marker id="pmc-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#0072B2" /></marker>
+<marker id="pmc-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#009E73" /></marker>
+<marker id="pmc-arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#E69F00" /></marker>
+<marker id="pmc-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#D55E00" /></marker>
+<marker id="pmc-inhibit" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><line x1="5" y1="1" x2="5" y2="9" stroke="#D55E00" stroke-width="2.5" /></marker>
+</defs>
+<rect class="pmc-canvas" width="1303.2" height="650.0" />
+<text class="pmc-title" x="32" y="44">Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins</text>
+<text class="pmc-subtitle" x="32" y="66">Thylakoid electron transport coupled to RuBisCO carbon/oxygen fixation and the initiation of plastid retrograde messengers.</text>
+<rect class="pmc-compartment" x="24.0" y="90.0" width="240.6" height="211.9" stroke="#053024" />
+<text class="pmc-compartment-label" x="36.0" y="108.0">Thylakoid Lumen</text>
+<rect class="pmc-compartment" x="244.6" y="90.0" width="269.6" height="436.6" stroke="#063d2e" />
+<text class="pmc-compartment-label" x="256.6" y="108.0">Thylakoid Membrane</text>
+<rect class="pmc-compartment" x="494.2" y="90.0" width="523.0" height="276.4" stroke="#084736" />
+<text class="pmc-compartment-label" x="506.2" y="108.0">Chloroplast Stroma</text>
+<rect class="pmc-compartment" x="997.2" y="90.0" width="258.0" height="436.6" stroke="#106e54" />
+<text class="pmc-compartment-label" x="1009.2" y="108.0">Chloroplast Inner Envelope (IEM)</text>
+<line class="pmc-edge pmc-edge-electron_transfer" x1="236.6" y1="161.9" x2="272.6" y2="154.1" marker-end="url(#pmc-arrow-blue)" />
+<text class="pmc-edge-label" x="254.6" y="154.0">hν -&gt; 2 H2O split</text>
+<line class="pmc-edge pmc-edge-electron_transfer" x1="370.7" y1="178.1" x2="379.4" y2="210.1" marker-end="url(#pmc-arrow-blue)" />
+<text class="pmc-edge-label" x="375.1" y="190.1">PQH2</text>
+<line class="pmc-edge pmc-edge-electron_transfer" x1="379.4" y1="258.2" x2="360.2" y2="290.2" marker-end="url(#pmc-arrow-blue)" />
+<text class="pmc-edge-label" x="369.8" y="270.2">plastocyanin</text>
+<line class="pmc-edge pmc-edge-electron_transfer" x1="447.9" y1="314.3" x2="522.2" y2="154.1" marker-end="url(#pmc-arrow-blue)" />
+<text class="pmc-edge-label" x="485.0" y="230.2">Fd -&gt; FNR -&gt; NADPH</text>
+<line class="pmc-edge pmc-edge-activates" x1="272.6" y1="154.1" x2="219.5" y2="249.8" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="246.1" y="197.9">pumps H+</text>
+<line class="pmc-edge pmc-edge-activates" x1="272.6" y1="234.2" x2="219.5" y2="249.8" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="246.1" y="238.0">pumps H+</text>
+<line class="pmc-edge pmc-edge-activates" x1="219.5" y1="249.8" x2="272.6" y2="394.4" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="246.1" y="318.1">drives ATP synthesis</text>
+<line class="pmc-edge pmc-edge-activates" x1="471.1" y1="394.4" x2="522.2" y2="234.2" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="496.7" y="310.3">yields ATP</text>
+<line class="pmc-edge pmc-edge-metabolite_flux" x1="689.7" y1="154.1" x2="758.2" y2="234.2" marker-end="url(#pmc-arrow-green)" />
+<text class="pmc-edge-label" x="724.0" y="190.1">reductive phase</text>
+<line class="pmc-edge pmc-edge-metabolite_flux" x1="674.2" y1="234.2" x2="758.2" y2="234.2" marker-end="url(#pmc-arrow-green)" />
+<text class="pmc-edge-label" x="716.2" y="230.2">phosphorylation</text>
+<line class="pmc-edge pmc-edge-activates" x1="847.6" y1="210.1" x2="873.7" y2="178.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="860.7" y="190.1">CO2 fixation</text>
+<line class="pmc-edge pmc-edge-metabolite_flux" x1="847.6" y1="258.2" x2="856.3" y2="290.2" marker-end="url(#pmc-arrow-green)" />
+<text class="pmc-edge-label" x="852.0" y="270.2">triose-P export</text>
+<line class="pmc-edge pmc-edge-activates" x1="370.7" y1="178.1" x2="362.0" y2="450.5" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="366.4" y="310.3">1O2 photodamage</text>
+<line class="pmc-edge pmc-edge-activates" x1="468.8" y1="154.1" x2="522.2" y2="314.3" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="495.5" y="230.2">ROS leakage</text>
+<line class="pmc-edge pmc-edge-inhibits" x1="689.7" y1="314.3" x2="1025.2" y2="154.1" marker-end="url(#pmc-inhibit)" />
+<text class="pmc-edge-label" x="857.5" y="230.2">oxidative inactivation</text>
+<line class="pmc-edge pmc-edge-inhibits" x1="1126.2" y1="178.1" x2="1120.6" y2="210.1" marker-end="url(#pmc-inhibit)" />
+<text class="pmc-edge-label" x="1123.4" y="190.1">constitutive degradation</text>
+<line class="pmc-edge pmc-edge-metabolite_flux" x1="1120.6" y1="258.2" x2="1109.0" y2="290.2" marker-end="url(#pmc-arrow-green)" />
+<text class="pmc-edge-label" x="1114.8" y="270.2">envelope export</text>
+<line class="pmc-edge pmc-edge-activates" x1="689.7" y1="314.3" x2="1025.2" y2="394.4" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="857.5" y="350.4">plastid protein stress</text>
+<line class="pmc-edge pmc-edge-activates" x1="689.7" y1="314.3" x2="1025.2" y2="474.6" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="857.5" y="390.4">MEP pathway stress</text>
+<g class="pmc-node-group" id="node-PHOTONS_H2O"><rect class="pmc-node tier-T4" x="52.0" y="130.0" width="184.6" height="63.8" />
+<text class="pmc-label" x="144.3" y="148.4">Photons &amp; H2O</text>
+<text class="pmc-label" x="144.3" y="163.4">Substrate</text>
+<text class="pmc-sub" x="144.3" y="178.4">light harvest • O2 evolving</text>
+</g>
+<g class="pmc-node-group" id="node-LUMEN_PROTONS"><rect class="pmc-node tier-T4" x="52.0" y="225.8" width="167.5" height="48.1" />
+<text class="pmc-label" x="135.8" y="243.8">Thylakoid Lumen H+</text>
+<text class="pmc-sub" x="135.8" y="258.8">proton accumulation</text>
+</g>
+<g class="pmc-node-group" id="node-PSII_OEC"><rect class="pmc-node tier-T1" x="272.6" y="130.0" width="196.2" height="48.1" />
+<text class="pmc-label" x="370.7" y="148.1">Photosystem II (PSII)</text>
+<text class="pmc-sub" x="370.7" y="163.1">D1/PsbA turnover • splits H2O</text>
+</g>
+<g class="pmc-node-group" id="node-CYT_B6F"><rect class="pmc-node tier-T1" x="272.6" y="210.1" width="213.6" height="48.1" />
+<text class="pmc-label" x="379.4" y="228.2">Cytochrome b6f</text>
+<text class="pmc-sub" x="379.4" y="243.2">plastoquinol oxidation • Q cycle</text>
+</g>
+<g class="pmc-node-group" id="node-PSI_COMPLEX"><rect class="pmc-node tier-T1" x="272.6" y="290.2" width="175.2" height="48.1" />
+<text class="pmc-label" x="360.2" y="308.3">Photosystem I (PSI)</text>
+<text class="pmc-sub" x="360.2" y="323.3">ferredoxin • FNR • NADPH</text>
+</g>
+<g class="pmc-node-group" id="node-THYL_ATP_SYNTHASE"><rect class="pmc-node tier-T4" x="272.6" y="370.4" width="198.5" height="48.1" />
+<text class="pmc-label" x="371.9" y="388.4">Thylakoid ATP Synthase</text>
+<text class="pmc-sub" x="371.9" y="403.4">CF1-CFo • yields ATP</text>
+</g>
+<g class="pmc-node-group" id="node-EX1_SENSOR"><rect class="pmc-node tier-T1" x="272.6" y="450.5" width="178.8" height="48.1" />
+<text class="pmc-label" x="362.0" y="468.6">EXECUTER 1 (EX1)</text>
+<text class="pmc-sub" x="362.0" y="483.6">1O2 sensor • grana margins</text>
+</g>
+<g class="pmc-node-group" id="node-PLASTID_NADPH"><rect class="pmc-node tier-T4" x="522.2" y="130.0" width="167.5" height="48.1" />
+<text class="pmc-label" x="606.0" y="148.1">Stromal NADPH Pool</text>
+<text class="pmc-sub" x="606.0" y="163.1">reducing power</text>
+</g>
+<g class="pmc-node-group" id="node-PLASTID_ATP"><rect class="pmc-node tier-T4" x="522.2" y="210.1" width="152.0" height="48.1" />
+<text class="pmc-label" x="598.2" y="228.2">Stromal ATP Pool</text>
+<text class="pmc-sub" x="598.2" y="243.2">energy charge</text>
+</g>
+<g class="pmc-node-group" id="node-STROMAL_ROS"><rect class="pmc-node tier-T4" x="522.2" y="290.2" width="167.5" height="48.1" />
+<text class="pmc-label" x="606.0" y="308.3">Stromal H2O2 / 1O2</text>
+<text class="pmc-sub" x="606.0" y="323.3">redox signal</text>
+</g>
+<g class="pmc-node-group" id="node-RUBISCO_ENZYME"><rect class="pmc-node tier-T1" x="758.2" y="130.0" width="231.0" height="48.1" />
+<text class="pmc-label" x="873.7" y="148.1">RuBisCO Holoenzyme</text>
+<text class="pmc-sub" x="873.7" y="163.1">RbcL + RbcS • carboxylase/oxygenase</text>
+</g>
+<g class="pmc-node-group" id="node-CALVIN_BENSON_FLUX"><rect class="pmc-node tier-T4" x="758.2" y="210.1" width="178.8" height="48.1" />
+<text class="pmc-label" x="847.6" y="228.2">Calvin-Benson Cycle</text>
+<text class="pmc-sub" x="847.6" y="243.2">triose phosphate synthesis</text>
+</g>
+<g class="pmc-node-group" id="node-TPT_TRANSLOCATOR"><rect class="pmc-node tier-T4" x="758.2" y="290.2" width="196.2" height="48.1" />
+<text class="pmc-label" x="856.3" y="308.3">TPT Translocator</text>
+<text class="pmc-sub" x="856.3" y="323.3">exports triose-P • imports Pi</text>
+</g>
+<g class="pmc-node-group" id="node-SAL1_NUCLEOTIDASE"><rect class="pmc-node tier-T1" x="1025.2" y="130.0" width="202.0" height="48.1" />
+<text class="pmc-label" x="1126.2" y="148.1">SAL1 Phosphatase</text>
+<text class="pmc-sub" x="1126.2" y="163.1">redox-regulated • degrades PAP</text>
+</g>
+<g class="pmc-node-group" id="node-PAP_METABOLITE"><rect class="pmc-node tier-T1" x="1025.2" y="210.1" width="190.8" height="48.1" />
+<text class="pmc-label" x="1120.6" y="228.2">PAP Retrograde Signal</text>
+<text class="pmc-sub" x="1120.6" y="243.2">accumulates under stress</text>
+</g>
+<g class="pmc-node-group" id="node-PAPST1_CHANNEL"><rect class="pmc-node tier-T1" x="1025.2" y="290.2" width="167.5" height="48.1" />
+<text class="pmc-label" x="1109.0" y="308.3">PAPST1 Transporter</text>
+<text class="pmc-sub" x="1109.0" y="323.3">envelope export</text>
+</g>
+<g class="pmc-node-group" id="node-GUN1_INTEGRATOR"><rect class="pmc-node tier-T1" x="1025.2" y="370.4" width="173.0" height="48.1" />
+<text class="pmc-label" x="1111.7" y="388.4">GUN1 PPR Hub</text>
+<text class="pmc-sub" x="1111.7" y="403.4">master plastid integrator</text>
+</g>
+<g class="pmc-node-group" id="node-MECPP_INTERMEDIATE"><rect class="pmc-node tier-T1" x="1025.2" y="450.5" width="173.0" height="48.1" />
+<text class="pmc-label" x="1111.7" y="468.6">MEcPP Metabolite</text>
+<text class="pmc-sub" x="1111.7" y="483.6">MEP pathway stress signal</text>
+</g>
+</svg>

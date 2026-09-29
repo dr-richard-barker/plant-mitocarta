@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1382.8 650.0" width="1382.8" height="650.0" class="pmc-svg" data-theme="dark">
+<style>
+:root {
+  --pmc-bg: #ffffff;
+  --pmc-ink: #111827;
+  --pmc-ink-soft: #4b5563;
+  --pmc-node-fill: #f9fafb;
+  --pmc-node-stroke: #111827;
+  --pmc-hairline: #9ca3af;
+  --pmc-edge: #4b5563;
+  --pmc-card-bg: #ffffff;
+  --pmc-compartment-fill: rgba(0, 0, 0, 0.03);
+}
+:root[data-theme="dark"], body.dark-mode {
+  --pmc-bg: #0b0f19;
+  --pmc-ink: #f3f4f6;
+  --pmc-ink-soft: #9ca3af;
+  --pmc-node-fill: #151d2e;
+  --pmc-node-stroke: #f3f4f6;
+  --pmc-hairline: #4b5563;
+  --pmc-edge: #9ca3af;
+  --pmc-card-bg: #111827;
+  --pmc-compartment-fill: rgba(255, 255, 255, 0.04);
+}
+
+.pmc-canvas { fill: var(--pmc-bg); }
+text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; fill: var(--pmc-ink); }
+.pmc-title { font-size: 20px; font-weight: 700; }
+.pmc-subtitle { font-size: 13px; fill: var(--pmc-ink-soft); }
+.pmc-caption { font-size: 11.5px; fill: var(--pmc-ink-soft); }
+.pmc-label { font-size: 12.5px; font-weight: 600; text-anchor: middle; }
+.pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
+
+.pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+
+/* Evidence Tiers as Border Channels */
+.tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
+.tier-T2 { stroke-width: 1.8px; stroke: var(--pmc-node-stroke); }
+.tier-T3 { stroke-width: 1.8px; stroke-dasharray: 6 4; stroke: var(--pmc-node-stroke); }
+.tier-T4 { stroke-width: 1.5px; stroke-dasharray: 2 3; stroke: var(--pmc-ink-soft); }
+.tier-T5 { stroke-width: 0.8px; stroke: var(--pmc-hairline); }
+
+.pmc-compartment { fill: var(--pmc-compartment-fill); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
+.pmc-compartment-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--pmc-ink-soft); }
+
+.pmc-edge { fill: none; stroke: var(--pmc-edge); stroke-width: 1.6px; }
+.pmc-edge-electron_transfer { stroke: #0072B2; stroke-width: 2.2px; }
+.pmc-edge-metabolite_flux { stroke: #009E73; stroke-width: 1.8px; stroke-dasharray: 4 3; }
+.pmc-edge-activates { stroke: #E69F00; stroke-width: 1.8px; }
+.pmc-edge-inhibits { stroke: #D55E00; stroke-width: 2.0px; }
+.pmc-edge-cleaved_by { stroke: #CC79A7; stroke-dasharray: 5 3; }
+.pmc-edge-label { font-size: 9.5px; fill: var(--pmc-ink-soft); font-weight: 500; text-anchor: middle; }
+</style>
+<defs>
+<marker id="pmc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="var(--pmc-edge)" /></marker>
+<marker id="pmc-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#0072B2" /></marker>
+<marker id="pmc-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#009E73" /></marker>
+<marker id="pmc-arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#E69F00" /></marker>
+<marker id="pmc-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#D55E00" /></marker>
+<marker id="pmc-inhibit" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><line x1="5" y1="1" x2="5" y2="9" stroke="#D55E00" stroke-width="2.5" /></marker>
+</defs>
+<rect class="pmc-canvas" width="1382.8" height="650.0" />
+<text class="pmc-title" x="32" y="44">Nuclear Transcriptional Command and Organelle Reprogramming</text>
+<text class="pmc-subtitle" x="32" y="66">The nuclear convergence hub where mitochondrial and plastid retrograde signals reprogram the genome to adjust bioenergetics.</text>
+<rect class="pmc-compartment" x="24.0" y="90.0" width="240.6" height="236.9" stroke="#666666" />
+<text class="pmc-compartment-label" x="36.0" y="108.0">Nuclear Pore Complex</text>
+<rect class="pmc-compartment" x="250.0" y="90.0" width="1092.8" height="372.1" stroke="#3b2044" />
+<text class="pmc-compartment-label" x="262.0" y="108.0">Nucleoplasm</text>
+<line class="pmc-edge pmc-edge-activates" x1="235.0" y1="160.3" x2="278.0" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="256.5" y="153.2">nuclear entry</text>
+<line class="pmc-edge pmc-edge-activates" x1="235.0" y1="160.3" x2="278.0" y2="240.4" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="256.5" y="196.4">nuclear entry</text>
+<line class="pmc-edge pmc-edge-metabolite_flux" x1="235.0" y1="160.3" x2="278.0" y2="333.1" marker-end="url(#pmc-arrow-green)" />
+<text class="pmc-edge-label" x="256.5" y="242.7">nuclear entry</text>
+<line class="pmc-edge pmc-edge-activates" x1="491.6" y1="154.1" x2="810.5" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="651.0" y="150.1">binds MDRE palindromic motif</text>
+<line class="pmc-edge pmc-edge-activates" x1="491.6" y1="240.4" x2="810.5" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="651.0" y="193.2">binds MDRE motif</text>
+<line class="pmc-edge pmc-edge-activates" x1="1041.5" y1="154.1" x2="1077.5" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="1059.5" y="150.1">transcription</text>
+<line class="pmc-edge pmc-edge-activates" x1="1041.5" y1="154.1" x2="1077.5" y2="234.2" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="1059.5" y="190.1">transcription</text>
+<line class="pmc-edge pmc-edge-inhibits" x1="509.0" y1="333.1" x2="545.0" y2="314.3" marker-end="url(#pmc-inhibit)" />
+<text class="pmc-edge-label" x="527.0" y="319.7">direct enzymatic inhibition</text>
+<line class="pmc-edge pmc-edge-activates" x1="774.5" y1="314.3" x2="1077.5" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="926.0" y="230.2">transcript stabilization</text>
+<line class="pmc-edge pmc-edge-inhibits" x1="741.2" y1="154.1" x2="810.5" y2="240.4" marker-end="url(#pmc-inhibit)" />
+<text class="pmc-edge-label" x="775.9" y="193.2">represses transcription</text>
+<line class="pmc-edge pmc-edge-activates" x1="728.0" y1="234.2" x2="810.5" y2="240.4" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="769.2" y="233.3">activates transcription</text>
+<line class="pmc-edge pmc-edge-activates" x1="1018.3" y1="240.4" x2="1077.5" y2="322.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="1047.9" y="277.3">transcription</text>
+<line class="pmc-edge pmc-edge-activates" x1="1169.0" y1="178.1" x2="1196.1" y2="386.0" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="1182.6" y="278.1">energy coordination</text>
+<g class="pmc-node-group" id="node-NPC_GATE"><rect class="pmc-node tier-T1" x="52.0" y="130.0" width="183.0" height="60.6" />
+<text class="pmc-label" x="143.5" y="148.3">Nuclear Pore Complex</text>
+<text class="pmc-sub" x="143.5" y="163.3">selective basket •</text>
+<text class="pmc-sub" x="143.5" y="175.3">macromolecular transport</text>
+</g>
+<g class="pmc-node-group" id="node-IMPORTIN_ALPHA"><rect class="pmc-node tier-T4" x="52.0" y="222.6" width="184.6" height="76.2" />
+<text class="pmc-label" x="144.3" y="241.2">Importin-α / β</text>
+<text class="pmc-label" x="144.3" y="256.2">Transportins</text>
+<text class="pmc-sub" x="144.3" y="271.2">nuclear localization signal</text>
+<text class="pmc-sub" x="144.3" y="283.2">receptor</text>
+</g>
+<g class="pmc-node-group" id="node-ANAC017_ACTIVE"><rect class="pmc-node tier-T1" x="278.0" y="130.0" width="213.6" height="48.1" />
+<text class="pmc-label" x="384.8" y="148.1">ANAC017 (NAC Domain)</text>
+<text class="pmc-sub" x="384.8" y="163.1">master MRR factor • cleaved form</text>
+</g>
+<g class="pmc-node-group" id="node-ANAC013_ACTIVE"><rect class="pmc-node tier-T1" x="278.0" y="210.1" width="213.6" height="60.6" />
+<text class="pmc-label" x="384.8" y="228.4">ANAC013 (NAC Domain)</text>
+<text class="pmc-sub" x="384.8" y="243.4">secondary MRR factor • amplifies</text>
+<text class="pmc-sub" x="384.8" y="255.4">signaling</text>
+</g>
+<g class="pmc-node-group" id="node-PAP_NUCLEAR_POOL"><rect class="pmc-node tier-T4" x="278.0" y="302.8" width="231.0" height="60.6" />
+<text class="pmc-label" x="393.5" y="321.1">Nuclear PAP Pool</text>
+<text class="pmc-sub" x="393.5" y="336.1">retrograde nucleotide • enters from</text>
+<text class="pmc-sub" x="393.5" y="348.1">stroma</text>
+</g>
+<g class="pmc-node-group" id="node-ABI4_REPRESSOR_TF"><rect class="pmc-node tier-T1" x="545.0" y="130.0" width="196.2" height="48.1" />
+<text class="pmc-label" x="643.1" y="148.1">ABI4 Repressor</text>
+<text class="pmc-sub" x="643.1" y="163.1">AP2/ERF TF • represses PhANGs</text>
+</g>
+<g class="pmc-node-group" id="node-GLK1_ACTIVATOR_TF"><rect class="pmc-node tier-T1" x="545.0" y="210.1" width="183.0" height="48.1" />
+<text class="pmc-label" x="636.5" y="228.2">GLK1/GLK2 Activators</text>
+<text class="pmc-sub" x="636.5" y="243.2">GARP TF • activates PhANGs</text>
+</g>
+<g class="pmc-node-group" id="node-XRN2_TARGET"><rect class="pmc-node tier-T1" x="545.0" y="290.2" width="229.5" height="48.1" />
+<text class="pmc-label" x="659.8" y="308.3">XRN2/XRN3 Exoribonucleases</text>
+<text class="pmc-sub" x="659.8" y="323.3">RNA turnover • inhibited by PAP</text>
+</g>
+<g class="pmc-node-group" id="node-MDRE_PROMOTER_LOCUS"><rect class="pmc-node tier-T1" x="810.5" y="130.0" width="231.0" height="48.1" />
+<text class="pmc-label" x="926.0" y="148.1">MDRE Promoter Elements</text>
+<text class="pmc-sub" x="926.0" y="163.1">CTTGNNNNNCAG motif • AOX1a promoter</text>
+</g>
+<g class="pmc-node-group" id="node-PHANGS_PROMOTER_LOCUS"><rect class="pmc-node tier-T4" x="810.5" y="210.1" width="207.8" height="60.6" />
+<text class="pmc-label" x="914.4" y="228.4">PhANGs Promoters</text>
+<text class="pmc-sub" x="914.4" y="243.4">CCAC / G-box motifs • Lhcb/RbcS</text>
+<text class="pmc-sub" x="914.4" y="255.4">promoters</text>
+</g>
+<g class="pmc-node-group" id="node-AOX1A_MRNA"><rect class="pmc-node tier-T4" x="1077.5" y="130.0" width="183.0" height="48.1" />
+<text class="pmc-label" x="1169.0" y="148.1">AOX1a mRNA Induction</text>
+<text class="pmc-sub" x="1169.0" y="163.1">stress relief valve</text>
+</g>
+<g class="pmc-node-group" id="node-MITO_CHAPERONES_MRNA"><rect class="pmc-node tier-T4" x="1077.5" y="210.1" width="237.2" height="48.1" />
+<text class="pmc-label" x="1196.1" y="228.2">MSR Chaperones (HSP70/UPM1)</text>
+<text class="pmc-sub" x="1196.1" y="243.2">proteostasis</text>
+</g>
+<g class="pmc-node-group" id="node-LHCB_RBCS_MRNA"><rect class="pmc-node tier-T4" x="1077.5" y="290.2" width="167.5" height="63.8" />
+<text class="pmc-label" x="1161.2" y="308.6">PhANGs Transcripts</text>
+<text class="pmc-label" x="1161.2" y="323.6">(Lhcb/RbcS)</text>
+<text class="pmc-sub" x="1161.2" y="338.6">photosynthetic machinery</text>
+</g>
+<g class="pmc-node-group" id="node-NUCLEOLUS_SURVEILLANCE"><rect class="pmc-node tier-T4" x="1077.5" y="386.0" width="237.2" height="48.1" />
+<text class="pmc-label" x="1196.1" y="404.1">Nucleolar Stress Checkpoint</text>
+<text class="pmc-sub" x="1196.1" y="419.1">rRNA processing • energy monitor</text>
+</g>
+</svg>

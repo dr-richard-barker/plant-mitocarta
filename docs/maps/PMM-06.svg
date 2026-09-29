@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1350.6 650.0" width="1350.6" height="650.0" class="pmc-svg" data-theme="light">
+<style>
+:root {
+  --pmc-bg: #ffffff;
+  --pmc-ink: #111827;
+  --pmc-ink-soft: #4b5563;
+  --pmc-node-fill: #f9fafb;
+  --pmc-node-stroke: #111827;
+  --pmc-hairline: #9ca3af;
+  --pmc-edge: #4b5563;
+  --pmc-card-bg: #ffffff;
+  --pmc-compartment-fill: rgba(0, 0, 0, 0.03);
+}
+:root[data-theme="dark"], body.dark-mode {
+  --pmc-bg: #0b0f19;
+  --pmc-ink: #f3f4f6;
+  --pmc-ink-soft: #9ca3af;
+  --pmc-node-fill: #151d2e;
+  --pmc-node-stroke: #f3f4f6;
+  --pmc-hairline: #4b5563;
+  --pmc-edge: #9ca3af;
+  --pmc-card-bg: #111827;
+  --pmc-compartment-fill: rgba(255, 255, 255, 0.04);
+}
+
+.pmc-canvas { fill: var(--pmc-bg); }
+text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; fill: var(--pmc-ink); }
+.pmc-title { font-size: 20px; font-weight: 700; }
+.pmc-subtitle { font-size: 13px; fill: var(--pmc-ink-soft); }
+.pmc-caption { font-size: 11.5px; fill: var(--pmc-ink-soft); }
+.pmc-label { font-size: 12.5px; font-weight: 600; text-anchor: middle; }
+.pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
+
+.pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+
+/* Evidence Tiers as Border Channels */
+.tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
+.tier-T2 { stroke-width: 1.8px; stroke: var(--pmc-node-stroke); }
+.tier-T3 { stroke-width: 1.8px; stroke-dasharray: 6 4; stroke: var(--pmc-node-stroke); }
+.tier-T4 { stroke-width: 1.5px; stroke-dasharray: 2 3; stroke: var(--pmc-ink-soft); }
+.tier-T5 { stroke-width: 0.8px; stroke: var(--pmc-hairline); }
+
+.pmc-compartment { fill: var(--pmc-compartment-fill); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
+.pmc-compartment-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--pmc-ink-soft); }
+
+.pmc-edge { fill: none; stroke: var(--pmc-edge); stroke-width: 1.6px; }
+.pmc-edge-electron_transfer { stroke: #0072B2; stroke-width: 2.2px; }
+.pmc-edge-metabolite_flux { stroke: #009E73; stroke-width: 1.8px; stroke-dasharray: 4 3; }
+.pmc-edge-activates { stroke: #E69F00; stroke-width: 1.8px; }
+.pmc-edge-inhibits { stroke: #D55E00; stroke-width: 2.0px; }
+.pmc-edge-cleaved_by { stroke: #CC79A7; stroke-dasharray: 5 3; }
+.pmc-edge-label { font-size: 9.5px; fill: var(--pmc-ink-soft); font-weight: 500; text-anchor: middle; }
+</style>
+<defs>
+<marker id="pmc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="var(--pmc-edge)" /></marker>
+<marker id="pmc-arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#0072B2" /></marker>
+<marker id="pmc-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#009E73" /></marker>
+<marker id="pmc-arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#E69F00" /></marker>
+<marker id="pmc-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#D55E00" /></marker>
+<marker id="pmc-inhibit" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><line x1="5" y1="1" x2="5" y2="9" stroke="#D55E00" stroke-width="2.5" /></marker>
+</defs>
+<rect class="pmc-canvas" width="1350.6" height="650.0" />
+<text class="pmc-title" x="32" y="44">The Plastid-to-Nucleus Retrograde Response (PRR) Circuits</text>
+<text class="pmc-subtitle" x="32" y="66">Four parallel communication channels conveying chloroplast operational state, pigment biosynthesis, and redox stress to the nucleus.</text>
+<rect class="pmc-compartment" x="24.0" y="90.0" width="262.2" height="387.8" stroke="#063d2e" />
+<text class="pmc-compartment-label" x="36.0" y="108.0">Thylakoid Membrane</text>
+<rect class="pmc-compartment" x="266.2" y="90.0" width="287.0" height="372.1" stroke="#084736" />
+<text class="pmc-compartment-label" x="278.2" y="108.0">Chloroplast Stroma</text>
+<rect class="pmc-compartment" x="533.2" y="90.0" width="269.6" height="276.4" stroke="#106e54" />
+<text class="pmc-compartment-label" x="545.2" y="108.0">Chloroplast Inner Envelope (IEM)</text>
+<rect class="pmc-compartment" x="782.9" y="90.0" width="527.7" height="307.6" stroke="#3b2044" />
+<text class="pmc-compartment-label" x="794.9" y="108.0">Nucleoplasm</text>
+<line class="pmc-edge pmc-edge-activates" x1="235.0" y1="161.9" x2="294.2" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="264.6" y="154.0">sensed at grana margins</text>
+<line class="pmc-edge pmc-edge-activates" x1="490.4" y1="154.1" x2="1068.6" y2="337.8" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="779.5" y="241.9">transduces 1O2 signal to nucleus</text>
+<line class="pmc-edge pmc-edge-activates" x1="227.2" y1="257.6" x2="294.2" y2="234.2" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="260.8" y="241.9">accumulates unimported proteins</text>
+<line class="pmc-edge pmc-edge-activates" x1="525.2" y1="234.2" x2="810.9" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="668.0" y="190.1">signals to nuclear ABI4</text>
+<line class="pmc-edge pmc-edge-activates" x1="1032.6" y1="154.1" x2="1068.6" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="1050.6" y="150.1">represses PhANGs transcription</text>
+<line class="pmc-edge pmc-edge-activates" x1="225.0" y1="345.6" x2="294.2" y2="314.3" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="259.6" y="325.9">metabolite accumulation</text>
+<line class="pmc-edge pmc-edge-metabolite_flux" x1="523.8" y1="314.3" x2="561.2" y2="314.3" marker-end="url(#pmc-arrow-green)" />
+<text class="pmc-edge-label" x="542.5" y="310.3">export to cytosol</text>
+<line class="pmc-edge pmc-edge-activates" x1="752.0" y1="314.3" x2="810.9" y2="329.9" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="781.4" y="318.1">induces ICS1 / salicylic acid</text>
+<line class="pmc-edge pmc-edge-inhibits" x1="258.2" y1="425.7" x2="294.2" y2="402.2" marker-end="url(#pmc-inhibit)" />
+<text class="pmc-edge-label" x="276.2" y="410.0">oxidizes catalytic cysteines</text>
+<line class="pmc-edge pmc-edge-activates" x1="473.0" y1="402.2" x2="561.2" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="517.1" y="274.2">PAP catabolism halted</text>
+<line class="pmc-edge pmc-edge-metabolite_flux" x1="668.0" y1="178.1" x2="653.5" y2="210.1" marker-end="url(#pmc-arrow-green)" />
+<text class="pmc-edge-label" x="660.8" y="190.1">envelope export</text>
+<line class="pmc-edge pmc-edge-inhibits" x1="745.9" y1="234.2" x2="810.9" y2="242.0" marker-end="url(#pmc-inhibit)" />
+<text class="pmc-edge-label" x="778.4" y="234.1">enters nucleus and inhibits XRNs</text>
+<line class="pmc-edge pmc-edge-activates" x1="962.9" y1="242.0" x2="1068.6" y2="242.0" marker-end="url(#pmc-arrow-orange)" />
+<text class="pmc-edge-label" x="1015.7" y="238.0">stabilizes drought/stress mRNAs</text>
+<g class="pmc-node-group" id="node-EXCESS_LIGHT_1O2"><rect class="pmc-node tier-T1" x="52.0" y="130.0" width="183.0" height="63.8" />
+<text class="pmc-label" x="143.5" y="148.4">Singlet Oxygen (1O2)</text>
+<text class="pmc-label" x="143.5" y="163.4">Burst</text>
+<text class="pmc-sub" x="143.5" y="178.4">PSII photoinhibition</text>
+</g>
+<g class="pmc-node-group" id="node-PLASTID_TRANSLATION_ARREST"><rect class="pmc-node tier-T4" x="52.0" y="225.8" width="175.2" height="63.8" />
+<text class="pmc-label" x="139.6" y="244.1">Plastid Translation</text>
+<text class="pmc-label" x="139.6" y="259.1">Defect</text>
+<text class="pmc-sub" x="139.6" y="274.1">lincomycin • norflurazon</text>
+</g>
+<g class="pmc-node-group" id="node-MEP_PATHWAY_BOTTLENECK"><rect class="pmc-node tier-T4" x="52.0" y="321.5" width="173.0" height="48.1" />
+<text class="pmc-label" x="138.5" y="339.6">MEP Pathway Arrest</text>
+<text class="pmc-sub" x="138.5" y="354.6">isoprenoid pathway stress</text>
+</g>
+<g class="pmc-node-group" id="node-STROMAL_OXIDATIVE_STRESS"><rect class="pmc-node tier-T4" x="52.0" y="401.6" width="206.2" height="48.1" />
+<text class="pmc-label" x="155.1" y="419.7">Stromal Redox Oxidation</text>
+<text class="pmc-sub" x="155.1" y="434.7">drought • high light</text>
+</g>
+<g class="pmc-node-group" id="node-EX1_GRANA_SENSOR"><rect class="pmc-node tier-T1" x="294.2" y="130.0" width="196.2" height="48.1" />
+<text class="pmc-label" x="392.4" y="148.1">EXECUTER 1 (EX1)</text>
+<text class="pmc-sub" x="392.4" y="163.1">thylakoid grana margin sensor</text>
+</g>
+<g class="pmc-node-group" id="node-GUN1_INTEGRATION_HUB"><rect class="pmc-node tier-T1" x="294.2" y="210.1" width="231.0" height="48.1" />
+<text class="pmc-label" x="409.8" y="228.2">GUN1 PPR Hub</text>
+<text class="pmc-sub" x="409.8" y="243.2">coordinates cpHSP70 &amp; tetrapyrroles</text>
+</g>
+<g class="pmc-node-group" id="node-MECPP_SIGNAL_POOL"><rect class="pmc-node tier-T1" x="294.2" y="290.2" width="229.5" height="48.1" />
+<text class="pmc-label" x="409.0" y="308.3">MEcPP Retrograde Messenger</text>
+<text class="pmc-sub" x="409.0" y="323.3">direct metabolite signal</text>
+</g>
+<g class="pmc-node-group" id="node-SAL1_OXIDATIVE_INACTIVATION"><rect class="pmc-node tier-T1" x="294.2" y="370.4" width="178.8" height="63.8" />
+<text class="pmc-label" x="383.6" y="388.8">SAL1 Phosphatase</text>
+<text class="pmc-label" x="383.6" y="403.8">Inactivation</text>
+<text class="pmc-sub" x="383.6" y="418.8">disulfide bridge formation</text>
+</g>
+<g class="pmc-node-group" id="node-PAP_STROMAL_POOL"><rect class="pmc-node tier-T1" x="561.2" y="130.0" width="213.6" height="48.1" />
+<text class="pmc-label" x="668.0" y="148.1">PAP Accumulation</text>
+<text class="pmc-sub" x="668.0" y="163.1">3&#x27;-phosphoadenosine 5&#x27;-phosphate</text>
+</g>
+<g class="pmc-node-group" id="node-PAPST1_TRANSLOCATOR"><rect class="pmc-node tier-T1" x="561.2" y="210.1" width="184.6" height="48.1" />
+<text class="pmc-label" x="653.5" y="228.2">PAPST1 Transporter</text>
+<text class="pmc-sub" x="653.5" y="243.2">exports PAP across envelope</text>
+</g>
+<g class="pmc-node-group" id="node-MECPP_EXPORT_GATE"><rect class="pmc-node tier-T4" x="561.2" y="290.2" width="190.8" height="48.1" />
+<text class="pmc-label" x="656.6" y="308.3">MEcPP Envelope Export</text>
+<text class="pmc-sub" x="656.6" y="323.3">translocation to nucleus</text>
+</g>
+<g class="pmc-node-group" id="node-ABI4_REPRESSION_TF"><rect class="pmc-node tier-T1" x="810.9" y="130.0" width="221.8" height="48.1" />
+<text class="pmc-label" x="921.7" y="148.1">ABI4 Transcription Factor</text>
+<text class="pmc-sub" x="921.7" y="163.1">nuclear repressor</text>
+</g>
+<g class="pmc-node-group" id="node-XRN2_3_EXORIBONUCLEASES"><rect class="pmc-node tier-T1" x="810.9" y="210.1" width="152.0" height="63.8" />
+<text class="pmc-label" x="886.9" y="228.5">XRN2 / XRN3</text>
+<text class="pmc-label" x="886.9" y="243.5">Exoribonucleases</text>
+<text class="pmc-sub" x="886.9" y="258.5">inhibited by PAP</text>
+</g>
+<g class="pmc-node-group" id="node-ICS1_DEFENSE_PROMOTER"><rect class="pmc-node tier-T4" x="810.9" y="305.9" width="190.8" height="48.1" />
+<text class="pmc-label" x="906.2" y="323.9">ICS1 Defense Promoter</text>
+<text class="pmc-sub" x="906.2" y="338.9">salicylic acid biosynthesis</text>
+</g>
+<g class="pmc-node-group" id="node-PHANGS_REPRESSED"><rect class="pmc-node tier-T4" x="1068.6" y="130.0" width="183.0" height="48.1" />
+<text class="pmc-label" x="1160.1" y="148.1">Repression of PhANGs</text>
+<text class="pmc-sub" x="1160.1" y="163.1">Lhcb, RbcS down-regulation</text>
+</g>
+<g class="pmc-node-group" id="node-DROUGHT_STRESS_INDUCED"><rect class="pmc-node tier-T4" x="1068.6" y="210.1" width="198.5" height="63.8" />
+<text class="pmc-label" x="1167.8" y="228.5">Drought / Osmotic Gene</text>
+<text class="pmc-label" x="1167.8" y="243.5">Induction</text>
+<text class="pmc-sub" x="1167.8" y="258.5">APX2, ZAT10 up-regulation</text>
+</g>
+<g class="pmc-node-group" id="node-PCD_ACCLIMATION_SWITCH"><rect class="pmc-node tier-T4" x="1068.6" y="305.9" width="214.0" height="63.8" />
+<text class="pmc-label" x="1175.6" y="324.2">Programmed Cell Death vs</text>
+<text class="pmc-label" x="1175.6" y="339.2">Acclimation</text>
+<text class="pmc-sub" x="1175.6" y="354.2">cell survival determination</text>
+</g>
+</svg>

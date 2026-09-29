@@ -1,0 +1,110 @@
+# PMM-05 — The Mitochondrial Retrograde Response (MRR) Cascade
+# Protease-mediated ANAC017/013 cleavage, cytoplasmic migration, nuclear MDRE binding, and AOX1a induction.
+
+id: PMM-05
+title: The Mitochondrial Retrograde Response (MRR) Cascade
+subtitle: >-
+  From cristae respiratory stress to nuclear MDRE promoter activation via the
+  rhomboid protease-cleaved ANAC017/013 transcription factor axis.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  Mitochondrial retrograde signaling communicates organelle dysfunction to the nuclear
+  genome. Inhibition of OXPHOS or microgravity hypoxia elevates mitochondrial ROS and
+  activates rhomboid-like proteases that cleave the C-terminal transmembrane domain of
+  ANAC017 and ANAC013 anchored at the outer mitochondrial membrane / ER interface.
+  The liberated soluble N-terminal NAC domain migrates through nuclear pores, binds the
+  14-bp palindromic MDRE motif (CTTGNNNNNCAG) in the AOX1a promoter, and induces
+  alternative oxidase and mitochondrial chaperones to restore bioenergetic equilibrium.
+
+lanes:
+  - id: cristae_trigger
+    compartment: cristae
+    node_width: 190
+    nodes: [OXPHOS_LESION, MITO_SUPEROXIDE_ACCUMULATION]
+
+  - id: outer_membrane_processing
+    compartment: mitochondrial_outer_membrane
+    node_width: 210
+    nodes: [RHOMBOID_PROTEASE_ACT, ANAC017_TETHERED, ANAC013_TETHERED]
+
+  - id: cytosolic_transit
+    compartment: cytosol
+    node_width: 200
+    nodes: [ANAC017_SOLUBLE_NAC, ANAC013_SOLUBLE_NAC, CITRATE_2OG_EXPORT]
+
+  - id: nuclear_entry
+    compartment: nuclear_pore_complex
+    node_width: 200
+    nodes: [NPC_TRANSLOCATION_GATE, KARYOPHERIN_IMPORT]
+
+  - id: transcriptional_execution
+    compartment: nucleoplasm
+    node_width: 220
+    nodes: [MDRE_BINDING_SITE, AOX1A_INDUCTION, UPM1_HSP70_INDUCTION]
+
+nodes:
+  - id: OXPHOS_LESION
+    label: "OXPHOS Inhibition / Hypoxia"
+    units: ["antimycin A", "rotenone", "spaceflight hypoxia"]
+  - id: MITO_SUPEROXIDE_ACCUMULATION
+    pmco: PMCO:MITO_ROS
+    label: "Mitochondrial ROS (H2O2)"
+    units: ["membrane permeant", "primary trigger"]
+
+  - id: RHOMBOID_PROTEASE_ACT
+    label: "Rhomboid-Like Proteases"
+    units: ["intramembrane serine protease", "ROS-activated"]
+  - id: ANAC017_TETHERED
+    pmco: PMCO:ANAC017_NUCLEAR
+    label: "Membrane-Bound ANAC017"
+    units: ["ER/OMM anchored", "inactive precursor"]
+  - id: ANAC013_TETHERED
+    pmco: PMCO:ANAC013_NUCLEAR
+    label: "Membrane-Bound ANAC013"
+    units: ["ER/OMM anchored", "co-regulator"]
+
+  - id: ANAC017_SOLUBLE_NAC
+    label: "Soluble ANAC017 (NAC Domain)"
+    units: ["cleaved N-fragment", "carries NLS"]
+  - id: ANAC013_SOLUBLE_NAC
+    label: "Soluble ANAC013 (NAC Domain)"
+    units: ["cleaved N-fragment"]
+  - id: CITRATE_2OG_EXPORT
+    pmco: PMCO:DTC_CARRIER
+    label: "Citrate / 2-OG Efflux"
+    units: ["DTC translocator", "metabolic signal"]
+
+  - id: NPC_TRANSLOCATION_GATE
+    pmco: PMCO:NPC_COMPLEX
+    label: "Nuclear Pore Complex"
+    units: ["regulates import"]
+  - id: KARYOPHERIN_IMPORT
+    label: "Importin-α / β Machinery"
+    units: ["facilitated transport"]
+
+  - id: MDRE_BINDING_SITE
+    pmco: PMCO:MDRE_MOTIF
+    label: "MDRE Promoter Cis-Element"
+    units: ["CTTGNNNNNCAG", "AOX1a promoter"]
+  - id: AOX1A_INDUCTION
+    pmco: PMCO:AOX1A
+    label: "AOX1a Transcriptional Surge"
+    units: ["alternative respiration", "restores electron flow"]
+  - id: UPM1_HSP70_INDUCTION
+    label: "Mitochondrial Chaperones (UPM1)"
+    units: ["mitochondrial stress response (MSR)"]
+
+edges:
+  - [OXPHOS_LESION, MITO_SUPEROXIDE_ACCUMULATION, activates, "generates superoxide"]
+  - [MITO_SUPEROXIDE_ACCUMULATION, RHOMBOID_PROTEASE_ACT, activates, "oxidative activation"]
+  - [RHOMBOID_PROTEASE_ACT, ANAC017_TETHERED, cleaved_by, "intramembrane cleavage"]
+  - [RHOMBOID_PROTEASE_ACT, ANAC013_TETHERED, cleaved_by, "intramembrane cleavage"]
+  - [ANAC017_TETHERED, ANAC017_SOLUBLE_NAC, activates, "releases into cytosol"]
+  - [ANAC013_TETHERED, ANAC013_SOLUBLE_NAC, activates, "releases into cytosol"]
+  - [OXPHOS_LESION, CITRATE_2OG_EXPORT, metabolite_flux, "TCA backlog"]
+  - [ANAC017_SOLUBLE_NAC, NPC_TRANSLOCATION_GATE, activates, "interacts with NPCs"]
+  - [ANAC013_SOLUBLE_NAC, NPC_TRANSLOCATION_GATE, activates, "interacts with NPCs"]
+  - [NPC_TRANSLOCATION_GATE, MDRE_BINDING_SITE, activates, "nuclear entry & MDRE binding"]
+  - [CITRATE_2OG_EXPORT, MDRE_BINDING_SITE, activates, "epigenetic chromatin opening"]
+  - [MDRE_BINDING_SITE, AOX1A_INDUCTION, activates, "high-level transcription"]
+  - [MDRE_BINDING_SITE, UPM1_HSP70_INDUCTION, activates, "MSR induction"]

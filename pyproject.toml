@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plant-mitocarta"
+version = "0.1.0"
+description = "A cross-compartment atlas and digital double suite for plant mitochondria, chloroplasts, nucleus, and plasma membrane with retrograde signaling circuits and mammalian MitoCarta comparative synthesis."
+readme = "README.md"
+authors = [
+    { name = "Plant MitoCarta Consortium" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "pyyaml>=6.0.3",
+    "jsonschema>=4.25.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+pythonpath = ["src"]

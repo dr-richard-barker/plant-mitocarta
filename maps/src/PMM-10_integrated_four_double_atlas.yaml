@@ -1,0 +1,119 @@
+# PMM-10 — Integrated Multi-Organelle Digital Double Atlas
+# Unified synoptic map showing Mitochondrion, Chloroplast, Nucleus, and Plasma Membrane with interconnecting retrograde and systemic waves.
+
+id: PMM-10
+title: Integrated Multi-Organelle Digital Double Atlas
+subtitle: >-
+  The unified plant cell: Mitochondrion, Chloroplast, Nucleus, and Plasma Membrane
+  bound by retrograde signaling, metabolic shuttles, and systemic waves.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  The master synoptic architecture uniting the four subcellular digital doubles.
+  The Plasma Membrane monitors mechanical, gravity, and apoplastic forces (FERONIA/WAK1),
+  launching calcium spikes (GLR3.3/3.6) and ROS waves (RBOHD) channeled through PIP2;1 aquaporins.
+  The Chloroplast coordinates photosynthetic electron transport with the 4 plastid retrograde
+  signals (SAL1-PAP, GUN1-ABI4, MEcPP, Singlet oxygen-EX1) and feeds the photorespiratory
+  metabolic conduit via PLGG1. The Mitochondrion provides ATP and metabolic flexibility via
+  respiratory complexes and plant bypasses (AOX, NDHs), drives matrix photorespiration through
+  GDC/SHMT1, and initiates the ANAC017/013 mitochondrial retrograde response (MRR).
+  The Nucleus integrates these organellar signals at MDRE and PhANGs promoters, reprograming
+  the transcriptome to ensure plant survival under terrestrial and spaceflight environments.
+
+lanes:
+  - id: plasma_membrane_conduit
+    compartment: plasma_membrane
+    node_width: 220
+    nodes: [PM_SENSORY_INPUT, PM_RBOHD_BURST, PM_CALCIUM_GATE]
+
+  - id: chloroplast_double
+    compartment: chloroplast
+    node_width: 230
+    nodes: [CHLORO_PHOTOSYSTEMS, CHLORO_RUBISCO, CHLORO_PRR_HUB]
+
+  - id: photorespiratory_nexus
+    compartment: peroxisome
+    node_width: 210
+    nodes: [PEROXISOMAL_SHUTTLE]
+
+  - id: mitochondrion_double
+    compartment: mitochondrion
+    node_width: 230
+    nodes: [MITO_RESPIRATORY_CHAIN, MITO_GDC_ENGINE, MITO_MRR_ANAC017]
+
+  - id: nucleus_double
+    compartment: nucleus
+    node_width: 230
+    nodes: [NUCLEAR_MDRE_TARGETS, NUCLEAR_PHANGS_TARGETS, GENOME_REPROGRAMMING]
+
+nodes:
+  - id: PM_SENSORY_INPUT
+    pmco: PMCO:FERONIA_RLK
+    label: "PM Mechanical/Gravity Sensors"
+    units: ["FERONIA, WAK1, MSL10", "detects wall strain"]
+  - id: PM_RBOHD_BURST
+    pmco: PMCO:RBOHD_NADPH_OXIDASE
+    label: "Apoplastic ROS Wave (RBOHD)"
+    units: ["superoxide burst", "channels via PIP2;1"]
+  - id: PM_CALCIUM_GATE
+    pmco: PMCO:GLR3_3_CHANNEL
+    label: "Calcium Influx Gates (GLR3.3/3.6)"
+    units: ["rapid electrical/Ca2+ wave"]
+
+  - id: CHLORO_PHOTOSYSTEMS
+    pmco: PMCO:PHOTOSYSTEM_II
+    label: "Chloroplast Light Reactions"
+    units: ["PSII, PSI, Cyt b6f, ATP synthase"]
+  - id: CHLORO_RUBISCO
+    pmco: PMCO:RUBISCO_HOLOENZYME
+    label: "RuBisCO Carbon & Oxygen Fixation"
+    units: ["Calvin cycle", "glycolate synthesis"]
+  - id: CHLORO_PRR_HUB
+    pmco: PMCO:SAL1_PHOSPHATASE
+    label: "Plastid Retrograde Signals"
+    units: ["SAL1-PAP, GUN1-ABI4, MEcPP, EX1"]
+
+  - id: PEROXISOMAL_SHUTTLE
+    pmco: PMCO:PEROXISOME_PHOTORESP
+    label: "Peroxisomal Photorespiration"
+    units: ["GOX, GGT, HPR, CAT2", "glycolate -> glycine"]
+
+  - id: MITO_RESPIRATORY_CHAIN
+    pmco: PMCO:COMPLEX_I
+    label: "Plant MitoCarta OXPHOS"
+    units: ["Complexes I-V, AOX, Type II NDHs, CA domain"]
+  - id: MITO_GDC_ENGINE
+    pmco: PMCO:GDC_COMPLEX
+    label: "Matrix GDC Complex"
+    units: ["photorespiratory serine synthesis"]
+  - id: MITO_MRR_ANAC017
+    pmco: PMCO:ANAC017_NUCLEAR
+    label: "Mitochondrial Retrograde MRR"
+    units: ["rhomboid cleavage of ANAC017/013"]
+
+  - id: NUCLEAR_MDRE_TARGETS
+    pmco: PMCO:MDRE_MOTIF
+    label: "MDRE Promoter Induction"
+    units: ["AOX1a, UPM1, HSP70", "MRR response"]
+  - id: NUCLEAR_PHANGS_TARGETS
+    pmco: PMCO:ABI4_TF
+    label: "PhANGs Coordinate Control"
+    units: ["Lhcb, RbcS", "ABI4 repression / GLK1 activation"]
+  - id: GENOME_REPROGRAMMING
+    label: "Whole-Cell Acclimation"
+    units: ["spaceflight stress acclimation", "bioenergetic homeostasis"]
+
+edges:
+  - [PM_SENSORY_INPUT, PM_CALCIUM_GATE, activates, "mechanical stretch gates Ca2+"]
+  - [PM_CALCIUM_GATE, PM_RBOHD_BURST, activates, "CPK phosphorylation activates RBOHD"]
+  - [PM_CALCIUM_GATE, CHLORO_PHOTOSYSTEMS, activates, "calcium wave entry"]
+  - [PM_CALCIUM_GATE, MITO_RESPIRATORY_CHAIN, activates, "calcium uptake via MCU"]
+  - [PM_RBOHD_BURST, CHLORO_PRR_HUB, activates, "H2O2 enters via PIP2;1 -> oxidizes SAL1"]
+  - [PM_RBOHD_BURST, MITO_MRR_ANAC017, activates, "H2O2 activates rhomboid cleavage"]
+  - [CHLORO_RUBISCO, PEROXISOMAL_SHUTTLE, metabolite_flux, "glycolate exported via PLGG1"]
+  - [PEROXISOMAL_SHUTTLE, MITO_GDC_ENGINE, metabolite_flux, "glycine enters mitochondria"]
+  - [MITO_GDC_ENGINE, PEROXISOMAL_SHUTTLE, metabolite_flux, "serine returns to peroxisome"]
+  - [PEROXISOMAL_SHUTTLE, CHLORO_RUBISCO, metabolite_flux, "glycerate returns to Calvin cycle"]
+  - [CHLORO_PRR_HUB, NUCLEAR_PHANGS_TARGETS, activates, "PAP & GUN1 signal to ABI4"]
+  - [MITO_MRR_ANAC017, NUCLEAR_MDRE_TARGETS, activates, "cleaved ANAC017 binds MDRE"]
+  - [NUCLEAR_MDRE_TARGETS, GENOME_REPROGRAMMING, activates, "induces stress proteome"]
+  - [NUCLEAR_PHANGS_TARGETS, GENOME_REPROGRAMMING, activates, "tunes photosynthetic capacity"]

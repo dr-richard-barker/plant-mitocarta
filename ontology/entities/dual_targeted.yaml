@@ -1,0 +1,86 @@
+# PMCO Entities: Dual-Targeted Proteins
+# Demonstrating dual localization between Mitochondria and Chloroplasts, or Mitochondria and Nucleus.
+# Distinct from human MitoCarta 3.0 where these proteins are strictly mitochondrial.
+
+- id: PMCO:POLIA_POLYMERASE
+  label: "Organellar DNA Polymerase 1A (PolIA)"
+  kind: macromolecule
+  compartment: mitochondrial_matrix
+  evidence_tier: T1
+  description: >-
+    Family A DNA polymerase responsible for organellar genome replication. Dual-targeted
+    to both mitochondria and chloroplasts via an ambiguous N-terminal transit peptide.
+    Contrast with human POLG, which is strictly mitochondrial.
+  xref:
+    agi: ["AT1G50840"]
+    uniprot: ["Q9S7N4"]
+    ec: ["2.7.7.7"]
+    go_cc: ["GO:0005739", "GO:0009507"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.85
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: true
+    dual_compartments: ["mitochondrion", "chloroplast"]
+  mitocarta:
+    human_symbol: "POLG"
+    mitopathway: "Mitochondrial Central Dogma > mtDNA Replication"
+    conservation_category: dual_targeted_divergence
+    clinical_significance: "Human POLG mutations cause Alpers syndrome, progressive external ophthalmoplegia (PEO)."
+  evidence:
+    - citation: "Hooper2023"
+      doi: "10.1093/nar/gkac1008"
+      claim: "SUBA5 dual-targeting evidence for PolIA in both mitochondria and chloroplasts."
+
+- id: PMCO:POLIB_POLYMERASE
+  label: "Organellar DNA Polymerase 1B (PolIB)"
+  kind: macromolecule
+  compartment: mitochondrial_matrix
+  evidence_tier: T1
+  description: >-
+    Second organellar DNA polymerase paralog, similarly dual-targeted to both
+    mitochondria and chloroplasts.
+  xref:
+    agi: ["AT3G20540"]
+    uniprot: ["Q9M2F9"]
+    ec: ["2.7.7.7"]
+    go_cc: ["GO:0005739", "GO:0009507"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.84
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: true
+    dual_compartments: ["mitochondrion", "chloroplast"]
+  mitocarta:
+    human_symbol: "POLG2"
+    conservation_category: dual_targeted_divergence
+  evidence:
+    - citation: "Hooper2023"
+      doi: "10.1093/nar/gkac1008"
+      claim: "SUBA5 dual localization for PolIB."
+
+- id: PMCO:RECA1_HOMOLOG
+  label: "Organellar RecA Homolog 1 (RECA1)"
+  kind: macromolecule
+  compartment: mitochondrial_matrix
+  evidence_tier: T1
+  description: >-
+    Recombinase involved in homologous recombination and repair of organellar DNA,
+    dual-targeted to mitochondria and plastids.
+  xref:
+    agi: ["AT1G79050"]
+    uniprot: ["Q9SJS3"]
+    go_cc: ["GO:0005739", "GO:0009507"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.89
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: true
+    dual_compartments: ["mitochondrion", "chloroplast"]
+  evidence:
+    - citation: "Hooper2023"
+      doi: "10.1093/nar/gkac1008"
+      claim: "RECA1 confirmed dual-targeted to both endosymbiotic organelles."

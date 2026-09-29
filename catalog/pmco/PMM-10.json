@@ -1,0 +1,278 @@
+{
+  "map_id": "PMM-10",
+  "title": "Integrated Multi-Organelle Digital Double Atlas",
+  "nodes": [
+    {
+      "id": "PM_SENSORY_INPUT",
+      "pmco_id": "PMCO:FERONIA_RLK",
+      "tier": "T1",
+      "lines": [
+        "PM Mechanical/Gravity",
+        "Sensors"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 231.0,
+        "h": 76.25
+      }
+    },
+    {
+      "id": "PM_RBOHD_BURST",
+      "pmco_id": "PMCO:RBOHD_NADPH_OXIDASE",
+      "tier": "T1",
+      "lines": [
+        "Apoplastic ROS Wave (RBOHD)"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 238.25,
+        "w": 237.25,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PM_CALCIUM_GATE",
+      "pmco_id": "PMCO:GLR3_3_CHANNEL",
+      "tier": "T1",
+      "lines": [
+        "Calcium Influx Gates",
+        "(GLR3.3/3.6)"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 330.875,
+        "w": 183.0,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "CHLORO_PHOTOSYSTEMS",
+      "pmco_id": "PMCO:PHOTOSYSTEM_II",
+      "tier": "T1",
+      "lines": [
+        "Chloroplast Light Reactions"
+      ],
+      "box": {
+        "x": 325.25,
+        "y": 130.0,
+        "w": 237.25,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "CHLORO_RUBISCO",
+      "pmco_id": "PMCO:RUBISCO_HOLOENZYME",
+      "tier": "T1",
+      "lines": [
+        "RuBisCO Carbon & Oxygen",
+        "Fixation"
+      ],
+      "box": {
+        "x": 325.25,
+        "y": 210.125,
+        "w": 225.2,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "CHLORO_PRR_HUB",
+      "pmco_id": "PMCO:SAL1_PHOSPHATASE",
+      "tier": "T1",
+      "lines": [
+        "Plastid Retrograde Signals"
+      ],
+      "box": {
+        "x": 325.25,
+        "y": 305.875,
+        "w": 229.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PEROXISOMAL_SHUTTLE",
+      "pmco_id": "PMCO:PEROXISOME_PHOTORESP",
+      "tier": "T1",
+      "lines": [
+        "Peroxisomal",
+        "Photorespiration"
+      ],
+      "box": {
+        "x": 598.5,
+        "y": 130.0,
+        "w": 225.2,
+        "h": 76.25
+      }
+    },
+    {
+      "id": "MITO_RESPIRATORY_CHAIN",
+      "pmco_id": "PMCO:COMPLEX_I",
+      "tier": "T1",
+      "lines": [
+        "Plant MitoCarta OXPHOS"
+      ],
+      "box": {
+        "x": 859.7,
+        "y": 130.0,
+        "w": 236.79999999999998,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "MITO_GDC_ENGINE",
+      "pmco_id": "PMCO:GDC_COMPLEX",
+      "tier": "T1",
+      "lines": [
+        "Matrix GDC Complex"
+      ],
+      "box": {
+        "x": 859.7,
+        "y": 222.625,
+        "w": 219.39999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MITO_MRR_ANAC017",
+      "pmco_id": "PMCO:ANAC017_NUCLEAR",
+      "tier": "T1",
+      "lines": [
+        "Mitochondrial Retrograde MRR"
+      ],
+      "box": {
+        "x": 859.7,
+        "y": 302.75,
+        "w": 245.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "NUCLEAR_MDRE_TARGETS",
+      "pmco_id": "PMCO:MDRE_MOTIF",
+      "tier": "T1",
+      "lines": [
+        "MDRE Promoter Induction"
+      ],
+      "box": {
+        "x": 1140.7,
+        "y": 130.0,
+        "w": 219.39999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "NUCLEAR_PHANGS_TARGETS",
+      "pmco_id": "PMCO:ABI4_TF",
+      "tier": "T1",
+      "lines": [
+        "PhANGs Coordinate Control"
+      ],
+      "box": {
+        "x": 1140.7,
+        "y": 210.125,
+        "w": 231.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "GENOME_REPROGRAMMING",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Whole-Cell Acclimation"
+      ],
+      "box": {
+        "x": 1140.7,
+        "y": 302.75,
+        "w": 213.6,
+        "h": 60.625
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "PM_SENSORY_INPUT",
+      "target": "PM_CALCIUM_GATE",
+      "kind": "activates",
+      "label": "mechanical stretch gates Ca2+"
+    },
+    {
+      "source": "PM_CALCIUM_GATE",
+      "target": "PM_RBOHD_BURST",
+      "kind": "activates",
+      "label": "CPK phosphorylation activates RBOHD"
+    },
+    {
+      "source": "PM_CALCIUM_GATE",
+      "target": "CHLORO_PHOTOSYSTEMS",
+      "kind": "activates",
+      "label": "calcium wave entry"
+    },
+    {
+      "source": "PM_CALCIUM_GATE",
+      "target": "MITO_RESPIRATORY_CHAIN",
+      "kind": "activates",
+      "label": "calcium uptake via MCU"
+    },
+    {
+      "source": "PM_RBOHD_BURST",
+      "target": "CHLORO_PRR_HUB",
+      "kind": "activates",
+      "label": "H2O2 enters via PIP2;1 -> oxidizes SAL1"
+    },
+    {
+      "source": "PM_RBOHD_BURST",
+      "target": "MITO_MRR_ANAC017",
+      "kind": "activates",
+      "label": "H2O2 activates rhomboid cleavage"
+    },
+    {
+      "source": "CHLORO_RUBISCO",
+      "target": "PEROXISOMAL_SHUTTLE",
+      "kind": "metabolite_flux",
+      "label": "glycolate exported via PLGG1"
+    },
+    {
+      "source": "PEROXISOMAL_SHUTTLE",
+      "target": "MITO_GDC_ENGINE",
+      "kind": "metabolite_flux",
+      "label": "glycine enters mitochondria"
+    },
+    {
+      "source": "MITO_GDC_ENGINE",
+      "target": "PEROXISOMAL_SHUTTLE",
+      "kind": "metabolite_flux",
+      "label": "serine returns to peroxisome"
+    },
+    {
+      "source": "PEROXISOMAL_SHUTTLE",
+      "target": "CHLORO_RUBISCO",
+      "kind": "metabolite_flux",
+      "label": "glycerate returns to Calvin cycle"
+    },
+    {
+      "source": "CHLORO_PRR_HUB",
+      "target": "NUCLEAR_PHANGS_TARGETS",
+      "kind": "activates",
+      "label": "PAP & GUN1 signal to ABI4"
+    },
+    {
+      "source": "MITO_MRR_ANAC017",
+      "target": "NUCLEAR_MDRE_TARGETS",
+      "kind": "activates",
+      "label": "cleaved ANAC017 binds MDRE"
+    },
+    {
+      "source": "NUCLEAR_MDRE_TARGETS",
+      "target": "GENOME_REPROGRAMMING",
+      "kind": "activates",
+      "label": "induces stress proteome"
+    },
+    {
+      "source": "NUCLEAR_PHANGS_TARGETS",
+      "target": "GENOME_REPROGRAMMING",
+      "kind": "activates",
+      "label": "tunes photosynthetic capacity"
+    }
+  ]
+}

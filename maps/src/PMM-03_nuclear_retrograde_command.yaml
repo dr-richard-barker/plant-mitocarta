@@ -1,0 +1,113 @@
+# PMM-03 — Nuclear Transcriptional Command and Organelle Reprogramming
+# MDRE cis-elements, ANAC017/013 binding, ABI4 repression, GLK1/2 activation, and XRN2/3.
+
+id: PMM-03
+title: Nuclear Transcriptional Command and Organelle Reprogramming
+subtitle: >-
+  The nuclear convergence hub where mitochondrial and plastid retrograde signals
+  reprogram the genome to adjust bioenergetics.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  The nuclear genome receives direct signals from both endosymbiotic organelles.
+  Cleaved ANAC017 and ANAC013 enter via nuclear pore complexes to bind the Mitochondrial
+  Dysfunction Responsive Element (MDRE: CTTGNNNNNCAG), driving high-level transcription
+  of AOX1a and mitochondrial chaperones. Concurrently, translocated PAP from chloroplasts
+  inhibits 5'-to-3' exoribonucleases (XRN2/3), altering transcriptional termination.
+  Plastid GUN1 signals stimulate ABI4 to repress Photosynthesis-Associated Nuclear Genes
+  (PhANGs) while antagonizing GLK1/2 transcriptional activators.
+
+lanes:
+  - id: nuclear_pores
+    compartment: nuclear_pore_complex
+    node_width: 190
+    nodes: [NPC_GATE, IMPORTIN_ALPHA]
+
+  - id: incoming_factors
+    compartment: nucleoplasm
+    node_width: 210
+    nodes: [ANAC017_ACTIVE, ANAC013_ACTIVE, PAP_NUCLEAR_POOL]
+
+  - id: transcription_factors
+    compartment: nucleoplasm
+    node_width: 210
+    nodes: [ABI4_REPRESSOR_TF, GLK1_ACTIVATOR_TF, XRN2_TARGET]
+
+  - id: promoter_elements
+    compartment: nucleoplasm
+    node_width: 220
+    nodes: [MDRE_PROMOTER_LOCUS, PHANGS_PROMOTER_LOCUS]
+
+  - id: transcriptional_output
+    compartment: nucleoplasm
+    node_width: 220
+    nodes: [AOX1A_MRNA, MITO_CHAPERONES_MRNA, LHCB_RBCS_MRNA, NUCLEOLUS_SURVEILLANCE]
+
+nodes:
+  - id: NPC_GATE
+    pmco: PMCO:NPC_COMPLEX
+    label: "Nuclear Pore Complex"
+    units: ["selective basket", "macromolecular transport"]
+  - id: IMPORTIN_ALPHA
+    label: "Importin-α / β Transportins"
+    units: ["nuclear localization signal receptor"]
+
+  - id: ANAC017_ACTIVE
+    pmco: PMCO:ANAC017_NUCLEAR
+    label: "ANAC017 (NAC Domain)"
+    units: ["master MRR factor", "cleaved form"]
+  - id: ANAC013_ACTIVE
+    pmco: PMCO:ANAC013_NUCLEAR
+    label: "ANAC013 (NAC Domain)"
+    units: ["secondary MRR factor", "amplifies signaling"]
+  - id: PAP_NUCLEAR_POOL
+    label: "Nuclear PAP Pool"
+    units: ["retrograde nucleotide", "enters from stroma"]
+
+  - id: ABI4_REPRESSOR_TF
+    pmco: PMCO:ABI4_TF
+    label: "ABI4 Repressor"
+    units: ["AP2/ERF TF", "represses PhANGs"]
+  - id: GLK1_ACTIVATOR_TF
+    pmco: PMCO:GLK1_TF
+    label: "GLK1/GLK2 Activators"
+    units: ["GARP TF", "activates PhANGs"]
+  - id: XRN2_TARGET
+    pmco: PMCO:XRN2_EXORIBONUCLEASE
+    label: "XRN2/XRN3 Exoribonucleases"
+    units: ["RNA turnover", "inhibited by PAP"]
+
+  - id: MDRE_PROMOTER_LOCUS
+    pmco: PMCO:MDRE_MOTIF
+    label: "MDRE Promoter Elements"
+    units: ["CTTGNNNNNCAG motif", "AOX1a promoter"]
+  - id: PHANGS_PROMOTER_LOCUS
+    label: "PhANGs Promoters"
+    units: ["CCAC / G-box motifs", "Lhcb/RbcS promoters"]
+
+  - id: AOX1A_MRNA
+    label: "AOX1a mRNA Induction"
+    units: ["stress relief valve"]
+  - id: MITO_CHAPERONES_MRNA
+    label: "MSR Chaperones (HSP70/UPM1)"
+    units: ["proteostasis"]
+  - id: LHCB_RBCS_MRNA
+    label: "PhANGs Transcripts (Lhcb/RbcS)"
+    units: ["photosynthetic machinery"]
+  - id: NUCLEOLUS_SURVEILLANCE
+    label: "Nucleolar Stress Checkpoint"
+    units: ["rRNA processing", "energy monitor"]
+
+edges:
+  - [NPC_GATE, ANAC017_ACTIVE, activates, "nuclear entry"]
+  - [NPC_GATE, ANAC013_ACTIVE, activates, "nuclear entry"]
+  - [NPC_GATE, PAP_NUCLEAR_POOL, metabolite_flux, "nuclear entry"]
+  - [ANAC017_ACTIVE, MDRE_PROMOTER_LOCUS, activates, "binds MDRE palindromic motif"]
+  - [ANAC013_ACTIVE, MDRE_PROMOTER_LOCUS, activates, "binds MDRE motif"]
+  - [MDRE_PROMOTER_LOCUS, AOX1A_MRNA, activates, "transcription"]
+  - [MDRE_PROMOTER_LOCUS, MITO_CHAPERONES_MRNA, activates, "transcription"]
+  - [PAP_NUCLEAR_POOL, XRN2_TARGET, inhibits, "direct enzymatic inhibition"]
+  - [XRN2_TARGET, AOX1A_MRNA, activates, "transcript stabilization"]
+  - [ABI4_REPRESSOR_TF, PHANGS_PROMOTER_LOCUS, inhibits, "represses transcription"]
+  - [GLK1_ACTIVATOR_TF, PHANGS_PROMOTER_LOCUS, activates, "activates transcription"]
+  - [PHANGS_PROMOTER_LOCUS, LHCB_RBCS_MRNA, activates, "transcription"]
+  - [AOX1A_MRNA, NUCLEOLUS_SURVEILLANCE, activates, "energy coordination"]

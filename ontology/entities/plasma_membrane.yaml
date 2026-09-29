@@ -1,0 +1,213 @@
+# PMCO Entities: Plasma Membrane Digital Double
+# Featuring sensory receptor kinases (FERONIA, WAK1), mechanosensitive channels (MSL10),
+# calcium flux gates (GLR3.3/3.6), the ROS wave generator (RBOHD), and aquaporins (PIP2;1).
+
+- id: PMCO:RBOHD_NADPH_OXIDASE
+  label: "Respiratory Burst Oxidase Homolog D (RBOHD)"
+  kind: macromolecule
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Plasma membrane NADPH oxidase generating apoplastic superoxide. Activated by
+    cytosolic calcium binding to EF-hands and phosphorylation by CPKs/BIK1, driving
+    rapid systemic ROS waves that connect to intracellular organelles.
+  xref:
+    agi: ["AT5G47910"]
+    uniprot: ["Q9FIJ0"]
+    ec: ["1.6.3.1"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: pm_to_organelle_wave
+    role: "Generates apoplastic superoxide waves triggered by mechanical strain or microgravity"
+    signal_type: reactive_oxygen_species
+  evidence:
+    - citation: "Miller2009"
+      doi: "10.1126/scisignal.2000448"
+      claim: "RBOHD drives rapid systemic reactive oxygen species waves."
+
+- id: PMCO:FERONIA_RLK
+  label: "FERONIA Receptor Kinase (FER)"
+  kind: receptor_kinase
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Catharanthus roseus RLK1-like (CrRLK1L) family receptor kinase sensing cell wall
+    integrity, mechanical deformation, and peptide ligands (RALF). Triggers rapid
+    calcium influx and activates RBOHD.
+  xref:
+    agi: ["AT3G51550"]
+    uniprot: ["Q9DG60"]
+    ec: ["2.7.11.1"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: pm_to_organelle_wave
+    role: "Perception of cell wall strain and mechanical perturbation"
+    signal_type: kinase
+  evidence:
+    - citation: "Toyota2018"
+      doi: "10.1126/science.aat7744"
+      claim: "Cell wall receptor kinases initiate downstream calcium and ROS waves."
+
+- id: PMCO:WAK1_RECEPTOR
+  label: "Wall-Associated Kinase 1 (WAK1)"
+  kind: receptor_kinase
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Receptor kinase spanning the plasma membrane with an extracellular domain physically
+    bound to pectin in the cell wall, monitoring wall strain and microgravity-induced stresses.
+  xref:
+    agi: ["AT1G21250"]
+    uniprot: ["Q38867"]
+    ec: ["2.7.11.1"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.98
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: pm_to_organelle_wave
+    role: "Mechanical sensor of pectin stretching and apoplastic stress"
+    signal_type: kinase
+  evidence:
+    - citation: "Roncaglia2013"
+      doi: "10.1186/2041-1480-4-20"
+      claim: "Plasma membrane receptor kinase integration in GO-CCO."
+
+- id: PMCO:GLR3_3_CHANNEL
+  label: "Glutamate Receptor-Like Channel 3.3 (GLR3.3)"
+  kind: channel_transporter
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Non-selective cation channel mediating rapid calcium influx from the apoplast,
+    propagating long-distance electrical and calcium signals to internal organelles.
+  xref:
+    agi: ["AT2G24730"]
+    uniprot: ["Q9C661"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: pm_to_organelle_wave
+    role: "Propagates rapid calcium waves from plasma membrane to internal organelles"
+    signal_type: calcium_ion
+  evidence:
+    - citation: "Toyota2018"
+      doi: "10.1126/science.aat7744"
+      claim: "GLR3.3 and GLR3.6 channels propagate rapid calcium waves throughout the plant."
+
+- id: PMCO:GLR3_6_CHANNEL
+  label: "Glutamate Receptor-Like Channel 3.6 (GLR3.6)"
+  kind: channel_transporter
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Co-operates with GLR3.3 to propagate systemic calcium waves upon wound, touch,
+    or gravity stimuli.
+  xref:
+    agi: ["AT3G51480"]
+    uniprot: ["Q9LY41"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.99
+    ms_evidence: true
+  retrograde:
+    circuit: pm_to_organelle_wave
+    role: "Systemic calcium channel co-acting with GLR3.3"
+    signal_type: calcium_ion
+  evidence:
+    - citation: "Toyota2018"
+      doi: "10.1126/science.aat7744"
+      claim: "GLR3.6 mediates calcium transmission into intracellular compartments."
+
+- id: PMCO:MSL10_CHANNEL
+  label: "Mechanosensitive Channel of Small Conductance-Like 10 (MSL10)"
+  kind: channel_transporter
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Tension-sensitive ion channel activated by membrane stretch, osmotic swelling,
+    and mechanical touch. Triggers localized calcium entry and membrane depolarization.
+  xref:
+    agi: ["AT5G12080"]
+    uniprot: ["Q9LVV4"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: pm_to_organelle_wave
+    role: "Direct sensor of membrane mechanical stretch and microgravity-induced turgor changes"
+    signal_type: channel
+  evidence:
+    - citation: "Toyota2018"
+      doi: "10.1126/science.aat7744"
+      claim: "Mechanosensitive channels initiate cellular calcium influx."
+
+- id: PMCO:PIP2_1_AQUAPORIN
+  label: "Plasma Membrane Intrinsic Protein 2;1 (PIP2;1)"
+  kind: channel_transporter
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Aquaporin channel facilitating the transport of both water and hydrogen peroxide
+    (H2O2) across the plasma membrane, allowing apoplastic ROS generated by RBOHD
+    to enter the cytosol.
+  xref:
+    agi: ["AT3G53420"]
+    uniprot: ["P43286"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: pm_to_organelle_wave
+    role: "Facilitates inward transport of apoplastic H2O2 into the cytosol"
+    signal_type: channel
+  evidence:
+    - citation: "Miller2009"
+      doi: "10.1126/scisignal.2000448"
+      claim: "Aquaporins channel apoplastic ROS waves into the intracellular cytoplasm."
+
+- id: PMCO:AHA1_H_ATPASE
+  label: "Plasma Membrane H+-ATPase 1 (AHA1)"
+  kind: channel_transporter
+  compartment: plasma_membrane
+  evidence_tier: T1
+  description: >-
+    Primary electrogenic proton pump establishing the membrane potential and driving
+    apoplast acidification. Crucial for cellular bioenergetics and secondary transport.
+  xref:
+    agi: ["AT2G18960"]
+    uniprot: ["P20649"]
+    ec: ["7.1.2.1"]
+    go_cc: ["GO:0005886"]
+  suba5:
+    consensus_compartment: "plasma_membrane"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  evidence:
+    - citation: "Roncaglia2013"
+      doi: "10.1186/2041-1480-4-20"
+      claim: "Plasma membrane H+-ATPase in GO-CCO."

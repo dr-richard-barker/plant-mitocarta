@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://plant-mitocarta.org/schema/entity.schema.json",
+  "title": "PMCO Entity",
+  "description": "A Plant MitoCarta and Organelle Ontology annotation attached to an Arabidopsis locus or molecular entity. Enforces evidence tiers, DOI citations for empirical claims, SUBA5 localization metadata, and MitoCarta 3.0 comparative orthology.",
+  "type": "object",
+  "required": [
+    "id",
+    "label",
+    "kind",
+    "compartment",
+    "evidence_tier"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^PMCO:[A-Z0-9_]+$",
+      "description": "Stable PMCO identifier, e.g. PMCO:AOX1A, PMCO:ANAC017."
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "macromolecule",
+        "complex",
+        "simple_chemical",
+        "metabolite",
+        "channel_transporter",
+        "receptor_kinase",
+        "transcription_factor",
+        "process",
+        "compartment",
+        "contact_site"
+      ],
+      "description": "Maps onto SBGN PD glyphs and digital double rendering rules."
+    },
+    "description": {
+      "type": "string"
+    },
+    "compartment": {
+      "enum": [
+        "mitochondrion",
+        "mitochondrial_outer_membrane",
+        "mitochondrial_intermembrane_space",
+        "mitochondrial_inner_membrane",
+        "cristae",
+        "mitochondrial_matrix",
+        "mitochondrial_nucleoid",
+        "chloroplast",
+        "chloroplast_outer_envelope",
+        "chloroplast_intermembrane_space",
+        "chloroplast_inner_envelope",
+        "chloroplast_stroma",
+        "thylakoid_membrane",
+        "thylakoid_lumen",
+        "stromule",
+        "nucleus",
+        "nuclear_outer_membrane",
+        "nuclear_inner_membrane",
+        "nuclear_pore_complex",
+        "nucleoplasm",
+        "nucleolus",
+        "plasma_membrane",
+        "membrane_raft_nanodomain",
+        "apoplast",
+        "cytosol",
+        "membrane_contact_site",
+        "mitochondria_er_contact_site_MEAM",
+        "peroxisome"
+      ]
+    },
+    "evidence_tier": {
+      "enum": ["T1", "T2", "T3", "T4", "T5"]
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Mandatory explanation for T3 (orthology) and T4 (hypothesis) assignments."
+    },
+    "xref": {
+      "type": "object",
+      "description": "Cross-references to external genomic and biochemical databases.",
+      "additionalProperties": false,
+      "properties": {
+        "agi": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^AT[1-5CM]G[0-9]{5}$"
+          },
+          "description": "Arabidopsis Genome Initiative locus identifiers."
+        },
+        "uniprot": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "chebi": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CHEBI:[0-9]+$"
+          }
+        },
+        "kegg": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "go_cc": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^GO:[0-9]{7}$"
+          }
+        },
+        "ec": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "suba5": {
+      "type": "object",
+      "description": "SUBA5 subcellular proteomics and consensus localization metadata.",
+      "additionalProperties": false,
+      "properties": {
+        "consensus_compartment": {
+          "type": "string"
+        },
+        "consensus_score": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "ms_evidence": {
+          "type": "boolean"
+        },
+        "gfp_evidence": {
+          "type": "boolean"
+        },
+        "dual_targeted": {
+          "type": "boolean"
+        },
+        "dual_compartments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mitocarta": {
+      "type": "object",
+      "description": "Broad Institute MitoCarta 3.0 comparative orthology.",
+      "additionalProperties": false,
+      "properties": {
+        "human_symbol": {
+          "type": "string"
+        },
+        "human_entrez": {
+          "type": "integer"
+        },
+        "mitopathway": {
+          "type": "string"
+        },
+        "conservation_category": {
+          "enum": [
+            "strict_ortholog",
+            "plant_specific_innovation",
+            "dual_targeted_divergence",
+            "expanded_plant_family",
+            "mammalian_specific"
+          ]
+        },
+        "clinical_significance": {
+          "type": "string"
+        }
+      }
+    },
+    "retrograde": {
+      "type": "object",
+      "description": "Role in retrograde signaling circuits and organelle crosstalk.",
+      "additionalProperties": false,
+      "properties": {
+        "circuit": {
+          "enum": [
+            "mrr_mito_nuclear",
+            "prr_plasto_nuclear",
+            "pm_to_organelle_wave",
+            "photorespiratory_conduit",
+            "membrane_contact_site"
+          ]
+        },
+        "role": {
+          "type": "string"
+        },
+        "signal_type": {
+          "enum": [
+            "transcription_factor",
+            "metabolite",
+            "reactive_oxygen_species",
+            "calcium_ion",
+            "protease",
+            "kinase",
+            "channel",
+            "promoter_element"
+          ]
+        },
+        "cleavage_required": {
+          "type": "boolean"
+        },
+        "target_genes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["citation"],
+        "additionalProperties": false,
+        "properties": {
+          "citation": {
+            "type": "string"
+          },
+          "doi": {
+            "type": "string",
+            "pattern": "^10\\.[0-9]{4,9}/[-._;()/:A-Za-z0-9]+$"
+          },
+          "claim": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evidence_tier": {
+            "enum": ["T1", "T2"]
+          }
+        }
+      },
+      "then": {
+        "required": ["evidence"],
+        "properties": {
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "required": ["doi"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "evidence_tier": {
+            "enum": ["T3", "T4"]
+          }
+        }
+      },
+      "then": {
+        "required": ["rationale"]
+      }
+    }
+  ]
+}

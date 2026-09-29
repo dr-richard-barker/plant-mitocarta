@@ -1,0 +1,283 @@
+# PMCO Entities: Chloroplast Digital Double
+# Featuring Photosystems I/II, Cytochrome b6f, Calvin-Benson cycle (RuBisCO),
+# and the 4 plastid retrograde pathways (GUN1, SAL1-PAP, MEcPP, EXECUTER 1/2).
+
+- id: PMCO:PHOTOSYSTEM_II
+  label: "Photosystem II (PSII Core & Oxygen-Evolving Complex)"
+  kind: complex
+  compartment: thylakoid_membrane
+  evidence_tier: T1
+  description: >-
+    Multisubunit pigment-protein complex driven by light to split water, generating
+    oxygen, protons, and plastoquinol. Site of singlet oxygen production under excess light.
+  xref:
+    agi: ["ATCG00020", "ATCG00270", "ATCG00280", "AT1G06680"]
+    ec: ["1.10.3.9"]
+    go_cc: ["GO:0009523"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.99
+    ms_evidence: true
+  evidence:
+    - citation: "Wagner2004"
+      doi: "10.1126/science.1103178"
+      claim: "PSII photoinhibition generates singlet oxygen sensing by EXECUTER1."
+
+- id: PMCO:PHOTOSYSTEM_I
+  label: "Photosystem I (PSI Complex & Ferredoxin)"
+  kind: complex
+  compartment: thylakoid_membrane
+  evidence_tier: T1
+  description: >-
+    Light-driven plastocyanin-ferredoxin oxidoreductase producing NADPH.
+  xref:
+    agi: ["ATCG00030", "ATCG00040", "AT1G30510", "AT1G10960"]
+    ec: ["1.97.1.12"]
+    go_cc: ["GO:0009522"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.99
+    ms_evidence: true
+  evidence:
+    - citation: "Roncaglia2013"
+      doi: "10.1186/2041-1480-4-20"
+      claim: "Thylakoid membrane localization in GO-CCO."
+
+- id: PMCO:CYTOCHROME_B6F
+  label: "Cytochrome b6f Complex"
+  kind: complex
+  compartment: thylakoid_membrane
+  evidence_tier: T1
+  description: >-
+    Dimeric complex bridging PSII and PSI through the Q cycle, translocating protons
+    into the thylakoid lumen.
+  xref:
+    agi: ["ATCG00180", "ATCG00190", "AT4G03280"]
+    ec: ["1.10.2.2"]
+    go_cc: ["GO:0009524"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.99
+    ms_evidence: true
+  evidence:
+    - citation: "Roncaglia2013"
+      doi: "10.1186/2041-1480-4-20"
+      claim: "Cytochrome b6f complex thylakoid localization."
+
+- id: PMCO:RUBISCO_HOLOENZYME
+  label: "RuBisCO Holoenzyme (RbcL8 + RbcS8)"
+  kind: complex
+  compartment: chloroplast_stroma
+  evidence_tier: T1
+  description: >-
+    Ribulose-1,5-bisphosphate carboxylase-oxygenase. Carboxylase activity drives the
+    Calvin-Benson cycle; oxygenase activity initiates photorespiration, producing
+    2-phosphoglycolate which feeds into the 3-organelle photorespiratory conduit.
+  xref:
+    agi: ["ATCG00490", "AT1G67090", "AT5G38430", "AT5G38410", "AT5G38420"]
+    ec: ["4.1.1.39"]
+    go_cc: ["GO:0016272"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.99
+    ms_evidence: true
+  retrograde:
+    circuit: photorespiratory_conduit
+    role: "Oxygenase reaction initiates photorespiration by producing 2-phosphoglycolate"
+    signal_type: metabolite
+  evidence:
+    - citation: "Bauwe2010"
+      doi: "10.1016/j.tplants.2010.05.006"
+      claim: "RuBisCO oxygenation triggers the three-organelle photorespiratory cycle."
+
+- id: PMCO:GUN1_HUB
+  label: "GENOMES UNCOUPLED 1 (GUN1)"
+  kind: macromolecule
+  compartment: chloroplast_stroma
+  evidence_tier: T1
+  description: >-
+    Plastid-localized pentatricopeptide repeat (PPR) protein acting as the central
+    integrator of plastid retrograde signals. Interacts with cpHSP70, tetrapyrroles,
+    and chloroplast translation to communicate plastid state to the nucleus.
+  xref:
+    agi: ["AT2G31490"]
+    uniprot: ["Q9FZ52"]
+    go_cc: ["GO:0009570"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.95
+    ms_evidence: true
+    gfp_evidence: true
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Central stromal signaling hub coordinating plastid state and PhANGs repression"
+    signal_type: transcription_factor
+  evidence:
+    - citation: "Shedge2010"
+      doi: "10.1111/j.1365-313X.2010.04374.x"
+      claim: "GUN1 acts as the master plastid retrograde hub."
+
+- id: PMCO:SAL1_PHOSPHATASE
+  label: "SAL1 Phosphatase / Nucleotidase"
+  kind: macromolecule
+  compartment: chloroplast_stroma
+  evidence_tier: T1
+  description: >-
+    Bifunctional enzyme (3'(2'),5'-bisphosphate nucleotidase and inositol polyphosphate
+    1-phosphatase) that catabolizes PAP to AMP. Readily inactivated by oxidation during
+    stress, allowing PAP accumulation and retrograde signaling. Dual-targeted to mitochondria.
+  xref:
+    agi: ["AT5G63980"]
+    uniprot: ["Q42546"]
+    ec: ["3.1.3.57"]
+    go_cc: ["GO:0009570", "GO:0005739"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.88
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: true
+    dual_compartments: ["chloroplast", "mitochondrion"]
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Redox-regulated negative regulator of the retrograde metabolite PAP"
+    signal_type: kinase
+  evidence:
+    - citation: "Estavillo2011"
+      doi: "10.1105/tpc.111.091033"
+      claim: "SAL1 inactivation under oxidative stress triggers PAP-mediated retrograde signaling."
+
+- id: PMCO:PAP_METABOLITE
+  label: "3'-Phosphoadenosine 5'-Phosphate (PAP)"
+  kind: metabolite
+  compartment: chloroplast_stroma
+  evidence_tier: T1
+  description: >-
+    Byproduct of sulfur assimilation. When SAL1 is inactivated, PAP accumulates and
+    is transported via PAPST1/2 into the cytosol and nucleus to inhibit 5'-to-3'
+    exoribonucleases (XRNs), reprogramming the transcriptome.
+  xref:
+    chebi: ["CHEBI:17989"]
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Mobile chloroplast-to-nucleus retrograde messenger inhibiting nuclear XRNs"
+    signal_type: metabolite
+  evidence:
+    - citation: "Estavillo2011"
+      doi: "10.1105/tpc.111.091033"
+      claim: "PAP accumulates in plastids, translocates to nucleus, and inhibits XRNs."
+
+- id: PMCO:PAPST1_TRANSPORTER
+  label: "PAP Transporter 1 (PAPST1 / TAAC)"
+  kind: channel_transporter
+  compartment: chloroplast_inner_envelope
+  evidence_tier: T1
+  description: >-
+    Mitochondrial/plastid carrier family transporter facilitating the export of PAP
+    from chloroplast stroma into the cytosol.
+  xref:
+    agi: ["AT5G01500"]
+    uniprot: ["Q9FHX9"]
+    go_cc: ["GO:0009706"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.96
+    ms_evidence: true
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Exports retrograde messenger PAP across chloroplast envelope"
+    signal_type: channel
+  evidence:
+    - citation: "Estavillo2011"
+      doi: "10.1105/tpc.111.091033"
+      claim: "PAPST1 exports PAP from chloroplast to cytosol."
+
+- id: PMCO:MECPP_METABOLITE
+  label: "2-C-Methyl-D-Erythritol 2,4-Cyclodiphosphate (MEcPP)"
+  kind: metabolite
+  compartment: chloroplast_stroma
+  evidence_tier: T1
+  description: >-
+    Intermediate of the plastidial methylerythritol phosphate (MEP) isoprenoid pathway.
+    Accumulates under plastid stress and translocates to the nucleus to induce stress
+    defense genes (ICS1) and retrograde reprogramming.
+  xref:
+    chebi: ["CHEBI:48931"]
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Direct plastid retrograde metabolite inducing nuclear defense genes"
+    signal_type: metabolite
+  evidence:
+    - citation: "Xiao2012"
+      doi: "10.1126/science.1224341"
+      claim: "MEcPP accumulates upon stress and communicates with the nucleus."
+
+- id: PMCO:EXECUTER_1
+  label: "EXECUTER 1 (EX1)"
+  kind: macromolecule
+  compartment: thylakoid_membrane
+  evidence_tier: T1
+  description: >-
+    Thylakoid grana margin protein that senses singlet oxygen produced by Photosystem II,
+    initiating a signaling cascade leading to nuclear acclimation or programmed cell death.
+  xref:
+    agi: ["AT4G33630"]
+    uniprot: ["Q9FIP8"]
+    go_cc: ["GO:0042651"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.98
+    ms_evidence: true
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Singlet oxygen sensor transducing photoinhibition signals to the nucleus"
+    signal_type: transcription_factor
+  evidence:
+    - citation: "Wagner2004"
+      doi: "10.1126/science.1103178"
+      claim: "EXECUTER1 mediates singlet oxygen retrograde signaling."
+
+- id: PMCO:CHLORO_SINGLET_OXYGEN
+  label: "Plastidial Singlet Oxygen (1O2)"
+  kind: simple_chemical
+  compartment: thylakoid_lumen
+  evidence_tier: T1
+  description: >-
+    Excited reactive oxygen species generated at PSII reaction centers upon excess
+    light absorption and triplet chlorophyll formation.
+  xref:
+    chebi: ["CHEBI:26689"]
+  retrograde:
+    circuit: prr_plasto_nuclear
+    role: "Reactive trigger of the EXECUTER1/2 retrograde signaling pathway"
+    signal_type: reactive_oxygen_species
+  evidence:
+    - citation: "Wagner2004"
+      doi: "10.1126/science.1103178"
+      claim: "Singlet oxygen triggers EXECUTER1 signaling."
+
+- id: PMCO:DIT1_TRANSPORTER
+  label: "Dicarboxylate Translocator 1 (DiT1 / OMT1)"
+  kind: channel_transporter
+  compartment: chloroplast_inner_envelope
+  evidence_tier: T1
+  description: >-
+    2-Oxoglutarate/malate translocator in the chloroplast inner envelope. Essential
+    for the photorespiratory nitrogen cycle, transporting 2-OG into the stroma and
+    malate out.
+  xref:
+    agi: ["AT5G12860"]
+    uniprot: ["Q9SJA8"]
+    go_cc: ["GO:0009706"]
+  suba5:
+    consensus_compartment: "chloroplast"
+    consensus_score: 0.99
+    ms_evidence: true
+  retrograde:
+    circuit: photorespiratory_conduit
+    role: "2-Oxoglutarate/malate translocator shuttling photorespiratory intermediates"
+    signal_type: channel
+  evidence:
+    - citation: "Bauwe2010"
+      doi: "10.1016/j.tplants.2010.05.006"
+      claim: "DiT1 coordinates photorespiratory dicarboxylate exchange between chloroplast and mitochondria."

@@ -1,0 +1,311 @@
+{
+  "map_id": "PMM-04",
+  "title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+  "nodes": [
+    {
+      "id": "WALL_STRAIN",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Mechanical /",
+        "Microgravity Strain"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 178.79999999999998,
+        "h": 76.25
+      }
+    },
+    {
+      "id": "APOPLASTIC_PECTIN",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Apoplastic Pectin Matrix"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 238.25,
+        "w": 214.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "EXTRACELLULAR_O2",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Apoplastic Oxygen Pool"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 318.375,
+        "w": 198.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "FERONIA_RECEPTOR",
+      "pmco_id": "PMCO:FERONIA_RLK",
+      "tier": "T1",
+      "lines": [
+        "FERONIA Receptor Kinase"
+      ],
+      "box": {
+        "x": 302.0,
+        "y": 130.0,
+        "w": 207.79999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "WAK1_PECTIN_KINASE",
+      "pmco_id": "PMCO:WAK1_RECEPTOR",
+      "tier": "T1",
+      "lines": [
+        "WAK1 Kinase"
+      ],
+      "box": {
+        "x": 302.0,
+        "y": 210.125,
+        "w": 207.79999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MSL10_STRETCH_GATE",
+      "pmco_id": "PMCO:MSL10_CHANNEL",
+      "tier": "T1",
+      "lines": [
+        "MSL10 Mechanosensitive",
+        "Channel"
+      ],
+      "box": {
+        "x": 302.0,
+        "y": 290.25,
+        "w": 219.39999999999998,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "GLR_CALCIUM_CHANNELS",
+      "pmco_id": "PMCO:GLR3_3_CHANNEL",
+      "tier": "T1",
+      "lines": [
+        "GLR3.3 / GLR3.6 Channels"
+      ],
+      "box": {
+        "x": 557.4,
+        "y": 130.0,
+        "w": 236.79999999999998,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "RBOHD_OXIDASE",
+      "pmco_id": "PMCO:RBOHD_NADPH_OXIDASE",
+      "tier": "T1",
+      "lines": [
+        "RBOHD NADPH Oxidase"
+      ],
+      "box": {
+        "x": 557.4,
+        "y": 222.625,
+        "w": 219.39999999999998,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PIP2_1_AQUAPORIN",
+      "pmco_id": "PMCO:PIP2_1_AQUAPORIN",
+      "tier": "T1",
+      "lines": [
+        "PIP2;1 Aquaporin"
+      ],
+      "box": {
+        "x": 557.4,
+        "y": 315.25,
+        "w": 202.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "AHA1_PROTON_PUMP",
+      "pmco_id": "PMCO:AHA1_H_ATPASE",
+      "tier": "T1",
+      "lines": [
+        "AHA1 H+-ATPase"
+      ],
+      "box": {
+        "x": 557.4,
+        "y": 395.375,
+        "w": 219.39999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "CYTOSOLIC_CA_SPIKE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Cytosolic [Ca2+] Wave"
+      ],
+      "box": {
+        "x": 830.1999999999999,
+        "y": 130.0,
+        "w": 190.75,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "CPK_KINASES",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "CPKs / BIK1 Kinases"
+      ],
+      "box": {
+        "x": 830.1999999999999,
+        "y": 210.125,
+        "w": 219.39999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "INWARD_H2O2_FLUX",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Cytosolic H2O2 Wave"
+      ],
+      "box": {
+        "x": 830.1999999999999,
+        "y": 290.25,
+        "w": 175.25,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MITO_PERCEPTION",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Mitochondrial Bioenergetic",
+        "Tuning"
+      ],
+      "box": {
+        "x": 1085.6,
+        "y": 130.0,
+        "w": 236.79999999999998,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "CHLORO_PERCEPTION",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Chloroplast Stroma Tuning"
+      ],
+      "box": {
+        "x": 1085.6,
+        "y": 225.75,
+        "w": 221.75,
+        "h": 48.125
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "WALL_STRAIN",
+      "target": "FERONIA_RECEPTOR",
+      "kind": "activates",
+      "label": "mechanical stretch"
+    },
+    {
+      "source": "APOPLASTIC_PECTIN",
+      "target": "WAK1_PECTIN_KINASE",
+      "kind": "activates",
+      "label": "oligogalacturonide binding"
+    },
+    {
+      "source": "WALL_STRAIN",
+      "target": "MSL10_STRETCH_GATE",
+      "kind": "activates",
+      "label": "membrane tension"
+    },
+    {
+      "source": "FERONIA_RECEPTOR",
+      "target": "GLR_CALCIUM_CHANNELS",
+      "kind": "activates",
+      "label": "triggers Ca2+ gating"
+    },
+    {
+      "source": "MSL10_STRETCH_GATE",
+      "target": "CYTOSOLIC_CA_SPIKE",
+      "kind": "activates",
+      "label": "cation influx"
+    },
+    {
+      "source": "GLR_CALCIUM_CHANNELS",
+      "target": "CYTOSOLIC_CA_SPIKE",
+      "kind": "activates",
+      "label": "rapid Ca2+ influx"
+    },
+    {
+      "source": "CYTOSOLIC_CA_SPIKE",
+      "target": "CPK_KINASES",
+      "kind": "activates",
+      "label": "Ca2+ binding to EF-hands"
+    },
+    {
+      "source": "CPK_KINASES",
+      "target": "RBOHD_OXIDASE",
+      "kind": "activates",
+      "label": "Ser-343/347 phosphorylation"
+    },
+    {
+      "source": "EXTRACELLULAR_O2",
+      "target": "RBOHD_OXIDASE",
+      "kind": "electron_transfer",
+      "label": "generates O2\u2022-"
+    },
+    {
+      "source": "RBOHD_OXIDASE",
+      "target": "PIP2_1_AQUAPORIN",
+      "kind": "metabolite_flux",
+      "label": "O2\u2022- -> H2O2 diffusion"
+    },
+    {
+      "source": "PIP2_1_AQUAPORIN",
+      "target": "INWARD_H2O2_FLUX",
+      "kind": "metabolite_flux",
+      "label": "channels H2O2 into cytosol"
+    },
+    {
+      "source": "CYTOSOLIC_CA_SPIKE",
+      "target": "MITO_PERCEPTION",
+      "kind": "activates",
+      "label": "MCU channel uptake"
+    },
+    {
+      "source": "INWARD_H2O2_FLUX",
+      "target": "MITO_PERCEPTION",
+      "kind": "activates",
+      "label": "activates rhomboid/AOX1a"
+    },
+    {
+      "source": "CYTOSOLIC_CA_SPIKE",
+      "target": "CHLORO_PERCEPTION",
+      "kind": "activates",
+      "label": "stromal Ca2+ signaling"
+    },
+    {
+      "source": "INWARD_H2O2_FLUX",
+      "target": "CHLORO_PERCEPTION",
+      "kind": "activates",
+      "label": "oxidizes SAL1"
+    }
+  ]
+}

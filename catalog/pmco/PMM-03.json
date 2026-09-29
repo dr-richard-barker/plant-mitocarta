@@ -1,0 +1,284 @@
+{
+  "map_id": "PMM-03",
+  "title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+  "nodes": [
+    {
+      "id": "NPC_GATE",
+      "pmco_id": "PMCO:NPC_COMPLEX",
+      "tier": "T1",
+      "lines": [
+        "Nuclear Pore Complex"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 183.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "IMPORTIN_ALPHA",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Importin-\u03b1 / \u03b2",
+        "Transportins"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 222.625,
+        "w": 184.6,
+        "h": 76.25
+      }
+    },
+    {
+      "id": "ANAC017_ACTIVE",
+      "pmco_id": "PMCO:ANAC017_NUCLEAR",
+      "tier": "T1",
+      "lines": [
+        "ANAC017 (NAC Domain)"
+      ],
+      "box": {
+        "x": 278.0,
+        "y": 130.0,
+        "w": 213.6,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "ANAC013_ACTIVE",
+      "pmco_id": "PMCO:ANAC013_NUCLEAR",
+      "tier": "T1",
+      "lines": [
+        "ANAC013 (NAC Domain)"
+      ],
+      "box": {
+        "x": 278.0,
+        "y": 210.125,
+        "w": 213.6,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PAP_NUCLEAR_POOL",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Nuclear PAP Pool"
+      ],
+      "box": {
+        "x": 278.0,
+        "y": 302.75,
+        "w": 231.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "ABI4_REPRESSOR_TF",
+      "pmco_id": "PMCO:ABI4_TF",
+      "tier": "T1",
+      "lines": [
+        "ABI4 Repressor"
+      ],
+      "box": {
+        "x": 545.0,
+        "y": 130.0,
+        "w": 196.2,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "GLK1_ACTIVATOR_TF",
+      "pmco_id": "PMCO:GLK1_TF",
+      "tier": "T1",
+      "lines": [
+        "GLK1/GLK2 Activators"
+      ],
+      "box": {
+        "x": 545.0,
+        "y": 210.125,
+        "w": 183.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "XRN2_TARGET",
+      "pmco_id": "PMCO:XRN2_EXORIBONUCLEASE",
+      "tier": "T1",
+      "lines": [
+        "XRN2/XRN3 Exoribonucleases"
+      ],
+      "box": {
+        "x": 545.0,
+        "y": 290.25,
+        "w": 229.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MDRE_PROMOTER_LOCUS",
+      "pmco_id": "PMCO:MDRE_MOTIF",
+      "tier": "T1",
+      "lines": [
+        "MDRE Promoter Elements"
+      ],
+      "box": {
+        "x": 810.5,
+        "y": 130.0,
+        "w": 231.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "PHANGS_PROMOTER_LOCUS",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "PhANGs Promoters"
+      ],
+      "box": {
+        "x": 810.5,
+        "y": 210.125,
+        "w": 207.79999999999998,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "AOX1A_MRNA",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "AOX1a mRNA Induction"
+      ],
+      "box": {
+        "x": 1077.5,
+        "y": 130.0,
+        "w": 183.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MITO_CHAPERONES_MRNA",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "MSR Chaperones (HSP70/UPM1)"
+      ],
+      "box": {
+        "x": 1077.5,
+        "y": 210.125,
+        "w": 237.25,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "LHCB_RBCS_MRNA",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "PhANGs Transcripts",
+        "(Lhcb/RbcS)"
+      ],
+      "box": {
+        "x": 1077.5,
+        "y": 290.25,
+        "w": 167.5,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "NUCLEOLUS_SURVEILLANCE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Nucleolar Stress Checkpoint"
+      ],
+      "box": {
+        "x": 1077.5,
+        "y": 386.0,
+        "w": 237.25,
+        "h": 48.125
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "NPC_GATE",
+      "target": "ANAC017_ACTIVE",
+      "kind": "activates",
+      "label": "nuclear entry"
+    },
+    {
+      "source": "NPC_GATE",
+      "target": "ANAC013_ACTIVE",
+      "kind": "activates",
+      "label": "nuclear entry"
+    },
+    {
+      "source": "NPC_GATE",
+      "target": "PAP_NUCLEAR_POOL",
+      "kind": "metabolite_flux",
+      "label": "nuclear entry"
+    },
+    {
+      "source": "ANAC017_ACTIVE",
+      "target": "MDRE_PROMOTER_LOCUS",
+      "kind": "activates",
+      "label": "binds MDRE palindromic motif"
+    },
+    {
+      "source": "ANAC013_ACTIVE",
+      "target": "MDRE_PROMOTER_LOCUS",
+      "kind": "activates",
+      "label": "binds MDRE motif"
+    },
+    {
+      "source": "MDRE_PROMOTER_LOCUS",
+      "target": "AOX1A_MRNA",
+      "kind": "activates",
+      "label": "transcription"
+    },
+    {
+      "source": "MDRE_PROMOTER_LOCUS",
+      "target": "MITO_CHAPERONES_MRNA",
+      "kind": "activates",
+      "label": "transcription"
+    },
+    {
+      "source": "PAP_NUCLEAR_POOL",
+      "target": "XRN2_TARGET",
+      "kind": "inhibits",
+      "label": "direct enzymatic inhibition"
+    },
+    {
+      "source": "XRN2_TARGET",
+      "target": "AOX1A_MRNA",
+      "kind": "activates",
+      "label": "transcript stabilization"
+    },
+    {
+      "source": "ABI4_REPRESSOR_TF",
+      "target": "PHANGS_PROMOTER_LOCUS",
+      "kind": "inhibits",
+      "label": "represses transcription"
+    },
+    {
+      "source": "GLK1_ACTIVATOR_TF",
+      "target": "PHANGS_PROMOTER_LOCUS",
+      "kind": "activates",
+      "label": "activates transcription"
+    },
+    {
+      "source": "PHANGS_PROMOTER_LOCUS",
+      "target": "LHCB_RBCS_MRNA",
+      "kind": "activates",
+      "label": "transcription"
+    },
+    {
+      "source": "AOX1A_MRNA",
+      "target": "NUCLEOLUS_SURVEILLANCE",
+      "kind": "activates",
+      "label": "energy coordination"
+    }
+  ]
+}

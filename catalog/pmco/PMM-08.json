@@ -1,0 +1,224 @@
+{
+  "map_id": "PMM-08",
+  "title": "Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking",
+  "nodes": [
+    {
+      "id": "STROMA_H2O2_CORE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Stromal H2O2 Generation"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 219.39999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "STROMULE_ELONGATION_ACTIN",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Stromule Induction"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 210.125,
+        "w": 213.6,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "STROMULE_CHANNEL",
+      "pmco_id": "PMCO:STROMULE_NUCLEAR_CONTACT",
+      "tier": "T1",
+      "lines": [
+        "Stromule Extension"
+      ],
+      "box": {
+        "x": 307.4,
+        "y": 130.0,
+        "w": 184.6,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "DIRECT_H2O2_CONDUIT",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Privileged H2O2 Flux"
+      ],
+      "box": {
+        "x": 307.4,
+        "y": 222.625,
+        "w": 184.6,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "NUCLEAR_ENVELOPE_RECEPTOR",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Nuclear Envelope Contact",
+        "Zone"
+      ],
+      "box": {
+        "x": 553.4,
+        "y": 130.0,
+        "w": 214.0,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "LOCALIZED_NUCLEOPLASM_H2O2",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Nuclear Redox Reprogramming"
+      ],
+      "box": {
+        "x": 553.4,
+        "y": 225.75,
+        "w": 237.25,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "VAP27_TETHER_COMPLEX",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "VAP27-anchored MCS Tethers"
+      ],
+      "box": {
+        "x": 826.65,
+        "y": 130.0,
+        "w": 229.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MEAM_LIPID_TRANSFER",
+      "pmco_id": "PMCO:MEAM_CONTACT_SITE",
+      "tier": "T1",
+      "lines": [
+        "MEAM Phospholipid Transfer"
+      ],
+      "box": {
+        "x": 826.65,
+        "y": 210.125,
+        "w": 229.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MEAM_CALCIUM_FLUX",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "MEAM Calcium Tunneling"
+      ],
+      "box": {
+        "x": 826.65,
+        "y": 290.25,
+        "w": 198.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "OMM_VDAC_JUNCTION",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "OMM VDAC1-3 Channels"
+      ],
+      "box": {
+        "x": 1092.15,
+        "y": 130.0,
+        "w": 183.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MITO_LOCALIZED_CA_MICRODOMAIN",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Mitochondrial Ca2+",
+        "Microdomain"
+      ],
+      "box": {
+        "x": 1092.15,
+        "y": 210.125,
+        "w": 202.0,
+        "h": 76.25
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "STROMA_H2O2_CORE",
+      "target": "STROMULE_ELONGATION_ACTIN",
+      "kind": "activates",
+      "label": "stress induces elongation"
+    },
+    {
+      "source": "STROMULE_ELONGATION_ACTIN",
+      "target": "STROMULE_CHANNEL",
+      "kind": "activates",
+      "label": "extends along actin"
+    },
+    {
+      "source": "STROMULE_CHANNEL",
+      "target": "DIRECT_H2O2_CONDUIT",
+      "kind": "activates",
+      "label": "channels stromal contents"
+    },
+    {
+      "source": "DIRECT_H2O2_CONDUIT",
+      "target": "NUCLEAR_ENVELOPE_RECEPTOR",
+      "kind": "activates",
+      "label": "physical membrane docking"
+    },
+    {
+      "source": "NUCLEAR_ENVELOPE_RECEPTOR",
+      "target": "LOCALIZED_NUCLEOPLASM_H2O2",
+      "kind": "metabolite_flux",
+      "label": "direct H2O2 delivery into nucleus"
+    },
+    {
+      "source": "VAP27_TETHER_COMPLEX",
+      "target": "MEAM_LIPID_TRANSFER",
+      "kind": "activates",
+      "label": "holds ER and OMM in 15-30 nm proximity"
+    },
+    {
+      "source": "MEAM_LIPID_TRANSFER",
+      "target": "OMM_VDAC_JUNCTION",
+      "kind": "metabolite_flux",
+      "label": "lipid exchange"
+    },
+    {
+      "source": "VAP27_TETHER_COMPLEX",
+      "target": "MEAM_CALCIUM_FLUX",
+      "kind": "activates",
+      "label": "calcium microdomain"
+    },
+    {
+      "source": "MEAM_CALCIUM_FLUX",
+      "target": "OMM_VDAC_JUNCTION",
+      "kind": "metabolite_flux",
+      "label": "Ca2+ flux through VDAC"
+    },
+    {
+      "source": "OMM_VDAC_JUNCTION",
+      "target": "MITO_LOCALIZED_CA_MICRODOMAIN",
+      "kind": "activates",
+      "label": "matrix Ca2+ uptake"
+    }
+  ]
+}

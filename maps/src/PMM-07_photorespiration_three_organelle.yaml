@@ -1,0 +1,118 @@
+# PMM-07 — The 3-Organelle Photorespiratory Metabolic Loop
+# Direct metabolic highway linking Chloroplast, Peroxisome, and Mitochondria.
+
+id: PMM-07
+title: The 3-Organelle Photorespiratory Metabolic Loop
+subtitle: >-
+  The obligatory metabolic partnership of Chloroplasts, Peroxisomes, and Mitochondria
+  recycling 2-phosphoglycolate produced by RuBisCO oxygenation.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  Photorespiration is the premier example of obligate inter-organellar metabolic coupling
+  in plant biology. When RuBisCO fixes oxygen instead of CO2, toxic 2-phosphoglycolate
+  is produced in chloroplasts. It is dephosphorylated to glycolate and exported via PLGG1
+  to peroxisomes, where glycolate oxidase (GOX) oxidizes it to glyoxylate (generating H2O2
+  scavenged by CAT2) and glutamate:glyoxylate aminotransferase (GGT) transaminates it to glycine.
+  Glycine enters the mitochondrial matrix, where the massive Glycine Decarboxylase (GDC)
+  complex and SHMT1 convert two molecules of glycine into serine, releasing CO2, NH3, and NADH.
+  Serine returns to the peroxisome, is transaminated to hydroxypyruvate, reduced to glycerate
+  by HPR, and returned via DiT1/PLGG1 to the chloroplast to re-enter the Calvin cycle as 3-PGA.
+
+lanes:
+  - id: chloroplast_origin
+    compartment: chloroplast_stroma
+    node_width: 200
+    nodes: [RUBISCO_O2_REACTION, CHLORO_2_PG_POOL, PLGG1_GLYCOLATE_EXPORT]
+
+  - id: peroxisomal_phase1
+    compartment: peroxisome
+    node_width: 210
+    nodes: [GOX_OXIDASE, CATALASE_CAT2, GGT_AMINOTRANSFERASE]
+
+  - id: mitochondrial_phase
+    compartment: mitochondrial_matrix
+    node_width: 220
+    nodes: [GDC_P_T_H_L_COMPLEX, SHMT1_SERINE_SYNTH, MATRIX_NADH_PRODUCTION, COMPLEX_I_CA_INTERACTION]
+
+  - id: peroxisomal_phase2
+    compartment: peroxisome
+    node_width: 210
+    nodes: [HPR_GLYCERATE_REDUCTASE, PEROXISOMAL_SERINE_POOL]
+
+  - id: chloroplast_return
+    compartment: chloroplast_stroma
+    node_width: 200
+    nodes: [DIT1_GLYCERATE_IMPORT, GLYCERATE_KINASE_GLYK, THREE_PGA_CALVIN_RETURN]
+
+nodes:
+  - id: RUBISCO_O2_REACTION
+    pmco: PMCO:RUBISCO_HOLOENZYME
+    label: "RuBisCO Oxygenation"
+    units: ["RuBP + O2", "oxygenase reaction"]
+  - id: CHLORO_2_PG_POOL
+    label: "2-Phosphoglycolate (2-PG)"
+    units: ["toxic intermediate", "dephosphorylated"]
+  - id: PLGG1_GLYCOLATE_EXPORT
+    pmco: PMCO:PLGG1_TRANSLOCATOR
+    label: "PLGG1 Translocator"
+    units: ["exports glycolate", "envelope translocator"]
+
+  - id: GOX_OXIDASE
+    label: "Glycolate Oxidase (GOX)"
+    units: ["glycolate -> glyoxylate", "generates H2O2"]
+  - id: CATALASE_CAT2
+    label: "Catalase 2 (CAT2)"
+    units: ["scavenges peroxisomal H2O2"]
+  - id: GGT_AMINOTRANSFERASE
+    label: "Glutamate:Glyoxylate AT (GGT)"
+    units: ["yields glycine"]
+
+  - id: GDC_P_T_H_L_COMPLEX
+    pmco: PMCO:GDC_COMPLEX
+    label: "Glycine Decarboxylase (GDC)"
+    units: ["P-, T-, H-, L-proteins", "matrix photorespiratory engine"]
+  - id: SHMT1_SERINE_SYNTH
+    pmco: PMCO:SHMT1
+    label: "SHMT1"
+    units: ["converts glycine -> serine"]
+  - id: MATRIX_NADH_PRODUCTION
+    label: "Matrix NADH & CO2 / NH3 Release"
+    units: ["feeds Complex I / AOX", "photorespiratory nitrogen"]
+  - id: COMPLEX_I_CA_INTERACTION
+    pmco: PMCO:COMPLEX_I_CA
+    label: "Complex I CA Domain Nexus"
+    units: ["carbonic anhydrase domain", "re-circulates photorespiratory CO2"]
+
+  - id: PEROXISOMAL_SERINE_POOL
+    label: "Serine Transport to Peroxisome"
+    units: ["serine:glyoxylate AT"]
+  - id: HPR_GLYCERATE_REDUCTASE
+    label: "Hydroxypyruvate Reductase (HPR)"
+    units: ["yields glycerate", "consumes NADH"]
+
+  - id: DIT1_GLYCERATE_IMPORT
+    pmco: PMCO:DIT1_TRANSPORTER
+    label: "DiT1 / PLGG1 Translocator"
+    units: ["imports glycerate into stroma"]
+  - id: GLYCERATE_KINASE_GLYK
+    label: "Glycerate Kinase (GLYK)"
+    units: ["glycerate + ATP -> 3-PGA"]
+  - id: THREE_PGA_CALVIN_RETURN
+    label: "3-Phosphoglycerate (3-PGA)"
+    units: ["re-enters Calvin-Benson cycle"]
+
+edges:
+  - [RUBISCO_O2_REACTION, CHLORO_2_PG_POOL, metabolite_flux, "oxygen fixation"]
+  - [CHLORO_2_PG_POOL, PLGG1_GLYCOLATE_EXPORT, metabolite_flux, "PGLP1 dephosphorylation"]
+  - [PLGG1_GLYCOLATE_EXPORT, GOX_OXIDASE, metabolite_flux, "glycolate enters peroxisome"]
+  - [GOX_OXIDASE, CATALASE_CAT2, activates, "generates H2O2"]
+  - [GOX_OXIDASE, GGT_AMINOTRANSFERASE, metabolite_flux, "glyoxylate intermediate"]
+  - [GGT_AMINOTRANSFERASE, GDC_P_T_H_L_COMPLEX, metabolite_flux, "glycine enters mitochondria"]
+  - [GDC_P_T_H_L_COMPLEX, SHMT1_SERINE_SYNTH, metabolite_flux, "5,10-CH2-THF transfer"]
+  - [GDC_P_T_H_L_COMPLEX, MATRIX_NADH_PRODUCTION, activates, "releases NADH, CO2, NH3"]
+  - [MATRIX_NADH_PRODUCTION, COMPLEX_I_CA_INTERACTION, activates, "CO2 trapping / electron flow"]
+  - [SHMT1_SERINE_SYNTH, PEROXISOMAL_SERINE_POOL, metabolite_flux, "serine exported to peroxisome"]
+  - [PEROXISOMAL_SERINE_POOL, HPR_GLYCERATE_REDUCTASE, metabolite_flux, "hydroxypyruvate reduction"]
+  - [HPR_GLYCERATE_REDUCTASE, DIT1_GLYCERATE_IMPORT, metabolite_flux, "glycerate export"]
+  - [DIT1_GLYCERATE_IMPORT, GLYCERATE_KINASE_GLYK, metabolite_flux, "stromal glycerate entry"]
+  - [GLYCERATE_KINASE_GLYK, THREE_PGA_CALVIN_RETURN, metabolite_flux, "3-PGA returned to Calvin cycle"]

@@ -1,0 +1,392 @@
+# PMCO Entities: Plant Mitochondrion (Plant MitoCarta)
+# Featuring core OXPHOS, plant-specific bypasses (AOX, Type II NDHs, CA domain),
+# photorespiration (GDC), TCA cycle, and retrograde initiators.
+
+- id: PMCO:COMPLEX_I
+  label: "Mitochondrial Complex I (NADH:ubiquinone oxidoreductase)"
+  kind: complex
+  compartment: mitochondrial_inner_membrane
+  evidence_tier: T1
+  description: >-
+    L-shaped multisubunit respiratory complex (~40 subunits) pumping protons across
+    the inner membrane. Contains 14 conserved central subunits homologous to human
+    MitoCarta Complex I.
+  xref:
+    agi: ["AT5G08530", "AT5G37510", "AT1G79010", "AT1G16700"]
+    uniprot: ["Q9M7X3", "Q9FLA8", "Q9M342"]
+    ec: ["1.6.5.3"]
+    go_cc: ["GO:0005747"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: false
+  mitocarta:
+    human_symbol: "NDUFA9"
+    mitopathway: "OXPHOS > Complex I"
+    conservation_category: strict_ortholog
+    clinical_significance: "Mutations cause Leigh syndrome and mitochondrial encephalomyopathy."
+  evidence:
+    - citation: "Roncaglia2013"
+      doi: "10.1186/2041-1480-4-20"
+      claim: "GO-CCO localization to mitochondrial inner membrane."
+    - citation: "Rath2021"
+      doi: "10.1093/nar/gkaa1011"
+      claim: "MitoCarta 3.0 core Complex I pathway."
+
+- id: PMCO:COMPLEX_I_CA
+  label: "Complex I Carbonic Anhydrase Domain"
+  kind: complex
+  compartment: cristae
+  evidence_tier: T1
+  description: >-
+    Plant-specific heterotrimeric spherical domain (CAL1, CAL2, CA1, CA2, CA3) attached
+    to the matrix side of the membrane arm of Complex I. Crucial for complex assembly,
+    stability, and photorespiration. Completely absent from mammalian MitoCarta.
+  xref:
+    agi: ["AT1G47260", "AT3G48680", "AT1G19580", "AT5G63510", "AT5G66510"]
+    uniprot: ["Q9SZF1", "Q93VT7", "Q9LVK4"]
+    go_cc: ["GO:0005747"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.98
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: false
+  mitocarta:
+    conservation_category: plant_specific_innovation
+    mitopathway: "OXPHOS > Complex I Plant Innovation"
+    clinical_significance: "Plant-specific innovation absent in mammals; essential for assembly."
+  evidence:
+    - citation: "Fromm2016"
+      doi: "10.1104/pp.16.00940"
+      claim: "Carbonic anhydrase domain is required for plant Complex I assembly and stability."
+
+- id: PMCO:COMPLEX_II
+  label: "Complex II (Succinate Dehydrogenase / SDH)"
+  kind: complex
+  compartment: mitochondrial_inner_membrane
+  evidence_tier: T1
+  description: >-
+    Heterotetrameric complex (SDH1-4) coupling succinate oxidation to ubiquinone reduction
+    without proton translocation. Highly conserved with human SDHA/B/C/D.
+  xref:
+    agi: ["AT5G66760", "AT3G27380", "AT5G40650", "AT3G46620"]
+    uniprot: ["Q9SUT2", "Q9FKA6"]
+    ec: ["1.3.5.1"]
+    go_cc: ["GO:0005749"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    human_symbol: "SDHA"
+    mitopathway: "OXPHOS > Complex II"
+    conservation_category: strict_ortholog
+    clinical_significance: "Human mutations cause paraganglioma and Leigh syndrome."
+  evidence:
+    - citation: "Rath2021"
+      doi: "10.1093/nar/gkaa1011"
+      claim: "Core conserved Complex II subunits in human MitoCarta 3.0."
+
+- id: PMCO:COMPLEX_III
+  label: "Complex III (Cytochrome bc1 Complex / Ubiquinol-Cytochrome c Reductase)"
+  kind: complex
+  compartment: cristae
+  evidence_tier: T1
+  description: >-
+    Dimeric complex containing cytochrome b, cytochrome c1, and the Rieske [2Fe-2S]
+    protein, mediating Q-cycle proton translocation.
+  xref:
+    agi: ["AT5G13440", "AT3G27240", "AT4G32470"]
+    uniprot: ["Q9S838", "Q944V2"]
+    ec: ["1.10.2.2"]
+    go_cc: ["GO:0005750"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    human_symbol: "UQCRFS1"
+    mitopathway: "OXPHOS > Complex III"
+    conservation_category: strict_ortholog
+  evidence:
+    - citation: "Rath2021"
+      doi: "10.1093/nar/gkaa1011"
+      claim: "Core conserved Complex III subunits."
+
+- id: PMCO:COMPLEX_IV
+  label: "Complex IV (Cytochrome c Oxidase / COX)"
+  kind: complex
+  compartment: cristae
+  evidence_tier: T1
+  description: >-
+    Terminal oxidase of the cytochrome pathway reducing O2 to 2 H2O and pumping protons
+    into the IMS.
+  xref:
+    agi: ["ATMG00160", "ATMG00290", "AT5G44300"]
+    ec: ["1.9.3.1"]
+    go_cc: ["GO:0005751"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+  mitocarta:
+    human_symbol: "COX1"
+    mitopathway: "OXPHOS > Complex IV"
+    conservation_category: strict_ortholog
+  evidence:
+    - citation: "Rath2021"
+      doi: "10.1093/nar/gkaa1011"
+      claim: "Conserved Complex IV terminal oxidase."
+
+- id: PMCO:COMPLEX_V
+  label: "Complex V (ATP Synthase / F1Fo-ATPase)"
+  kind: complex
+  compartment: cristae
+  evidence_tier: T1
+  description: >-
+    Rotary motor utilizing proton motive force to synthesize ATP from ADP and Pi.
+  xref:
+    agi: ["ATMG01190", "AT2G07698", "AT5G08680"]
+    ec: ["7.1.2.2"]
+    go_cc: ["GO:0005753"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    human_symbol: "ATP5F1A"
+    mitopathway: "OXPHOS > Complex V"
+    conservation_category: strict_ortholog
+  evidence:
+    - citation: "Rath2021"
+      doi: "10.1093/nar/gkaa1011"
+      claim: "Conserved ATP synthase machinery."
+
+- id: PMCO:AOX1A
+  label: "Alternative Oxidase 1A (AOX1a)"
+  kind: macromolecule
+  compartment: mitochondrial_inner_membrane
+  evidence_tier: T1
+  description: >-
+    Cyanide-resistant, non-proton-pumping terminal quinol oxidase. Directly transfers
+    electrons from ubiquinol to oxygen. Acts as a key bioenergetic relief valve and
+    hallmark target of mitochondrial retrograde signaling (MRR). Absent in mammals.
+  xref:
+    agi: ["AT3G22370"]
+    uniprot: ["O22049"]
+    ec: ["1.10.3.11"]
+    go_cc: ["GO:0005743"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+    dual_targeted: false
+  mitocarta:
+    conservation_category: plant_specific_innovation
+    mitopathway: "OXPHOS > Alternative Oxidase Bypass"
+    clinical_significance: "Absent in mammals; heterologous expression in human cells rescues Complex I/III defects."
+  retrograde:
+    circuit: mrr_mito_nuclear
+    role: "Primary transcriptional readout of mitochondrial dysfunction (ANAC017 target)"
+    signal_type: promoter_element
+  evidence:
+    - citation: "Maxwell1999"
+      doi: "10.1073/pnas.96.14.8271"
+      claim: "AOX lowers mitochondrial reactive oxygen species in plant cells."
+    - citation: "DeClercq2013"
+      doi: "10.1105/tpc.113.112011"
+      claim: "AOX1a is directly induced by ANAC017 binding to the MDRE promoter element."
+
+- id: PMCO:ALT_NADH_DH_INT
+  label: "Internal Type II NAD(P)H Dehydrogenases (NDA1, NDA2, NDC1)"
+  kind: complex
+  compartment: mitochondrial_inner_membrane
+  evidence_tier: T1
+  description: >-
+    Rotenone-insensitive, non-proton-pumping NADH dehydrogenases facing the mitochondrial
+    matrix. Allows NADH oxidation without ATP production. Absent in mammalian MitoCarta.
+  xref:
+    agi: ["AT1G07180", "AT2G29990", "AT5G08740"]
+    uniprot: ["Q949U2", "Q9M8S0"]
+    ec: ["1.6.99.3"]
+    go_cc: ["GO:0005743"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.96
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    conservation_category: plant_specific_innovation
+    mitopathway: "OXPHOS > Alternative NADH Dehydrogenase Bypass"
+  evidence:
+    - citation: "VanAken2016"
+      doi: "10.1104/pp.16.01223"
+      claim: "Alternative internal dehydrogenases bypass Complex I during stress."
+
+- id: PMCO:ALT_NADH_DH_EXT
+  label: "External Type II NAD(P)H Dehydrogenases (NDB1, NDB2, NDB4)"
+  kind: complex
+  compartment: mitochondrial_inner_membrane
+  evidence_tier: T1
+  description: >-
+    Rotenone-insensitive dehydrogenases facing the intermembrane space, directly
+    oxidizing cytosolic NADH/NADPH. Absent in mammals.
+  xref:
+    agi: ["AT4G05020", "AT4G28220", "AT2G20800"]
+    uniprot: ["Q9SRW4", "Q9FKY6"]
+    ec: ["1.6.99.3"]
+    go_cc: ["GO:0005743"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.97
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    conservation_category: plant_specific_innovation
+    mitopathway: "OXPHOS > External NADH Dehydrogenase Bypass"
+  evidence:
+    - citation: "VanAken2016"
+      doi: "10.1104/pp.16.01223"
+      claim: "NDB2 is strongly induced under mitochondrial stress alongside AOX1a."
+
+- id: PMCO:PUMP1
+  label: "Plant Uncoupling Protein 1 (PUMP1 / UCP1)"
+  kind: channel_transporter
+  compartment: cristae
+  evidence_tier: T1
+  description: >-
+    Mitochondrial carrier that dissipates the proton gradient as heat, uncoupling
+    electron transport from ATP synthesis.
+  xref:
+    agi: ["AT3G54110"]
+    uniprot: ["Q9XF72"]
+    go_cc: ["GO:0005743"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    human_symbol: "SLC25A7"
+    mitopathway: "Small Molecule Transport > Uncoupling Proteins"
+    conservation_category: strict_ortholog
+  evidence:
+    - citation: "Rath2021"
+      doi: "10.1093/nar/gkaa1011"
+      claim: "Conserved uncoupling protein family (SLC25A7 / UCP1)."
+
+- id: PMCO:GDC_COMPLEX
+  label: "Glycine Decarboxylase Complex (GDC P-, T-, H-, L-proteins)"
+  kind: complex
+  compartment: mitochondrial_matrix
+  evidence_tier: T1
+  description: >-
+    Massive multi-enzyme complex (~half of soluble matrix protein in photosynthetic
+    leaves) catalyzing glycine decarboxylation in photorespiration. Tightly linked
+    to chloroplast RuBisCO flux.
+  xref:
+    agi: ["AT4G33010", "AT1G11860", "AT2G35370", "AT1G38040"]
+    uniprot: ["Q9LYT2", "Q9SAR0", "P25850"]
+    ec: ["1.4.4.2"]
+    go_cc: ["GO:0005960"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    human_symbol: "GLDC"
+    mitopathway: "Metabolism > Glycine Cleavage"
+    conservation_category: strict_ortholog
+    clinical_significance: "Human mutations cause non-ketotic hyperglycinemia."
+  retrograde:
+    circuit: photorespiratory_conduit
+    role: "Matrix engine of the 3-organelle photorespiratory loop (yields serine, NADH, CO2)"
+    signal_type: metabolite
+  evidence:
+    - citation: "Bauwe2010"
+      doi: "10.1016/j.tplants.2010.05.006"
+      claim: "Central role of GDC in plant photorespiration and organelle crosstalk."
+
+- id: PMCO:SHMT1
+  label: "Serine Hydroxymethyltransferase 1 (SHMT1)"
+  kind: macromolecule
+  compartment: mitochondrial_matrix
+  evidence_tier: T1
+  description: >-
+    Coupled with GDC to convert 5,10-methylene-THF and glycine into serine and THF
+    in photorespiration.
+  xref:
+    agi: ["AT4G37930"]
+    uniprot: ["Q9SJG9"]
+    ec: ["2.1.2.1"]
+    go_cc: ["GO:0005759"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.99
+    ms_evidence: true
+    gfp_evidence: true
+  mitocarta:
+    human_symbol: "SHMT2"
+    mitopathway: "Metabolism > Folate and One-Carbon"
+    conservation_category: strict_ortholog
+  evidence:
+    - citation: "Bauwe2010"
+      doi: "10.1016/j.tplants.2010.05.006"
+      claim: "SHMT1 operates in tandem with GDC in the matrix."
+
+- id: PMCO:DTC_CARRIER
+  label: "Dicarboxylate / Tricarboxylate Carrier (DTC)"
+  kind: channel_transporter
+  compartment: mitochondrial_inner_membrane
+  evidence_tier: T1
+  description: >-
+    Mitochondrial carrier family translocator transporting citrate, isocitrate,
+    2-oxoglutarate, and malate across the inner membrane. Exports citrate for
+    retrograde signaling.
+  xref:
+    agi: ["AT5G19760"]
+    uniprot: ["Q9SR63"]
+    go_cc: ["GO:0005743"]
+  suba5:
+    consensus_compartment: "mitochondrion"
+    consensus_score: 0.98
+    ms_evidence: true
+  mitocarta:
+    human_symbol: "SLC25A1"
+    mitopathway: "Small Molecule Transport > Citrate Transporter"
+    conservation_category: strict_ortholog
+  retrograde:
+    circuit: mrr_mito_nuclear
+    role: "Exports matrix citrate and 2-oxoglutarate to cytosol/nucleus"
+    signal_type: metabolite
+  evidence:
+    - citation: "Ng2013"
+      doi: "10.1104/pp.114.238493"
+      claim: "TCA cycle intermediates act as retrograde signals via carrier-mediated export."
+
+- id: PMCO:MITO_ROS
+  label: "Mitochondrial ROS Pool (Superoxide & H2O2)"
+  kind: simple_chemical
+  compartment: cristae
+  evidence_tier: T1
+  description: >-
+    Superoxide generated by Complex I FMN, Complex III Qo site, and converted by Mn-SOD
+    (MSD1) into hydrogen peroxide, diffusing through channels to trigger retrograde signaling.
+  xref:
+    chebi: ["CHEBI:15379", "CHEBI:16240"]
+  retrograde:
+    circuit: mrr_mito_nuclear
+    role: "Second messenger activating rhomboid proteases to cleave ANAC017"
+    signal_type: reactive_oxygen_species
+  evidence:
+    - citation: "DeClercq2013"
+      doi: "10.1105/tpc.113.112011"
+      claim: "Mitochondrial ROS triggers ANAC017 cleavage and nuclear migration."

@@ -1,0 +1,125 @@
+# PMM-06 — The Plastid-to-Nucleus Retrograde Response (PRR) Circuits
+# The 4 plastid channels: SAL1-PAP-XRN2/3, GUN1-ABI4, MEcPP, and Singlet Oxygen-EXECUTER 1/2.
+
+id: PMM-06
+title: The Plastid-to-Nucleus Retrograde Response (PRR) Circuits
+subtitle: >-
+  Four parallel communication channels conveying chloroplast operational state,
+  pigment biosynthesis, and redox stress to the nucleus.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  Chloroplasts communicate with the nucleus via four distinct pathways. (1) In the
+  SAL1-PAP pathway, oxidative stress inactivates stromal SAL1 phosphatase; its substrate,
+  PAP (3'-phosphoadenosine 5'-phosphate), accumulates and is exported via PAPST1 to the
+  nucleus, directly inhibiting 5'-to-3' exoribonucleases (XRN2/3) to stabilize stress transcripts.
+  (2) In the GUN1 hub, plastid translation and tetrapyrrole perturbations signal through
+  ABI4 to repress PhANGs. (3) The MEP pathway intermediate MEcPP accumulates during stress
+  and acts as an autonomous retrograde messenger. (4) Singlet oxygen (1O2) produced at PSII
+  is sensed by EXECUTER 1/2 (EX1/EX2) to direct acclimation or cell death.
+
+lanes:
+  - id: plastid_stress_triggers
+    compartment: thylakoid_membrane
+    node_width: 200
+    nodes: [EXCESS_LIGHT_1O2, PLASTID_TRANSLATION_ARREST, MEP_PATHWAY_BOTTLENECK, STROMAL_OXIDATIVE_STRESS]
+
+  - id: stromal_converters
+    compartment: chloroplast_stroma
+    node_width: 210
+    nodes: [EX1_GRANA_SENSOR, GUN1_INTEGRATION_HUB, MECPP_SIGNAL_POOL, SAL1_OXIDATIVE_INACTIVATION]
+
+  - id: envelope_transporters
+    compartment: chloroplast_inner_envelope
+    node_width: 200
+    nodes: [PAP_STROMAL_POOL, PAPST1_TRANSLOCATOR, MECPP_EXPORT_GATE]
+
+  - id: nuclear_regulators
+    compartment: nucleoplasm
+    node_width: 210
+    nodes: [ABI4_REPRESSION_TF, XRN2_3_EXORIBONUCLEASES, ICS1_DEFENSE_PROMOTER]
+
+  - id: nuclear_outcomes
+    compartment: nucleoplasm
+    node_width: 210
+    nodes: [PHANGS_REPRESSED, DROUGHT_STRESS_INDUCED, PCD_ACCLIMATION_SWITCH]
+
+nodes:
+  - id: EXCESS_LIGHT_1O2
+    pmco: PMCO:CHLORO_SINGLET_OXYGEN
+    label: "Singlet Oxygen (1O2) Burst"
+    units: ["PSII photoinhibition"]
+  - id: PLASTID_TRANSLATION_ARREST
+    label: "Plastid Translation Defect"
+    units: ["lincomycin", "norflurazon"]
+  - id: MEP_PATHWAY_BOTTLENECK
+    label: "MEP Pathway Arrest"
+    units: ["isoprenoid pathway stress"]
+  - id: STROMAL_OXIDATIVE_STRESS
+    label: "Stromal Redox Oxidation"
+    units: ["drought", "high light"]
+
+  - id: EX1_GRANA_SENSOR
+    pmco: PMCO:EXECUTER_1
+    label: "EXECUTER 1 (EX1)"
+    units: ["thylakoid grana margin sensor"]
+  - id: GUN1_INTEGRATION_HUB
+    pmco: PMCO:GUN1_HUB
+    label: "GUN1 PPR Hub"
+    units: ["coordinates cpHSP70 & tetrapyrroles"]
+  - id: MECPP_SIGNAL_POOL
+    pmco: PMCO:MECPP_METABOLITE
+    label: "MEcPP Retrograde Messenger"
+    units: ["direct metabolite signal"]
+  - id: SAL1_OXIDATIVE_INACTIVATION
+    pmco: PMCO:SAL1_PHOSPHATASE
+    label: "SAL1 Phosphatase Inactivation"
+    units: ["disulfide bridge formation"]
+
+  - id: PAP_STROMAL_POOL
+    pmco: PMCO:PAP_METABOLITE
+    label: "PAP Accumulation"
+    units: ["3'-phosphoadenosine 5'-phosphate"]
+  - id: PAPST1_TRANSLOCATOR
+    pmco: PMCO:PAPST1_TRANSPORTER
+    label: "PAPST1 Transporter"
+    units: ["exports PAP across envelope"]
+  - id: MECPP_EXPORT_GATE
+    label: "MEcPP Envelope Export"
+    units: ["translocation to nucleus"]
+
+  - id: ABI4_REPRESSION_TF
+    pmco: PMCO:ABI4_TF
+    label: "ABI4 Transcription Factor"
+    units: ["nuclear repressor"]
+  - id: XRN2_3_EXORIBONUCLEASES
+    pmco: PMCO:XRN2_EXORIBONUCLEASE
+    label: "XRN2 / XRN3 Exoribonucleases"
+    units: ["inhibited by PAP"]
+  - id: ICS1_DEFENSE_PROMOTER
+    label: "ICS1 Defense Promoter"
+    units: ["salicylic acid biosynthesis"]
+
+  - id: PHANGS_REPRESSED
+    label: "Repression of PhANGs"
+    units: ["Lhcb, RbcS down-regulation"]
+  - id: DROUGHT_STRESS_INDUCED
+    label: "Drought / Osmotic Gene Induction"
+    units: ["APX2, ZAT10 up-regulation"]
+  - id: PCD_ACCLIMATION_SWITCH
+    label: "Programmed Cell Death vs Acclimation"
+    units: ["cell survival determination"]
+
+edges:
+  - [EXCESS_LIGHT_1O2, EX1_GRANA_SENSOR, activates, "sensed at grana margins"]
+  - [EX1_GRANA_SENSOR, PCD_ACCLIMATION_SWITCH, activates, "transduces 1O2 signal to nucleus"]
+  - [PLASTID_TRANSLATION_ARREST, GUN1_INTEGRATION_HUB, activates, "accumulates unimported proteins"]
+  - [GUN1_INTEGRATION_HUB, ABI4_REPRESSION_TF, activates, "signals to nuclear ABI4"]
+  - [ABI4_REPRESSION_TF, PHANGS_REPRESSED, activates, "represses PhANGs transcription"]
+  - [MEP_PATHWAY_BOTTLENECK, MECPP_SIGNAL_POOL, activates, "metabolite accumulation"]
+  - [MECPP_SIGNAL_POOL, MECPP_EXPORT_GATE, metabolite_flux, "export to cytosol"]
+  - [MECPP_EXPORT_GATE, ICS1_DEFENSE_PROMOTER, activates, "induces ICS1 / salicylic acid"]
+  - [STROMAL_OXIDATIVE_STRESS, SAL1_OXIDATIVE_INACTIVATION, inhibits, "oxidizes catalytic cysteines"]
+  - [SAL1_OXIDATIVE_INACTIVATION, PAP_STROMAL_POOL, activates, "PAP catabolism halted"]
+  - [PAP_STROMAL_POOL, PAPST1_TRANSLOCATOR, metabolite_flux, "envelope export"]
+  - [PAPST1_TRANSLOCATOR, XRN2_3_EXORIBONUCLEASES, inhibits, "enters nucleus and inhibits XRNs"]
+  - [XRN2_3_EXORIBONUCLEASES, DROUGHT_STRESS_INDUCED, activates, "stabilizes drought/stress mRNAs"]

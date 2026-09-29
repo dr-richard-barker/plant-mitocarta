@@ -1,0 +1,96 @@
+# PMM-08 — Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking
+# Physical membrane junctions: MEAMs (Mito-ER), TGD (Chloro-ER), and Stromule nuclear docking.
+
+id: PMM-08
+title: Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking
+subtitle: >-
+  Non-vesicular lipid and ion exchange across physical organellar contact sites,
+  and dynamic chloroplast stromule docking directly onto the nuclear envelope.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  Subcellular organelles do not float freely; they are dynamically interconnected
+  by physical membrane contact sites (MCS). Chloroplasts extend stroma-filled tubules
+  (stromules) along microfilaments that physically dock to the nuclear envelope,
+  channelling high concentrations of H2O2 directly into the nucleoplasm during stress
+  and plant immune defense. Mitochondria-ER Associated Membranes (MEAMs) mediate
+  phospholipid transfer and localized calcium microdomains, while chloroplast-ER junctions
+  (TGD complexes) facilitate galactolipid and sulfolipid biogenesis.
+
+lanes:
+  - id: chloroplast_stromule_root
+    compartment: chloroplast_outer_envelope
+    node_width: 200
+    nodes: [STROMA_H2O2_CORE, STROMULE_ELONGATION_ACTIN]
+
+  - id: stromule_bridge
+    compartment: stromule
+    node_width: 210
+    nodes: [STROMULE_CHANNEL, DIRECT_H2O2_CONDUIT]
+
+  - id: nuclear_envelope_dock
+    compartment: nuclear_outer_membrane
+    node_width: 210
+    nodes: [NUCLEAR_ENVELOPE_RECEPTOR, LOCALIZED_NUCLEOPLASM_H2O2]
+
+  - id: er_mitochondria_meams
+    compartment: mitochondria_er_contact_site_MEAM
+    node_width: 220
+    nodes: [VAP27_TETHER_COMPLEX, MEAM_LIPID_TRANSFER, MEAM_CALCIUM_FLUX]
+
+  - id: mitochondrial_receptors
+    compartment: mitochondrial_outer_membrane
+    node_width: 210
+    nodes: [OMM_VDAC_JUNCTION, MITO_LOCALIZED_CA_MICRODOMAIN]
+
+nodes:
+  - id: STROMA_H2O2_CORE
+    label: "Stromal H2O2 Generation"
+    units: ["excess excitation", "thylakoid ROS"]
+  - id: STROMULE_ELONGATION_ACTIN
+    label: "Stromule Induction"
+    units: ["myosin XI", "actin microfilaments"]
+
+  - id: STROMULE_CHANNEL
+    pmco: PMCO:STROMULE_NUCLEAR_CONTACT
+    label: "Stromule Extension"
+    units: ["tubular plastid extension", "stroma-filled"]
+  - id: DIRECT_H2O2_CONDUIT
+    label: "Privileged H2O2 Flux"
+    units: ["avoids cytosolic dilution", "concentrated signal"]
+
+  - id: NUCLEAR_ENVELOPE_RECEPTOR
+    label: "Nuclear Envelope Contact Zone"
+    units: ["perinuclear docking site"]
+  - id: LOCALIZED_NUCLEOPLASM_H2O2
+    label: "Nuclear Redox Reprogramming"
+    units: ["oxidizes nuclear TFs", "activates defense"]
+
+  - id: VAP27_TETHER_COMPLEX
+    label: "VAP27-anchored MCS Tethers"
+    units: ["membrane tethering complex"]
+  - id: MEAM_LIPID_TRANSFER
+    pmco: PMCO:MEAM_CONTACT_SITE
+    label: "MEAM Phospholipid Transfer"
+    units: ["phosphatidylserine / cardiolipin"]
+  - id: MEAM_CALCIUM_FLUX
+    label: "MEAM Calcium Tunneling"
+    units: ["ER Ca2+ release -> OMM"]
+
+  - id: OMM_VDAC_JUNCTION
+    label: "OMM VDAC1-3 Channels"
+    units: ["outer membrane pore"]
+  - id: MITO_LOCALIZED_CA_MICRODOMAIN
+    label: "Mitochondrial Ca2+ Microdomain"
+    units: ["MCU uptake", "stimulates matrix dehydrogenases"]
+
+edges:
+  - [STROMA_H2O2_CORE, STROMULE_ELONGATION_ACTIN, activates, "stress induces elongation"]
+  - [STROMULE_ELONGATION_ACTIN, STROMULE_CHANNEL, activates, "extends along actin"]
+  - [STROMULE_CHANNEL, DIRECT_H2O2_CONDUIT, activates, "channels stromal contents"]
+  - [DIRECT_H2O2_CONDUIT, NUCLEAR_ENVELOPE_RECEPTOR, activates, "physical membrane docking"]
+  - [NUCLEAR_ENVELOPE_RECEPTOR, LOCALIZED_NUCLEOPLASM_H2O2, metabolite_flux, "direct H2O2 delivery into nucleus"]
+  - [VAP27_TETHER_COMPLEX, MEAM_LIPID_TRANSFER, activates, "holds ER and OMM in 15-30 nm proximity"]
+  - [MEAM_LIPID_TRANSFER, OMM_VDAC_JUNCTION, metabolite_flux, "lipid exchange"]
+  - [VAP27_TETHER_COMPLEX, MEAM_CALCIUM_FLUX, activates, "calcium microdomain"]
+  - [MEAM_CALCIUM_FLUX, OMM_VDAC_JUNCTION, metabolite_flux, "Ca2+ flux through VDAC"]
+  - [OMM_VDAC_JUNCTION, MITO_LOCALIZED_CA_MICRODOMAIN, activates, "matrix Ca2+ uptake"]

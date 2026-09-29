@@ -1,0 +1,330 @@
+# Plant MitoCarta & Organelle Ontology (PMCO) Core Specification
+# Grounded in GO Cellular Component (GO-CCO) and Subcellular Anatomy Ontology (SAO)
+# Reference: Roncaglia et al. 2013 (PMC3852282)
+
+name: Plant MitoCarta & Organelle Ontology
+acronym: PMCO
+version: "0.1.0"
+date: "2026-09-29"
+license: CC-BY-4.0
+description: >-
+  Controlled vocabulary for plant subcellular bioenergetics, four organellar digital
+  doubles (Mitochondrion, Chloroplast, Nucleus, Plasma Membrane), retrograde signaling
+  circuits, membrane contact sites, and cross-species mammalian MitoCarta comparison.
+
+# ---------------------------------------------------------------------------
+# Evidence Tiers
+# ---------------------------------------------------------------------------
+evidence_tiers:
+  - id: T1
+    label: Demonstrated Empirical (Plant)
+    definition: >-
+      Direct empirical measurement of the entity's presence, activity, flux, or
+      translocation in Arabidopsis thaliana. Requires at least one resolved DOI
+      in evidence.
+    border_style: solid_heavy
+    border_width: 3.0
+    doi_required: true
+
+  - id: T2
+    label: Inferred from Pathway/Process (Plant)
+    definition: >-
+      Demonstrated for the containing multi-protein complex, organellar fraction,
+      or metabolic pathway in plants, but not isolated directly to this single node.
+      Requires at least one resolved DOI in evidence.
+    border_style: solid_light
+    border_width: 1.5
+    doi_required: true
+
+  - id: T3
+    label: Orthology-Inferred (Mammalian/Yeast)
+    definition: >-
+      Inferred from human or mouse Broad MitoCarta 3.0 or yeast homologs with no
+      direct plant biochemical assay. A cross-species inference.
+    border_style: dashed
+    border_width: 2.0
+    dash_array: "4 3"
+    doi_required: false
+
+  - id: T4
+    label: Mechanistic Hypothesis / Computational Prediction
+    definition: >-
+      Hypothesized physical route, predicted membrane contact site, candidate
+      retrograde messenger, or SUBAcon computational prediction.
+    border_style: dotted
+    border_width: 1.5
+    dash_array: "2 2"
+    doi_required: false
+
+  - id: T5
+    label: Anatomical & Topological Context
+    definition: >-
+      Structural or spatial context (membranes, cristae, pores, compartments).
+      No quantum or biochemical claim made on this node.
+    border_style: hairline
+    border_width: 0.75
+    doi_required: false
+
+# ---------------------------------------------------------------------------
+# Subcellular Compartments (Grounded in GO-CCO & SAO / PMC3852282)
+# ---------------------------------------------------------------------------
+compartments:
+  # --- Mitochondrion Digital Double ---
+  - id: mitochondrion
+    go_cc: "GO:0005739"
+    label: "Mitochondrion"
+    color_token: "mito"
+    hex: "#7a4a12"
+    parent: cytoplasm
+
+  - id: mitochondrial_outer_membrane
+    go_cc: "GO:0005741"
+    label: "Mitochondrial Outer Membrane (OMM)"
+    color_token: "mito_membrane"
+    hex: "#8c5618"
+    parent: mitochondrion
+
+  - id: mitochondrial_intermembrane_space
+    go_cc: "GO:0005758"
+    label: "Mitochondrial Intermembrane Space (IMS)"
+    color_token: "mito_ims"
+    hex: "#9e6522"
+    parent: mitochondrion
+
+  - id: mitochondrial_inner_membrane
+    go_cc: "GO:0005743"
+    label: "Mitochondrial Inner Membrane (IMM)"
+    color_token: "mito_membrane"
+    hex: "#8c5618"
+    parent: mitochondrion
+
+  - id: cristae
+    go_cc: "GO:0005746"
+    label: "Mitochondrial Cristae"
+    color_token: "mito_cristae"
+    hex: "#6b3f0d"
+    parent: mitochondrial_inner_membrane
+
+  - id: mitochondrial_matrix
+    go_cc: "GO:0005759"
+    label: "Mitochondrial Matrix"
+    color_token: "mito_matrix"
+    hex: "#5c3407"
+    parent: mitochondrion
+
+  - id: mitochondrial_nucleoid
+    go_cc: "GO:0042645"
+    label: "Mitochondrial Nucleoid"
+    color_token: "mito_nucleoid"
+    hex: "#502c03"
+    parent: mitochondrial_matrix
+
+  # --- Chloroplast Digital Double ---
+  - id: chloroplast
+    go_cc: "GO:0009507"
+    label: "Chloroplast"
+    color_token: "plastid"
+    hex: "#0b5c46"
+    parent: cytoplasm
+
+  - id: chloroplast_outer_envelope
+    go_cc: "GO:0009707"
+    label: "Chloroplast Outer Envelope (OEM)"
+    color_token: "plastid_membrane"
+    hex: "#106e54"
+    parent: chloroplast
+
+  - id: chloroplast_intermembrane_space
+    go_cc: "GO:0009580"
+    label: "Chloroplast Intermembrane Space"
+    color_token: "plastid_ims"
+    hex: "#167f62"
+    parent: chloroplast
+
+  - id: chloroplast_inner_envelope
+    go_cc: "GO:0009706"
+    label: "Chloroplast Inner Envelope (IEM)"
+    color_token: "plastid_membrane"
+    hex: "#106e54"
+    parent: chloroplast
+
+  - id: chloroplast_stroma
+    go_cc: "GO:0009570"
+    label: "Chloroplast Stroma"
+    color_token: "plastid_stroma"
+    hex: "#084736"
+    parent: chloroplast
+
+  - id: thylakoid_membrane
+    go_cc: "GO:0042651"
+    label: "Thylakoid Membrane"
+    color_token: "thylakoid"
+    hex: "#063d2e"
+    parent: chloroplast
+
+  - id: thylakoid_lumen
+    go_cc: "GO:0031977"
+    label: "Thylakoid Lumen"
+    color_token: "thylakoid_lumen"
+    hex: "#053024"
+    parent: chloroplast
+
+  - id: stromule
+    go_cc: "GO:0010319"
+    label: "Stromule (Stroma-filled tubule)"
+    color_token: "stromule"
+    hex: "#0d684f"
+    parent: chloroplast
+
+  # --- Nucleus Digital Double ---
+  - id: nucleus
+    go_cc: "GO:0005634"
+    label: "Nucleus"
+    color_token: "nucleus"
+    hex: "#4a2a55"
+    parent: cell
+
+  - id: nuclear_outer_membrane
+    go_cc: "GO:0005640"
+    label: "Nuclear Outer Membrane"
+    color_token: "nuclear_membrane"
+    hex: "#5c3569"
+    parent: nucleus
+
+  - id: nuclear_inner_membrane
+    go_cc: "GO:0005637"
+    label: "Nuclear Inner Membrane"
+    color_token: "nuclear_membrane"
+    hex: "#5c3569"
+    parent: nucleus
+
+  - id: nuclear_pore_complex
+    go_cc: "GO:0005643"
+    label: "Nuclear Pore Complex"
+    color_token: "nuclear_pore"
+    hex: "#6b3e7a"
+    parent: nucleus
+
+  - id: nucleoplasm
+    go_cc: "GO:0005654"
+    label: "Nucleoplasm"
+    color_token: "nucleoplasm"
+    hex: "#3b2044"
+    parent: nucleus
+
+  - id: nucleolus
+    go_cc: "GO:0005730"
+    label: "Nucleolus"
+    color_token: "nucleolus"
+    hex: "#2b1433"
+    parent: nucleus
+
+  # --- Plasma Membrane Digital Double ---
+  - id: plasma_membrane
+    go_cc: "GO:0005886"
+    label: "Plasma Membrane"
+    color_token: "pm"
+    hex: "#1d4e6b"
+    parent: cell
+
+  - id: membrane_raft_nanodomain
+    go_cc: "GO:0045121"
+    label: "Membrane Microdomain / Raft"
+    color_token: "pm_raft"
+    hex: "#246185"
+    parent: plasma_membrane
+
+  - id: apoplast
+    go_cc: "GO:0048046"
+    label: "Apoplast & Cell Wall"
+    color_token: "apoplast"
+    hex: "#3d3d3d"
+    parent: cell
+
+  - id: cytosol
+    go_cc: "GO:0005829"
+    label: "Cytosol"
+    color_token: "cytosol"
+    hex: "#264b63"
+    parent: cell
+
+  # --- Contact Sites & Inter-Organellar Junctions ---
+  - id: membrane_contact_site
+    go_cc: "GO:0044232"
+    label: "Organelle Membrane Contact Site (MCS)"
+    color_token: "contact_site"
+    hex: "#855c1b"
+    parent: cytoplasm
+
+  - id: mitochondria_er_contact_site_MEAM
+    go_cc: "GO:0044233"
+    label: "Mitochondria-ER Associated Membrane (MEAM)"
+    color_token: "contact_site"
+    hex: "#855c1b"
+    parent: membrane_contact_site
+
+  - id: peroxisome
+    go_cc: "GO:0005777"
+    label: "Peroxisome (Photorespiratory nexus)"
+    color_token: "peroxisome"
+    hex: "#6b5a06"
+    parent: cytoplasm
+
+# ---------------------------------------------------------------------------
+# Spatial & Functional Relations (PMC3852282 Formalisms)
+# ---------------------------------------------------------------------------
+relations:
+  - id: part_of
+    obo_id: "BFO:0000050"
+    label: "part of"
+    definition: "Mereological containment: structure is a physical component of parent."
+
+  - id: has_part
+    obo_id: "BFO:0000051"
+    label: "has part"
+    definition: "Compositional requirement: parent structure necessarily contains component."
+
+  - id: is_a
+    label: "is a"
+    definition: "Taxonomic subsumption: child term is a specialized subtype of parent."
+
+  - id: occurs_in
+    obo_id: "BFO:0000062"
+    label: "occurs in"
+    definition: "Spatial localization: process takes place within specified compartment."
+
+  - id: has_start_location
+    obo_id: "RO:0002338"
+    label: "has start location"
+    definition: "Origin of translocation or vector transport."
+
+  - id: has_target_end_location
+    obo_id: "RO:0002339"
+    label: "has target end location"
+    definition: "Destination of retrograde signaling translocation."
+
+  - id: interacts_at_contact_site
+    label: "interacts at contact site"
+    definition: "Physical proximity and exchange across non-vesicular membrane contact."
+
+  - id: cleaved_by
+    label: "cleaved by"
+    definition: "Proteolytic cleavage triggering release of signaling domain."
+
+  - id: activates
+    obo_id: "RO:0002448"
+    label: "directly activates"
+    definition: "Positive regulation of target enzyme, channel, or promoter."
+
+  - id: inhibits
+    obo_id: "RO:0002449"
+    label: "directly inhibits"
+    definition: "Negative regulation or enzymatic inhibition."
+
+  - id: electron_transfer
+    label: "electron transfer"
+    definition: "Redox electron transfer between prosthetic groups or complexes."
+
+  - id: metabolite_flux
+    label: "metabolite flux"
+    definition: "Substrate or product transport across membranes or enzymatic steps."

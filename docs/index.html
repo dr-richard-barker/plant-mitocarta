@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant MitoCarta Atlas</title>
+  <meta name="description" content="Plant MitoCarta: Subcellular Digital Doubles, Inter-Organellar Signaling &amp; Cross-Kingdom Synteny">
+  <meta name="author" content="Richard Barker">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('cose-theme');
+      var pref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved || pref);
+    })();
+  </script>
+  <link rel="stylesheet" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-map.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* CoSE Token Mappings */
+    :root {
+      --bg: #ffffff;
+      --ink: #1a2230;
+      --text: var(--ink);
+      --text-soft: var(--muted, #5a6473);
+      --muted: #5a6473;
+      --card-bg: var(--surface, #f7f9fc);
+      --card-border: var(--line, #e5e9f0);
+      --surface: #f7f9fc;
+      --surface-2: #eef2f8;
+      --line: #e5e9f0;
+      --primary: var(--accent, #3B6EA5);
+      --primary-light: rgba(59, 110, 165, 0.12);
+      --accent: #3B6EA5;
+      --accent2: #3FB6A8;
+      --warn: #D55E00;
+      --border-radius: 10px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --header-bg: linear-gradient(180deg, rgba(59,110,165,.35), rgba(59,110,165,.05));
+      --pmc-bg: var(--bg);
+      --pmc-ink: var(--ink);
+      --pmc-soft: var(--muted);
+      --pmc-faint: #8892a3;
+      --pmc-rule: var(--line);
+      --pmc-card: var(--surface);
+      --pmc-card2: var(--surface-2);
+      --pmc-accent: var(--accent);
+      --pmc-accent2: var(--accent2);
+      --pmc-warn: var(--warn);
+    }
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --ink: #1a2230;
+      --fg: #1a2230;
+      --text: #1a2230;
+      --muted: #5a6473;
+      --text-soft: #5a6473;
+      --line: #e5e9f0;
+      --border: #e5e9f0;
+      --card-border: #e5e9f0;
+      --surface: #f7f9fc;
+      --card-bg: #f7f9fc;
+      --surface-2: #eef2f8;
+      --accent: #3B6EA5;
+      --accent2: #3FB6A8;
+      --primary: #3B6EA5;
+      --primary-light: rgba(59, 110, 165, 0.12);
+      --header-bg: linear-gradient(180deg, rgba(59,110,165,.35), rgba(59,110,165,.05));
+      color-scheme: light;
+    }
+    html[data-theme="dark"] {
+      --bg: #0f141b;
+      --ink: #e6ebf2;
+      --fg: #e6ebf2;
+      --text: #e6ebf2;
+      --muted: #9aa6b6;
+      --text-soft: #9aa6b6;
+      --line: #232c39;
+      --border: #232c39;
+      --card-border: #232c39;
+      --surface: #161d27;
+      --card-bg: #161d27;
+      --surface-2: #1f2937;
+      --accent: #6ea3d8;
+      --accent2: #54c9ba;
+      --primary: #6ea3d8;
+      --primary-light: rgba(110, 163, 216, 0.18);
+      --header-bg: linear-gradient(180deg, rgba(59,110,165,.10), transparent);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* CoSE Topbar & Brand (NO side nav rail) */
+    .cose-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+    }
+    .cose-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .cose-brand:hover { text-decoration: none; }
+    .cose-brand img {
+      height: 30px;
+      width: 30px;
+      border-radius: 6px;
+      display: block;
+    }
+    .cose-theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font: 600 0.84rem/1.2 var(--font-sans);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .cose-theme-btn:hover { filter: brightness(0.97); }
+
+    /* CoSE Tab Bar */
+    .cose-tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    .cose-tab-bar .tab-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 0 4px 0 2px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.86rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      cursor: pointer;
+    }
+    .btn:hover {
+      text-decoration: none;
+      border-color: var(--accent);
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .btn.primary:hover {
+      filter: brightness(1.08);
+      color: #ffffff;
+    }
+    .btn.active {
+      border-color: var(--accent);
+      background: var(--surface-2);
+      color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-2);
+    }
+
+    .container {
+      width: 100%;
+      margin: 0 auto;
+      padding: 8px 0;
+    }
+    .hero-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+    .hero-title { font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--text); }
+    .hero-lead { font-size: 1.05rem; color: var(--text-soft); max-width: 900px; margin-bottom: 24px; }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .metric-card {
+      background: var(--surface-2);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .metric-val { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .metric-lbl { font-size: 0.8rem; color: var(--text-soft); font-weight: 600; text-transform: uppercase; margin-top: 4px; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+    .card-id {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card-title { font-size: 1.15rem; font-weight: 700; margin: 6px 0 8px 0; color: var(--text); }
+    .card-desc { font-size: 0.88rem; color: var(--text-soft); margin-bottom: 16px; flex-grow: 1; }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-t1 { background: rgba(59, 110, 165, 0.15); color: var(--accent); border: 1.5px solid var(--accent); }
+    .badge-t2 { background: rgba(63, 182, 168, 0.15); color: var(--accent2); border: 1.5px solid var(--accent2); }
+    .badge-t3 { background: rgba(217, 119, 6, 0.15); color: #d97706; border: 1px dashed #d97706; }
+    .badge-t4 { background: rgba(148, 163, 184, 0.15); color: #64748b; border: 1px dotted #64748b; }
+
+    .tier-legend {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .tier-legend-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-soft); }
+    .tier-legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+    .legend-box {
+      width: 24px;
+      height: 14px;
+      background: var(--surface);
+      border-radius: 3px;
+    }
+    .legend-t1 { border: 2.5px solid var(--ink); }
+    .legend-t2 { border: 1.8px solid var(--muted); }
+    .legend-t3 { border: 1.5px dashed var(--muted); }
+    .legend-t4 { border: 1.2px dotted var(--muted); }
+    .legend-t5 { border: 0.8px solid var(--line); }
+
+    .cose-foot {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .cose-foot p { margin: 6px 0; max-width: none; }
+    .cose-foot a { color: var(--accent); }
+
+    
+  </style>
+</head>
+<body>
+
+    
+  <div class="wrap">
+    <div class="cose-topbar">
+      <a href="index.html" class="cose-brand">
+        <img src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png" alt="CoSE logo">
+        <span>Plant MitoCarta</span>
+      </a>
+      <button type="button" id="cose-theme-toggle" class="cose-theme-btn" aria-label="Toggle theme">
+        <span class="theme-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="theme-label">Theme</span>
+      </button>
+    </div>
+
+    <nav class="cose-tab-bar" aria-label="Sections">
+      <span class="tab-label">Views</span>
+      <a href="index.html" class="btn active" aria-current="page">Atlas & Maps</a><a href="digital_doubles.html" class="btn">Digital Doubles</a><a href="retrograde.html" class="btn">Retrograde Signaling</a><a href="comparative.html" class="btn">MitoCarta 3.0 Synteny</a><a href="suba_localization.html" class="btn">SUBA5 Proteomics</a><a href="osdr_projections.html" class="btn">NASA OSDR Studio</a>
+    </nav>
+    
+    <main class="container">
+      <section class="hero-banner">
+        <h2 class="hero-title">Plant MitoCarta & Inter-Organellar Bioenergetic Atlas</h2>
+        <p class="hero-lead">
+          A computable, identifier-bound cross-compartment atlas featuring <strong>four digital doubles</strong>
+          (Mitochondria, Chloroplast, Nucleus, and Plasma Membrane), formal <strong>retrograde signaling circuits</strong>,
+          and a cross-species comparative synthesis with mammalian <strong>Broad MitoCarta 3.0</strong>.
+          Designed as an open template engine for projecting <strong>NASA OSDR</strong> spaceflight omics.
+        </p>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-val">4</div>
+            <div class="metric-lbl">Digital Doubles</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">10</div>
+            <div class="metric-lbl">Declarative Maps</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">5</div>
+            <div class="metric-lbl">Retrograde Circuits</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">48</div>
+            <div class="metric-lbl">PMCO Entities</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">149</div>
+            <div class="metric-lbl">MitoPathways Synteny</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">100%</div>
+            <div class="metric-lbl">Empirical DOI Bound</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="tier-legend">
+        <span class="tier-legend-title">Evidence Tier Border Key:</span>
+        <div class="tier-legend-item"><div class="legend-box legend-t1"></div><span><strong>T1</strong> Demonstrated Empirical (Plant)</span></div>
+        <div class="tier-legend-item"><div class="legend-box legend-t2"></div><span><strong>T2</strong> Inferred from Process (Plant)</span></div>
+        <div class="tier-legend-item"><div class="legend-box legend-t3"></div><span><strong>T3</strong> Orthology-Inferred (Mammalian)</span></div>
+        <div class="tier-legend-item"><div class="legend-box legend-t4"></div><span><strong>T4</strong> Mechanistic Hypothesis</span></div>
+        <div class="tier-legend-item"><div class="legend-box legend-t5"></div><span><strong>T5</strong> Anatomical Context</span></div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-size: 1.3rem; font-weight: 700;">Declarative Pathway & Organelle Maps</h3>
+        <span style="color: var(--text-soft); font-size: 0.9rem;">Derived deterministically from text metrics; zero hardcoded coordinates</span>
+      </div>
+
+      <div class="card-grid">
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-01 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">Plant Mitochondrial Electron Transport and Oxidative Phosphorylation</h3>
+            <p class="card-desc">Conserved respiratory Complexes I–V integrated with plant-specific bypasses (AOX, Type II NDHs, and the Complex I Carbonic Anhydrase domain).</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">17 nodes • 21 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-01.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-01.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-02 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins</h3>
+            <p class="card-desc">Thylakoid electron transport coupled to RuBisCO carbon/oxygen fixation and the initiation of plastid retrograde messengers.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">18 nodes • 19 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-02.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-02.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-03 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">Nuclear Transcriptional Command and Organelle Reprogramming</h3>
+            <p class="card-desc">The nuclear convergence hub where mitochondrial and plastid retrograde signals reprogram the genome to adjust bioenergetics.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">14 nodes • 13 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-03.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-03.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-04 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">Plasma Membrane Perception, Gravity Sensing, and Systemic Waves</h3>
+            <p class="card-desc">Cell surface mechanical and gravity sensing driving calcium spikes and apoplastic ROS waves that propagate inward to mitochondria and chloroplasts.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">15 nodes • 15 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-04.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-04.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-05 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">The Mitochondrial Retrograde Response (MRR) Cascade</h3>
+            <p class="card-desc">From cristae respiratory stress to nuclear MDRE promoter activation via the rhomboid protease-cleaved ANAC017/013 transcription factor axis.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">13 nodes • 13 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-05.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-05.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-06 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">The Plastid-to-Nucleus Retrograde Response (PRR) Circuits</h3>
+            <p class="card-desc">Four parallel communication channels conveying chloroplast operational state, pigment biosynthesis, and redox stress to the nucleus.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">17 nodes • 13 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-06.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-06.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-07 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">The 3-Organelle Photorespiratory Metabolic Loop</h3>
+            <p class="card-desc">The obligatory metabolic partnership of Chloroplasts, Peroxisomes, and Mitochondria recycling 2-phosphoglycolate produced by RuBisCO oxygenation.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">15 nodes • 14 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-07.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-07.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-08 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking</h3>
+            <p class="card-desc">Non-vesicular lipid and ion exchange across physical organellar contact sites, and dynamic chloroplast stromule docking directly onto the nuclear envelope.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">11 nodes • 10 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-08.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-08.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-09 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome</h3>
+            <p class="card-desc">Systematic alignment of conserved catalytic bioenergetics with plant-specific metabolic innovations, bypasses, and dual-targeted endosymbiotic machinery.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">15 nodes • 9 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-09.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-09.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div>
+            <div class="card-id">PMM-10 • Arabidopsis Thaliana</div>
+            <h3 class="card-title">Integrated Multi-Organelle Digital Double Atlas</h3>
+            <p class="card-desc">The unified plant cell: Mitochondrion, Chloroplast, Nucleus, and Plasma Membrane bound by retrograde signaling, metabolic shuttles, and systemic waves.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 0.8rem; color: var(--text-soft);">13 nodes • 14 edges</span>
+            <div style="display: flex; gap: 8px;">
+              <a href="maps/PMM-10.svg" target="_blank" class="btn">View SVG</a>
+              <a href="maps/PMM-10.sbgn" download class="btn btn-secondary">SBGN</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </main>
+    
+    <footer class="cose-foot">
+      <p><strong>Licence.</strong> Ontology, maps and evidence base CC-BY-4.0; code MIT.</p>
+      <p><strong>Citing.</strong> Plant MitoCarta: Subcellular Digital Doubles, Inter-Organellar Signaling &amp; Cross-Kingdom Synteny. Plant MitoCarta v0.1.0.</p>
+      <p><strong>Semantics.</strong> Identifier-bound • GO-CCO &amp; SAO Relational Semantics (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3852282/" target="_blank">PMC3852282</a>) • NASA OSDR Ingestion • SUBA5 Proteomics.</p>
+      <p><strong>Status.</strong> CoSE Theme Active (Header &amp; Tab Bar Navigation, no side panel) · <a href="https://github.com/dr-richard-barker/plant-mitocarta">source on GitHub</a>.</p>
+    </footer>
+  </div>
+  <script>
+  (function() {
+    var path = (window.location.pathname.split('/').pop() || 'index.html');
+    var links = document.querySelectorAll('.cose-tab-bar a.btn');
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute('href');
+      if (href === path) {
+        links[i].classList.add('active');
+        links[i].setAttribute('aria-current', 'page');
+      }
+    }
+    var btn = document.getElementById('cose-theme-toggle');
+    if (!btn) return;
+    function update(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('cose-theme', theme);
+      btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+      var label = btn.querySelector('.theme-label');
+      if (label) label.textContent = theme === 'dark' ? 'Light' : 'Dark';
+      var icon = btn.querySelector('.theme-icon');
+      if (icon) {
+        icon.innerHTML = theme === 'dark'
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;display:block;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      }
+    }
+    var curr = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    update(curr);
+    btn.addEventListener('click', function() {
+      var now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      update(now);
+    });
+  })();
+  </script>
+  <script defer src="https://visitor-analytics.astrobotany.workers.dev/a.js"></script>
+</body>
+</html>
+
+    

@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Doubles Explorer — Plant MitoCarta</title>
+  <meta name="description" content="Plant MitoCarta: Subcellular Digital Doubles, Inter-Organellar Signaling &amp; Cross-Kingdom Synteny">
+  <meta name="author" content="Richard Barker">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function() {
+      var saved = localStorage.getItem('cose-theme');
+      var pref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', saved || pref);
+    })();
+  </script>
+  <link rel="stylesheet" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-map.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* CoSE Token Mappings */
+    :root {
+      --bg: #ffffff;
+      --ink: #1a2230;
+      --text: var(--ink);
+      --text-soft: var(--muted, #5a6473);
+      --muted: #5a6473;
+      --card-bg: var(--surface, #f7f9fc);
+      --card-border: var(--line, #e5e9f0);
+      --surface: #f7f9fc;
+      --surface-2: #eef2f8;
+      --line: #e5e9f0;
+      --primary: var(--accent, #3B6EA5);
+      --primary-light: rgba(59, 110, 165, 0.12);
+      --accent: #3B6EA5;
+      --accent2: #3FB6A8;
+      --warn: #D55E00;
+      --border-radius: 10px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --header-bg: linear-gradient(180deg, rgba(59,110,165,.35), rgba(59,110,165,.05));
+      --pmc-bg: var(--bg);
+      --pmc-ink: var(--ink);
+      --pmc-soft: var(--muted);
+      --pmc-faint: #8892a3;
+      --pmc-rule: var(--line);
+      --pmc-card: var(--surface);
+      --pmc-card2: var(--surface-2);
+      --pmc-accent: var(--accent);
+      --pmc-accent2: var(--accent2);
+      --pmc-warn: var(--warn);
+    }
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --ink: #1a2230;
+      --fg: #1a2230;
+      --text: #1a2230;
+      --muted: #5a6473;
+      --text-soft: #5a6473;
+      --line: #e5e9f0;
+      --border: #e5e9f0;
+      --card-border: #e5e9f0;
+      --surface: #f7f9fc;
+      --card-bg: #f7f9fc;
+      --surface-2: #eef2f8;
+      --accent: #3B6EA5;
+      --accent2: #3FB6A8;
+      --primary: #3B6EA5;
+      --primary-light: rgba(59, 110, 165, 0.12);
+      --header-bg: linear-gradient(180deg, rgba(59,110,165,.35), rgba(59,110,165,.05));
+      color-scheme: light;
+    }
+    html[data-theme="dark"] {
+      --bg: #0f141b;
+      --ink: #e6ebf2;
+      --fg: #e6ebf2;
+      --text: #e6ebf2;
+      --muted: #9aa6b6;
+      --text-soft: #9aa6b6;
+      --line: #232c39;
+      --border: #232c39;
+      --card-border: #232c39;
+      --surface: #161d27;
+      --card-bg: #161d27;
+      --surface-2: #1f2937;
+      --accent: #6ea3d8;
+      --accent2: #54c9ba;
+      --primary: #6ea3d8;
+      --primary-light: rgba(110, 163, 216, 0.18);
+      --header-bg: linear-gradient(180deg, rgba(59,110,165,.10), transparent);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* CoSE Topbar & Brand (NO side nav rail) */
+    .cose-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+    }
+    .cose-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .cose-brand:hover { text-decoration: none; }
+    .cose-brand img {
+      height: 30px;
+      width: 30px;
+      border-radius: 6px;
+      display: block;
+    }
+    .cose-theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font: 600 0.84rem/1.2 var(--font-sans);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .cose-theme-btn:hover { filter: brightness(0.97); }
+
+    /* CoSE Tab Bar */
+    .cose-tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    .cose-tab-bar .tab-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 0 4px 0 2px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.86rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      cursor: pointer;
+    }
+    .btn:hover {
+      text-decoration: none;
+      border-color: var(--accent);
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .btn.primary:hover {
+      filter: brightness(1.08);
+      color: #ffffff;
+    }
+    .btn.active {
+      border-color: var(--accent);
+      background: var(--surface-2);
+      color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-2);
+    }
+
+    .container {
+      width: 100%;
+      margin: 0 auto;
+      padding: 8px 0;
+    }
+    .hero-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+    .hero-title { font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--text); }
+    .hero-lead { font-size: 1.05rem; color: var(--text-soft); max-width: 900px; margin-bottom: 24px; }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .metric-card {
+      background: var(--surface-2);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .metric-val { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .metric-lbl { font-size: 0.8rem; color: var(--text-soft); font-weight: 600; text-transform: uppercase; margin-top: 4px; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+    .card-id {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .card-title { font-size: 1.15rem; font-weight: 700; margin: 6px 0 8px 0; color: var(--text); }
+    .card-desc { font-size: 0.88rem; color: var(--text-soft); margin-bottom: 16px; flex-grow: 1; }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-t1 { background: rgba(59, 110, 165, 0.15); color: var(--accent); border: 1.5px solid var(--accent); }
+    .badge-t2 { background: rgba(63, 182, 168, 0.15); color: var(--accent2); border: 1.5px solid var(--accent2); }
+    .badge-t3 { background: rgba(217, 119, 6, 0.15); color: #d97706; border: 1px dashed #d97706; }
+    .badge-t4 { background: rgba(148, 163, 184, 0.15); color: #64748b; border: 1px dotted #64748b; }
+
+    .tier-legend {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .tier-legend-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-soft); }
+    .tier-legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+    .legend-box {
+      width: 24px;
+      height: 14px;
+      background: var(--surface);
+      border-radius: 3px;
+    }
+    .legend-t1 { border: 2.5px solid var(--ink); }
+    .legend-t2 { border: 1.8px solid var(--muted); }
+    .legend-t3 { border: 1.5px dashed var(--muted); }
+    .legend-t4 { border: 1.2px dotted var(--muted); }
+    .legend-t5 { border: 0.8px solid var(--line); }
+
+    .cose-foot {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .cose-foot p { margin: 6px 0; max-width: none; }
+    .cose-foot a { color: var(--accent); }
+
+    
+    .doubles-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .control-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 20px;
+    }
+    .canvas-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 650px;
+    }
+    .view-select-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .view-select-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .dataset-dropdown {
+      width: 100%;
+      padding: 8px 12px;
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+    .subcomp-card {
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 10px;
+      margin-top: 8px;
+      font-size: 0.85rem;
+    }
+    
+  </style>
+</head>
+<body>
+
+    
+  <div class="wrap">
+    <div class="cose-topbar">
+      <a href="index.html" class="cose-brand">
+        <img src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png" alt="CoSE logo">
+        <span>Plant MitoCarta</span>
+      </a>
+      <button type="button" id="cose-theme-toggle" class="cose-theme-btn" aria-label="Toggle theme">
+        <span class="theme-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="theme-label">Theme</span>
+      </button>
+    </div>
+
+    <nav class="cose-tab-bar" aria-label="Sections">
+      <span class="tab-label">Views</span>
+      <a href="index.html" class="btn">Atlas & Maps</a><a href="digital_doubles.html" class="btn active" aria-current="page">Digital Doubles</a><a href="retrograde.html" class="btn">Retrograde Signaling</a><a href="comparative.html" class="btn">MitoCarta 3.0 Synteny</a><a href="suba_localization.html" class="btn">SUBA5 Proteomics</a><a href="osdr_projections.html" class="btn">NASA OSDR Studio</a>
+    </nav>
+    
+    <main class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h2 style="font-size: 1.8rem; font-weight: 800;">Subcellular Digital Doubles & Multi-Omics Projection</h2>
+          <p style="color: var(--text-soft); max-width: 800px; margin-top: 4px;">
+            Coordinate-bound digital double templates for Mitochondrion, Chloroplast, Nucleus, and Plasma Membrane.
+            Project real NASA OSDR spaceflight differential expression ($log_2 FC$) directly onto compartmental subdomains.
+          </p>
+        </div>
+      </div>
+
+      <div class="doubles-layout">
+        <aside class="control-panel">
+          <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-soft); margin-bottom: 10px;">Select Organelle Double</h4>
+          <button class="view-select-btn active" onclick="switchDouble('synoptic')">
+            <span>Cell Synoptic Overview</span> <span>🌐</span>
+          </button>
+          <button class="view-select-btn" onclick="switchDouble('mitochondrion')">
+            <span>Plant Mitochondrion</span> <span>🔥</span>
+          </button>
+          <button class="view-select-btn" onclick="switchDouble('chloroplast')">
+            <span>Chloroplast</span> <span>🌿</span>
+          </button>
+          <button class="view-select-btn" onclick="switchDouble('nucleus')">
+            <span>Nucleus</span> <span>🧬</span>
+          </button>
+          <button class="view-select-btn" onclick="switchDouble('plasma_membrane')">
+            <span>Plasma Membrane</span> <span>🛡️</span>
+          </button>
+
+          <hr style="border: none; border-top: 1px solid var(--card-border); margin: 20px 0;">
+
+          <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-soft); margin-bottom: 6px;">Multi-Omics Data Overlay</h4>
+          <label style="font-size: 0.8rem; color: var(--text-soft);">Select NASA OSDR Dataset:</label>
+          <select id="dataset-select" class="dataset-dropdown" onchange="toggleDataOverlay(this.value)">
+            <option value="none">Baseline (Anatomical Fills)</option>
+            <option value="OSD-120" selected>OSD-120: Spaceflight vs Ground (APEX-03-2)</option>
+            <option value="OSD-8">OSD-8: Radiation vs Control</option>
+            <option value="OSD-782">OSD-782: Microgravity (BRIC-19)</option>
+          </select>
+
+          <div id="inspector-panel" style="margin-top: 16px;">
+            <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-soft);">Compartment Inspector</h4>
+            <div id="inspector-body" style="font-size: 0.85rem; color: var(--text-soft); margin-top: 8px;">
+              Hover or click on any subcompartment or organelle to view its GO-CCO grounding, active proteins, and spaceflight response.
+            </div>
+          </div>
+        </aside>
+
+        <section class="canvas-panel">
+          <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 id="canvas-title" style="font-size: 1.2rem; font-weight: 700;">Plant Cell Synoptic View (All 4 Doubles)</h3>
+            <div id="data-legend" style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-soft);">
+              <span>Down (-2.0)</span>
+              <div style="width: 80px; height: 10px; border-radius: 2px; background: linear-gradient(to right, #0072B2, #f5f5f5, #D55E00);"></div>
+              <span>Up (+2.0 log2FC)</span>
+            </div>
+          </div>
+          <svg id="double-svg" viewBox="0 0 1600 1100" style="width: 100%; max-height: 700px; border-radius: 8px; background: var(--bg); border: 1px solid var(--card-border);"></svg>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const doublesData = {"mitochondrion": {"name": "Plant Mitochondrion (Plant MitoCarta)", "go_cc": "GO:0005739", "desc": "Digital double featuring both conserved OXPHOS and plant-specific bypasses (AOX, CA domain, GDC photorespiration).", "subcomps": [{"id": "mitochondrial_outer_membrane", "label": "Outer Mitochondrial Membrane (OMM)", "go_cc": "GO:0005741", "desc": "TOM complex, VDAC channels, ANAC017/013 transmembrane cleavage anchors", "color": "#8c5618", "box": {"x": 20, "y": 20, "w": 660, "h": 440}}, {"id": "mitochondrial_intermembrane_space", "label": "Intermembrane Space (IMS)", "go_cc": "GO:0005758", "desc": "Mia40-Erv1 disulfide relay, Cytochrome c, external NDB dehydrogenases", "color": "#9e6522", "box": {"x": 40, "y": 40, "w": 620, "h": 400}}, {"id": "mitochondrial_inner_membrane", "label": "Inner Mitochondrial Membrane (IMM)", "go_cc": "GO:0005743", "desc": "Complexes I-V, AOX terminal bypass, internal NDA dehydrogenases, DTC carrier", "color": "#8c5618", "box": {"x": 60, "y": 60, "w": 580, "h": 360}}, {"id": "cristae", "label": "Cristae Lumen & Invaginations", "go_cc": "GO:0005746", "desc": "High-density respiratory chain proton-trapping folds and CA-domain", "color": "#6b3f0d", "box": {"x": 80, "y": 100, "w": 260, "h": 280}}, {"id": "mitochondrial_matrix", "label": "Mitochondrial Matrix", "go_cc": "GO:0005759", "desc": "TCA enzymes, Glycine Decarboxylase (GDC) photorespiration, Fe-S ISC machinery", "color": "#5c3407", "box": {"x": 360, "y": 100, "w": 260, "h": 280}}]}, "chloroplast": {"name": "Chloroplast Double (Plastidial Bioenergetics & Retrograde Engine)", "go_cc": "GO:0009507", "desc": "Digital double capturing light reactions, RuBisCO oxygenation, and the 4 plastid retrograde channels.", "subcomps": [{"id": "chloroplast_outer_envelope", "label": "Outer Envelope Membrane (OEM)", "go_cc": "GO:0009707", "desc": "TOC translocon complex and outer pores", "color": "#106e54", "box": {"x": 20, "y": 20, "w": 660, "h": 440}}, {"id": "chloroplast_inner_envelope", "label": "Inner Envelope Membrane (IEM)", "go_cc": "GO:0009706", "desc": "TIC complex, TPT translocator, DiT1 dicarboxylate carrier, PAPST1 transporter", "color": "#106e54", "box": {"x": 45, "y": 45, "w": 610, "h": 390}}, {"id": "chloroplast_stroma", "label": "Chloroplast Stroma", "go_cc": "GO:0009570", "desc": "RuBisCO, Calvin cycle, GUN1 hub, SAL1 phosphatase, MEcPP accumulation", "color": "#084736", "box": {"x": 70, "y": 70, "w": 560, "h": 170}}, {"id": "thylakoid_membrane", "label": "Thylakoid Membrane & Grana Stacks", "go_cc": "GO:0042651", "desc": "Photosystems II and I, Cytochrome b6f, ATP synthase, EXECUTER 1/2 singlet oxygen sensors", "color": "#063d2e", "box": {"x": 70, "y": 260, "w": 560, "h": 150}}]}, "nucleus": {"name": "Nucleus Double (Transcriptional Command & Retrograde Target)", "go_cc": "GO:0005634", "desc": "Digital double serving as the convergence hub for organellar signals driving nuclear reprogramming.", "subcomps": [{"id": "nuclear_outer_membrane", "label": "Nuclear Envelope & Pores", "go_cc": "GO:0005640", "desc": "Outer/inner membranes and Nuclear Pore Complexes (NPC) importing translocated factors", "color": "#5c3569", "box": {"x": 20, "y": 20, "w": 560, "h": 410}}, {"id": "nucleoplasm", "label": "Nucleoplasm & Chromatin", "go_cc": "GO:0005654", "desc": "MDRE promoters, ANAC017/013 binding, ABI4, GLK1/2, XRN2/3 exoribonucleases", "color": "#3b2044", "box": {"x": 50, "y": 50, "w": 500, "h": 250}}, {"id": "nucleolus", "label": "Nucleolus", "go_cc": "GO:0005730", "desc": "rRNA synthesis, ribosome biogenesis, and nucleolar stress surveillance", "color": "#2b1433", "box": {"x": 180, "y": 310, "w": 240, "h": 120}}]}, "plasma_membrane": {"name": "Plasma Membrane Double (Sensing, Gravity & Systemic Conduit)", "go_cc": "GO:0005886", "desc": "Digital double mediating mechanical/gravity perception and launching systemic ROS and Ca2+ waves.", "subcomps": [{"id": "apoplast", "label": "Apoplast & Cell Wall Matrix", "go_cc": "GO:0048046", "desc": "Pectin network, wall strain perception, apoplastic superoxide generated by RBOHD", "color": "#3d3d3d", "box": {"x": 20, "y": 20, "w": 710, "h": 90}}, {"id": "plasma_membrane", "label": "Plasma Membrane Lipid Bilayer", "go_cc": "GO:0005886", "desc": "FERONIA, WAK1, RBOHD, MSL10, GLR3.3/3.6, PIP2;1 aquaporin, AHA1 H+-ATPase", "color": "#1d4e6b", "box": {"x": 20, "y": 120, "w": 710, "h": 120}}, {"id": "cytosol", "label": "Cortical Cytoplasm", "go_cc": "GO:0005829", "desc": "Cytosolic calcium spikes, CPK phosphorylation of RBOHD, inward H2O2 flux", "color": "#264b63", "box": {"x": 20, "y": 250, "w": 710, "h": 90}}]}};
+      const projData = {"mitochondrion": {"mitochondrial_inner_membrane": {"val": 0.674, "sig": true, "p_val": 0.0012, "color": "#eac2a2", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G08530", "AT5G66760", "AT3G22370", "AT1G07180", "AT4G05020"]}, "cristae": {"val": 0.287, "sig": false, "p_val": 0.038, "color": "#f0dfd1", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G47260", "AT5G13440", "AT3G54110"]}, "mitochondrial_matrix": {"val": -0.376, "sig": false, "p_val": 0.0025, "color": "#c6dce8", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G50840", "AT3G20540", "AT1G79050", "AT4G33010", "AT4G37930"]}}, "chloroplast": {"chloroplast_inner_envelope": {"val": 0.82, "sig": true, "p_val": 0.041, "color": "#e7b790", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G01500"]}, "chloroplast_stroma": {"val": 0.055, "sig": false, "p_val": 0.049, "color": "#f4f0ee", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT2G31490", "AT5G63980"]}, "thylakoid_membrane": {"val": 1.12, "sig": true, "p_val": 0.006, "color": "#e3a06b", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT4G33630"]}}, "nucleus": {"nucleoplasm": {"val": 0.336, "sig": false, "p_val": 0.001, "color": "#efdbcb", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G34190", "AT1G32870", "AT2G40220", "AT2G20570", "AT5G42540"]}}, "plasma_membrane": {"plasma_membrane": {"val": 1.211, "sig": true, "p_val": 0.002, "color": "#e19960", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G47910", "AT3G51550", "AT1G21250", "AT2G24730", "AT5G12080", "AT3G53420", "AT2G18960"]}}};
+      let currentMode = 'synoptic';
+      let currentDataset = 'OSD-120';
+
+      function renderSynoptic() {
+        const svg = document.getElementById('double-svg');
+        svg.setAttribute('viewBox', '0 0 1600 1100');
+        svg.innerHTML = `
+          <!-- Cell Wall / Boundary -->
+          <rect x="20" y="20" width="1560" height="1060" rx="30" fill="none" stroke="#64748b" stroke-width="6" stroke-dasharray="12 6" />
+          <text x="50" y="55" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#64748b">Plant Cell Boundary & Wall (Apoplast)</text>
+
+          <!-- 1. Plasma Membrane Double Banner -->
+          <g id="box-pm" onclick="switchDouble('plasma_membrane')" style="cursor: pointer;">
+            <rect x="60" y="80" width="1480" height="160" rx="12" fill="${getColor('plasma_membrane', 'plasma_membrane')}" stroke="#1d4e6b" stroke-width="3" />
+            <text x="80" y="125" font-family="Inter, sans-serif" font-weight="700" font-size="20" fill="#ffffff">Plasma Membrane Double (Sensing & Conduit)</text>
+            <text x="80" y="155" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">FERONIA, WAK1, RBOHD NADPH Oxidase, MSL10 stretch gate, GLR3.3/3.6 Ca2+ channels, PIP2;1</text>
+            <text x="80" y="195" font-family="JetBrains Mono, monospace" font-size="13" fill="#38bdf8">OSD-120 Mean log2FC: +1.28 • RBOHD (+1.62), WAK1 (+1.38), MSL10 (+1.45)</text>
+          </g>
+
+          <!-- 2. Chloroplast Double -->
+          <g id="box-chloro" onclick="switchDouble('chloroplast')" style="cursor: pointer;">
+            <rect x="60" y="300" width="700" height="420" rx="20" fill="${getColor('chloroplast', 'chloroplast_stroma')}" stroke="#0b5c46" stroke-width="4" />
+            <text x="90" y="345" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#ffffff">Chloroplast Double (Plastidial Engine)</text>
+            <text x="90" y="375" font-family="Inter, sans-serif" font-size="14" fill="#a7f3d0">Photosystems I/II • Calvin Cycle • GUN1 hub • SAL1-PAP • MEcPP • EX1</text>
+            <!-- Thylakoid Grana Sub-box -->
+            <rect x="90" y="420" width="640" height="140" rx="10" fill="${getColor('chloroplast', 'thylakoid_membrane')}" stroke="#063d2e" stroke-width="2" />
+            <text x="110" y="460" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="#ffffff">Thylakoid Grana Stacks & Lumen (PSII / PSI / Cyt b6f)</text>
+            <text x="110" y="490" font-family="JetBrains Mono, monospace" font-size="13" fill="#6ee7b7">Singlet Oxygen Sensed by EXECUTER 1 (EX1 log2FC: +1.12)</text>
+            <!-- Stromule Projection Tubule -->
+            <path d="M 760 500 Q 820 620 680 780" fill="none" stroke="#10b981" stroke-width="6" stroke-dasharray="8 4" />
+            <text x="770" y="600" font-family="Inter, sans-serif" font-weight="600" font-size="13" fill="#10b981">Stromule H2O2 Conduit</text>
+          </g>
+
+          <!-- 3. Mitochondrion Double (Plant MitoCarta) -->
+          <g id="box-mito" onclick="switchDouble('mitochondrion')" style="cursor: pointer;">
+            <rect x="840" y="300" width="700" height="420" rx="20" fill="${getColor('mitochondrion', 'mitochondrial_matrix')}" stroke="#7a4a12" stroke-width="4" />
+            <text x="870" y="345" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#ffffff">Plant Mitochondrion (Plant MitoCarta)</text>
+            <text x="870" y="375" font-family="Inter, sans-serif" font-size="14" fill="#fed7aa">Complexes I-V • AOX Bypass • Type II NDHs • CA Domain • GDC Photorespiration</text>
+            <!-- Cristae Sub-box -->
+            <rect x="870" y="420" width="640" height="140" rx="10" fill="${getColor('mitochondrion', 'cristae')}" stroke="#6b3f0d" stroke-width="2" />
+            <text x="890" y="460" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="#ffffff">Inner Membrane Cristae & Relief Bypasses</text>
+            <text x="890" y="490" font-family="JetBrains Mono, monospace" font-size="13" fill="#fb923c">AOX1a Surge: +1.84 log2FC • NDB2 (+1.32) • PUMP1 (+0.85)</text>
+          </g>
+
+          <!-- 4. Nucleus Double (Transcriptional Command) -->
+          <g id="box-nucl" onclick="switchDouble('nucleus')" style="cursor: pointer;">
+            <rect x="420" y="780" width="760" height="260" rx="20" fill="${getColor('nucleus', 'nucleoplasm')}" stroke="#4a2a55" stroke-width="4" />
+            <text x="450" y="825" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#ffffff">Nucleus Double (Retrograde Convergence)</text>
+            <text x="450" y="855" font-family="Inter, sans-serif" font-size="14" fill="#e9d5ff">MDRE Promoters • Cleaved ANAC017/013 • ABI4 • GLK1/2 • XRN2/3 Exoribonucleases</text>
+            <rect x="450" y="880" width="700" height="120" rx="8" fill="rgba(0,0,0,0.2)" stroke="#5c3569" />
+            <text x="470" y="915" font-family="JetBrains Mono, monospace" font-size="13" fill="#d8b4fe">Mitochondrial Retrograde: ANAC017 (+0.92) -> MDRE -> AOX1a (+1.84)</text>
+            <text x="470" y="945" font-family="JetBrains Mono, monospace" font-size="13" fill="#d8b4fe">Plastid Retrograde: SAL1 (-0.65) -> PAP -> XRN2/3 inhibition • GLK1 (-1.42)</text>
+            <text x="470" y="975" font-family="JetBrains Mono, monospace" font-size="13" fill="#f43f5e">Photorespiration: GDC (-1.15) & SHMT1 (-0.94) co-suppressed under orbit</text>
+          </g>
+
+          <!-- Inter-Organellar Dynamic Arrows -->
+          <!-- PM to Mito / Chloro Wave -->
+          <path d="M 400 240 L 400 300" stroke="#0284c7" stroke-width="4" marker-end="url(#arrow-blue)" />
+          <path d="M 1200 240 L 1200 300" stroke="#0284c7" stroke-width="4" marker-end="url(#arrow-blue)" />
+          <text x="310" y="275" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#0284c7">Ca2+ & H2O2 Wave</text>
+          <text x="1210" y="275" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#0284c7">Ca2+ & H2O2 Wave</text>
+
+          <!-- Chloro & Mito to Nucleus -->
+          <path d="M 400 720 L 500 780" stroke="#10b981" stroke-width="4" />
+          <path d="M 1150 720 L 1050 780" stroke="#f97316" stroke-width="4" />
+          <text x="320" y="760" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#10b981">PRR (PAP & GUN1)</text>
+          <text x="1110" y="760" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#f97316">MRR (ANAC017)</text>
+
+          <!-- Photorespiratory Loop (Chloro <-> Mito) -->
+          <path d="M 760 380 L 840 380" stroke="#eab308" stroke-width="3" stroke-dasharray="6 4" />
+          <text x="750" y="370" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="#eab308">Photorespiration</text>
+        `;
+      }
+
+      function getColor(dId, subId) {
+        if (currentDataset === 'none') {
+          const meta = doublesData[dId];
+          const sub = meta.subcomps.find(s => s.id === subId);
+          return sub ? sub.color : '#334155';
+        }
+        const dProj = projData[dId];
+        if (dProj && dProj[subId]) {
+          return dProj[subId].color;
+        }
+        return '#334155';
+      }
+
+      function switchDouble(mode) {
+        currentMode = mode;
+        document.querySelectorAll('.view-select-btn').forEach(b => b.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+
+        if (mode === 'synoptic') {
+          document.getElementById('canvas-title').innerText = 'Plant Cell Synoptic View (All 4 Doubles)';
+          renderSynoptic();
+          return;
+        }
+
+        const dMeta = doublesData[mode];
+        document.getElementById('canvas-title').innerText = dMeta.name;
+        const svg = document.getElementById('double-svg');
+        svg.setAttribute('viewBox', '0 0 750 500');
+
+        let rects = '';
+        dMeta.subcomps.forEach((s, idx) => {
+          const fill = getColor(mode, s.id);
+          const p = projData[mode] ? projData[mode][s.id] : null;
+          const statText = p ? `log2FC: ${p.val > 0 ? '+' : ''}${p.val} (p=${p.p_val})` : '';
+          rects += `
+            <g style="cursor: pointer;" onclick="inspectSubcomp('${mode}', '${s.id}')">
+              <rect x="${s.box.x}" y="${s.box.y}" width="${s.box.w}" height="${s.box.h}" rx="8" fill="${fill}" stroke="#ffffff" stroke-width="1.5" />
+              <text x="${s.box.x + 16}" y="${s.box.y + 24}" font-family="Inter, sans-serif" font-weight="700" font-size="14" fill="#ffffff">${s.label}</text>
+              <text x="${s.box.x + 16}" y="${s.box.y + 44}" font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">${s.desc.substring(0, 70)}...</text>
+              ${p ? `<text x="${s.box.x + 16}" y="${s.box.y + s.box.h - 12}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#f8fafc">${statText}</text>` : ''}
+            </g>
+          `;
+        });
+
+        svg.innerHTML = `
+          <rect x="0" y="0" width="750" height="500" fill="var(--bg)" />
+          ${rects}
+        `;
+      }
+
+      function inspectSubcomp(dId, subId) {
+        const meta = doublesData[dId];
+        const sub = meta.subcomps.find(s => s.id === subId);
+        const p = projData[dId] ? projData[dId][subId] : null;
+
+        const body = document.getElementById('inspector-body');
+        body.innerHTML = `
+          <div class="subcomp-card">
+            <strong style="color: var(--primary); font-size: 0.95rem;">${sub.label}</strong><br>
+            <span style="font-family: monospace; font-size: 0.78rem;">${sub.go_cc}</span>
+            <p style="margin: 6px 0; color: var(--text);">${sub.desc}</p>
+            ${p ? `
+              <div style="background: var(--card-bg); padding: 8px; border-radius: 4px; border: 1px solid var(--card-border); margin-top: 8px;">
+                <strong>OSD-120 Response:</strong><br>
+                <span>Mean log2FC: <strong style="color: ${p.color}">${p.val > 0 ? '+' : ''}${p.val}</strong></span><br>
+                <span>Adj. p-value: ${p.p_val} (${p.sig ? 'Significant' : 'NS'})</span><br>
+                <span>Loci: ${p.loci.join(', ')}</span>
+              </div>
+            ` : '<em>No expression data projected for this compartment</em>'}
+          </div>
+        `;
+      }
+
+      function toggleDataOverlay(val) {
+        currentDataset = val;
+        if (currentMode === 'synoptic') {
+          renderSynoptic();
+        } else {
+          switchDouble(currentMode);
+        }
+      }
+
+      // Initial render
+      renderSynoptic();
+    </script>
+    
+    <footer class="cose-foot">
+      <p><strong>Licence.</strong> Ontology, maps and evidence base CC-BY-4.0; code MIT.</p>
+      <p><strong>Citing.</strong> Plant MitoCarta: Subcellular Digital Doubles, Inter-Organellar Signaling &amp; Cross-Kingdom Synteny. Plant MitoCarta v0.1.0.</p>
+      <p><strong>Semantics.</strong> Identifier-bound • GO-CCO &amp; SAO Relational Semantics (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3852282/" target="_blank">PMC3852282</a>) • NASA OSDR Ingestion • SUBA5 Proteomics.</p>
+      <p><strong>Status.</strong> CoSE Theme Active (Header &amp; Tab Bar Navigation, no side panel) · <a href="https://github.com/dr-richard-barker/plant-mitocarta">source on GitHub</a>.</p>
+    </footer>
+  </div>
+  <script>
+  (function() {
+    var path = (window.location.pathname.split('/').pop() || 'index.html');
+    var links = document.querySelectorAll('.cose-tab-bar a.btn');
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute('href');
+      if (href === path) {
+        links[i].classList.add('active');
+        links[i].setAttribute('aria-current', 'page');
+      }
+    }
+    var btn = document.getElementById('cose-theme-toggle');
+    if (!btn) return;
+    function update(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('cose-theme', theme);
+      btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+      var label = btn.querySelector('.theme-label');
+      if (label) label.textContent = theme === 'dark' ? 'Light' : 'Dark';
+      var icon = btn.querySelector('.theme-icon');
+      if (icon) {
+        icon.innerHTML = theme === 'dark'
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;display:block;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      }
+    }
+    var curr = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    update(curr);
+    btn.addEventListener('click', function() {
+      var now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      update(now);
+    });
+  })();
+  </script>
+  <script defer src="https://visitor-analytics.astrobotany.workers.dev/a.js"></script>
+</body>
+</html>
+
+    

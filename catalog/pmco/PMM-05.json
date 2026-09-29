@@ -1,0 +1,272 @@
+{
+  "map_id": "PMM-05",
+  "title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+  "nodes": [
+    {
+      "id": "OXPHOS_LESION",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "OXPHOS Inhibition /",
+        "Hypoxia"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 175.25,
+        "h": 76.25
+      }
+    },
+    {
+      "id": "MITO_SUPEROXIDE_ACCUMULATION",
+      "pmco_id": "PMCO:MITO_ROS",
+      "tier": "T1",
+      "lines": [
+        "Mitochondrial ROS (H2O2)"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 238.25,
+        "w": 214.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "RHOMBOID_PROTEASE_ACT",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Rhomboid-Like Proteases"
+      ],
+      "box": {
+        "x": 302.0,
+        "y": 130.0,
+        "w": 207.79999999999998,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "ANAC017_TETHERED",
+      "pmco_id": "PMCO:ANAC017_NUCLEAR",
+      "tier": "T1",
+      "lines": [
+        "Membrane-Bound ANAC017"
+      ],
+      "box": {
+        "x": 302.0,
+        "y": 222.625,
+        "w": 236.79999999999998,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "ANAC013_TETHERED",
+      "pmco_id": "PMCO:ANAC013_NUCLEAR",
+      "tier": "T1",
+      "lines": [
+        "Membrane-Bound ANAC013"
+      ],
+      "box": {
+        "x": 302.0,
+        "y": 302.75,
+        "w": 202.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "ANAC017_SOLUBLE_NAC",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Soluble ANAC017 (NAC",
+        "Domain)"
+      ],
+      "box": {
+        "x": 574.8,
+        "y": 130.0,
+        "w": 213.6,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "ANAC013_SOLUBLE_NAC",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Soluble ANAC013 (NAC",
+        "Domain)"
+      ],
+      "box": {
+        "x": 574.8,
+        "y": 225.75,
+        "w": 183.0,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "CITRATE_2OG_EXPORT",
+      "pmco_id": "PMCO:DTC_CARRIER",
+      "tier": "T1",
+      "lines": [
+        "Citrate / 2-OG Efflux"
+      ],
+      "box": {
+        "x": 574.8,
+        "y": 321.5,
+        "w": 190.75,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "NPC_TRANSLOCATION_GATE",
+      "pmco_id": "PMCO:NPC_COMPLEX",
+      "tier": "T1",
+      "lines": [
+        "Nuclear Pore Complex"
+      ],
+      "box": {
+        "x": 824.4,
+        "y": 130.0,
+        "w": 183.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "KARYOPHERIN_IMPORT",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Importin-\u03b1 / \u03b2 Machinery"
+      ],
+      "box": {
+        "x": 824.4,
+        "y": 210.125,
+        "w": 214.0,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "MDRE_BINDING_SITE",
+      "pmco_id": "PMCO:MDRE_MOTIF",
+      "tier": "T1",
+      "lines": [
+        "MDRE Promoter Cis-Element"
+      ],
+      "box": {
+        "x": 1074.4,
+        "y": 130.0,
+        "w": 221.75,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "AOX1A_INDUCTION",
+      "pmco_id": "PMCO:AOX1A",
+      "tier": "T1",
+      "lines": [
+        "AOX1a Transcriptional Surge"
+      ],
+      "box": {
+        "x": 1074.4,
+        "y": 210.125,
+        "w": 237.25,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "UPM1_HSP70_INDUCTION",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Mitochondrial Chaperones",
+        "(UPM1)"
+      ],
+      "box": {
+        "x": 1074.4,
+        "y": 302.75,
+        "w": 231.0,
+        "h": 63.75
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "OXPHOS_LESION",
+      "target": "MITO_SUPEROXIDE_ACCUMULATION",
+      "kind": "activates",
+      "label": "generates superoxide"
+    },
+    {
+      "source": "MITO_SUPEROXIDE_ACCUMULATION",
+      "target": "RHOMBOID_PROTEASE_ACT",
+      "kind": "activates",
+      "label": "oxidative activation"
+    },
+    {
+      "source": "RHOMBOID_PROTEASE_ACT",
+      "target": "ANAC017_TETHERED",
+      "kind": "cleaved_by",
+      "label": "intramembrane cleavage"
+    },
+    {
+      "source": "RHOMBOID_PROTEASE_ACT",
+      "target": "ANAC013_TETHERED",
+      "kind": "cleaved_by",
+      "label": "intramembrane cleavage"
+    },
+    {
+      "source": "ANAC017_TETHERED",
+      "target": "ANAC017_SOLUBLE_NAC",
+      "kind": "activates",
+      "label": "releases into cytosol"
+    },
+    {
+      "source": "ANAC013_TETHERED",
+      "target": "ANAC013_SOLUBLE_NAC",
+      "kind": "activates",
+      "label": "releases into cytosol"
+    },
+    {
+      "source": "OXPHOS_LESION",
+      "target": "CITRATE_2OG_EXPORT",
+      "kind": "metabolite_flux",
+      "label": "TCA backlog"
+    },
+    {
+      "source": "ANAC017_SOLUBLE_NAC",
+      "target": "NPC_TRANSLOCATION_GATE",
+      "kind": "activates",
+      "label": "interacts with NPCs"
+    },
+    {
+      "source": "ANAC013_SOLUBLE_NAC",
+      "target": "NPC_TRANSLOCATION_GATE",
+      "kind": "activates",
+      "label": "interacts with NPCs"
+    },
+    {
+      "source": "NPC_TRANSLOCATION_GATE",
+      "target": "MDRE_BINDING_SITE",
+      "kind": "activates",
+      "label": "nuclear entry & MDRE binding"
+    },
+    {
+      "source": "CITRATE_2OG_EXPORT",
+      "target": "MDRE_BINDING_SITE",
+      "kind": "activates",
+      "label": "epigenetic chromatin opening"
+    },
+    {
+      "source": "MDRE_BINDING_SITE",
+      "target": "AOX1A_INDUCTION",
+      "kind": "activates",
+      "label": "high-level transcription"
+    },
+    {
+      "source": "MDRE_BINDING_SITE",
+      "target": "UPM1_HSP70_INDUCTION",
+      "kind": "activates",
+      "label": "MSR induction"
+    }
+  ]
+}

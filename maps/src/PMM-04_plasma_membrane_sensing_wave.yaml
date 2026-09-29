@@ -1,0 +1,117 @@
+# PMM-04 — Plasma Membrane Perception, Gravity Sensing, and Systemic Waves
+# Mechanosensing (WAK/FER/MSL), calcium influx (GLR), ROS wave generation (RBOHD), and H2O2 channeling (PIP2;1).
+
+id: PMM-04
+title: Plasma Membrane Perception, Gravity Sensing, and Systemic Waves
+subtitle: >-
+  Cell surface mechanical and gravity sensing driving calcium spikes and apoplastic
+  ROS waves that propagate inward to mitochondria and chloroplasts.
+species_anchor: arabidopsis_thaliana
+caption: >-
+  The plasma membrane serves as the sensory boundary of the plant cell. Mechanical forces,
+  cell wall strain, or microgravity alterations trigger wall-associated kinases (WAK1)
+  and FERONIA, while membrane stretch gates MSL10 and GLR3.3/3.6 calcium channels.
+  Cytosolic calcium spikes activate RBOHD NADPH oxidases to generate an extracellular
+  superoxide burst, which dismutates to H2O2 and re-enters through PIP2;1 aquaporins,
+  initiating organellar redox remodeling.
+
+lanes:
+  - id: apoplast_stimuli
+    compartment: apoplast
+    node_width: 190
+    nodes: [WALL_STRAIN, APOPLASTIC_PECTIN, EXTRACELLULAR_O2]
+
+  - id: membrane_receptors
+    compartment: plasma_membrane
+    node_width: 210
+    nodes: [FERONIA_RECEPTOR, WAK1_PECTIN_KINASE, MSL10_STRETCH_GATE]
+
+  - id: ion_and_ros_engines
+    compartment: plasma_membrane
+    node_width: 220
+    nodes: [GLR_CALCIUM_CHANNELS, RBOHD_OXIDASE, PIP2_1_AQUAPORIN, AHA1_PROTON_PUMP]
+
+  - id: cytosolic_wave
+    compartment: cytosol
+    node_width: 200
+    nodes: [CYTOSOLIC_CA_SPIKE, CPK_KINASES, INWARD_H2O2_FLUX]
+
+  - id: organelle_targets
+    compartment: cytosol
+    node_width: 210
+    nodes: [MITO_PERCEPTION, CHLORO_PERCEPTION]
+
+nodes:
+  - id: WALL_STRAIN
+    label: "Mechanical / Microgravity Strain"
+    units: ["wall deformation", "gravity vector shift"]
+  - id: APOPLASTIC_PECTIN
+    label: "Apoplastic Pectin Matrix"
+    units: ["oligogalacturonides", "crosslinks"]
+  - id: EXTRACELLULAR_O2
+    label: "Apoplastic Oxygen Pool"
+    units: ["substrate for RBOHD"]
+
+  - id: FERONIA_RECEPTOR
+    pmco: PMCO:FERONIA_RLK
+    label: "FERONIA Receptor Kinase"
+    units: ["CrRLK1L", "RALF peptide receptor"]
+  - id: WAK1_PECTIN_KINASE
+    pmco: PMCO:WAK1_RECEPTOR
+    label: "WAK1 Kinase"
+    units: ["binds pectin", "cell wall sensor"]
+  - id: MSL10_STRETCH_GATE
+    pmco: PMCO:MSL10_CHANNEL
+    label: "MSL10 Mechanosensitive Channel"
+    units: ["stretch-activated", "turgor sensor"]
+
+  - id: GLR_CALCIUM_CHANNELS
+    pmco: PMCO:GLR3_3_CHANNEL
+    label: "GLR3.3 / GLR3.6 Channels"
+    units: ["Ca2+ influx gates", "rapid electrical wave"]
+  - id: RBOHD_OXIDASE
+    pmco: PMCO:RBOHD_NADPH_OXIDASE
+    label: "RBOHD NADPH Oxidase"
+    units: ["apoplastic superoxide generator", "Ca2+ activated"]
+  - id: PIP2_1_AQUAPORIN
+    pmco: PMCO:PIP2_1_AQUAPORIN
+    label: "PIP2;1 Aquaporin"
+    units: ["channels H2O2", "inward conduit"]
+  - id: AHA1_PROTON_PUMP
+    pmco: PMCO:AHA1_H_ATPASE
+    label: "AHA1 H+-ATPase"
+    units: ["electrogenic pump", "maintains ΔpH"]
+
+  - id: CYTOSOLIC_CA_SPIKE
+    label: "Cytosolic [Ca2+] Wave"
+    units: ["second messenger spike"]
+  - id: CPK_KINASES
+    label: "CPKs / BIK1 Kinases"
+    units: ["calcium-dependent phosphorylation"]
+  - id: INWARD_H2O2_FLUX
+    label: "Cytosolic H2O2 Wave"
+    units: ["redox messenger"]
+
+  - id: MITO_PERCEPTION
+    label: "Mitochondrial Bioenergetic Tuning"
+    units: ["MCU Ca2+ uptake", "stimulates TCA/AOX"]
+  - id: CHLORO_PERCEPTION
+    label: "Chloroplast Stroma Tuning"
+    units: ["stromal Ca2+", "redox adjustments"]
+
+edges:
+  - [WALL_STRAIN, FERONIA_RECEPTOR, activates, "mechanical stretch"]
+  - [APOPLASTIC_PECTIN, WAK1_PECTIN_KINASE, activates, "oligogalacturonide binding"]
+  - [WALL_STRAIN, MSL10_STRETCH_GATE, activates, "membrane tension"]
+  - [FERONIA_RECEPTOR, GLR_CALCIUM_CHANNELS, activates, "triggers Ca2+ gating"]
+  - [MSL10_STRETCH_GATE, CYTOSOLIC_CA_SPIKE, activates, "cation influx"]
+  - [GLR_CALCIUM_CHANNELS, CYTOSOLIC_CA_SPIKE, activates, "rapid Ca2+ influx"]
+  - [CYTOSOLIC_CA_SPIKE, CPK_KINASES, activates, "Ca2+ binding to EF-hands"]
+  - [CPK_KINASES, RBOHD_OXIDASE, activates, "Ser-343/347 phosphorylation"]
+  - [EXTRACELLULAR_O2, RBOHD_OXIDASE, electron_transfer, "generates O2•-"]
+  - [RBOHD_OXIDASE, PIP2_1_AQUAPORIN, metabolite_flux, "O2•- -> H2O2 diffusion"]
+  - [PIP2_1_AQUAPORIN, INWARD_H2O2_FLUX, metabolite_flux, "channels H2O2 into cytosol"]
+  - [CYTOSOLIC_CA_SPIKE, MITO_PERCEPTION, activates, "MCU channel uptake"]
+  - [INWARD_H2O2_FLUX, MITO_PERCEPTION, activates, "activates rhomboid/AOX1a"]
+  - [CYTOSOLIC_CA_SPIKE, CHLORO_PERCEPTION, activates, "stromal Ca2+ signaling"]
+  - [INWARD_H2O2_FLUX, CHLORO_PERCEPTION, activates, "oxidizes SAL1"]

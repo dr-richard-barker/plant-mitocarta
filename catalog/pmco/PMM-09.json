@@ -1,0 +1,273 @@
+{
+  "map_id": "PMM-09",
+  "title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+  "nodes": [
+    {
+      "id": "HUMAN_OXPHOS_CORE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Human MitoCarta OXPHOS"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 130.0,
+        "w": 242.6,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "HUMAN_TCA_CYCLE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Human MitoCarta TCA"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 222.625,
+        "w": 231.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "HUMAN_POLG_REPLICATION",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Human POLG / TWNK"
+      ],
+      "box": {
+        "x": 52.0,
+        "y": 315.25,
+        "w": 242.6,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PLANT_CONSERVED_OXPHOS",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Plant Conserved Core (Q1)"
+      ],
+      "box": {
+        "x": 330.6,
+        "y": 130.0,
+        "w": 231.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PLANT_CONSERVED_TCA",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Plant Conserved TCA (Q1)"
+      ],
+      "box": {
+        "x": 330.6,
+        "y": 222.625,
+        "w": 225.2,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PLANT_FE_S_ISC_CORE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Plant ISC Machinery (Q1)"
+      ],
+      "box": {
+        "x": 330.6,
+        "y": 315.25,
+        "w": 231.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PLANT_AOX_INNOVATION",
+      "pmco_id": "PMCO:AOX1A",
+      "tier": "T1",
+      "lines": [
+        "Alternative Oxidase (Q2)"
+      ],
+      "box": {
+        "x": 597.6,
+        "y": 130.0,
+        "w": 231.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PLANT_NDH_BYPASSES",
+      "pmco_id": "PMCO:ALT_NADH_DH_INT",
+      "tier": "T1",
+      "lines": [
+        "Type II NDH Bypasses (Q2)"
+      ],
+      "box": {
+        "x": 597.6,
+        "y": 222.625,
+        "w": 221.75,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PLANT_CA_DOMAIN_COMPLEX_I",
+      "pmco_id": "PMCO:COMPLEX_I_CA",
+      "tier": "T1",
+      "lines": [
+        "Complex I CA Domain (Q2)"
+      ],
+      "box": {
+        "x": 597.6,
+        "y": 315.25,
+        "w": 214.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "PLANT_GDC_PHOTORESP",
+      "pmco_id": "PMCO:GDC_COMPLEX",
+      "tier": "T1",
+      "lines": [
+        "Photorespiratory GDC (Q2)"
+      ],
+      "box": {
+        "x": 597.6,
+        "y": 407.875,
+        "w": 225.2,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "DUAL_TARGETED_POLIA_B",
+      "pmco_id": "PMCO:POLIA_POLYMERASE",
+      "tier": "T1",
+      "lines": [
+        "Dual-Targeted PolIA/B (Q3)"
+      ],
+      "box": {
+        "x": 864.6,
+        "y": 130.0,
+        "w": 229.5,
+        "h": 48.125
+      }
+    },
+    {
+      "id": "DUAL_TARGETED_AARS",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Dual-Targeted AARSs (Q3)"
+      ],
+      "box": {
+        "x": 864.6,
+        "y": 210.125,
+        "w": 214.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "EXPANDED_PPR_FAMILY",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Expanded PPR Family (Q4)"
+      ],
+      "box": {
+        "x": 864.6,
+        "y": 302.75,
+        "w": 219.39999999999998,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "HUMAN_DISEASE_INSIGHTS",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Human Mitochondrial Medicine"
+      ],
+      "box": {
+        "x": 1130.1,
+        "y": 130.0,
+        "w": 245.0,
+        "h": 60.625
+      }
+    },
+    {
+      "id": "AOX_HUMAN_RESCUE_POTENTIAL",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Plant AOX Rescues Human",
+        "Disease"
+      ],
+      "box": {
+        "x": 1130.1,
+        "y": 222.625,
+        "w": 207.79999999999998,
+        "h": 76.25
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "HUMAN_OXPHOS_CORE",
+      "target": "PLANT_CONSERVED_OXPHOS",
+      "kind": "activates",
+      "label": "strict orthology (58-85% identity)"
+    },
+    {
+      "source": "HUMAN_TCA_CYCLE",
+      "target": "PLANT_CONSERVED_TCA",
+      "kind": "activates",
+      "label": "enzymatic homology"
+    },
+    {
+      "source": "HUMAN_POLG_REPLICATION",
+      "target": "DUAL_TARGETED_POLIA_B",
+      "kind": "activates",
+      "label": "functional analog -> dual targeted"
+    },
+    {
+      "source": "PLANT_CONSERVED_OXPHOS",
+      "target": "PLANT_AOX_INNOVATION",
+      "kind": "activates",
+      "label": "AOX bypasses CI-CIV"
+    },
+    {
+      "source": "PLANT_CONSERVED_OXPHOS",
+      "target": "PLANT_NDH_BYPASSES",
+      "kind": "activates",
+      "label": "NDHs bypass CI"
+    },
+    {
+      "source": "PLANT_CONSERVED_OXPHOS",
+      "target": "PLANT_CA_DOMAIN_COMPLEX_I",
+      "kind": "activates",
+      "label": "assembles with membrane arm"
+    },
+    {
+      "source": "PLANT_CONSERVED_TCA",
+      "target": "PLANT_GDC_PHOTORESP",
+      "kind": "activates",
+      "label": "photorespiratory nitrogen cycle"
+    },
+    {
+      "source": "HUMAN_OXPHOS_CORE",
+      "target": "HUMAN_DISEASE_INSIGHTS",
+      "kind": "activates",
+      "label": "structural pathology"
+    },
+    {
+      "source": "PLANT_AOX_INNOVATION",
+      "target": "AOX_HUMAN_RESCUE_POTENTIAL",
+      "kind": "activates",
+      "label": "heterologous gene therapy rescue"
+    }
+  ]
+}

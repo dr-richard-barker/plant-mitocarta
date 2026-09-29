@@ -1,0 +1,136 @@
+# PMM-01 — Plant Mitochondrial Electron Transport and Oxidative Phosphorylation
+# Features both conserved catalytic Complexes I-V and plant-specific non-phosphorylating
+# bypasses (AOX, Type II internal/external NDHs, Complex I CA domain, PUMP).
+
+id: PMM-01
+title: Plant Mitochondrial Electron Transport and Oxidative Phosphorylation
+subtitle: >-
+  Conserved respiratory Complexes I–V integrated with plant-specific bypasses
+  (AOX, Type II NDHs, and the Complex I Carbonic Anhydrase domain).
+species_anchor: arabidopsis_thaliana
+caption: >-
+  The plant mitochondrial electron transport chain redrawn to contrast conserved
+  catalytic complexes with plant-specific metabolic innovations. Unlike mammalian
+  mitochondria (MitoCarta 3.0), plants possess cyanide-resistant alternative oxidase (AOX)
+  and rotenone-insensitive type II NAD(P)H dehydrogenases (NDA/NDB/NDC), allowing
+  respiratory electron flux without proton translocation when cellular energy charge is high.
+  The unique matrix-facing Carbonic Anhydrase (CA) domain of Complex I is essential for
+  complex stability and coordinates with photorespiratory flux.
+
+lanes:
+  - id: substrates
+    compartment: mitochondrial_matrix
+    node_width: 170
+    nodes: [MATRIX_NADH, SUCCINATE_POOL, O2_SUBSTRATE]
+
+  - id: dehydrogenases
+    compartment: mitochondrial_inner_membrane
+    node_width: 210
+    nodes: [COMPLEX_I_CORE, COMPLEX_I_CA_DOMAIN, COMPLEX_II_SDH, ALT_NDH_INTERNAL, ALT_NDH_EXTERNAL]
+
+  - id: quinone_pool
+    compartment: mitochondrial_inner_membrane
+    node_width: 200
+    nodes: [UBIQUINONE_POOL, AOX_BYPASS]
+
+  - id: cytochrome_chain
+    compartment: cristae
+    node_width: 210
+    nodes: [COMPLEX_III_BC1, CYTOCHROME_C, COMPLEX_IV_COX]
+
+  - id: outputs_and_relief
+    compartment: cristae
+    node_width: 210
+    nodes: [COMPLEX_V_ATPASE, PUMP_UNCOUPLING, MITO_ROS_BURST, DTC_CITRATE_CARRIER]
+
+nodes:
+  - id: MATRIX_NADH
+    label: "Matrix NADH Pool"
+    units: ["matrix redox couple"]
+  - id: SUCCINATE_POOL
+    label: "Succinate Pool"
+    units: ["TCA cycle intermediate"]
+  - id: O2_SUBSTRATE
+    label: "Molecular Oxygen (O2)"
+    units: ["electron acceptor"]
+
+  - id: COMPLEX_I_CORE
+    pmco: PMCO:COMPLEX_I
+    label: "Complex I (Catalytic Core)"
+    units: ["14 conserved subunits", "8 × Fe/S", "FMN"]
+  - id: COMPLEX_I_CA_DOMAIN
+    pmco: PMCO:COMPLEX_I_CA
+    label: "Complex I CA Domain"
+    units: ["CAL1/CAL2/CA1-3", "plant-specific", "absent in mammals"]
+  - id: COMPLEX_II_SDH
+    pmco: PMCO:COMPLEX_II
+    label: "Complex II (SDH)"
+    units: ["SDH1-4", "FAD", "3 × Fe/S"]
+  - id: ALT_NDH_INTERNAL
+    pmco: PMCO:ALT_NADH_DH_INT
+    label: "Internal Type II NDH"
+    units: ["NDA1/NDA2/NDC1", "matrix-facing", "bypass"]
+  - id: ALT_NDH_EXTERNAL
+    pmco: PMCO:ALT_NADH_DH_EXT
+    label: "External Type II NDH"
+    units: ["NDB1/NDB2/NDB4", "IMS-facing", "bypass"]
+
+  - id: UBIQUINONE_POOL
+    label: "Ubiquinone Pool (Q/QH2)"
+    units: ["membrane quinone"]
+  - id: AOX_BYPASS
+    pmco: PMCO:AOX1A
+    label: "Alternative Oxidase (AOX1a)"
+    units: ["di-iron carboxylate", "cyanide-resistant", "no H+ pumped"]
+
+  - id: COMPLEX_III_BC1
+    pmco: PMCO:COMPLEX_III
+    label: "Complex III (bc1 Complex)"
+    units: ["Rieske [2Fe-2S]", "Cyt b", "Cyt c1", "Q cycle"]
+  - id: CYTOCHROME_C
+    label: "Cytochrome c"
+    units: ["mobile IMS carrier"]
+  - id: COMPLEX_IV_COX
+    pmco: PMCO:COMPLEX_IV
+    label: "Complex IV (COX)"
+    units: ["heme a3/CuB", "terminal oxidase"]
+
+  - id: COMPLEX_V_ATPASE
+    pmco: PMCO:COMPLEX_V
+    label: "ATP Synthase (F1Fo)"
+    units: ["H+ motor", "yields ATP"]
+  - id: PUMP_UNCOUPLING
+    pmco: PMCO:PUMP1
+    label: "Plant UCP1 (PUMP1)"
+    units: ["dissipates H+", "thermotolerance"]
+  - id: MITO_ROS_BURST
+    pmco: PMCO:MITO_ROS
+    label: "Mitochondrial Superoxide/H2O2"
+    units: ["retrograde signal", "leak from CI/CIII"]
+  - id: DTC_CITRATE_CARRIER
+    pmco: PMCO:DTC_CARRIER
+    label: "DTC Translocator"
+    units: ["exports citrate", "epigenetic signaling"]
+
+edges:
+  - [MATRIX_NADH, COMPLEX_I_CORE, electron_transfer, "2e−"]
+  - [MATRIX_NADH, ALT_NDH_INTERNAL, electron_transfer, "bypass"]
+  - [COMPLEX_I_CORE, COMPLEX_I_CA_DOMAIN, activates, "structural assembly"]
+  - [SUCCINATE_POOL, COMPLEX_II_SDH, electron_transfer, "2e−"]
+  - [COMPLEX_I_CORE, UBIQUINONE_POOL, electron_transfer, "QH2"]
+  - [COMPLEX_II_SDH, UBIQUINONE_POOL, electron_transfer, "QH2"]
+  - [ALT_NDH_INTERNAL, UBIQUINONE_POOL, electron_transfer, "QH2"]
+  - [ALT_NDH_EXTERNAL, UBIQUINONE_POOL, electron_transfer, "QH2"]
+  - [UBIQUINONE_POOL, AOX_BYPASS, electron_transfer, "relief valve"]
+  - [AOX_BYPASS, O2_SUBSTRATE, electron_transfer, "4e− -> 2 H2O"]
+  - [UBIQUINONE_POOL, COMPLEX_III_BC1, electron_transfer, "Q cycle"]
+  - [COMPLEX_III_BC1, CYTOCHROME_C, electron_transfer, "1e−"]
+  - [CYTOCHROME_C, COMPLEX_IV_COX, electron_transfer, "1e−"]
+  - [COMPLEX_IV_COX, O2_SUBSTRATE, electron_transfer, "4e− -> 2 H2O"]
+  - [COMPLEX_I_CORE, COMPLEX_V_ATPASE, activates, "H+ gradient"]
+  - [COMPLEX_III_BC1, COMPLEX_V_ATPASE, activates, "H+ gradient"]
+  - [COMPLEX_IV_COX, COMPLEX_V_ATPASE, activates, "H+ gradient"]
+  - [COMPLEX_V_ATPASE, PUMP_UNCOUPLING, inhibits, "proton uncoupling"]
+  - [COMPLEX_I_CORE, MITO_ROS_BURST, activates, "electron leak"]
+  - [COMPLEX_III_BC1, MITO_ROS_BURST, activates, "electron leak"]
+  - [MITO_ROS_BURST, DTC_CITRATE_CARRIER, activates, "stress signaling"]
