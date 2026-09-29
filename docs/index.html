@@ -328,7 +328,70 @@
       line-height: 1.6;
     }
     .cose-foot p { margin: 6px 0; max-width: none; }
-    .cose-foot a { color: var(--accent); }
+    /* Figures with crisp white background and dark mode compatibility */
+    figure.map {
+      margin: 0 0 52px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    figure.map > a {
+      display: block;
+      background: #ffffff;
+      padding: 18px 16px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+    figure.map img, figure.map svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+    figcaption {
+      padding: 20px 24px;
+      font-size: 0.94rem;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    figcaption .t {
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1.18rem;
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    figcaption p {
+      margin: 8px 0 16px;
+      line-height: 1.65;
+      color: var(--ink);
+      max-width: 95ch;
+    }
+    .map-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 0.88rem;
+    }
+    .map-meta-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .map-meta-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
     
   </style>
@@ -402,11 +465,11 @@
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <h3 style="font-size: 1.3rem; font-weight: 700;">Declarative Pathway & Organelle Maps</h3>
+        <h3 style="font-size: 1.3rem; font-weight: 700;">Declarative Pathway & Organelle Map Catalog</h3>
         <span style="color: var(--text-soft); font-size: 0.9rem;">Derived deterministically from text metrics; zero hardcoded coordinates</span>
       </div>
 
-      <div class="card-grid">
+      <div class="card-grid" style="margin-bottom: 56px;">
         
         <div class="card">
           <div>
@@ -416,9 +479,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">17 nodes • 21 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-01.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-01.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-01" class="btn primary">View Map</a>
+              <a href="maps/PMM-01.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -431,9 +494,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">18 nodes • 19 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-02.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-02.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-02" class="btn primary">View Map</a>
+              <a href="maps/PMM-02.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -446,9 +509,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">14 nodes • 13 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-03.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-03.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-03" class="btn primary">View Map</a>
+              <a href="maps/PMM-03.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -461,9 +524,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">15 nodes • 15 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-04.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-04.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-04" class="btn primary">View Map</a>
+              <a href="maps/PMM-04.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -476,9 +539,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">13 nodes • 13 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-05.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-05.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-05" class="btn primary">View Map</a>
+              <a href="maps/PMM-05.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -491,9 +554,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">17 nodes • 13 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-06.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-06.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-06" class="btn primary">View Map</a>
+              <a href="maps/PMM-06.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -506,9 +569,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">15 nodes • 14 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-07.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-07.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-07" class="btn primary">View Map</a>
+              <a href="maps/PMM-07.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -521,9 +584,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">11 nodes • 10 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-08.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-08.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-08" class="btn primary">View Map</a>
+              <a href="maps/PMM-08.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -536,9 +599,9 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">15 nodes • 9 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-09.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-09.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-09" class="btn primary">View Map</a>
+              <a href="maps/PMM-09.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
@@ -551,12 +614,253 @@
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">13 nodes • 14 edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/PMM-10.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/PMM-10.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#PMM-10" class="btn primary">View Map</a>
+              <a href="maps/PMM-10.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
+        
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.01em;">Rendered Interactive Pathway Maps</h3>
+        <p style="color: var(--text-soft); font-size: 0.95rem; margin-top: 4px;">
+          Process Description vector maps compiled with Okabe-Ito colorblind-safe palettes and evidence tiers explicitly encoded as border channels. Click any map to view full-scale or download standalone SVG/SBGN-ML representations.
+        </p>
+      </div>
+
+      <div class="map-figures-list">
+        
+        <figure class="map" id="PMM-01">
+          <a href="maps/PMM-01.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-01.svg" alt="Plant Mitochondrial Electron Transport and Oxidative Phosphorylation" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-01 · Plant Mitochondrial Electron Transport and Oxidative Phosphorylation</span>
+            <p>The plant mitochondrial electron transport chain redrawn to contrast conserved catalytic complexes with plant-specific metabolic innovations. Unlike mammalian mitochondria (MitoCarta 3.0), plants possess cyanide-resistant alternative oxidase (AOX) and rotenone-insensitive type II NAD(P)H dehydrogenases (NDA/NDB/NDC), allowing respiratory electron flux without proton translocation when cellular energy charge is high. The unique matrix-facing Carbonic Anhydrase (CA) domain of Complex I is essential for complex stability and coordinates with photorespiratory flux.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">17 nodes • 21 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 12</span> <span class="badge badge-t4">T4: 5</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-01.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-01-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-01.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-01.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-02">
+          <a href="maps/PMM-02.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-02.svg" alt="Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-02 · Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins</span>
+            <p>The photosynthetic machinery drawn to emphasize metabolic connections and retrograde stress signaling. Light absorption by PSII and PSI drives the linear electron flow producing NADPH and ATP for the Calvin-Benson cycle. Excess light or translational stress generates singlet oxygen at PSII and redox stress in the stroma, inactivating SAL1 phosphatase and triggering the accumulation of 3&#x27;-phosphoadenosine 5&#x27;-phosphate (PAP) and 2-C-methyl-D-erythritol 2,4-cyclodiphosphate (MEcPP). RuBisCO oxygenation initiates the photorespiratory cycle.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">18 nodes • 19 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 10</span> <span class="badge badge-t4">T4: 8</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-02.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-02-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-02.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-02.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-03">
+          <a href="maps/PMM-03.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-03.svg" alt="Nuclear Transcriptional Command and Organelle Reprogramming" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-03 · Nuclear Transcriptional Command and Organelle Reprogramming</span>
+            <p>The nuclear genome receives direct signals from both endosymbiotic organelles. Cleaved ANAC017 and ANAC013 enter via nuclear pore complexes to bind the Mitochondrial Dysfunction Responsive Element (MDRE: CTTGNNNNNCAG), driving high-level transcription of AOX1a and mitochondrial chaperones. Concurrently, translocated PAP from chloroplasts inhibits 5&#x27;-to-3&#x27; exoribonucleases (XRN2/3), altering transcriptional termination. Plastid GUN1 signals stimulate ABI4 to repress Photosynthesis-Associated Nuclear Genes (PhANGs) while antagonizing GLK1/2 transcriptional activators.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">14 nodes • 13 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 7</span> <span class="badge badge-t4">T4: 7</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-03.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-03-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-03.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-03.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-04">
+          <a href="maps/PMM-04.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-04.svg" alt="Plasma Membrane Perception, Gravity Sensing, and Systemic Waves" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-04 · Plasma Membrane Perception, Gravity Sensing, and Systemic Waves</span>
+            <p>The plasma membrane serves as the sensory boundary of the plant cell. Mechanical forces, cell wall strain, or microgravity alterations trigger wall-associated kinases (WAK1) and FERONIA, while membrane stretch gates MSL10 and GLR3.3/3.6 calcium channels. Cytosolic calcium spikes activate RBOHD NADPH oxidases to generate an extracellular superoxide burst, which dismutates to H2O2 and re-enters through PIP2;1 aquaporins, initiating organellar redox remodeling.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">15 nodes • 15 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 7</span> <span class="badge badge-t4">T4: 8</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-04.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-04-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-04.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-04.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-05">
+          <a href="maps/PMM-05.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-05.svg" alt="The Mitochondrial Retrograde Response (MRR) Cascade" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-05 · The Mitochondrial Retrograde Response (MRR) Cascade</span>
+            <p>Mitochondrial retrograde signaling communicates organelle dysfunction to the nuclear genome. Inhibition of OXPHOS or microgravity hypoxia elevates mitochondrial ROS and activates rhomboid-like proteases that cleave the C-terminal transmembrane domain of ANAC017 and ANAC013 anchored at the outer mitochondrial membrane / ER interface. The liberated soluble N-terminal NAC domain migrates through nuclear pores, binds the 14-bp palindromic MDRE motif (CTTGNNNNNCAG) in the AOX1a promoter, and induces alternative oxidase and mitochondrial chaperones to restore bioenergetic equilibrium.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">13 nodes • 13 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 7</span> <span class="badge badge-t4">T4: 6</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-05.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-05-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-05.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-05.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-06">
+          <a href="maps/PMM-06.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-06.svg" alt="The Plastid-to-Nucleus Retrograde Response (PRR) Circuits" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-06 · The Plastid-to-Nucleus Retrograde Response (PRR) Circuits</span>
+            <p>Chloroplasts communicate with the nucleus via four distinct pathways. (1) In the SAL1-PAP pathway, oxidative stress inactivates stromal SAL1 phosphatase; its substrate, PAP (3&#x27;-phosphoadenosine 5&#x27;-phosphate), accumulates and is exported via PAPST1 to the nucleus, directly inhibiting 5&#x27;-to-3&#x27; exoribonucleases (XRN2/3) to stabilize stress transcripts. (2) In the GUN1 hub, plastid translation and tetrapyrrole perturbations signal through ABI4 to repress PhANGs. (3) The MEP pathway intermediate MEcPP accumulates during stress and acts as an autonomous retrograde messenger. (4) Singlet oxygen (1O2) produced at PSII is sensed by EXECUTER 1/2 (EX1/EX2) to direct acclimation or cell death.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">17 nodes • 13 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 9</span> <span class="badge badge-t4">T4: 8</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-06.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-06-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-06.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-06.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-07">
+          <a href="maps/PMM-07.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-07.svg" alt="The 3-Organelle Photorespiratory Metabolic Loop" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-07 · The 3-Organelle Photorespiratory Metabolic Loop</span>
+            <p>Photorespiration is the premier example of obligate inter-organellar metabolic coupling in plant biology. When RuBisCO fixes oxygen instead of CO2, toxic 2-phosphoglycolate is produced in chloroplasts. It is dephosphorylated to glycolate and exported via PLGG1 to peroxisomes, where glycolate oxidase (GOX) oxidizes it to glyoxylate (generating H2O2 scavenged by CAT2) and glutamate:glyoxylate aminotransferase (GGT) transaminates it to glycine. Glycine enters the mitochondrial matrix, where the massive Glycine Decarboxylase (GDC) complex and SHMT1 convert two molecules of glycine into serine, releasing CO2, NH3, and NADH. Serine returns to the peroxisome, is transaminated to hydroxypyruvate, reduced to glycerate by HPR, and returned via DiT1/PLGG1 to the chloroplast to re-enter the Calvin cycle as 3-PGA.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">15 nodes • 14 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 6</span> <span class="badge badge-t4">T4: 9</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-07.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-07-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-07.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-07.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-08">
+          <a href="maps/PMM-08.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-08.svg" alt="Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-08 · Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking</span>
+            <p>Subcellular organelles do not float freely; they are dynamically interconnected by physical membrane contact sites (MCS). Chloroplasts extend stroma-filled tubules (stromules) along microfilaments that physically dock to the nuclear envelope, channelling high concentrations of H2O2 directly into the nucleoplasm during stress and plant immune defense. Mitochondria-ER Associated Membranes (MEAMs) mediate phospholipid transfer and localized calcium microdomains, while chloroplast-ER junctions (TGD complexes) facilitate galactolipid and sulfolipid biogenesis.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">11 nodes • 10 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 2</span> <span class="badge badge-t4">T4: 9</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-08.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-08-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-08.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-08.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-09">
+          <a href="maps/PMM-09.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-09.svg" alt="Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-09 · Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome</span>
+            <p>Comparison of the 1,136 human genes and 149 MitoPathways from Broad MitoCarta 3.0 with the plant mitochondrial proteome. Core bioenergetics (catalytic subunits of Complexes I–V, TCA cycle, Fe-S ISC assembly) exhibit near-perfect 1:1 orthology. In contrast, plants evolved vital metabolic innovations: cyanide-resistant AOX, rotenone-insensitive internal/external NDHs, a matrix-facing Carbonic Anhydrase domain on Complex I, and the massive photorespiratory GDC complex. Additionally, key organellar machinery (DNA polymerase PolIA/B, aminoacyl-tRNA synthetases) evolved dual targeting to simultaneously coordinate mitochondria and chloroplasts.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">15 nodes • 9 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 5</span> <span class="badge badge-t4">T4: 10</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-09.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-09-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-09.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-09.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+        
+        <figure class="map" id="PMM-10">
+          <a href="maps/PMM-10.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/PMM-10.svg" alt="Integrated Multi-Organelle Digital Double Atlas" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">PMM-10 · Integrated Multi-Organelle Digital Double Atlas</span>
+            <p>The master synoptic architecture uniting the four subcellular digital doubles. The Plasma Membrane monitors mechanical, gravity, and apoplastic forces (FERONIA/WAK1), launching calcium spikes (GLR3.3/3.6) and ROS waves (RBOHD) channeled through PIP2;1 aquaporins. The Chloroplast coordinates photosynthetic electron transport with the 4 plastid retrograde signals (SAL1-PAP, GUN1-ABI4, MEcPP, Singlet oxygen-EX1) and feeds the photorespiratory metabolic conduit via PLGG1. The Mitochondrion provides ATP and metabolic flexibility via respiratory complexes and plant bypasses (AOX, NDHs), drives matrix photorespiration through GDC/SHMT1, and initiates the ANAC017/013 mitochondrial retrograde response (MRR). The Nucleus integrates these organellar signals at MDRE and PhANGs promoters, reprograming the transcriptome to ensure plant survival under terrestrial and spaceflight environments.</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">13 nodes • 14 edges</span>
+                <span style="color: var(--line);">|</span>
+                <span><span class="badge badge-t1">T1: 12</span> <span class="badge badge-t4">T4: 1</span> </span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/PMM-10.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/PMM-10-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/PMM-10.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/PMM-10.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
         
       </div>
     </main>

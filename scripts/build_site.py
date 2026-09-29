@@ -407,7 +407,70 @@ def html_head(title, extra_css=""):
       line-height: 1.6;
     }}
     .cose-foot p {{ margin: 6px 0; max-width: none; }}
-    .cose-foot a {{ color: var(--accent); }}
+    /* Figures with crisp white background and dark mode compatibility */
+    figure.map {{
+      margin: 0 0 52px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }}
+    figure.map > a {{
+      display: block;
+      background: #ffffff;
+      padding: 18px 16px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }}
+    figure.map img, figure.map svg {{
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      background: #ffffff;
+    }}
+    figcaption {{
+      padding: 20px 24px;
+      font-size: 0.94rem;
+      color: var(--muted);
+      background: var(--surface);
+    }}
+    figcaption .t {{
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1.18rem;
+      display: block;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }}
+    figcaption p {{
+      margin: 8px 0 16px;
+      line-height: 1.65;
+      color: var(--ink);
+      max-width: 95ch;
+    }}
+    .map-meta-bar {{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 0.88rem;
+    }}
+    .map-meta-left {{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }}
+    .map-meta-right {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }}
 
     {extra_css}
   </style>
@@ -468,22 +531,58 @@ def html_footer():
 def build_index_page(ont, maps):
     all_ent = ont.all_entities()
     cards_html = []
+    figures_html = []
+
     for m in maps:
+        tiers = {}
+        for n in m.nodes:
+            t = n.payload.get("evidence_tier", "T4")
+            tiers[t] = tiers.get(t, 0) + 1
+        tier_badges = "".join(
+            f'<span class="badge badge-{k.lower()}">{k}: {v}</span> '
+            for k, v in sorted(tiers.items())
+        )
+
         cards_html.append(f"""
         <div class="card">
           <div>
             <div class="card-id">{esc(m.id)} • {esc(m.species_anchor.replace('_', ' ').title())}</div>
             <h3 class="card-title">{esc(m.title)}</h3>
-            <p class="card-desc">{esc(m.subtitle or m.caption[:160] + '...')}</p>
+            <p class="card-desc">{esc(m.subtitle or m.caption[:150] + '...')}</p>
           </div>
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">{len(m.nodes)} nodes • {len(m.edges)} edges</span>
-            <div style="display: flex; gap: 8px;">
-              <a href="maps/{m.id}.svg" target="_blank" class="btn">View SVG</a>
-              <a href="maps/{m.id}.sbgn" download class="btn btn-secondary">SBGN</a>
+            <div style="display: flex; gap: 6px;">
+              <a href="#{esc(m.id)}" class="btn primary">View Map</a>
+              <a href="maps/{esc(m.id)}.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
         </div>
+        """)
+
+        figures_html.append(f"""
+        <figure class="map" id="{esc(m.id)}">
+          <a href="maps/{esc(m.id)}.svg" target="_blank" title="Click to open full-resolution SVG in new tab">
+            <img src="maps/{esc(m.id)}.svg" alt="{esc(m.title)}" loading="lazy">
+          </a>
+          <figcaption>
+            <span class="t">{esc(m.id)} · {esc(m.title)}</span>
+            <p>{esc(m.caption or m.subtitle)}</p>
+            <div class="map-meta-bar">
+              <div class="map-meta-left">
+                <span style="font-weight: 650; color: var(--ink);">{len(m.nodes)} nodes • {len(m.edges)} edges</span>
+                <span style="color: var(--line);">|</span>
+                <span>{tier_badges}</span>
+              </div>
+              <div class="map-meta-right">
+                <a href="maps/{esc(m.id)}.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <a href="maps/{esc(m.id)}-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
+                <a href="maps/{esc(m.id)}.sbgn" download class="btn btn-secondary">SBGN-ML</a>
+                <a href="catalog/pmco/{esc(m.id)}.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
         """)
 
     content = f"""
@@ -535,12 +634,23 @@ def build_index_page(ont, maps):
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <h3 style="font-size: 1.3rem; font-weight: 700;">Declarative Pathway & Organelle Maps</h3>
+        <h3 style="font-size: 1.3rem; font-weight: 700;">Declarative Pathway & Organelle Map Catalog</h3>
         <span style="color: var(--text-soft); font-size: 0.9rem;">Derived deterministically from text metrics; zero hardcoded coordinates</span>
       </div>
 
-      <div class="card-grid">
+      <div class="card-grid" style="margin-bottom: 56px;">
         {''.join(cards_html)}
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <h3 style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.01em;">Rendered Interactive Pathway Maps</h3>
+        <p style="color: var(--text-soft); font-size: 0.95rem; margin-top: 4px;">
+          Process Description vector maps compiled with Okabe-Ito colorblind-safe palettes and evidence tiers explicitly encoded as border channels. Click any map to view full-scale or download standalone SVG/SBGN-ML representations.
+        </p>
+      </div>
+
+      <div class="map-figures-list">
+        {''.join(figures_html)}
       </div>
     </main>
     {html_footer()}

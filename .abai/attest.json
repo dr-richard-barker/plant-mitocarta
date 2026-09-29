@@ -2,8 +2,8 @@
   "digest": "5e0ed1e06c02b35e62bc31b317c218f2973d61c4cfcdfb8a5d8434ca909faa33",
   "files": 39,
   "verdict": "clear",
-  "note": "Plant MitoCarta v0.1.0 CoSE Pages release audited with strict identifier binding, 100% DOI empirical coverage, and verified zero blocklist matches",
+  "note": "Plant MitoCarta v0.1.0: Embedded 10 full vector maps and captions into index page",
   "session": "",
-  "checked_at": "2026-09-29T14:06:47-0400",
-  "head": "a9e7a20e0ceb5b47a8135cf9e4ae64c4a60f782a"
+  "checked_at": "2026-09-29T19:23:33-0400",
+  "head": "fc5ec42ad823ec42b3adf279ca6068011a10abea"
 }
