@@ -394,9 +394,228 @@
     }
 
     
-    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.88rem; }
-    th { text-align: left; padding: 10px 14px; background: var(--bg); border-bottom: 2px solid var(--card-border); color: var(--text-soft); font-weight: 700; text-transform: uppercase; font-size: 0.78rem; }
-    td { padding: 12px 14px; border-bottom: 1px solid var(--card-border); vertical-align: top; }
+    /* Comparative Synteny & Complex I Studio Styling */
+    .quadrant-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .quad-card {
+      background: var(--card-bg, #f8fafc);
+      border: 1px solid var(--card-border, #e2e8f0);
+      border-radius: var(--border-radius, 10px);
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .quad-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .quad-card.q1 { border-left: 4px solid #059669; }
+    .quad-card.q2 { border-left: 4px solid #0284c7; }
+    .quad-card.q3 { border-left: 4px solid #d97706; }
+    .quad-card.q4 { border-left: 4px solid #8b5cf6; }
+
+    .quad-card h4 {
+      margin: 0 0 6px 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .quad-card p {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      line-height: 1.45;
+    }
+
+    .synteny-section {
+      background: var(--card-bg, #f8fafc);
+      border: 1px solid var(--card-border, #e2e8f0);
+      border-radius: var(--border-radius, 10px);
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .section-header {
+      margin-bottom: 18px;
+    }
+    .section-header h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 4px 0;
+    }
+    .section-header p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.88rem;
+    }
+
+    .module-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .module-toolbar .btn {
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+    .module-toolbar .btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .module-toolbar .btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .c1-svg-wrap {
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+
+    #complex-i-module-hud {
+      background: var(--surface-2, #eef2f8);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .hud-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .hud-item {
+      font-size: 0.85rem;
+    }
+    .hud-item-label {
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+    .hud-item-val {
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .cladogram-svg-wrap {
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+    #epoch-details-panel {
+      background: var(--surface-2, #eef2f8);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+
+    .rescue-callout {
+      background: linear-gradient(135deg, rgba(5,150,105,0.06), rgba(2,132,199,0.06));
+      border: 1.5px solid rgba(5,150,105,0.3);
+      border-radius: var(--border-radius);
+      padding: 22px 24px;
+      margin-bottom: 32px;
+    }
+
+    .navigator-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      background: var(--surface-2);
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+    }
+    .search-box-wrap {
+      flex: 1 1 280px;
+      position: relative;
+    }
+    .search-box-wrap input {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 0.88rem;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+      color: var(--text);
+    }
+    .slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+    .slider-wrap input[type=range] {
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+    .synteny-metrics {
+      font-size: 0.84rem;
+      color: var(--text-soft);
+    }
+
+    table.synteny-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+    table.synteny-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--bg);
+      border-bottom: 2px solid var(--card-border);
+      color: var(--text-soft);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+    }
+    table.synteny-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--card-border);
+      vertical-align: top;
+    }
+    table.synteny-table tr:hover td {
+      background: rgba(59,130,246,0.03);
+    }
+
+    .c1-module { cursor: pointer; transition: all 0.2s ease; }
+    .c1-module:hover rect { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15)); }
+    .c1-module.dimmed { opacity: 0.25; }
+    .c1-module.highlighted rect { stroke-width: 3.5px; filter: drop-shadow(0 0 8px rgba(59,130,246,0.6)); }
+
+    .tree-epoch-node { cursor: pointer; transition: all 0.2s ease; }
+    .tree-epoch-node:hover circle { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2)); }
+    .tree-epoch-node.active-epoch circle { stroke-width: 4.5px; filter: drop-shadow(0 0 8px rgba(5,150,105,0.6)); }
     
   </style>
 </head>
@@ -424,52 +643,667 @@
     
     <main class="container">
       <div style="margin-bottom: 28px;">
-        <h2 style="font-size: 1.8rem; font-weight: 800;">Broad MitoCarta 3.0 vs. Plant Mitochondrial Proteome</h2>
-        <p style="color: var(--text-soft); max-width: 850px; margin-top: 4px;">
+        <h2 style="font-size: 1.85rem; font-weight: 800; letter-spacing: -0.02em;">Broad MitoCarta 3.0 vs. Plant Mitochondrial Proteome</h2>
+        <p style="color: var(--text-soft); max-width: 880px; margin-top: 6px; font-size: 0.95rem; line-height: 1.55;">
           Cross-kingdom comparative synthesis aligning the 1,136 human genes and 149 MitoPathways from MitoCarta 3.0 (Rath et al. 2021)
-          against the <em>Arabidopsis thaliana</em> plant mitochondrial proteome.
+          against the <em>Arabidopsis thaliana</em> plant mitochondrial proteome. Explore four evolutionary quadrants,
+          the interactive Complex I holo-assembly alignment, and taxonomic conservation across 1.8 billion years of endosymbiotic history.
         </p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px;">
-        <div class="card" style="border-left: 4px solid #059669;">
-          <h4 style="color: #059669;">Q1: Strict Orthologs</h4>
-          <p style="font-size: 0.85rem; color: var(--text-soft); margin-top: 4px;">Catalytic cores of Complexes I–V, TCA cycle enzymes, Fe-S ISC assembly machinery. Catalytic active sites are identical.</p>
+      <!-- 4 Quadrant Interactive Cards -->
+      <div class="quadrant-cards-grid">
+        <div class="quad-card q1" onclick="setQuadrantFilter('strict_ortholog')">
+          <h4 style="color: #059669;">
+            <span>Q1: Strict Orthologs</span>
+            <span style="font-size: 0.75rem; background: rgba(5,150,105,0.12); padding: 2px 8px; border-radius: 4px;">Conserved Core</span>
+          </h4>
+          <p>Catalytic cores of Complexes I–V, TCA cycle enzymes, Fe-S ISC assembly machinery. Catalytic active sites and electron relay wires are identical.</p>
         </div>
-        <div class="card" style="border-left: 4px solid #0284c7;">
-          <h4 style="color: #0284c7;">Q2: Plant Innovations</h4>
-          <p style="font-size: 0.85rem; color: var(--text-soft); margin-top: 4px;">Alternative Oxidase (AOX), Type II rotenone-insensitive NDHs, Complex I CA domain, GDC photorespiration. Completely absent in mammals.</p>
+        <div class="quad-card q2" onclick="setQuadrantFilter('plant_specific_innovation')">
+          <h4 style="color: #0284c7;">
+            <span>Q2: Plant Innovations</span>
+            <span style="font-size: 0.75rem; background: rgba(2,132,199,0.12); padding: 2px 8px; border-radius: 4px;">Bypasses</span>
+          </h4>
+          <p>Alternative Oxidase (AOX), Type II rotenone-insensitive NDHs, Complex I CA domain, GDC photorespiration. Completely absent in mammals.</p>
         </div>
-        <div class="card" style="border-left: 4px solid #d97706;">
-          <h4 style="color: #d97706;">Q3: Dual-Targeted Divergence</h4>
-          <p style="font-size: 0.85rem; color: var(--text-soft); margin-top: 4px;">Organellar DNA polymerases (PolIA/B), RecA, and tRNA synthetases dual-targeted to BOTH mitochondria and chloroplasts.</p>
+        <div class="quad-card q3" onclick="setQuadrantFilter('dual_targeted_divergence')">
+          <h4 style="color: #d97706;">
+            <span>Q3: Dual-Targeted Divergence</span>
+            <span style="font-size: 0.75rem; background: rgba(217,119,6,0.12); padding: 2px 8px; border-radius: 4px;">Shared Machinery</span>
+          </h4>
+          <p>Organellar DNA polymerases (PolIA/B), RecA, and tRNA synthetases dual-targeted to BOTH mitochondria and chloroplasts for coordinated maintenance.</p>
         </div>
-        <div class="card" style="border-left: 4px solid #8b5cf6;">
-          <h4 style="color: #8b5cf6;">Q4: Expanded Plant Families</h4>
-          <p style="font-size: 0.85rem; color: var(--text-soft); margin-top: 4px;">PPR RNA-editing family (>450 genes in plants vs 7 in humans) required for massive ~500 C-to-U organellar RNA edits.</p>
+        <div class="quad-card q4" onclick="setQuadrantFilter('expanded_plant_family')">
+          <h4 style="color: #8b5cf6;">
+            <span>Q4: Expanded Plant Families</span>
+            <span style="font-size: 0.75rem; background: rgba(139,92,246,0.12); padding: 2px 8px; border-radius: 4px;">PPR &amp; Solute Carriers</span>
+          </h4>
+          <p>PPR RNA-editing family (&gt;450 genes in plants vs 7 in humans) required for massive ~500 C-to-U organellar RNA edits and photosynthetic cross-talk.</p>
         </div>
       </div>
 
-      <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 24px; margin-bottom: 32px;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 4px;">Core MitoPathways Alignment</h3>
-        <p style="color: var(--text-soft); font-size: 0.85rem;">Comparing pathway conservation and plant-specific augmentations across major bioenergetic modules.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>MitoPathway Name</th>
-              <th>Category</th>
-              <th>Conservation</th>
-              <th>Plant-Specific Features & Bypasses</th>
-            </tr>
-          </thead>
-          <tbody>
-            
+      <!-- Complex I Holo-Assembly Synteny Comparison Widget -->
+      <section id="complex-i-synteny-widget" class="synteny-section">
+        <div class="section-header">
+          <h3>Interactive Complex I Holo-Assembly Synteny: Mammal (45 Subunits) vs. Plant (51 Subunits)</h3>
+          <p>Inspect structural subunit composition, catalytic mechanisms, and the plant-specific matrix Carbonic Anhydrase (CA) protuberance absent in mammals.</p>
+        </div>
+
+        <div id="complex-i-module-btns" class="module-toolbar">
+          <button type="button" class="btn active" data-module="all" onclick="selectComplexIModule('all')">All Modules</button>
+          <button type="button" class="btn" data-module="n-module" onclick="selectComplexIModule('n-module')">N-Module (NADH Oxidation)</button>
+          <button type="button" class="btn" data-module="q-module" onclick="selectComplexIModule('q-module')">Q-Module (Fe-S Relay)</button>
+          <button type="button" class="btn" data-module="p-module" onclick="selectComplexIModule('p-module')">P-Module (Proton Arm)</button>
+          <button type="button" class="btn" data-module="ca-module" onclick="selectComplexIModule('ca-module')">CA-Module (Plant Protuberance)</button>
+          <button type="button" class="btn" data-module="bypasses" onclick="selectComplexIModule('bypasses')">Bypasses (AOX &amp; NDHs)</button>
+        </div>
+
+        <div class="c1-svg-wrap">
+          <svg id="complex-i-svg" viewBox="0 0 960 430" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display: block; font-family: var(--font-sans, -apple-system, sans-serif);">
+  <defs>
+    <linearGradient id="c1MemGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.04"/>
+    </linearGradient>
+    <filter id="c1DropShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+    <marker id="c1ArrowElectron" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== LEFT: MAMMALIAN HOLO-COMPLEX I ==================== -->
+  <g id="mammalian-complex-i">
+    <!-- Panel Backdrop -->
+    <rect x="20" y="16" width="445" height="398" rx="12" fill="var(--surface, #f8fafc)" stroke="var(--card-border, #e2e8f0)" stroke-width="1.5"/>
+    
+    <!-- Header Banner -->
+    <rect x="20" y="16" width="445" height="42" rx="12" fill="var(--surface-2, #f1f5f9)" stroke="var(--card-border, #e2e8f0)" stroke-width="1"/>
+    <text x="36" y="38" font-size="13" font-weight="700" fill="var(--text, #0f172a)">Mammalian Holo-Complex I (Homo sapiens)</text>
+    <text x="36" y="50" font-size="10" font-weight="500" fill="var(--text-soft, #64748b)">45 Subunits • ~970 kDa • Strictly Rotenone-Sensitive</text>
+
+    <!-- Compartment Zones -->
+    <text x="36" y="80" font-size="10" font-weight="700" fill="var(--text-soft, #64748b)" letter-spacing="0.05em">MITOCHONDRIAL MATRIX (N-SIDE)</text>
+    
+    <!-- Inner Mitochondrial Membrane Strip -->
+    <rect x="26" y="240" width="433" height="65" fill="url(#c1MemGrad)" stroke="var(--primary, #3b82f6)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="36" y="276" font-size="10" font-weight="600" fill="var(--primary, #2563eb)">Inner Membrane (IMM)</text>
+
+    <text x="36" y="330" font-size="10" font-weight="700" fill="var(--text-soft, #64748b)" letter-spacing="0.05em">INTERMEMBRANE SPACE (P-SIDE)</text>
+
+    <!-- N-Module -->
+    <g class="c1-module c1-n-module" data-module="n-module" onclick="selectComplexIModule('n-module')">
+      <rect x="180" y="82" width="150" height="66" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8" filter="url(#c1DropShadow)"/>
+      <text x="255" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#0369a1">N-Module (NADH)</text>
+      <text x="255" y="122" text-anchor="middle" font-size="10" font-weight="600" fill="#0284c7">NDUFV1, V2, S1</text>
+      <text x="255" y="137" text-anchor="middle" font-size="9" font-weight="500" fill="#0284c7">FMN • [2Fe-2S] • [4Fe-4S]</text>
+    </g>
+
+    <!-- Q-Module -->
+    <g class="c1-module c1-q-module" data-module="q-module" onclick="selectComplexIModule('q-module')">
+      <rect x="180" y="156" width="150" height="74" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.8" filter="url(#c1DropShadow)"/>
+      <text x="255" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">Q-Module (Fe-S Relay)</text>
+      <text x="255" y="198" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">NDUFS2, S3, S7, S8</text>
+      <text x="255" y="215" text-anchor="middle" font-size="9" font-weight="500" fill="#16a34a">8 Fe-S Cluster Wire → Q</text>
+    </g>
+
+    <!-- P-Module (Hydrophobic Arm) -->
+    <g class="c1-module c1-p-module" data-module="p-module" onclick="selectComplexIModule('p-module')">
+      <rect x="110" y="240" width="290" height="65" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.8" filter="url(#c1DropShadow)"/>
+      <text x="255" y="262" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">P-Module (Proton Arm)</text>
+      <text x="255" y="279" text-anchor="middle" font-size="10" font-weight="600" fill="#7c3aed">ND1, ND2, ND3, ND4, ND4L, ND5, ND6</text>
+      <text x="255" y="294" text-anchor="middle" font-size="9" font-weight="500" fill="#7c3aed">4 H⁺ pumped / 2e⁻ translocated</text>
+    </g>
+
+    <!-- Electron Flow Vector -->
+    <path d="M 255 148 L 255 156" stroke="#0284c7" stroke-width="2" marker-end="url(#c1ArrowElectron)"/>
+    <path d="M 255 230 L 255 240" stroke="#16a34a" stroke-width="2" marker-end="url(#c1ArrowElectron)"/>
+
+    <!-- Bottom Features & Absence Notice -->
+    <rect x="36" y="356" width="413" height="44" rx="6" fill="var(--bg, #ffffff)" stroke="var(--card-border, #e2e8f0)" stroke-width="1"/>
+    <text x="48" y="373" font-size="10" font-weight="600" fill="#dc2626">✕ No Carbonic Anhydrase (CA) Matrix Protuberance</text>
+    <text x="48" y="389" font-size="9.5" font-weight="500" fill="var(--text-soft, #64748b)">✕ No alternative bypass oxidases (AOX) or Type II NDHs (rotenone arrests respiration)</text>
+  </g>
+
+  <!-- ==================== RIGHT: PLANT HOLO-COMPLEX I & BYPASSES ==================== -->
+  <g id="plant-complex-i">
+    <!-- Panel Backdrop -->
+    <rect x="495" y="16" width="445" height="398" rx="12" fill="var(--surface, #f8fafc)" stroke="var(--card-border, #e2e8f0)" stroke-width="1.5"/>
+    
+    <!-- Header Banner -->
+    <rect x="495" y="16" width="445" height="42" rx="12" fill="var(--surface-2, #f1f5f9)" stroke="var(--card-border, #e2e8f0)" stroke-width="1"/>
+    <text x="511" y="38" font-size="13" font-weight="700" fill="var(--text, #0f172a)">Plant Holo-Complex I &amp; Bypasses (A. thaliana)</text>
+    <text x="511" y="50" font-size="10" font-weight="500" fill="var(--text-soft, #64748b)">51 Subunits • ~1,000 kDa • Carbonic Anhydrase Wedge • Non-Pumping Bypasses</text>
+
+    <!-- Compartment Zones -->
+    <text x="511" y="80" font-size="10" font-weight="700" fill="var(--text-soft, #64748b)" letter-spacing="0.05em">MITOCHONDRIAL MATRIX (N-SIDE)</text>
+    
+    <!-- Inner Mitochondrial Membrane Strip -->
+    <rect x="501" y="240" width="433" height="65" fill="url(#c1MemGrad)" stroke="var(--primary, #3b82f6)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="511" y="276" font-size="10" font-weight="600" fill="var(--primary, #2563eb)">Inner Membrane (IMM)</text>
+
+    <text x="511" y="330" font-size="10" font-weight="700" fill="var(--text-soft, #64748b)" letter-spacing="0.05em">INTERMEMBRANE SPACE (P-SIDE)</text>
+
+    <!-- N-Module -->
+    <g class="c1-module c1-n-module" data-module="n-module" onclick="selectComplexIModule('n-module')">
+      <rect x="615" y="82" width="140" height="66" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8" filter="url(#c1DropShadow)"/>
+      <text x="685" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#0369a1">N-Module (NADH)</text>
+      <text x="685" y="122" text-anchor="middle" font-size="10" font-weight="600" fill="#0284c7">NDUFV1, V2, S1</text>
+      <text x="685" y="137" text-anchor="middle" font-size="9" font-weight="500" fill="#0284c7">Conserved Catalytic Core</text>
+    </g>
+
+    <!-- Q-Module -->
+    <g class="c1-module c1-q-module" data-module="q-module" onclick="selectComplexIModule('q-module')">
+      <rect x="615" y="156" width="140" height="74" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.8" filter="url(#c1DropShadow)"/>
+      <text x="685" y="180" text-anchor="middle" font-size="12" font-weight="700" fill="#15803d">Q-Module (Fe-S Relay)</text>
+      <text x="685" y="198" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">NDUFS2, S3, S7, S8</text>
+      <text x="685" y="215" text-anchor="middle" font-size="9" font-weight="500" fill="#16a34a">CA Domain Anchor Interface</text>
+    </g>
+
+    <!-- P-Module (Hydrophobic Arm) -->
+    <g class="c1-module c1-p-module" data-module="p-module" onclick="selectComplexIModule('p-module')">
+      <rect x="585" y="240" width="220" height="65" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.8" filter="url(#c1DropShadow)"/>
+      <text x="695" y="262" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">P-Module (nad1–nad9)</text>
+      <text x="695" y="279" text-anchor="middle" font-size="10" font-weight="600" fill="#7c3aed">Extensive RNA Editing (>100 C-to-U)</text>
+      <text x="695" y="294" text-anchor="middle" font-size="9" font-weight="500" fill="#7c3aed">Trans-spliced subcomplexes</text>
+    </g>
+
+    <!-- PLANT CA-MODULE (Carbonic Anhydrase Matrix Protuberance) -->
+    <g class="c1-module c1-ca-module" data-module="ca-module" onclick="selectComplexIModule('ca-module')">
+      <!-- Structural connector tether -->
+      <line x1="755" y1="180" x2="770" y2="160" stroke="#d97706" stroke-width="2.5" stroke-dasharray="3,2"/>
+      <rect x="768" y="112" width="158" height="96" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2.2" filter="url(#c1DropShadow)"/>
+      <rect x="778" y="118" width="138" height="18" rx="4" fill="#f59e0b"/>
+      <text x="847" y="131" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">PLANT INNOVATION (Q2)</text>
+      <text x="847" y="152" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">CA-Domain (~85 kDa)</text>
+      <text x="847" y="169" text-anchor="middle" font-size="10" font-weight="600" fill="#b45309">CAL1, CAL2, CA1, CA2, CA3</text>
+      <text x="847" y="184" text-anchor="middle" font-size="9" font-weight="500" fill="#b45309">γ-Carbonic Anhydrase Wedge</text>
+      <text x="847" y="198" text-anchor="middle" font-size="8.5" font-weight="600" fill="#78350f">Stabilizes I+III₂ Supercomplex</text>
+    </g>
+
+    <!-- BYPASSES: AOX1a -->
+    <g class="c1-module c1-bypasses" data-module="bypasses" onclick="selectComplexIModule('bypasses')">
+      <rect x="815" y="240" width="112" height="65" rx="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2" filter="url(#c1DropShadow)"/>
+      <rect x="823" y="245" width="96" height="15" rx="3" fill="#ea580c"/>
+      <text x="871" y="256" text-anchor="middle" font-size="8.5" font-weight="700" fill="#ffffff">PLANT BYPASS</text>
+      <text x="871" y="274" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3412">AOX1a</text>
+      <text x="871" y="289" text-anchor="middle" font-size="9" font-weight="600" fill="#c2410c">QH₂ → H₂O (0 H⁺)</text>
+      <text x="871" y="300" text-anchor="middle" font-size="8" font-weight="500" fill="#9a3412">Stress Overflow Valve</text>
+    </g>
+
+    <!-- BYPASSES: Internal NDA1 & External NDB2 -->
+    <g class="c1-module c1-bypasses" data-module="bypasses" onclick="selectComplexIModule('bypasses')">
+      <!-- NDA1 in Matrix -->
+      <rect x="510" y="184" width="95" height="46" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="557" y="202" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3412">NDA1 (Int.)</text>
+      <text x="557" y="217" text-anchor="middle" font-size="8.5" font-weight="500" fill="#c2410c">Matrix NADH (0 H⁺)</text>
+
+      <!-- NDB2 in IMS -->
+      <rect x="510" y="315" width="95" height="46" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="557" y="333" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9a3412">NDB2 (Ext.)</text>
+      <text x="557" y="348" text-anchor="middle" font-size="8.5" font-weight="500" fill="#c2410c">Cytosol NADH (0 H⁺)</text>
+    </g>
+
+    <!-- Bottom Features & Assembly Notice -->
+    <rect x="511" y="368" width="413" height="32" rx="6" fill="var(--bg, #ffffff)" stroke="var(--card-border, #e2e8f0)" stroke-width="1"/>
+    <text x="523" y="388" font-size="10" font-weight="600" fill="#059669">✓ Rotenone-Tolerant • CA protuberance required for male fertility and photorespiration</text>
+  </g>
+</svg>
+        </div>
+
+        <div id="complex-i-module-hud">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">
+            <h4 id="hud-module-title" style="margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text);">All Holo-Complex I Modules &amp; Alternative Bypasses</h4>
+            <span class="badge" style="background: var(--bg); border: 1px solid var(--card-border); font-size: 0.75rem;">Comparative HUD</span>
+          </div>
+          <div class="hud-grid">
+            <div class="hud-item">
+              <div class="hud-item-label">Mammalian Subunits (Homo sapiens)</div>
+              <div id="hud-module-mammal" class="hud-item-val">45 subunits (7 mtDNA-encoded, 38 nuclear-encoded) • ~970 kDa</div>
+            </div>
+            <div class="hud-item">
+              <div class="hud-item-label">Plant Orthologs (Arabidopsis thaliana)</div>
+              <div id="hud-module-plant" class="hud-item-val">51 subunits (9 mtDNA-encoded, 42 nuclear-encoded) • ~1,000 kDa</div>
+            </div>
+            <div class="hud-item">
+              <div class="hud-item-label">Catalytic Mechanism &amp; Stoichiometry</div>
+              <div id="hud-module-mechanism" class="hud-item-val">NADH + H⁺ + Q + 4 H⁺_matrix → NAD⁺ + QH₂ + 4 H⁺_IMS. Plant Complex I features an auxiliary matrix Carbonic Anhydrase protuberance and bypass enzymes (AOX1a, NDB2, NDA1).</div>
+            </div>
+            <div class="hud-item">
+              <div class="hud-item-label">Human Clinical Disease Association</div>
+              <div id="hud-module-clinical" class="hud-item-val">Complex I deficiency is the most frequent cause of mitochondrial disease (~30% of cases), causing Leigh syndrome, fatal infantile lactic acidosis, and LHON.</div>
+            </div>
+            <div class="hud-item" style="grid-column: 1 / -1;">
+              <div class="hud-item-label">Plant Physiological Role &amp; Stress Significance</div>
+              <div id="hud-module-significance" class="hud-item-val">Dual metabolic flexibility: under photorespiration or spaceflight stress, excess reducing equivalents bypass Complex I via AOX/NDB2, preventing lethal ROS generation.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Taxonomic Evolutionary Cladogram -->
+      <section id="taxonomic-synteny-tree" class="synteny-section">
+        <div class="section-header">
+          <h3>Evolutionary Trajectory of the Mitochondrial Proteome (1.8 Ga to Present)</h3>
+          <p>Trace endosymbiotic origins, organellar gene transfer (EGT), land colonization adaptations, and mammalian streamlining across 6 major evolutionary epochs.</p>
+        </div>
+
+        <div id="taxonomic-epoch-btns" class="module-toolbar">
+          <button type="button" class="btn active" data-epoch="epoch-1" onclick="selectEpoch('epoch-1')">1. α-Proteobacteria (1.8 Ga)</button>
+          <button type="button" class="btn" data-epoch="epoch-2" onclick="selectEpoch('epoch-2')">2. Archaeplastida (1.5 Ga)</button>
+          <button type="button" class="btn" data-epoch="epoch-3" onclick="selectEpoch('epoch-3')">3. Chlorophyta (1.0 Ga)</button>
+          <button type="button" class="btn" data-epoch="epoch-4" onclick="selectEpoch('epoch-4')">4. Bryophytes (450 Ma)</button>
+          <button type="button" class="btn" data-epoch="epoch-5" onclick="selectEpoch('epoch-5')">5. Angiosperms (140 Ma)</button>
+          <button type="button" class="btn" data-epoch="epoch-6" onclick="selectEpoch('epoch-6')">6. Metazoa (Mammals)</button>
+        </div>
+
+        <div class="cladogram-svg-wrap">
+          <svg id="cladogram-svg" viewBox="0 0 960 250" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display: block; font-family: var(--font-sans, -apple-system, sans-serif);">
+  <defs>
+    <filter id="nodeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Backbone Timeline Line -->
+  <line x1="60" y1="130" x2="430" y2="130" stroke="var(--primary, #3b82f6)" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Branch to Metazoa / Mammals (Upward) -->
+  <path d="M 430 130 C 470 130, 480 60, 520 60 L 780 60" fill="none" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Branch to Land Plants / Angiosperms (Downward) -->
+  <path d="M 430 130 C 470 130, 480 195, 520 195 L 780 195" fill="none" stroke="#059669" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Epoch 1: α-Proteobacteria -->
+  <g class="tree-epoch-node active-epoch" data-epoch="epoch-1" onclick="selectEpoch('epoch-1')" style="cursor: pointer;">
+    <circle cx="80" cy="130" r="18" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" filter="url(#nodeShadow)"/>
+    <text x="80" y="134" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">1</text>
+    <text x="80" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="var(--text, #0f172a)">α-Proteobacteria</text>
+    <text x="80" y="180" text-anchor="middle" font-size="9.5" font-weight="500" fill="var(--text-soft, #64748b)">~1.8 Ga Endosymbiosis</text>
+  </g>
+
+  <!-- Epoch 2: Archaeplastida -->
+  <g class="tree-epoch-node" data-epoch="epoch-2" onclick="selectEpoch('epoch-2')" style="cursor: pointer;">
+    <circle cx="230" cy="130" r="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5" filter="url(#nodeShadow)"/>
+    <text x="230" y="134" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">2</text>
+    <text x="230" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="var(--text, #0f172a)">Archaeplastida</text>
+    <text x="230" y="180" text-anchor="middle" font-size="9.5" font-weight="500" fill="var(--text-soft, #64748b)">~1.5 Ga Plastid EGT</text>
+  </g>
+
+  <!-- Epoch 3: Chlorophyta -->
+  <g class="tree-epoch-node" data-epoch="epoch-3" onclick="selectEpoch('epoch-3')" style="cursor: pointer;">
+    <circle cx="390" cy="130" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5" filter="url(#nodeShadow)"/>
+    <text x="390" y="134" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">3</text>
+    <text x="390" y="166" text-anchor="middle" font-size="11" font-weight="700" fill="var(--text, #0f172a)">Chlorophyta</text>
+    <text x="390" y="180" text-anchor="middle" font-size="9.5" font-weight="500" fill="var(--text-soft, #64748b)">~1.0 Ga AOX / NDH Origin</text>
+  </g>
+
+  <!-- Epoch 6: Metazoa / Mammalia (Upper branch) -->
+  <g class="tree-epoch-node" data-epoch="epoch-6" onclick="selectEpoch('epoch-6')" style="cursor: pointer;">
+    <circle cx="780" cy="60" r="18" fill="#f1f5f9" stroke="#475569" stroke-width="2.5" filter="url(#nodeShadow)"/>
+    <text x="780" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">6</text>
+    <text x="780" y="94" text-anchor="middle" font-size="11" font-weight="700" fill="var(--text, #0f172a)">Metazoa (Mammals)</text>
+    <text x="780" y="108" text-anchor="middle" font-size="9.5" font-weight="500" fill="var(--text-soft, #64748b)">Streamlined mtDNA (16.5 kb)</text>
+  </g>
+
+  <!-- Epoch 4: Bryophytes (Lower branch left) -->
+  <g class="tree-epoch-node" data-epoch="epoch-4" onclick="selectEpoch('epoch-4')" style="cursor: pointer;">
+    <circle cx="570" cy="195" r="18" fill="#fef3c7" stroke="#d97706" stroke-width="2.5" filter="url(#nodeShadow)"/>
+    <text x="570" y="199" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">4</text>
+    <text x="570" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="var(--text, #0f172a)">Bryophytes</text>
+    <text x="570" y="242" text-anchor="middle" font-size="9.5" font-weight="500" fill="var(--text-soft, #64748b)">~450 Ma Land / RNA Editing</text>
+  </g>
+
+  <!-- Epoch 5: Angiosperms (Lower branch right) -->
+  <g class="tree-epoch-node" data-epoch="epoch-5" onclick="selectEpoch('epoch-5')" style="cursor: pointer;">
+    <circle cx="780" cy="195" r="18" fill="#d1fae5" stroke="#059669" stroke-width="2.5" filter="url(#nodeShadow)"/>
+    <text x="780" y="199" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">5</text>
+    <text x="780" y="228" text-anchor="middle" font-size="11" font-weight="700" fill="var(--text, #0f172a)">Angiosperms (A. thaliana)</text>
+    <text x="780" y="242" text-anchor="middle" font-size="9.5" font-weight="500" fill="var(--text-soft, #64748b)">~140 Ma CA Domain • PPR &gt;450</text>
+  </g>
+</svg>
+        </div>
+
+        <div id="epoch-details-panel">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">
+            <h4 id="epoch-hud-name" style="margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text);">α-Proteobacteria Endosymbiosis (~1.8 Billion Years Ago)</h4>
+            <span class="badge" style="background: var(--bg); border: 1px solid var(--card-border); font-size: 0.75rem;">Evolutionary Milestone</span>
+          </div>
+          <div class="hud-grid">
+            <div class="hud-item" style="grid-column: 1 / -1;">
+              <div class="hud-item-label">Evolutionary Transition</div>
+              <div id="epoch-hud-milestone" class="hud-item-val">Free-living bacterium related to Rickettsiales engulfed by Asgard archaeon host.</div>
+            </div>
+            <div class="hud-item">
+              <div class="hud-item-label">Key Bioenergetic Innovations</div>
+              <div id="epoch-hud-innovations" class="hud-item-val">Ancestral proton-pumping electron transport chain (Complexes I, II, III, IV, V), complete oxidative phosphorylation, and TCA cycle.</div>
+            </div>
+            <div class="hud-item">
+              <div class="hud-item-label">Genome Architecture &amp; Gene Transfer</div>
+              <div id="epoch-hud-genomic" class="hud-item-val">Circular bacterial genome (~1.5 Mb). Massive Endosymbiotic Gene Transfer (EGT) to host nucleus begins, founding organellar signaling.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clinical Cross-Species Rescue Spotlight -->
+      <div class="rescue-callout">
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+          <div style="font-size: 1.8rem; line-height: 1;">💡</div>
+          <div>
+            <h4 style="margin: 0 0 6px 0; font-size: 1.1rem; font-weight: 700; color: #047857;">Translational Spotlight: Xenotopic Expression of Plant Enzymes Rescues Human Mitochondrial Disease</h4>
+            <p style="margin: 0 0 10px 0; font-size: 0.88rem; color: var(--text); line-height: 1.55;">
+              Because mammals completely lost non-proton pumping respiratory enzymes, mitochondrial defects in human Complex I or Complex III/IV cause fatal respiratory arrest, severe lactic acidosis, and early death (e.g. Leigh syndrome).
+              Groundbreaking studies have shown that <strong>xenotopic expression of plant Alternative Oxidase (AOX1a)</strong> or plant <strong>Type II NADH dehydrogenase (NDB2)</strong> in human patient cybrids and mouse disease models acts as an artificial electron bypass:
+            </p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 0.86rem; color: var(--text-soft); line-height: 1.5;">
+              <li><strong>Circumventing Complex III/IV Blockades:</strong> Plant AOX accepts electrons directly from reduced ubiquinol (QH₂) and donates them directly to O₂, completely restoring electron flux and preventing catastrophic superoxide generation in human cells (<a href="https://doi.org/10.1038/sj.embor.7400627" target="_blank" style="color: var(--primary);">Hakkaart et al. 2006 EMBO Rep</a>).</li>
+              <li><strong>Treating Fatal Myopathies:</strong> In mouse models of mitochondrial encephalomyopathy and cardiac ischemia, AOX transgene expression prevented sudden heart failure, decreased brain lesions, and restored normal motor performance (<a href="https://doi.org/10.1038/cddis.2013.530" target="_blank" style="color: var(--primary);">El-Khoury et al. 2014 Cell Death Dis</a>; <a href="https://doi.org/10.1093/hmg/dds126" target="_blank" style="color: var(--primary);">Cannino et al. 2012 Hum Mol Genet</a>).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Quadrant Navigator & Synteny Explorer -->
+      <section id="quadrant-navigator" class="synteny-section">
+        <div class="section-header">
+          <h3>Interactive Quadrant Navigator &amp; Ortholog Synteny Explorer</h3>
+          <p>Search and filter curated human MitoCarta 3.0 loci vs <em>Arabidopsis</em> homologs across all four evolutionary quadrants with real-time sequence identity gating.</p>
+        </div>
+
+        <div class="navigator-controls">
+          <div class="search-box-wrap">
+            <input type="text" id="synteny-search-input" placeholder="Search gene symbol, locus, pathway, or disease..." oninput="filterSyntenyTable()">
+          </div>
+
+          <div id="quadrant-filter-btns" style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <button type="button" class="btn btn-sm active" data-quadrant="all" onclick="setQuadrantFilter('all')">All Quadrants</button>
+            <button type="button" class="btn btn-sm" data-quadrant="strict_ortholog" onclick="setQuadrantFilter('strict_ortholog')">Q1 Strict</button>
+            <button type="button" class="btn btn-sm" data-quadrant="plant_specific_innovation" onclick="setQuadrantFilter('plant_specific_innovation')">Q2 Innovation</button>
+            <button type="button" class="btn btn-sm" data-quadrant="dual_targeted_divergence" onclick="setQuadrantFilter('dual_targeted_divergence')">Q3 Dual-Targeted</button>
+            <button type="button" class="btn btn-sm" data-quadrant="expanded_plant_family" onclick="setQuadrantFilter('expanded_plant_family')">Q4 Expanded</button>
+          </div>
+
+          <div class="slider-wrap">
+            <span>Min Identity:</span>
+            <input type="range" id="identity-slider" min="0" max="80" step="5" value="0" oninput="filterSyntenyTable()" style="width: 100px;">
+            <span id="identity-value" class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">0%</span>
+          </div>
+
+          <div id="synteny-metrics-badge" class="synteny-metrics">
+            Showing <strong>14</strong> / 14 ortholog pairs &bull; Mean Identity: <strong>47.9%</strong>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table id="synteny-table" class="synteny-table">
+            <thead>
+              <tr>
+                <th style="min-width: 110px;">Human Gene</th>
+                <th style="min-width: 170px;">Arabidopsis Locus</th>
+                <th style="min-width: 140px;">Quadrant</th>
+                <th style="min-width: 120px;">Identity</th>
+                <th style="min-width: 240px;">Human Clinical Phenotype</th>
+                <th style="min-width: 260px;">Evolutionary Inference &amp; Significance</th>
+              </tr>
+            </thead>
+            <tbody id="synteny-table-body">
+              
+        <tr data-quadrant="strict_ortholog" data-identity="58.4">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/4704" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">NDUFA9</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G08530" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT5G08530</a> <span style="font-weight: 600; color: var(--text);">(NDUFA9)</span></td>
+          <td><span class="badge" style="background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.3); font-weight: 600;">Q1: Strict Ortholog</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 58.4%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">58.4%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause Leigh syndrome and fatal infantile lactic acidosis.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Catalytic NADH-dehydrogenase core structure identical; plant protein co-assembles with CA-domain protuberance.</td>
+        </tr>
+        
+        <tr data-quadrant="strict_ortholog" data-identity="72.1">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/6389" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">SDHA</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G66760" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT5G66760</a> <span style="font-weight: 600; color: var(--text);">(SDH1-1)</span></td>
+          <td><span class="badge" style="background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.3); font-weight: 600;">Q1: Strict Ortholog</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 72.1%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">72.1%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause Leigh syndrome, cardiomyopathy, paraganglioma.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Conserved FAD-binding flavoprotein subunit coupling succinate oxidation to ubiquinone pool reduction.</td>
+        </tr>
+        
+        <tr data-quadrant="strict_ortholog" data-identity="64.3">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/7386" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">UQCRFS1</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G13440" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT5G13440</a> <span style="font-weight: 600; color: var(--text);">(RIESKE)</span></td>
+          <td><span class="badge" style="background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.3); font-weight: 600;">Q1: Strict Ortholog</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 64.3%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">64.3%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause Complex III deficiency with exercise intolerance.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Conserved [2Fe-2S] cluster mediating the first electron transfer of the Q-cycle.</td>
+        </tr>
+        
+        <tr data-quadrant="strict_ortholog" data-identity="62.8">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/2752" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">GLDC</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT4G33010" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT4G33010</a> <span style="font-weight: 600; color: var(--text);">(GDCP)</span></td>
+          <td><span class="badge" style="background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.3); font-weight: 600;">Q1: Strict Ortholog</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 62.8%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">62.8%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause nonketotic hyperglycinemia with severe neurological impairment.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">In plants, GDCP expression is photo-regulated and massive, driving 3-organelle photorespiratory nitrogen cycling.</td>
+        </tr>
+        
+        <tr data-quadrant="dual_targeted_divergence" data-identity="34.2">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/5428" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">POLG</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G50840" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT1G50840</a> <span style="font-weight: 600; color: var(--text);">(PolIA)</span></td>
+          <td><span class="badge" style="background: rgba(217,119,6,0.12); color: #d97706; border: 1px solid rgba(217,119,6,0.3); font-weight: 600;">Q3: Dual-Targeted</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 34.2%; height: 100%; background: #d97706;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">34.2%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause Alpers-Huttenlocher syndrome, PEO, sensory ataxic neuropathy.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Human POLG is dedicated strictly to mitochondria; plant PolIA is dual-targeted to both mitochondria and chloroplasts, synchronizing genome maintenance across both endosymbionts.</td>
+        </tr>
+        
+        <tr data-quadrant="plant_specific_innovation" data-identity="0.0">
+          <td><span style="color: var(--text-soft); font-style: italic;">None (Plant Innovation)</span></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G22370" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT3G22370</a> <span style="font-weight: 600; color: var(--text);">(AOX1a)</span></td>
+          <td><span class="badge" style="background: rgba(2,132,199,0.12); color: #0284c7; border: 1px solid rgba(2,132,199,0.3); font-weight: 600;">Q2: Plant Innovation</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 0.0%; height: 100%; background: #94a3b8;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">0.0%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Absent in mammals. Expression of plant AOX in human cybrids or mice rescues Complex I and III deficiencies!</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Plant-specific non-proton-pumping terminal oxidase. Acts as a therapeutic bypass when transferred to mammalian disease models.</td>
+        </tr>
+        
+        <tr data-quadrant="strict_ortholog" data-identity="61.2">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/1327" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">COX4I1</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT3G15640" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT3G15640</a> <span style="font-weight: 600; color: var(--text);">(COX5b-1)</span></td>
+          <td><span class="badge" style="background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.3); font-weight: 600;">Q1: Strict Ortholog</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 61.2%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">61.2%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause mitochondrial complex IV deficiency, Leigh syndrome, and lactic acidosis.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Catalytic cytochrome c oxidase regulatory subunit in the terminal respiratory complex.</td>
+        </tr>
+        
+        <tr data-quadrant="strict_ortholog" data-identity="68.5">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/506" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">ATP5F1B</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G13450" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT5G13450</a> <span style="font-weight: 600; color: var(--text);">(ATP5)</span></td>
+          <td><span class="badge" style="background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.3); font-weight: 600;">Q1: Strict Ortholog</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 68.5%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">68.5%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause mitochondrial encephalopathy and episodic metabolic decompensation.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Rotary catalytic F1-domain beta subunit coupling proton flux to ATP synthesis.</td>
+        </tr>
+        
+        <tr data-quadrant="strict_ortholog" data-identity="59.4">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/1431" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">CS</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT2G36070" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT2G36070</a> <span style="font-weight: 600; color: var(--text);">(CSY2)</span></td>
+          <td><span class="badge" style="background: rgba(5,150,105,0.12); color: #059669; border: 1px solid rgba(5,150,105,0.3); font-weight: 600;">Q1: Strict Ortholog</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 59.4%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">59.4%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations disrupt the mitochondrial tricarboxylic acid cycle initiating flux.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Catalyzes oxaloacetate and acetyl-CoA condensation; non-cyclic flux in illuminated leaves.</td>
+        </tr>
+        
+        <tr data-quadrant="plant_specific_innovation" data-identity="0.0">
+          <td><span style="color: var(--text-soft); font-style: italic;">None (Plant Innovation)</span></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G47260" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT1G47260</a> <span style="font-weight: 600; color: var(--text);">(CAL1)</span></td>
+          <td><span class="badge" style="background: rgba(2,132,199,0.12); color: #0284c7; border: 1px solid rgba(2,132,199,0.3); font-weight: 600;">Q2: Plant Innovation</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 0.0%; height: 100%; background: #94a3b8;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">0.0%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Completely absent in mammals. Required for plant holo-Complex I super-assembly stability.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Forms matrix-facing Carbonic Anhydrase-like protuberance essential for OXPHOS assembly and male fertility.</td>
+        </tr>
+        
+        <tr data-quadrant="plant_specific_innovation" data-identity="0.0">
+          <td><span style="color: var(--text-soft); font-style: italic;">None (Plant Innovation)</span></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT4G05020" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT4G05020</a> <span style="font-weight: 600; color: var(--text);">(NDB2)</span></td>
+          <td><span class="badge" style="background: rgba(2,132,199,0.12); color: #0284c7; border: 1px solid rgba(2,132,199,0.3); font-weight: 600;">Q2: Plant Innovation</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 0.0%; height: 100%; background: #94a3b8;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">0.0%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Absent in mammals. Xenotopic expression in human cybrids bypasses rotenone Complex I blockade.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">External rotenone-insensitive NADH dehydrogenase oxidizing cytosolic NADH without proton pumping.</td>
+        </tr>
+        
+        <tr data-quadrant="dual_targeted_divergence" data-identity="41.5">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/5889" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">RAD51C</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT1G79050" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT1G79050</a> <span style="font-weight: 600; color: var(--text);">(RecA1)</span></td>
+          <td><span class="badge" style="background: rgba(217,119,6,0.12); color: #d97706; border: 1px solid rgba(217,119,6,0.3); font-weight: 600;">Q3: Dual-Targeted</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 41.5%; height: 100%; background: #d97706;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">41.5%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human RAD51 defects cause Fanconi anemia and severe genomic instability.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Dual-targeted to BOTH mitochondria and chloroplasts; drives homologous recombination repair across massive plant organellar genomes.</td>
+        </tr>
+        
+        <tr data-quadrant="expanded_plant_family" data-identity="28.6">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/10128" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">LRPPRC</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT2G31490" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT2G31490</a> <span style="font-weight: 600; color: var(--text);">(GUN1)</span></td>
+          <td><span class="badge" style="background: rgba(139,92,246,0.12); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.3); font-weight: 600;">Q4: Expanded Family</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 28.6%; height: 100%; background: #d97706;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">28.6%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations cause French-Canadian type Leigh syndrome with severe COX deficiency.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Mammals harbor only ~7 PPR proteins; plants expanded the family to &gt;450 members to edit ~500 C-to-U organellar RNA sites.</td>
+        </tr>
+        
+        <tr data-quadrant="expanded_plant_family" data-identity="54.2">
+          <td><a href="https://www.ncbi.nlm.nih.gov/gene/1468" target="_blank" style="font-weight: 700; color: var(--text); text-decoration: none;">SLC25A10</a></td>
+          <td><a href="https://www.arabidopsis.org/servlets/TairObject?type=locus&name=AT5G19760" target="_blank" style="font-family: var(--font-mono, monospace); font-weight: 600; color: var(--primary);">AT5G19760</a> <span style="font-weight: 600; color: var(--text);">(DTC)</span></td>
+          <td><span class="badge" style="background: rgba(139,92,246,0.12); color: #8b5cf6; border: 1px solid rgba(139,92,246,0.3); font-weight: 600;">Q4: Expanded Family</span></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 55px; height: 6px; background: var(--card-border); border-radius: 3px; overflow: hidden;">
+                <div style="width: 54.2%; height: 100%; background: #059669;"></div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600;">54.2%</span>
+            </div>
+          </td>
+          <td style="font-size: 0.84rem; line-height: 1.45;">Human mutations impair dicarboxylate transport, fatty acid synthesis, and gluconeogenesis.</td>
+          <td style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.45;">Dicarboxylate/tricarboxylate carrier; plant lineage expanded mitochondrial carrier family (MCF) for photosynthetic cross-talk.</td>
+        </tr>
+        
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Core MitoPathways Alignment -->
+      <section class="synteny-section">
+        <div class="section-header">
+          <h3>Core MitoPathways Alignment: Human vs. Plant Proteomes</h3>
+          <p>Conservation scores, structural stoichiometries, and plant-specific bypass augmentations across major bioenergetic modules.</p>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="synteny-table">
+            <thead>
+              <tr>
+                <th style="min-width: 220px;">MitoPathway Name</th>
+                <th style="min-width: 120px;">Category</th>
+                <th style="min-width: 140px;">Conservation</th>
+                <th style="min-width: 320px;">Plant-Specific Features &amp; Bypasses</th>
+              </tr>
+            </thead>
+            <tbody>
+              
         <tr>
           <td><strong style="color: var(--text);">Complex I (NADH:ubiquinone oxidoreductase)</strong></td>
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">OXPHOS</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 82.5%; height: 100%; background: #059669;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">82%</span>
@@ -483,7 +1317,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">OXPHOS</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 95.0%; height: 100%; background: #059669;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">95%</span>
@@ -497,7 +1331,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">OXPHOS</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 88.0%; height: 100%; background: #059669;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">88%</span>
@@ -511,7 +1345,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">OXPHOS</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 85.0%; height: 100%; background: #059669;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">85%</span>
@@ -525,7 +1359,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">OXPHOS</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 91.0%; height: 100%; background: #059669;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">91%</span>
@@ -539,7 +1373,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">OXPHOS</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 0.0%; height: 100%; background: #dc2626;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">0%</span>
@@ -553,7 +1387,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">Metabolism</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 92.0%; height: 100%; background: #059669;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">92%</span>
@@ -567,7 +1401,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">Metabolism</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 86.0%; height: 100%; background: #059669;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">86%</span>
@@ -581,7 +1415,7 @@
           <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">Mitochondrial Central Dogma</span></td>
           <td>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 60px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
+              <div style="width: 70px; height: 8px; background: var(--card-border); border-radius: 4px; overflow: hidden;">
                 <div style="width: 45.0%; height: 100%; background: #d97706;"></div>
               </div>
               <span style="font-size: 0.8rem; font-weight: 600;">45%</span>
@@ -590,83 +1424,10 @@
           <td style="font-size: 0.85rem; color: var(--text-soft);">Human POLG is strictly mitochondrial; plant PolIA and PolIB are dual-targeted to BOTH mitochondria and chloroplasts. Plant mtDNA is massive (367 kb vs 16.5 kb human) and recombines actively via RecA.</td>
         </tr>
         
-          </tbody>
-        </table>
-      </div>
-
-      <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 24px;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 4px;">Human Disease Loci vs Plant Stress Homologs</h3>
-        <p style="color: var(--text-soft); font-size: 0.85rem;">Cross-species inference: how human medical genetics informs plant catalytic biology, and how plant bypasses (AOX) rescue human disease.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Human Gene</th>
-              <th>Arabidopsis Locus</th>
-              <th>Quadrant</th>
-              <th>Identity</th>
-              <th>Human Clinical Phenotype</th>
-              <th>Inference & Cross-Species Significance</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-        <tr>
-          <td><strong>NDUFA9</strong></td>
-          <td><span style="font-family: monospace; color: var(--primary);">AT5G08530</span> (NDUFA9)</td>
-          <td><span class="badge badge-t1">Strict Ortholog (Q1)</span></td>
-          <td>58.4%</td>
-          <td style="font-size: 0.83rem;">Human mutations cause Leigh syndrome and fatal infantile lactic acidosis.</td>
-          <td style="font-size: 0.83rem; color: var(--text-soft);">Catalytic NADH-dehydrogenase core structure identical; plant protein co-assembles with CA-domain protuberance.</td>
-        </tr>
-        
-        <tr>
-          <td><strong>SDHA</strong></td>
-          <td><span style="font-family: monospace; color: var(--primary);">AT5G66760</span> (SDH1-1)</td>
-          <td><span class="badge badge-t1">Strict Ortholog (Q1)</span></td>
-          <td>72.1%</td>
-          <td style="font-size: 0.83rem;">Human mutations cause Leigh syndrome, cardiomyopathy, paraganglioma.</td>
-          <td style="font-size: 0.83rem; color: var(--text-soft);">Conserved FAD-binding flavoprotein subunit coupling succinate oxidation to ubiquinone pool reduction.</td>
-        </tr>
-        
-        <tr>
-          <td><strong>UQCRFS1</strong></td>
-          <td><span style="font-family: monospace; color: var(--primary);">AT5G13440</span> (RIESKE)</td>
-          <td><span class="badge badge-t1">Strict Ortholog (Q1)</span></td>
-          <td>64.3%</td>
-          <td style="font-size: 0.83rem;">Human mutations cause Complex III deficiency with exercise intolerance.</td>
-          <td style="font-size: 0.83rem; color: var(--text-soft);">Conserved [2Fe-2S] cluster mediating the first electron transfer of the Q-cycle.</td>
-        </tr>
-        
-        <tr>
-          <td><strong>GLDC</strong></td>
-          <td><span style="font-family: monospace; color: var(--primary);">AT4G33010</span> (GDCP)</td>
-          <td><span class="badge badge-t1">Strict Ortholog (Q1)</span></td>
-          <td>62.8%</td>
-          <td style="font-size: 0.83rem;">Human mutations cause nonketotic hyperglycinemia with severe neurological impairment.</td>
-          <td style="font-size: 0.83rem; color: var(--text-soft);">In plants, GDCP expression is photo-regulated and massive, driving 3-organelle photorespiratory nitrogen cycling.</td>
-        </tr>
-        
-        <tr>
-          <td><strong>POLG</strong></td>
-          <td><span style="font-family: monospace; color: var(--primary);">AT1G50840</span> (PolIA)</td>
-          <td><span class="badge badge-t3">Dual-Targeted (Q3)</span></td>
-          <td>34.2%</td>
-          <td style="font-size: 0.83rem;">Human mutations cause Alpers-Huttenlocher syndrome, PEO, sensory ataxic neuropathy.</td>
-          <td style="font-size: 0.83rem; color: var(--text-soft);">Human POLG is dedicated strictly to mitochondria; plant PolIA is dual-targeted to both mitochondria and chloroplasts, synchronizing genome maintenance across both endosymbionts.</td>
-        </tr>
-        
-        <tr>
-          <td><strong>NONE</strong></td>
-          <td><span style="font-family: monospace; color: var(--primary);">AT3G22370</span> (AOX1a)</td>
-          <td><span class="badge badge-t2">Plant Innovation (Q2)</span></td>
-          <td>0.0%</td>
-          <td style="font-size: 0.83rem;">Absent in mammals. Expression of plant AOX in human cybrids or mice rescues Complex I and III deficiencies!</td>
-          <td style="font-size: 0.83rem; color: var(--text-soft);">Plant-specific non-proton-pumping terminal oxidase. Acts as a therapeutic bypass when transferred to mammalian disease models.</td>
-        </tr>
-        
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
     
     <footer class="cose-foot">
@@ -714,4 +1475,136 @@
 </body>
 </html>
 
+    <script>
+    const complexIModuleData = {"all": {"title": "All Holo-Complex I Modules & Alternative Bypasses", "mammal_subunits": "45 subunits (7 mtDNA-encoded, 38 nuclear-encoded) \u2022 ~970 kDa", "plant_subunits": "51 subunits (9 mtDNA-encoded, 42 nuclear-encoded) \u2022 ~1,000 kDa", "mechanism": "NADH + H\u207a + Q + 4 H\u207a_matrix \u2192 NAD\u207a + QH\u2082 + 4 H\u207a_IMS. Plant Complex I features an auxiliary matrix Carbonic Anhydrase protuberance and bypass enzymes (AOX1a, NDB2, NDA1).", "clinical": "Complex I deficiency is the most frequent cause of mitochondrial disease (~30% of cases), causing Leigh syndrome, fatal infantile lactic acidosis, and LHON.", "plant_significance": "Dual metabolic flexibility: under photorespiration or spaceflight stress, excess reducing equivalents bypass Complex I via AOX/NDB2, preventing lethal ROS generation."}, "n-module": {"title": "N-Module (NADH Dehydrogenase Core: NDUFV1, NDUFV2, NDUFS1)", "mammal_subunits": "3 core subunits (NDUFV1, NDUFV2, NDUFS1) harboring FMN and 2 Fe-S clusters [2Fe-2S, 4Fe-4S]", "plant_subunits": "3 orthologous core subunits (AT5G08530 / NDUFV1, AT1G79010 / NDUFV2, AT5G37510 / NDUFS1)", "mechanism": "2-electron hydride transfer from NADH to FMN: NADH + H\u207a + FMN \u2192 NAD\u207a + FMNH\u2082. Entry point for matrix reducing equivalents.", "clinical": "NDUFV1/NDUFS1 mutations cause severe infantile Leigh syndrome, leukodystrophy, and macrocephaly.", "plant_significance": "Strictly conserved catalytic core (~60% amino acid identity). Co-regulated with chloroplast redox state to buffer photorespiratory NADH."}, "q-module": {"title": "Q-Module (Ubiquinone Reduction & Fe-S Relay: NDUFS2, NDUFS3, NDUFS7, NDUFS8)", "mammal_subunits": "4 core subunits (NDUFS2, NDUFS3, NDUFS7, NDUFS8) harboring 8 Fe-S cluster wire to Q-binding pocket", "plant_subunits": "4 conserved core subunits (AT1G16700 / NDUFS2, AT2G37660 / NDUFS3, AT3G03070 / NDUFS7, AT1G76190 / NDUFS8)", "mechanism": "Rapid electron tunneling down the 8-cluster wire to reduce ubiquinone (Q) to ubiquinol (QH\u2082) at the arm junction.", "clinical": "NDUFS2/S7 defects cause hypertrophic cardiomyopathy, Leigh syndrome, and bilateral striatal necrosis.", "plant_significance": "Forms the essential structural docking interface for the plant-specific Carbonic Anhydrase-like (CA) heteropentamer."}, "p-module": {"title": "P-Module (Proton-Pumping Hydrophobic Membrane Arm: ND1\u2013ND6, ND4L)", "mammal_subunits": "7 mtDNA-encoded subunits (ND1\u2013ND6, ND4L) forming 3 proton-translocating channels", "plant_subunits": "9 hydrophobic core subunits (nad1\u2013nad9) organized into proximal and distal proton pumping channels", "mechanism": "Long-range electrostatic conformational piston waves transmit energy from Q reduction to pump 4 H\u207a across the inner membrane.", "clinical": "Primary mtDNA mutations (m.11778G>A in ND4, m.3460G>A in ND1, m.14484T>C in ND6) cause Leber Hereditary Optic Neuropathy (LHON).", "plant_significance": "Plant nad transcripts undergo extraordinary C-to-U RNA editing (>100 sites directed by PPR proteins) and complex trans-splicing."}, "ca-module": {"title": "CA-Module (Plant-Specific Carbonic Anhydrase Matrix Protuberance: CAL1, CAL2, CA1\u20133)", "mammal_subunits": "COMPLETELY ABSENT IN MAMMALS (0 subunits). Mammalian Complex I has no matrix protuberance.", "plant_subunits": "5 plant-specific subunits (CAL1: AT1G47260, CAL2: AT3G48680, CA1: AT1G19580, CA2: AT3G28660, CA3: AT5G63510) \u2022 ~85 kDa mass", "mechanism": "Heteropentameric matrix wedge with \u03b3-carbonic anhydrase fold interconverting HCO\u2083\u207b \u2194 CO\u2082 + H\u2082O.", "clinical": "Absent in mammals. Structural stability principles inform artificial macromolecular engineering templates.", "plant_significance": "Obligate for holo-Complex I assembly, stability of the I+III\u2082 supercomplex, male fertility, and photorespiratory CO\u2082 re-trapping."}, "bypasses": {"title": "Alternative Respiration Bypasses (AOX1a, NDB2, NDA1)", "mammal_subunits": "COMPLETELY ABSENT IN MAMMALS. Mammalian mitochondria lack alternative oxidases and NDHs.", "plant_subunits": "AOX family (AOX1a: AT3G22370, AOX1d, AOX2) + Type II NDHs (NDB2: AT4G05020, NDA1: AT1G07180, NDC1)", "mechanism": "Non-proton pumping electron shunts: NDB2 oxidizes cytosolic NADH, while AOX1a directly reduces O\u2082 to H\u2082O, releasing energy as heat.", "clinical": "Expression of plant AOX in human cybrids and mice rescues Complex I and III deficiencies, preventing lactic acidosis and Leigh syndrome!", "plant_significance": "Crucial overflow valve preventing reactive oxygen species (ROS) under microgravity, cold, drought, and photoinhibition."}};
+    const epochData = {"epoch-1": {"name": "\u03b1-Proteobacteria Endosymbiosis", "age": "~1.8 Billion Years Ago (Paleoproterozoic)", "milestone": "Free-living bacterium related to Rickettsiales engulfed by Asgard archaeon host.", "innovations": "Ancestral proton-pumping electron transport chain (Complexes I, II, III, IV, V), complete oxidative phosphorylation, and TCA cycle.", "genomic": "Circular bacterial genome (~1.5 Mb). Massive Endosymbiotic Gene Transfer (EGT) to host nucleus begins, founding organellar signaling."}, "epoch-2": {"name": "Archaeplastida Plastid Acquisition & Dual Targeting", "age": "~1.5 Billion Years Ago (Mesoproterozoic)", "milestone": "Primary endosymbiotic engulfment of cyanobacterium initiates photosynthetic eukaryote lineage.", "innovations": "Evolution of dual-targeting: single nuclear genes encode polymerases (PolIA/B), RecA, and tRNA synthetases shared by both organelles.", "genomic": "Emergence of organellar cross-talk: mitochondrial metabolism adapts to photosynthetic redox and high oxygen tensions."}, "epoch-3": {"name": "Chlorophyta & Green Lineage Bypasses", "age": "~1.0 Billion Years Ago (Neoproterozoic)", "milestone": "Divergence of chlorophyte green algae; origin of plant-specific bioenergetic flexibilities.", "innovations": "Evolution of Alternative Oxidase (AOX) and Type II rotenone-insensitive NAD(P)H dehydrogenases (NDA/NDB) to buffer photosynthetic surges.", "genomic": "Coupling of mitochondrial glycine decarboxylase (GDC) to photorespiratory RuBisCO oxygenase flux."}, "epoch-4": {"name": "Bryophyte Land Colonization & RNA Editing Burst", "age": "~450 Million Years Ago (Ordovician / Silurian)", "milestone": "Transition of plants from aquatic environments to land; exposure to desiccation, UV, and thermal swings.", "innovations": "Massive explosive expansion of the Pentatricopeptide Repeat (PPR) family to correct hundreds of C-to-U defects in mitochondrial transcripts.", "genomic": "Plant mitochondrial genomes expand drastically via non-homologous recombination and non-coding sequence accumulation."}, "epoch-5": {"name": "Angiosperm Specialization & CA Domain", "age": "~140 Million Years Ago to Present (Cretaceous to Cenozoic)", "milestone": "Diversification of flowering plants; co-evolution of flowers, specialized tissues, and high metabolic flux.", "innovations": "Pentameric matrix Carbonic Anhydrase (CA) domain (CAL1, CAL2, CA1\u20133) integrally incorporated into Complex I; cytoplasmic male sterility (CMS) systems.", "genomic": "PPR family expands to >450 genes editing ~500 sites; open non-cyclic TCA cycle prioritized for amino acid synthesis and stress signaling."}, "epoch-6": {"name": "Metazoan Lineage Streamlining (Animal / Mammal)", "age": "~300 Million Years Ago to Present", "milestone": "Evolution of metazoans; loss of vegetative flexibilities in favor of motile, homoeothermic specialization.", "innovations": "Streamlined 45-subunit Complex I lacking CA protuberance; reliance on tissue-specific COX isoforms; complete loss of alternative bypasses (no AOX, no NDH).", "genomic": "Radical genome streamlining: human mtDNA reduced to 16,569 bp encoding only 13 proteins; high vulnerability to oxidative stress, rotenone, and ischemia."}};
+    let currentActiveQuadrant = 'all';
+
+    function selectComplexIModule(moduleId) {
+      const btns = document.querySelectorAll('#complex-i-module-btns .btn');
+      btns.forEach(b => {
+        if (b.getAttribute('data-module') === moduleId) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
+      const allSvgModules = document.querySelectorAll('#complex-i-svg .c1-module');
+      allSvgModules.forEach(el => {
+        if (moduleId === 'all') {
+          el.classList.remove('dimmed');
+          el.classList.remove('highlighted');
+        } else {
+          const m = el.getAttribute('data-module');
+          if (m === moduleId) {
+            el.classList.add('highlighted');
+            el.classList.remove('dimmed');
+          } else {
+            el.classList.add('dimmed');
+            el.classList.remove('highlighted');
+          }
+        }
+      });
+
+      const data = complexIModuleData[moduleId] || complexIModuleData['all'];
+      document.getElementById('hud-module-title').textContent = data.title;
+      document.getElementById('hud-module-mammal').textContent = data.mammal_subunits;
+      document.getElementById('hud-module-plant').textContent = data.plant_subunits;
+      document.getElementById('hud-module-mechanism').textContent = data.mechanism;
+      document.getElementById('hud-module-clinical').textContent = data.clinical;
+      document.getElementById('hud-module-significance').textContent = data.plant_significance;
+    }
+
+    function selectEpoch(epochId) {
+      const btns = document.querySelectorAll('#taxonomic-epoch-btns .btn');
+      btns.forEach(b => {
+        if (b.getAttribute('data-epoch') === epochId) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
+      const nodes = document.querySelectorAll('#cladogram-svg .tree-epoch-node');
+      nodes.forEach(n => {
+        if (n.getAttribute('data-epoch') === epochId) {
+          n.classList.add('active-epoch');
+          const circle = n.querySelector('circle');
+          if (circle) circle.setAttribute('stroke-width', '4');
+        } else {
+          n.classList.remove('active-epoch');
+          const circle = n.querySelector('circle');
+          if (circle) circle.setAttribute('stroke-width', '2.5');
+        }
+      });
+
+      const ep = epochData[epochId];
+      if (!ep) return;
+      document.getElementById('epoch-hud-name').textContent = ep.name + ' (' + ep.age + ')';
+      document.getElementById('epoch-hud-milestone').textContent = ep.milestone;
+      document.getElementById('epoch-hud-innovations').textContent = ep.innovations;
+      document.getElementById('epoch-hud-genomic').textContent = ep.genomic;
+    }
+
+    function setQuadrantFilter(quadId) {
+      currentActiveQuadrant = quadId;
+      const btns = document.querySelectorAll('#quadrant-filter-btns .btn');
+      btns.forEach(b => {
+        if (b.getAttribute('data-quadrant') === quadId) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+      filterSyntenyTable();
+      const navSec = document.getElementById('quadrant-navigator');
+      if (navSec) {
+        navSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function filterSyntenyTable() {
+      const searchInput = document.getElementById('synteny-search-input');
+      const searchVal = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      const slider = document.getElementById('identity-slider');
+      const minId = slider ? parseFloat(slider.value) : 0;
+      const valBadge = document.getElementById('identity-value');
+      if (valBadge) valBadge.textContent = minId + '%';
+
+      const rows = document.querySelectorAll('#synteny-table-body tr');
+      let visibleCount = 0;
+      let totalIdentity = 0;
+
+      rows.forEach(tr => {
+        const rowQuad = tr.getAttribute('data-quadrant');
+        const rowId = parseFloat(tr.getAttribute('data-identity')) || 0;
+        const text = tr.textContent.toLowerCase();
+
+        const quadMatch = (currentActiveQuadrant === 'all' || rowQuad === currentActiveQuadrant);
+        const idMatch = (rowId >= minId);
+        const textMatch = (!searchVal || text.includes(searchVal));
+
+        if (quadMatch && idMatch && textMatch) {
+          tr.style.display = '';
+          visibleCount++;
+          totalIdentity += rowId;
+        } else {
+          tr.style.display = 'none';
+        }
+      });
+
+      const metricsBadge = document.getElementById('synteny-metrics-badge');
+      if (metricsBadge) {
+        const avg = visibleCount > 0 ? (totalIdentity / visibleCount).toFixed(1) : '0.0';
+        metricsBadge.innerHTML = 'Showing <strong>' + visibleCount + '</strong> / ' + rows.length + ' ortholog pairs &bull; Mean Identity: <strong>' + avg + '%</strong>';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      selectComplexIModule('all');
+      selectEpoch('epoch-1');
+      filterSyntenyTable();
+    });
+    </script>
     

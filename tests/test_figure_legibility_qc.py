@@ -450,6 +450,73 @@ def test_interactive_multiomics_studio_qc():
     assert "osd8" in index_html, "Missing OSD-8 radiation contrast in index.html"
 
 
+def test_comparative_synteny_studio_qc():
+    """ABAI QC Check 18: Interactive Comparative Synteny Studio with Complex I holo-assembly alignment, taxonomic cladogram, and quadrant navigator."""
+    from pathlib import Path
+    comp_html = Path("docs/comparative.html").read_text(encoding="utf-8")
+
+    # Assert page size and core containers
+    assert len(comp_html) > 25000, f"docs/comparative.html size too small: {len(comp_html)} bytes"
+    assert 'id="complex-i-synteny-widget"' in comp_html, "Missing complex-i-synteny-widget in comparative.html"
+    assert 'id="taxonomic-synteny-tree"' in comp_html, "Missing taxonomic-synteny-tree in comparative.html"
+    assert 'id="quadrant-navigator"' in comp_html, "Missing quadrant-navigator in comparative.html"
+
+    # Assert Complex I holo-assembly SVG & HUD components
+    assert 'id="complex-i-svg"' in comp_html, "Missing complex-i-svg in comparative.html"
+    assert 'id="complex-i-module-hud"' in comp_html, "Missing complex-i-module-hud in comparative.html"
+    assert 'id="hud-module-title"' in comp_html, "Missing hud-module-title"
+    assert 'id="hud-module-mammal"' in comp_html, "Missing hud-module-mammal"
+    assert 'id="hud-module-plant"' in comp_html, "Missing hud-module-plant"
+    assert 'id="hud-module-mechanism"' in comp_html, "Missing hud-module-mechanism"
+    assert 'id="hud-module-clinical"' in comp_html, "Missing hud-module-clinical"
+    assert 'id="hud-module-significance"' in comp_html, "Missing hud-module-significance"
+
+    # Assert Complex I module selector buttons
+    for mod in ["all", "n-module", "q-module", "p-module", "ca-module", "bypasses"]:
+        assert f'data-module="{mod}"' in comp_html, f"Missing data-module='{mod}' button in comparative.html"
+
+    # Assert Taxonomic Cladogram SVG & Epoch Details Panel
+    assert 'id="cladogram-svg"' in comp_html, "Missing cladogram-svg in comparative.html"
+    assert 'id="epoch-details-panel"' in comp_html, "Missing epoch-details-panel in comparative.html"
+    assert 'id="epoch-hud-name"' in comp_html, "Missing epoch-hud-name"
+    assert 'id="epoch-hud-milestone"' in comp_html, "Missing epoch-hud-milestone"
+    assert 'id="epoch-hud-innovations"' in comp_html, "Missing epoch-hud-innovations"
+    assert 'id="epoch-hud-genomic"' in comp_html, "Missing epoch-hud-genomic"
+
+    # Assert Cladogram 6 Epochs
+    for ep in ["epoch-1", "epoch-2", "epoch-3", "epoch-4", "epoch-5", "epoch-6"]:
+        assert f'data-epoch="{ep}"' in comp_html, f"Missing data-epoch='{ep}' in comparative.html"
+
+    # Assert 4 Evolutionary Quadrants
+    assert "Q1: Strict Orthologs" in comp_html, "Missing Q1 card in comparative.html"
+    assert "Q2: Plant Innovations" in comp_html, "Missing Q2 card in comparative.html"
+    assert "Q3: Dual-Targeted Divergence" in comp_html, "Missing Q3 card in comparative.html"
+    assert "Q4: Expanded Plant Families" in comp_html, "Missing Q4 card in comparative.html"
+
+    # Assert Quadrant Navigator controls and table
+    assert 'id="synteny-search-input"' in comp_html, "Missing synteny-search-input"
+    assert 'id="identity-slider"' in comp_html, "Missing identity-slider"
+    assert 'id="identity-value"' in comp_html, "Missing identity-value"
+    assert 'id="synteny-metrics-badge"' in comp_html, "Missing synteny-metrics-badge"
+    assert 'id="synteny-table"' in comp_html, "Missing synteny-table"
+    assert 'id="synteny-table-body"' in comp_html, "Missing synteny-table-body"
+
+    # Assert Translational Spotlight on Xenotopic Rescue
+    assert "Xenotopic Expression" in comp_html, "Missing Xenotopic Expression section"
+    assert "Hakkaart et al." in comp_html, "Missing Hakkaart citation"
+    assert "El-Khoury et al." in comp_html, "Missing El-Khoury citation"
+    assert "Cannino et al." in comp_html, "Missing Cannino citation"
+
+    # Assert client-side interactive JavaScript functions & data objects
+    assert "complexIModuleData" in comp_html, "Missing complexIModuleData in comparative.html"
+    assert "epochData" in comp_html, "Missing epochData in comparative.html"
+    assert "selectComplexIModule" in comp_html, "Missing selectComplexIModule function"
+    assert "selectEpoch" in comp_html, "Missing selectEpoch function"
+    assert "setQuadrantFilter" in comp_html, "Missing setQuadrantFilter function"
+    assert "filterSyntenyTable" in comp_html, "Missing filterSyntenyTable function"
+
+
+
 
 
 
