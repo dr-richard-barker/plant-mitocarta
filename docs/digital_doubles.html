@@ -495,19 +495,19 @@
       <div class="doubles-layout">
         <aside class="control-panel">
           <h4 style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-soft); margin-bottom: 10px;">Select Organelle Double</h4>
-          <button class="view-select-btn active" onclick="switchDouble('synoptic')">
+          <button class="view-select-btn active" data-mode="synoptic" onclick="switchDouble('synoptic')">
             <span>Cell Synoptic Overview</span> <span>🌐</span>
           </button>
-          <button class="view-select-btn" onclick="switchDouble('mitochondrion')">
+          <button class="view-select-btn" data-mode="mitochondrion" onclick="switchDouble('mitochondrion')">
             <span>Plant Mitochondrion</span> <span>🔥</span>
           </button>
-          <button class="view-select-btn" onclick="switchDouble('chloroplast')">
+          <button class="view-select-btn" data-mode="chloroplast" onclick="switchDouble('chloroplast')">
             <span>Chloroplast</span> <span>🌿</span>
           </button>
-          <button class="view-select-btn" onclick="switchDouble('nucleus')">
+          <button class="view-select-btn" data-mode="nucleus" onclick="switchDouble('nucleus')">
             <span>Nucleus</span> <span>🧬</span>
           </button>
-          <button class="view-select-btn" onclick="switchDouble('plasma_membrane')">
+          <button class="view-select-btn" data-mode="plasma_membrane" onclick="switchDouble('plasma_membrane')">
             <span>Plasma Membrane</span> <span>🛡️</span>
           </button>
 
@@ -550,75 +550,26 @@
       let currentMode = 'synoptic';
       let currentDataset = 'OSD-120';
 
-      function renderSynoptic() {
-        const svg = document.getElementById('double-svg');
-        svg.setAttribute('viewBox', '0 0 1600 1100');
-        svg.innerHTML = `
-          <!-- Cell Wall / Boundary -->
-          <rect x="20" y="20" width="1560" height="1060" rx="30" fill="none" stroke="#64748b" stroke-width="6" stroke-dasharray="12 6" />
-          <text x="50" y="55" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#64748b">Plant Cell Boundary & Wall (Apoplast)</text>
+      function getContrastColor(hexColor) {
+        if (!hexColor || hexColor.charAt(0) !== '#') return '#0f172a';
+        let hex = hexColor.substring(1);
+        if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+        const r = parseInt(hex.substr(0, 2), 16) || 0;
+        const g = parseInt(hex.substr(2, 2), 16) || 0;
+        const b = parseInt(hex.substr(4, 2), 16) || 0;
+        const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        return (yiq >= 145) ? '#0f172a' : '#f8fafc';
+      }
 
-          <!-- 1. Plasma Membrane Double Banner -->
-          <g id="box-pm" onclick="switchDouble('plasma_membrane')" style="cursor: pointer;">
-            <rect x="60" y="80" width="1480" height="160" rx="12" fill="${getColor('plasma_membrane', 'plasma_membrane')}" stroke="#1d4e6b" stroke-width="3" />
-            <text x="80" y="125" font-family="Inter, sans-serif" font-weight="700" font-size="20" fill="#ffffff">Plasma Membrane Double (Sensing & Conduit)</text>
-            <text x="80" y="155" font-family="Inter, sans-serif" font-size="14" fill="#cbd5e1">FERONIA, WAK1, RBOHD NADPH Oxidase, MSL10 stretch gate, GLR3.3/3.6 Ca2+ channels, PIP2;1</text>
-            <text x="80" y="195" font-family="JetBrains Mono, monospace" font-size="13" fill="#38bdf8">OSD-120 Mean log2FC: +1.28 • RBOHD (+1.62), WAK1 (+1.38), MSL10 (+1.45)</text>
-          </g>
-
-          <!-- 2. Chloroplast Double -->
-          <g id="box-chloro" onclick="switchDouble('chloroplast')" style="cursor: pointer;">
-            <rect x="60" y="300" width="700" height="420" rx="20" fill="${getColor('chloroplast', 'chloroplast_stroma')}" stroke="#0b5c46" stroke-width="4" />
-            <text x="90" y="345" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#ffffff">Chloroplast Double (Plastidial Engine)</text>
-            <text x="90" y="375" font-family="Inter, sans-serif" font-size="14" fill="#a7f3d0">Photosystems I/II • Calvin Cycle • GUN1 hub • SAL1-PAP • MEcPP • EX1</text>
-            <!-- Thylakoid Grana Sub-box -->
-            <rect x="90" y="420" width="640" height="140" rx="10" fill="${getColor('chloroplast', 'thylakoid_membrane')}" stroke="#063d2e" stroke-width="2" />
-            <text x="110" y="460" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="#ffffff">Thylakoid Grana Stacks & Lumen (PSII / PSI / Cyt b6f)</text>
-            <text x="110" y="490" font-family="JetBrains Mono, monospace" font-size="13" fill="#6ee7b7">Singlet Oxygen Sensed by EXECUTER 1 (EX1 log2FC: +1.12)</text>
-            <!-- Stromule Projection Tubule -->
-            <path d="M 760 500 Q 820 620 680 780" fill="none" stroke="#10b981" stroke-width="6" stroke-dasharray="8 4" />
-            <text x="770" y="600" font-family="Inter, sans-serif" font-weight="600" font-size="13" fill="#10b981">Stromule H2O2 Conduit</text>
-          </g>
-
-          <!-- 3. Mitochondrion Double (Plant MitoCarta) -->
-          <g id="box-mito" onclick="switchDouble('mitochondrion')" style="cursor: pointer;">
-            <rect x="840" y="300" width="700" height="420" rx="20" fill="${getColor('mitochondrion', 'mitochondrial_matrix')}" stroke="#7a4a12" stroke-width="4" />
-            <text x="870" y="345" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#ffffff">Plant Mitochondrion (Plant MitoCarta)</text>
-            <text x="870" y="375" font-family="Inter, sans-serif" font-size="14" fill="#fed7aa">Complexes I-V • AOX Bypass • Type II NDHs • CA Domain • GDC Photorespiration</text>
-            <!-- Cristae Sub-box -->
-            <rect x="870" y="420" width="640" height="140" rx="10" fill="${getColor('mitochondrion', 'cristae')}" stroke="#6b3f0d" stroke-width="2" />
-            <text x="890" y="460" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="#ffffff">Inner Membrane Cristae & Relief Bypasses</text>
-            <text x="890" y="490" font-family="JetBrains Mono, monospace" font-size="13" fill="#fb923c">AOX1a Surge: +1.84 log2FC • NDB2 (+1.32) • PUMP1 (+0.85)</text>
-          </g>
-
-          <!-- 4. Nucleus Double (Transcriptional Command) -->
-          <g id="box-nucl" onclick="switchDouble('nucleus')" style="cursor: pointer;">
-            <rect x="420" y="780" width="760" height="260" rx="20" fill="${getColor('nucleus', 'nucleoplasm')}" stroke="#4a2a55" stroke-width="4" />
-            <text x="450" y="825" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#ffffff">Nucleus Double (Retrograde Convergence)</text>
-            <text x="450" y="855" font-family="Inter, sans-serif" font-size="14" fill="#e9d5ff">MDRE Promoters • Cleaved ANAC017/013 • ABI4 • GLK1/2 • XRN2/3 Exoribonucleases</text>
-            <rect x="450" y="880" width="700" height="120" rx="8" fill="rgba(0,0,0,0.2)" stroke="#5c3569" />
-            <text x="470" y="915" font-family="JetBrains Mono, monospace" font-size="13" fill="#d8b4fe">Mitochondrial Retrograde: ANAC017 (+0.92) -> MDRE -> AOX1a (+1.84)</text>
-            <text x="470" y="945" font-family="JetBrains Mono, monospace" font-size="13" fill="#d8b4fe">Plastid Retrograde: SAL1 (-0.65) -> PAP -> XRN2/3 inhibition • GLK1 (-1.42)</text>
-            <text x="470" y="975" font-family="JetBrains Mono, monospace" font-size="13" fill="#f43f5e">Photorespiration: GDC (-1.15) & SHMT1 (-0.94) co-suppressed under orbit</text>
-          </g>
-
-          <!-- Inter-Organellar Dynamic Arrows -->
-          <!-- PM to Mito / Chloro Wave -->
-          <path d="M 400 240 L 400 300" stroke="#0284c7" stroke-width="4" marker-end="url(#arrow-blue)" />
-          <path d="M 1200 240 L 1200 300" stroke="#0284c7" stroke-width="4" marker-end="url(#arrow-blue)" />
-          <text x="310" y="275" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#0284c7">Ca2+ & H2O2 Wave</text>
-          <text x="1210" y="275" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#0284c7">Ca2+ & H2O2 Wave</text>
-
-          <!-- Chloro & Mito to Nucleus -->
-          <path d="M 400 720 L 500 780" stroke="#10b981" stroke-width="4" />
-          <path d="M 1150 720 L 1050 780" stroke="#f97316" stroke-width="4" />
-          <text x="320" y="760" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#10b981">PRR (PAP & GUN1)</text>
-          <text x="1110" y="760" font-family="Inter, sans-serif" font-weight="600" font-size="12" fill="#f97316">MRR (ANAC017)</text>
-
-          <!-- Photorespiratory Loop (Chloro <-> Mito) -->
-          <path d="M 760 380 L 840 380" stroke="#eab308" stroke-width="3" stroke-dasharray="6 4" />
-          <text x="750" y="370" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="#eab308">Photorespiration</text>
-        `;
+      function getSubContrastColor(hexColor) {
+        if (!hexColor || hexColor.charAt(0) !== '#') return '#475569';
+        let hex = hexColor.substring(1);
+        if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+        const r = parseInt(hex.substr(0, 2), 16) || 0;
+        const g = parseInt(hex.substr(2, 2), 16) || 0;
+        const b = parseInt(hex.substr(4, 2), 16) || 0;
+        const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        return (yiq >= 145) ? '#334155' : '#cbd5e1';
       }
 
       function getColor(dId, subId) {
@@ -634,10 +585,114 @@
         return '#334155';
       }
 
+      function renderSynoptic() {
+        const svg = document.getElementById('double-svg');
+        svg.setAttribute('viewBox', '0 0 1600 1100');
+
+        const pmFill = getColor('plasma_membrane', 'plasma_membrane');
+        const pmText = getContrastColor(pmFill);
+        const pmSubText = getSubContrastColor(pmFill);
+
+        const chlFill = getColor('chloroplast', 'chloroplast_stroma');
+        const chlText = getContrastColor(chlFill);
+        const chlSubText = getSubContrastColor(chlFill);
+
+        const thylFill = getColor('chloroplast', 'thylakoid_membrane');
+        const thylText = getContrastColor(thylFill);
+
+        const mitFill = getColor('mitochondrion', 'mitochondrial_matrix');
+        const mitText = getContrastColor(mitFill);
+        const mitSubText = getSubContrastColor(mitFill);
+
+        const crFill = getColor('mitochondrion', 'cristae');
+        const crText = getContrastColor(crFill);
+
+        const nucFill = getColor('nucleus', 'nucleoplasm');
+        const nucText = getContrastColor(nucFill);
+        const nucSubText = getSubContrastColor(nucFill);
+
+        svg.innerHTML = `
+          <!-- Cell Wall / Boundary -->
+          <rect x="20" y="20" width="1560" height="1060" rx="30" fill="none" stroke="#64748b" stroke-width="6" stroke-dasharray="12 6" />
+          <text x="50" y="55" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#64748b">Plant Cell Boundary &amp; Wall (Apoplast)</text>
+
+          <!-- 1. Plasma Membrane Double Banner -->
+          <g id="box-pm" onclick="switchDouble('plasma_membrane')" style="cursor: pointer;">
+            <rect x="60" y="80" width="1480" height="160" rx="12" fill="${pmFill}" stroke="#1d4e6b" stroke-width="3" />
+            <text x="80" y="125" font-family="Inter, sans-serif" font-weight="700" font-size="20" fill="${pmText}">Plasma Membrane Double (Sensing &amp; Conduit)</text>
+            <text x="80" y="155" font-family="Inter, sans-serif" font-size="14" fill="${pmSubText}">FERONIA, WAK1, RBOHD NADPH Oxidase, MSL10 stretch gate, GLR3.3/3.6 Ca2+ channels, PIP2;1</text>
+            <rect x="76" y="172" width="680" height="28" rx="6" fill="rgba(15, 23, 42, 0.88)" stroke="rgba(255,255,255,0.2)" />
+            <text x="90" y="191" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#38bdf8">OSD-120 Mean log2FC: +1.28 • RBOHD (+1.62), WAK1 (+1.38), MSL10 (+1.45)</text>
+          </g>
+
+          <!-- 2. Chloroplast Double -->
+          <g id="box-chloro" onclick="switchDouble('chloroplast')" style="cursor: pointer;">
+            <rect x="60" y="300" width="700" height="420" rx="20" fill="${chlFill}" stroke="#0b5c46" stroke-width="4" />
+            <text x="90" y="345" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="${chlText}">Chloroplast Double (Plastidial Engine)</text>
+            <text x="90" y="375" font-family="Inter, sans-serif" font-size="14" fill="${chlSubText}">Photosystems I/II • Calvin Cycle • GUN1 hub • SAL1-PAP • MEcPP • EX1</text>
+            <!-- Thylakoid Grana Sub-box -->
+            <rect x="90" y="420" width="640" height="140" rx="10" fill="${thylFill}" stroke="#063d2e" stroke-width="2" />
+            <text x="110" y="458" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="${thylText}">Thylakoid Grana Stacks &amp; Lumen (PSII / PSI / Cyt b6f)</text>
+            <rect x="105" y="474" width="530" height="28" rx="6" fill="rgba(15, 23, 42, 0.88)" stroke="rgba(255,255,255,0.2)" />
+            <text x="120" y="493" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#6ee7b7">Singlet Oxygen Sensed by EXECUTER 1 (EX1 log2FC: +1.12)</text>
+            <!-- Stromule Projection Tubule -->
+            <path d="M 760 500 Q 820 620 680 780" fill="none" stroke="#10b981" stroke-width="6" stroke-dasharray="8 4" />
+            <rect x="735" y="588" width="190" height="26" rx="6" fill="var(--card-bg)" stroke="#10b981" stroke-width="1.5" />
+            <text x="830" y="605" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#10b981">Stromule H2O2 Conduit</text>
+          </g>
+
+          <!-- 3. Mitochondrion Double (Plant MitoCarta) -->
+          <g id="box-mito" onclick="switchDouble('mitochondrion')" style="cursor: pointer;">
+            <rect x="840" y="300" width="700" height="420" rx="20" fill="${mitFill}" stroke="#7a4a12" stroke-width="4" />
+            <text x="870" y="345" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="${mitText}">Plant Mitochondrion (Plant MitoCarta)</text>
+            <text x="870" y="375" font-family="Inter, sans-serif" font-size="14" fill="${mitSubText}">Complexes I-V • AOX Bypass • Type II NDHs • CA Domain • GDC Photorespiration</text>
+            <!-- Cristae Sub-box -->
+            <rect x="870" y="420" width="640" height="140" rx="10" fill="${crFill}" stroke="#6b3f0d" stroke-width="2" />
+            <text x="890" y="458" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="${crText}">Inner Membrane Cristae &amp; Relief Bypasses</text>
+            <rect x="885" y="474" width="530" height="28" rx="6" fill="rgba(15, 23, 42, 0.88)" stroke="rgba(255,255,255,0.2)" />
+            <text x="900" y="493" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#fb923c">AOX1a Surge: +1.84 log2FC • NDB2 (+1.32) • PUMP1 (+0.85)</text>
+          </g>
+
+          <!-- 4. Nucleus Double (Transcriptional Command) -->
+          <g id="box-nucl" onclick="switchDouble('nucleus')" style="cursor: pointer;">
+            <rect x="420" y="780" width="760" height="260" rx="20" fill="${nucFill}" stroke="#4a2a55" stroke-width="4" />
+            <text x="450" y="825" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="${nucText}">Nucleus Double (Retrograde Convergence)</text>
+            <text x="450" y="855" font-family="Inter, sans-serif" font-size="14" fill="${nucSubText}">MDRE Promoters • Cleaved ANAC017/013 • ABI4 • GLK1/2 • XRN2/3 Exoribonucleases</text>
+            <rect x="450" y="880" width="700" height="120" rx="8" fill="rgba(15, 23, 42, 0.88)" stroke="#5c3569" />
+            <text x="470" y="915" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#d8b4fe">Mitochondrial Retrograde: ANAC017 (+0.92) -&gt; MDRE -&gt; AOX1a (+1.84)</text>
+            <text x="470" y="945" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#c084fc">Plastid Retrograde: SAL1 (-0.65) -&gt; PAP -&gt; XRN2/3 inhibition • GLK1 (-1.42)</text>
+            <text x="470" y="975" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#fb7185">Photorespiration: GDC (-1.15) &amp; SHMT1 (-0.94) co-suppressed under orbit</text>
+          </g>
+
+          <!-- Inter-Organellar Dynamic Arrows -->
+          <!-- PM to Mito / Chloro Wave -->
+          <path d="M 400 240 L 400 300" stroke="#0284c7" stroke-width="4" marker-end="url(#arrow-blue)" />
+          <path d="M 1200 240 L 1200 300" stroke="#0284c7" stroke-width="4" marker-end="url(#arrow-blue)" />
+          <rect x="315" y="260" width="170" height="24" rx="4" fill="var(--card-bg)" stroke="#0284c7" />
+          <text x="400" y="276" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#0284c7">Ca2+ &amp; H2O2 Wave</text>
+          <rect x="1115" y="260" width="170" height="24" rx="4" fill="var(--card-bg)" stroke="#0284c7" />
+          <text x="1200" y="276" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#0284c7">Ca2+ &amp; H2O2 Wave</text>
+
+          <!-- Chloro & Mito to Nucleus -->
+          <path d="M 400 720 L 500 780" stroke="#10b981" stroke-width="4" />
+          <path d="M 1150 720 L 1050 780" stroke="#f97316" stroke-width="4" />
+          <rect x="250" y="746" width="160" height="24" rx="4" fill="var(--card-bg)" stroke="#10b981" />
+          <text x="330" y="762" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#10b981">PRR (PAP &amp; GUN1)</text>
+          <rect x="1070" y="746" width="160" height="24" rx="4" fill="var(--card-bg)" stroke="#f97316" />
+          <text x="1150" y="762" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#f97316">MRR (ANAC017)</text>
+
+          <!-- Photorespiratory Loop (Chloro <-> Mito) -->
+          <path d="M 760 380 L 840 380" stroke="#eab308" stroke-width="3" stroke-dasharray="6 4" />
+          <rect x="730" y="368" width="140" height="24" rx="4" fill="var(--card-bg)" stroke="#eab308" />
+          <text x="800" y="384" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="#eab308">Photorespiration</text>
+        `;
+      }
+
       function switchDouble(mode) {
         currentMode = mode;
-        document.querySelectorAll('.view-select-btn').forEach(b => b.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+        document.querySelectorAll('.view-select-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-mode') === mode);
+        });
 
         if (mode === 'synoptic') {
           document.getElementById('canvas-title').innerText = 'Plant Cell Synoptic View (All 4 Doubles)';
@@ -655,12 +710,21 @@
           const fill = getColor(mode, s.id);
           const p = projData[mode] ? projData[mode][s.id] : null;
           const statText = p ? `log2FC: ${p.val > 0 ? '+' : ''}${p.val} (p=${p.p_val})` : '';
+          const textColor = getContrastColor(fill);
+          const subColor = getSubContrastColor(fill);
+          const strokeColor = textColor === '#0f172a' ? '#334155' : 'rgba(255,255,255,0.7)';
+          const badgeBg = 'rgba(15, 23, 42, 0.88)';
+          const badgeText = p ? (p.val > 0 ? '#fb923c' : '#38bdf8') : '#ffffff';
+
           rects += `
             <g style="cursor: pointer;" onclick="inspectSubcomp('${mode}', '${s.id}')">
-              <rect x="${s.box.x}" y="${s.box.y}" width="${s.box.w}" height="${s.box.h}" rx="8" fill="${fill}" stroke="#ffffff" stroke-width="1.5" />
-              <text x="${s.box.x + 16}" y="${s.box.y + 24}" font-family="Inter, sans-serif" font-weight="700" font-size="14" fill="#ffffff">${s.label}</text>
-              <text x="${s.box.x + 16}" y="${s.box.y + 44}" font-family="Inter, sans-serif" font-size="11" fill="rgba(255,255,255,0.8)">${s.desc.substring(0, 70)}...</text>
-              ${p ? `<text x="${s.box.x + 16}" y="${s.box.y + s.box.h - 12}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#f8fafc">${statText}</text>` : ''}
+              <rect x="${s.box.x}" y="${s.box.y}" width="${s.box.w}" height="${s.box.h}" rx="8" fill="${fill}" stroke="${strokeColor}" stroke-width="2" />
+              <text x="${s.box.x + 16}" y="${s.box.y + 26}" font-family="Inter, sans-serif" font-weight="700" font-size="15" fill="${textColor}">${s.label}</text>
+              <text x="${s.box.x + 16}" y="${s.box.y + 48}" font-family="Inter, sans-serif" font-size="12" fill="${subColor}">${s.desc.substring(0, 68)}...</text>
+              ${p ? `
+                <rect x="${s.box.x + 14}" y="${s.box.y + s.box.h - 32}" width="${Math.min(s.box.w - 28, 280)}" height="22" rx="4" fill="${badgeBg}" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                <text x="${s.box.x + 22}" y="${s.box.y + s.box.h - 17}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="${badgeText}">${statText}</text>
+              ` : ''}
             </g>
           `;
         });

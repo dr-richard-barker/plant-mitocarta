@@ -395,7 +395,7 @@
 
     
     .circuit-btn {
-      padding: 8px 16px;
+      padding: 10px 18px;
       background: var(--bg);
       border: 1px solid var(--card-border);
       border-radius: 6px;
@@ -403,35 +403,136 @@
       font-weight: 600;
       color: var(--text);
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.15s ease;
+    }
+    .circuit-btn:hover {
+      background: var(--surface-2);
+      border-color: var(--primary);
     }
     .circuit-btn.active {
       background: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .step-card {
-      background: var(--card-bg);
+    .circuit-controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface-2);
       border: 1px solid var(--card-border);
       border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 12px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .ctrl-btn {
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .ctrl-btn:hover {
+      background: var(--surface);
+      border-color: var(--primary);
+    }
+    .ctrl-btn.primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .speed-selector {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg);
+      padding: 3px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+    }
+    .speed-btn {
+      padding: 3px 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+    .speed-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    .step-status-pill {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--primary);
+    }
+    .step-card {
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
       display: flex;
       align-items: flex-start;
-      gap: 16px;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .step-card:hover {
+      border-color: var(--primary);
+      background: var(--surface-2);
+      transform: translateX(3px);
+    }
+    .step-card.active-step-card {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 1.5px var(--primary);
     }
     .step-num {
-      width: 28px;
-      height: 28px;
-      background: var(--primary-light);
-      color: var(--primary);
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.85rem;
       flex-shrink: 0;
+      background: var(--surface-2);
+      color: var(--text-soft);
+      border: 1px solid var(--card-border);
+      transition: all 0.2s ease;
+    }
+    .step-card.active-step-card .step-num {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    @keyframes halo-anim {
+      0% { r: 18px; opacity: 0.9; }
+      50% { r: 28px; opacity: 0.3; }
+      100% { r: 18px; opacity: 0.9; }
+    }
+    .pulse-halo-anim {
+      animation: halo-anim 1.6s infinite ease-in-out;
     }
     
   </style>
@@ -460,113 +561,294 @@
     
     <main class="container">
       <div style="margin-bottom: 24px;">
-        <h2 style="font-size: 1.8rem; font-weight: 800;">Retrograde Signaling & Inter-Organellar Crosstalk</h2>
+        <h2 style="font-size: 1.8rem; font-weight: 800;">Retrograde Signaling &amp; Inter-Organellar Crosstalk</h2>
         <p style="color: var(--text-soft); max-width: 850px; margin-top: 4px;">
           Detailed scientific architectures and dynamic animations of the five organellar communication pathways.
+          Select a circuit below to explore its compartment boundaries, active reaction nodes, and animated signal pulses.
         </p>
       </div>
 
       <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
-        <button class="circuit-btn active" onclick="showCircuit('mrr')">1. Mito-Nuclear MRR (ANAC017/013)</button>
-        <button class="circuit-btn" onclick="showCircuit('prr')">2. Plasto-Nuclear PRR (SAL1-PAP & GUN1)</button>
-        <button class="circuit-btn" onclick="showCircuit('photo')">3. 3-Organelle Photorespiratory Loop</button>
-        <button class="circuit-btn" onclick="showCircuit('pm')">4. PM Ca2+ & ROS Wave</button>
-        <button class="circuit-btn" onclick="showCircuit('stromule')">5. Stromule Nuclear Docking</button>
+        <button class="circuit-btn active" data-circuit="mrr" onclick="selectCircuit('mrr')">1. Mito-Nuclear MRR (ANAC017/013)</button>
+        <button class="circuit-btn" data-circuit="prr" onclick="selectCircuit('prr')">2. Plasto-Nuclear PRR (SAL1-PAP &amp; GUN1)</button>
+        <button class="circuit-btn" data-circuit="photo" onclick="selectCircuit('photo')">3. 3-Organelle Photorespiratory Loop</button>
+        <button class="circuit-btn" data-circuit="pm" onclick="selectCircuit('pm')">4. PM Ca2+ &amp; ROS Wave</button>
+        <button class="circuit-btn" data-circuit="stromule" onclick="selectCircuit('stromule')">5. Stromule Nuclear Docking</button>
       </div>
 
-      <div id="circuit-display" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 28px;">
-        <!-- Injected via JavaScript -->
+      <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 24px;">
+        <div style="margin-bottom: 20px;">
+          <h3 id="circuit-heading" style="font-size: 1.35rem; font-weight: 700; color: var(--text);"></h3>
+          <p id="circuit-summary" style="color: var(--text-soft); font-size: 0.95rem; margin-top: 4px;"></p>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="circuit-controls-bar">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <button id="btn-play" class="ctrl-btn primary" onclick="togglePlay()">
+              <span id="play-icon">▶</span> <span id="play-text">Play Animation</span>
+            </button>
+            <button class="ctrl-btn" onclick="prevStep()" title="Previous Step">⏮ Prev</button>
+            <button class="ctrl-btn" onclick="nextStep()" title="Next Step">Next ⏭</button>
+            <button class="ctrl-btn" onclick="resetAnimation()" title="Reset to Step 1">↺ Reset</button>
+            <div class="speed-selector">
+              <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-soft); margin-right: 4px;">Speed:</span>
+              <button class="speed-btn" data-speed="0.5" onclick="setSpeed(0.5)">0.5x</button>
+              <button class="speed-btn active" data-speed="1.0" onclick="setSpeed(1.0)">1.0x</button>
+              <button class="speed-btn" data-speed="2.0" onclick="setSpeed(2.0)">2.0x</button>
+            </div>
+          </div>
+          <div id="step-badge" class="step-status-pill">
+            Loading pathway...
+          </div>
+        </div>
+
+        <!-- Architectural SVG Canvas -->
+        <div style="margin-bottom: 24px;">
+          <svg id="circuit-svg" viewBox="0 0 1000 420" style="width: 100%; height: auto; max-height: 480px; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px;"></svg>
+        </div>
+
+        <!-- Step Progression Cards -->
+        <div style="margin-top: 16px;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 12px;">Molecular Reaction Sequence</h4>
+          <div id="step-cards-container"></div>
+        </div>
       </div>
     </main>
 
     <script>
-      const circuits = {
-        mrr: {
-          title: "Mitochondrial Retrograde Response (MRR): ANAC017/013 Proteolytic Axis",
-          desc: "How mitochondrial respiratory chain dysfunction or spaceflight microgravity hypoxia signals to the nucleus to induce alternative oxidase (AOX1a).",
-          steps: [
-            { title: "Respiratory Chain Stress & ROS Surge", text: "Complex I/III inhibition or hypoxia causes electron leakage to oxygen, elevating matrix and IMS superoxide, which dismutates to hydrogen peroxide (H2O2)." },
-            { title: "Rhomboid Protease Activation at the OMM", text: "Membrane-permeant H2O2 oxidizes and activates intramembrane rhomboid-like proteases at the outer mitochondrial membrane / ER contact interface." },
-            { title: "Proteolytic Cleavage of ANAC017 & ANAC013", text: "Rhomboid proteases cleave the C-terminal transmembrane anchors of ANAC017 (AT1G34190) and ANAC013 (AT1G32870), releasing their active N-terminal soluble NAC transcription factor domains into the cytosol." },
-            { title: "Nuclear Import through Pore Complexes", text: "The soluble NAC domains interact with importin-α/β karyopherins, translocating actively across the nuclear pore complex basket into the nucleoplasm." },
-            { title: "Palindromic MDRE Motif Binding", text: "ANAC017/013 homodimers bind with high affinity to the 14-bp Mitochondrial Dysfunction Responsive Element (MDRE: CTTGNNNNNCAG)." },
-            { title: "High-Level AOX1a & Chaperone Induction", text: "Binding triggers a massive transcriptional surge in AOX1a (+1.84 log2FC in OSD-120), UPM1, and HSP70, restoring respiratory flux without proton translocation." }
-          ]
-        },
-        prr: {
-          title: "Plastid-to-Nucleus Retrograde Response (PRR): SAL1-PAP & GUN1 Hub",
-          desc: "Four parallel communication channels conveying chloroplast operational state, pigment biosynthesis, and photoinhibition to the nucleus.",
-          steps: [
-            { title: "Light Excess & Singlet Oxygen Generation", text: "Excess excitation at Photosystem II reaction centers generates singlet oxygen (1O2), sensed in grana margins by EXECUTER 1 (EX1)." },
-            { title: "Stromal SAL1 Inactivation", text: "Oxidative stress causes disulfide bridge formation that inactivates stromal SAL1 nucleotidase (AT5G63980)." },
-            { title: "PAP Retrograde Metabolite Accumulation", text: "3'-phosphoadenosine 5'-phosphate (PAP) catabolism ceases; PAP accumulates and is exported via PAPST1 into the cytosol." },
-            { title: "Nuclear XRN2/3 Inhibition", text: "PAP enters the nucleus and directly inhibits 5'-to-3' exoribonucleases (XRN2 and XRN3), stabilizing drought and stress transcripts." },
-            { title: "GUN1 PPR Hub & ABI4 Activation", text: "Unimported plastid precursor proteins bind stromal GUN1, signaling to nuclear ABI4 to repress Photosynthesis-Associated Nuclear Genes (PhANGs)." }
-          ]
-        },
-        photo: {
-          title: "The 3-Organelle Photorespiratory Loop",
-          desc: "Obligate metabolic partnership of Chloroplast, Peroxisome, and Mitochondria recycling 2-phosphoglycolate.",
-          steps: [
-            { title: "Chloroplast RuBisCO Oxygenation", text: "RuBisCO oxygenase reaction yields 2-phosphoglycolate, which is dephosphorylated to glycolate and exported via PLGG1." },
-            { title: "Peroxisomal Oxidation to Glyoxylate & Glycine", text: "Glycolate oxidase (GOX) produces glyoxylate and H2O2 (scavenged by CAT2); GGT transaminates it to glycine." },
-            { title: "Mitochondrial GDC / SHMT Serine Synthesis", text: "Matrix Glycine Decarboxylase (GDC P/T/H/L proteins) and SHMT1 convert 2 glycine into serine + NADH + CO2 + NH3." },
-            { title: "Complex I CA Domain Recirculation", text: "The plant-specific Carbonic Anhydrase domain of Complex I re-traps released photorespiratory CO2." },
-            { title: "Peroxisomal Reduction & Chloroplast Return", text: "Serine is transaminated to hydroxypyruvate in peroxisomes, reduced to glycerate by HPR, and returns to chloroplasts via DiT1." }
-          ]
-        },
-        pm: {
-          title: "Plasma Membrane Mechanical & Gravity Sensing Waves",
-          desc: "How cell surface deformation launches systemic electrical, calcium, and ROS waves into organelles.",
-          steps: [
-            { title: "Cell Wall & Gravity Vector Strain", text: "Mechanical touch, turgor changes, or microgravity alterations stretch pectin, activating WAK1 and FERONIA receptor kinases." },
-            { title: "Mechanosensitive Channel Activation", text: "Membrane tension gates MSL10 and MCA channels, initiating local membrane depolarization." },
-            { title: "Systemic Calcium Influx via GLR3.3/3.6", text: "Glutamate receptor-like channels open, driving rapid calcium influx from apoplast to cytosol." },
-            { title: "RBOHD Phosphorylation & Apoplastic Superoxide", text: "Cytosolic Ca2+ spikes activate CPKs and BIK1, which phosphorylate RBOHD to generate an apoplastic ROS burst." },
-            { title: "Inward Channeling via PIP2;1 Aquaporin", text: "Superoxide dismutates to H2O2, which re-enters the cytosol through PIP2;1 channels, tuning mitochondrial and chloroplastic redox states." }
-          ]
-        },
-        stromule: {
-          title: "Stromule Nuclear Docking & Privileged Channeling",
-          desc: "Dynamic physical conduits connecting chloroplasts to the nuclear envelope.",
-          steps: [
-            { title: "Stress-Induced Tubule Elongation", text: "Oxidative stress induces chloroplasts to extend stroma-filled tubules (stromules) along actin microfilaments via myosin XI motors." },
-            { title: "Direct Perinuclear Docking", text: "Stromules physically wrap around and dock directly to the nuclear envelope outer membrane." },
-            { title: "Privileged H2O2 Channeling", text: "High concentrations of stromal H2O2 are transferred directly across the nuclear envelope into the nucleoplasm." },
-            { title: "Avoidance of Cytosolic Scavenging", text: "By bypassing cytosolic peroxiredoxins and ascorbate peroxidase, the retrograde signal achieves maximal potency." }
-          ]
-        }
-      };
+      const circuits = {"mrr": {"title": "Mitochondrial Retrograde Response (MRR): ANAC017/013 Proteolytic Axis", "desc": "How mitochondrial respiratory chain dysfunction or spaceflight microgravity hypoxia signals to the nucleus to induce alternative oxidase (AOX1a).", "theme_color": "#D55E00", "compartments": [{"id": "mito", "title": "Mitochondrial Matrix & Cristae", "x": 25, "y": 25, "w": 280, "h": 370, "fill": "rgba(213, 94, 0, 0.08)", "stroke": "#D55E00"}, {"id": "omm", "title": "OMM Interface", "x": 325, "y": 25, "w": 150, "h": 370, "fill": "rgba(213, 94, 0, 0.04)", "stroke": "#b84d00", "dash": "6 4"}, {"id": "cyto", "title": "Cytosol Transit Space", "x": 495, "y": 25, "w": 190, "h": 370, "fill": "rgba(59, 110, 165, 0.06)", "stroke": "#3B6EA5", "dash": "6 4"}, {"id": "nuc", "title": "Nucleus & MDRE Promoters", "x": 705, "y": 25, "w": 270, "h": 370, "fill": "rgba(107, 70, 193, 0.08)", "stroke": "#6b46c1"}], "path": "M 150 130 L 210 270 L 400 270 L 590 200 L 730 140 L 850 270", "steps": [{"id": "s1", "x": 150, "y": 130, "label": "Complex I/III ROS Leak", "sublabel": "Matrix & IMS H2O2 surge", "title": "Respiratory Chain Stress & ROS Surge", "text": "Complex I/III inhibition or microgravity hypoxia causes electron leakage to oxygen, elevating matrix and IMS superoxide, which dismutates to hydrogen peroxide (H2O2)."}, {"id": "s2", "x": 210, "y": 270, "label": "IMS H2O2 Diffusion", "sublabel": "Permeant H2O2 crosses cristae", "title": "Diffusion to Outer Mitochondrial Membrane", "text": "Membrane-permeant H2O2 diffuses across the intermembrane space (IMS) to oxidatively prime intramembrane proteases at the outer mitochondrial membrane (OMM)."}, {"id": "s3", "x": 400, "y": 270, "label": "Rhomboid Protease Cleavage", "sublabel": "C-anchor cut releases ANAC017", "title": "Proteolytic Cleavage of ANAC017 & ANAC013", "text": "Rhomboid-like proteases at the OMM/ER interface cleave the C-terminal transmembrane anchors of ANAC017 (AT1G34190) and ANAC013, releasing active N-terminal NAC transcription factors."}, {"id": "s4", "x": 590, "y": 200, "label": "Importin-\u03b1/\u03b2 Binding", "sublabel": "Soluble NAC domain chaperone", "title": "Cytosolic Chaperoning & Transit", "text": "The liberated soluble NAC domains bind karyopherin importin-\u03b1/\u03b2 adapters, translocating rapidly across the cytosol towards the nuclear envelope."}, {"id": "s5", "x": 730, "y": 140, "label": "Nuclear Pore Entry", "sublabel": "Active NPC basket transport", "title": "Nuclear Import via Pore Complexes", "text": "The ANAC017-importin complex passes through the FG-repeat permeability barrier of the nuclear pore complex into the nucleoplasm."}, {"id": "s6", "x": 850, "y": 270, "label": "MDRE Binding & AOX1a", "sublabel": "CTTGN5CAG -> +1.84 log2FC", "title": "Palindromic MDRE Motif Binding & AOX1a Induction", "text": "ANAC017 homodimers bind palindromic MDRE motifs (CTTGNNNNNCAG), driving massive transcriptional induction of AOX1a (+1.84 log2FC in OSD-120), UPM1, and mitochondrial chaperones."}]}, "prr": {"title": "Plastid-to-Nucleus Retrograde Response (PRR): SAL1-PAP & GUN1 Hub", "desc": "Four parallel communication channels conveying chloroplast operational state, pigment biosynthesis, and photoinhibition to the nucleus.", "theme_color": "#059669", "compartments": [{"id": "chloro", "title": "Chloroplast Grana & Stroma", "x": 25, "y": 25, "w": 300, "h": 370, "fill": "rgba(5, 150, 105, 0.08)", "stroke": "#059669"}, {"id": "env", "title": "Plastid Envelope & PAPST1", "x": 345, "y": 25, "w": 145, "h": 370, "fill": "rgba(5, 150, 105, 0.04)", "stroke": "#047857", "dash": "6 4"}, {"id": "cyto", "title": "Cytosolic Transit Space", "x": 510, "y": 25, "w": 175, "h": 370, "fill": "rgba(59, 110, 165, 0.06)", "stroke": "#3B6EA5", "dash": "6 4"}, {"id": "nuc", "title": "Nucleoplasm & PhANGs", "x": 705, "y": 25, "w": 270, "h": 370, "fill": "rgba(107, 70, 193, 0.08)", "stroke": "#6b46c1"}], "path": "M 160 120 L 210 260 L 415 260 L 595 200 L 770 140 L 850 280", "steps": [{"id": "s1", "x": 160, "y": 120, "label": "PSII 1O2 & EX1 Sensor", "sublabel": "Singlet oxygen sensing at grana", "title": "Light Excess & Singlet Oxygen Generation", "text": "Excess excitation at Photosystem II reaction centers generates singlet oxygen (1O2), sensed in grana margins by EXECUTER 1 (EX1)."}, {"id": "s2", "x": 210, "y": 260, "label": "Stromal SAL1 Inactivation", "sublabel": "Disulfide bridge oxidation", "title": "Stromal SAL1 Inactivation", "text": "Oxidative stress induces disulfide bridges that inactivate stromal SAL1 nucleotidase (AT5G63980)."}, {"id": "s3", "x": 415, "y": 260, "label": "PAPST1 Plastid Export", "sublabel": "PAP retrograde metabolite surge", "title": "PAP Retrograde Metabolite Accumulation", "text": "3'-phosphoadenosine 5'-phosphate (PAP) catabolism ceases; PAP accumulates and is exported via PAPST1 into the cytosol."}, {"id": "s4", "x": 595, "y": 200, "label": "Cytosolic PAP Diffusion", "sublabel": "Free diffusion to envelope", "title": "Cytosolic Transit to Nuclear Envelope", "text": "PAP diffuses through the cytosol and crosses the nuclear envelope pore complexes into the nucleoplasm."}, {"id": "s5", "x": 770, "y": 140, "label": "Nuclear XRN2/3 Inhibition", "sublabel": "Stabilizes stress transcripts", "title": "Nuclear XRN2/3 Inhibition", "text": "PAP enters the nucleus and directly inhibits 5'-to-3' exoribonucleases (XRN2 and XRN3), stabilizing drought and stress transcripts."}, {"id": "s6", "x": 850, "y": 280, "label": "GUN1 & ABI4 Hub", "sublabel": "PhANG transcription repression", "title": "GUN1 PPR Hub & ABI4 Activation", "text": "Unimported plastid precursor proteins bind stromal GUN1, signaling to nuclear ABI4 to repress Photosynthesis-Associated Nuclear Genes (PhANGs)."}]}, "photo": {"title": "The 3-Organelle Photorespiratory Loop", "desc": "Obligate metabolic partnership of Chloroplast, Peroxisome, and Mitochondria recycling 2-phosphoglycolate.", "theme_color": "#D97706", "compartments": [{"id": "chl", "title": "Chloroplast (2-PG -> Glycolate)", "x": 25, "y": 25, "w": 300, "h": 370, "fill": "rgba(5, 150, 105, 0.08)", "stroke": "#059669"}, {"id": "perox", "title": "Peroxisome (GOX / GGT / HPR)", "x": 345, "y": 25, "w": 300, "h": 370, "fill": "rgba(217, 119, 6, 0.08)", "stroke": "#d97706"}, {"id": "mit", "title": "Mitochondria (GDC / SHMT1)", "x": 665, "y": 25, "w": 310, "h": 370, "fill": "rgba(213, 94, 0, 0.08)", "stroke": "#D55E00"}], "path": "M 160 130 L 480 130 L 810 150 L 820 280 L 500 280 L 180 280", "steps": [{"id": "s1", "x": 160, "y": 130, "label": "RuBisCO Oxygenation", "sublabel": "2-PG -> Glycolate via PLGG1", "title": "Chloroplast RuBisCO Oxygenation", "text": "RuBisCO oxygenase reaction yields 2-phosphoglycolate, which is dephosphorylated to glycolate and exported via PLGG1."}, {"id": "s2", "x": 480, "y": 130, "label": "Peroxisome GOX & GGT", "sublabel": "Glyoxylate + H2O2 -> Glycine", "title": "Peroxisomal Oxidation to Glyoxylate & Glycine", "text": "Glycolate oxidase (GOX) produces glyoxylate and H2O2 (scavenged by CAT2); GGT transaminates it to glycine."}, {"id": "s3", "x": 810, "y": 150, "label": "Matrix GDC / SHMT1", "sublabel": "2 Glycine -> Serine + CO2 + NH3", "title": "Mitochondrial GDC / SHMT Serine Synthesis", "text": "Matrix Glycine Decarboxylase (GDC P/T/H/L proteins) and SHMT1 convert 2 glycine into serine + NADH + CO2 + NH3."}, {"id": "s4", "x": 820, "y": 280, "label": "Complex I CA Domain", "sublabel": "CO2 recycling & hydration", "title": "Complex I CA Domain Recirculation", "text": "The plant-specific Carbonic Anhydrase domain of Complex I re-traps released photorespiratory CO2."}, {"id": "s5", "x": 500, "y": 280, "label": "Peroxisomal HPR", "sublabel": "Hydroxypyruvate -> Glycerate", "title": "Peroxisomal Reduction & Return", "text": "Serine is transaminated to hydroxypyruvate in peroxisomes, then reduced to glycerate by hydroxypyruvate reductase (HPR)."}, {"id": "s6", "x": 180, "y": 280, "label": "DiT1 & Glycerate Kinase", "sublabel": "Glycerate -> 3-PGA return", "title": "Chloroplast Return & Phosphorylation", "text": "Glycerate returns to chloroplasts via DiT1 and is phosphorylated by GLYK to 3-PGA, re-entering the Calvin-Benson cycle."}]}, "pm": {"title": "Plasma Membrane Mechanical & Gravity Sensing Waves", "desc": "How cell surface deformation launches systemic electrical, calcium, and ROS waves into organelles.", "theme_color": "#0284C7", "compartments": [{"id": "cw", "title": "Cell Wall & Apoplast", "x": 25, "y": 25, "w": 230, "h": 370, "fill": "rgba(100, 116, 139, 0.08)", "stroke": "#64748b"}, {"id": "pm", "title": "Plasma Membrane Bilayer", "x": 275, "y": 25, "w": 190, "h": 370, "fill": "rgba(2, 132, 199, 0.08)", "stroke": "#0284c7"}, {"id": "cyto", "title": "Cytosolic Kinase Core", "x": 485, "y": 25, "w": 245, "h": 370, "fill": "rgba(59, 110, 165, 0.06)", "stroke": "#3B6EA5"}, {"id": "target", "title": "Organellar Influx Targets", "x": 750, "y": 25, "w": 225, "h": 370, "fill": "rgba(16, 185, 129, 0.08)", "stroke": "#10b981"}], "path": "M 130 120 L 370 120 L 370 250 L 590 210 L 140 280 L 860 200", "steps": [{"id": "s1", "x": 130, "y": 120, "label": "Cell Wall Tension / Strain", "sublabel": "WAK1 & FERONIA activation", "title": "Cell Wall & Gravity Vector Strain", "text": "Mechanical touch, turgor changes, or microgravity alterations stretch pectin, activating WAK1 and FERONIA receptor kinases."}, {"id": "s2", "x": 370, "y": 120, "label": "MSL10 & MCA Gating", "sublabel": "Stretch-activated depolarization", "title": "Mechanosensitive Channel Activation", "text": "Membrane tension gates MSL10 and MCA channels, initiating local plasma membrane depolarization."}, {"id": "s3", "x": 370, "y": 250, "label": "GLR3.3/3.6 Ca2+ Influx", "sublabel": "Rapid apoplastic Ca2+ entry", "title": "Systemic Calcium Influx via GLR3.3/3.6", "text": "Glutamate receptor-like channels open, driving rapid calcium influx from apoplast to cytosol."}, {"id": "s4", "x": 590, "y": 210, "label": "CPK & RBOHD Activation", "sublabel": "N-terminal phosphorylation", "title": "RBOHD Phosphorylation & Activation", "text": "Cytosolic Ca2+ spikes activate CPKs and BIK1, which phosphorylate RBOHD to generate an apoplastic ROS burst."}, {"id": "s5", "x": 140, "y": 280, "label": "Apoplastic ROS Wave", "sublabel": "O2.- -> H2O2 dismutation", "title": "Apoplastic Superoxide Burst & Wave", "text": "RBOHD pumps electrons outside to create O2.-, which dismutates to H2O2, launching a systemic cell-to-cell wave."}, {"id": "s6", "x": 860, "y": 200, "label": "PIP2;1 Inward H2O2 Conduit", "sublabel": "Organellar redox reprogramming", "title": "Inward Channeling via PIP2;1 Aquaporin", "text": "H2O2 re-enters the cytosol and organelles through PIP2;1 channels, tuning mitochondrial AOX and chloroplast redox balance."}]}, "stromule": {"title": "Stromule Nuclear Docking & Privileged Channeling", "desc": "Dynamic physical conduits connecting chloroplasts to the nuclear envelope.", "theme_color": "#10B981", "compartments": [{"id": "chl", "title": "Chloroplast Body & Stroma", "x": 25, "y": 25, "w": 275, "h": 370, "fill": "rgba(16, 185, 129, 0.08)", "stroke": "#10b981"}, {"id": "stromule", "title": "Stromule Tubule Extension", "x": 320, "y": 25, "w": 270, "h": 370, "fill": "rgba(16, 185, 129, 0.04)", "stroke": "#059669", "dash": "6 4"}, {"id": "dock", "title": "Nuclear Envelope Dock", "x": 610, "y": 25, "w": 150, "h": 370, "fill": "rgba(107, 70, 193, 0.06)", "stroke": "#6b46c1", "dash": "4 4"}, {"id": "nuc", "title": "Nucleoplasm Core", "x": 780, "y": 25, "w": 195, "h": 370, "fill": "rgba(107, 70, 193, 0.10)", "stroke": "#6b46c1"}], "path": "M 150 150 L 230 270 L 450 230 L 680 190 L 870 190", "steps": [{"id": "s1", "x": 150, "y": 150, "label": "Plastidial Redox Shift", "sublabel": "Stromal oxidative stress trigger", "title": "Stress-Induced Tubule Elongation", "text": "Oxidative stress induces chloroplasts to initiate stroma-filled tubules (stromules) at envelope microdomains."}, {"id": "s2", "x": 230, "y": 270, "label": "Stromule Extension", "sublabel": "Tubule outgrowth with stroma cargo", "title": "Tubule Outgrowth & Stromule Formation", "text": "Dynamic narrow tubules extend outward from the chloroplast body, containing stromal proteins and metabolites."}, {"id": "s3", "x": 450, "y": 230, "label": "Myosin XI & Actin Motors", "sublabel": "Tracking microfilament tracks", "title": "Actin Microfilament Guidance", "text": "Stromules track actively along actin microfilaments powered by plant myosin XI class molecular motors."}, {"id": "s4", "x": 680, "y": 190, "label": "Perinuclear Envelope Docking", "sublabel": "Physical anchor to outer membrane", "title": "Direct Perinuclear Docking", "text": "Stromules physically wrap around and dock directly to outer nuclear membrane receptor complexes."}, {"id": "s5", "x": 870, "y": 190, "label": "Privileged H2O2 Injection", "sublabel": "Bypasses cytosolic scavenging", "title": "Privileged H2O2 Channeling", "text": "High concentrations of stromal H2O2 are transferred directly into the nucleoplasm, completely avoiding cytosolic peroxiredoxins."}]}};
+      let currentCircuitKey = 'mrr';
+      let currentStepIndex = 0;
+      let isPlaying = false;
+      let playSpeed = 1.0;
+      let playTimer = null;
 
-      function showCircuit(key) {
-        document.querySelectorAll('.circuit-btn').forEach(b => b.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+      function selectCircuit(key) {
+        pauseAnimation();
+        currentCircuitKey = key;
+        currentStepIndex = 0;
 
+        document.querySelectorAll('.circuit-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-circuit') === key);
+        });
+
+        renderCircuit(key);
+        goToStep(0);
+      }
+
+      function renderCircuit(key) {
         const c = circuits[key];
-        let stepsHtml = '';
-        c.steps.forEach((s, i) => {
-          stepsHtml += `
-            <div class="step-card">
-              <div class="step-num">${i + 1}</div>
-              <div>
+        document.getElementById('circuit-heading').innerText = c.title;
+        document.getElementById('circuit-summary').innerText = c.desc;
+
+        // Render SVG Canvas
+        const svg = document.getElementById('circuit-svg');
+        svg.setAttribute('viewBox', '0 0 1000 420');
+
+        let compsHtml = '';
+        c.compartments.forEach(comp => {
+          compsHtml += `
+            <g class="comp-group">
+              <rect x="${comp.x}" y="${comp.y}" width="${comp.w}" height="${comp.h}" rx="10"
+                    fill="${comp.fill}" stroke="${comp.stroke}" stroke-width="1.8"
+                    ${comp.dash ? `stroke-dasharray="${comp.dash}"` : ''} />
+              <rect x="${comp.x + 10}" y="${comp.y + 10}" width="${comp.title.length * 7.5 + 16}" height="22" rx="4"
+                    fill="var(--card-bg)" stroke="${comp.stroke}" stroke-width="1" />
+              <text x="${comp.x + 18}" y="${comp.y + 25}" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="var(--text)">
+                ${comp.title}
+              </text>
+            </g>
+          `;
+        });
+
+        // Connecting conduit path
+        const pathHtml = `
+          <path id="conduit-path" d="${c.path}" fill="none" stroke="${c.theme_color}" stroke-width="3" stroke-dasharray="6 4" opacity="0.65" />
+        `;
+
+        // Nodes
+        let nodesHtml = '';
+        c.steps.forEach((s, idx) => {
+          nodesHtml += `
+            <g id="svg-node-${idx}" class="circuit-node" onclick="goToStep(${idx})" style="cursor: pointer;">
+              <!-- Node pill container -->
+              <rect x="${s.x - 70}" y="${s.y - 24}" width="140" height="48" rx="8"
+                    fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5" class="node-box" />
+              <!-- Step number badge -->
+              <circle cx="${s.x - 52}" cy="${s.y}" r="12" fill="${c.theme_color}" />
+              <text x="${s.x - 52}" y="${s.y + 4}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="#ffffff">
+                ${idx + 1}
+              </text>
+              <!-- Label -->
+              <text x="${s.x - 34}" y="${s.y - 4}" font-family="Inter, sans-serif" font-weight="700" font-size="10.5" fill="var(--text)" class="node-title">
+                ${s.label}
+              </text>
+              <!-- Sublabel -->
+              <text x="${s.x - 34}" y="${s.y + 10}" font-family="Inter, sans-serif" font-size="8.5" fill="var(--text-soft)" class="node-sub">
+                ${s.sublabel}
+              </text>
+            </g>
+          `;
+        });
+
+        // Signal Pulse & Pulse Halo
+        const pulseHtml = `
+          <circle id="pulse-halo" class="pulse-halo-anim" cx="${c.steps[0].x}" cy="${c.steps[0].y}" r="28" fill="none" stroke="${c.theme_color}" stroke-width="2.5" opacity="0.8" style="transition: all 0.4s ease; pointer-events: none;" />
+          <circle id="signal-pulse" cx="${c.steps[0].x}" cy="${c.steps[0].y}" r="10" fill="#ffffff" stroke="${c.theme_color}" stroke-width="4" filter="url(#glow-filter)" style="transition: all 0.4s ease; pointer-events: none;" />
+        `;
+
+        svg.innerHTML = `
+          <defs>
+            <filter id="glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          ${compsHtml}
+          ${pathHtml}
+          ${nodesHtml}
+          ${pulseHtml}
+        `;
+
+        // Render Step Cards
+        let cardsHtml = '';
+        c.steps.forEach((s, idx) => {
+          cardsHtml += `
+            <div id="step-card-${idx}" class="step-card" onclick="goToStep(${idx})">
+              <div class="step-num">${idx + 1}</div>
+              <div style="flex-grow: 1;">
                 <strong style="color: var(--text); font-size: 0.95rem;">${s.title}</strong>
                 <p style="color: var(--text-soft); font-size: 0.88rem; margin-top: 4px;">${s.text}</p>
               </div>
             </div>
           `;
         });
-
-        document.getElementById('circuit-display').innerHTML = `
-          <div style="margin-bottom: 20px;">
-            <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--text);">${c.title}</h3>
-            <p style="color: var(--text-soft); font-size: 0.95rem; margin-top: 4px;">${c.desc}</p>
-          </div>
-          <div style="margin-top: 16px;">${stepsHtml}</div>
-        `;
+        document.getElementById('step-cards-container').innerHTML = cardsHtml;
       }
 
-      // Init
-      showCircuit('mrr');
+      function goToStep(idx) {
+        const c = circuits[currentCircuitKey];
+        if (idx < 0) idx = 0;
+        if (idx >= c.steps.length) idx = c.steps.length - 1;
+        currentStepIndex = idx;
+        const step = c.steps[idx];
+
+        // Move Signal Pulse and Halo
+        const pulse = document.getElementById('signal-pulse');
+        const halo = document.getElementById('pulse-halo');
+        if (pulse) {
+          pulse.setAttribute('cx', step.x);
+          pulse.setAttribute('cy', step.y);
+          pulse.setAttribute('stroke', c.theme_color);
+        }
+        if (halo) {
+          halo.setAttribute('cx', step.x);
+          halo.setAttribute('cy', step.y);
+          halo.setAttribute('stroke', c.theme_color);
+        }
+
+        // Highlight Active SVG Node
+        document.querySelectorAll('.circuit-node').forEach((node, i) => {
+          const box = node.querySelector('.node-box');
+          if (box) {
+            if (i === idx) {
+              box.setAttribute('stroke', c.theme_color);
+              box.setAttribute('stroke-width', '2.5');
+              box.setAttribute('fill', 'var(--surface-2)');
+            } else {
+              box.setAttribute('stroke', 'var(--card-border)');
+              box.setAttribute('stroke-width', '1.5');
+              box.setAttribute('fill', 'var(--card-bg)');
+            }
+          }
+        });
+
+        // Highlight Step Card
+        document.querySelectorAll('.step-card').forEach((card, i) => {
+          card.classList.toggle('active-step-card', i === idx);
+        });
+
+        // Update Status Badge
+        const badge = document.getElementById('step-badge');
+        if (badge) {
+          badge.innerText = `Step ${idx + 1} of ${c.steps.length}: ${step.title}`;
+        }
+      }
+
+      function togglePlay() {
+        if (isPlaying) {
+          pauseAnimation();
+        } else {
+          startAnimation();
+        }
+      }
+
+      function startAnimation() {
+        isPlaying = true;
+        const btn = document.getElementById('btn-play');
+        if (btn) {
+          btn.innerHTML = '<span>⏸</span> <span>Pause</span>';
+        }
+        scheduleNextStep();
+      }
+
+      function pauseAnimation() {
+        isPlaying = false;
+        if (playTimer) {
+          clearTimeout(playTimer);
+          playTimer = null;
+        }
+        const btn = document.getElementById('btn-play');
+        if (btn) {
+          btn.innerHTML = '<span>▶</span> <span>Play Animation</span>';
+        }
+      }
+
+      function scheduleNextStep() {
+        if (!isPlaying) return;
+        const interval = 2200 / playSpeed;
+        playTimer = setTimeout(() => {
+          const c = circuits[currentCircuitKey];
+          const nextIdx = (currentStepIndex + 1) % c.steps.length;
+          goToStep(nextIdx);
+          if (isPlaying) {
+            scheduleNextStep();
+          }
+        }, interval);
+      }
+
+      function prevStep() {
+        pauseAnimation();
+        const c = circuits[currentCircuitKey];
+        const prevIdx = (currentStepIndex - 1 + c.steps.length) % c.steps.length;
+        goToStep(prevIdx);
+      }
+
+      function nextStep() {
+        pauseAnimation();
+        const c = circuits[currentCircuitKey];
+        const nextIdx = (currentStepIndex + 1) % c.steps.length;
+        goToStep(nextIdx);
+      }
+
+      function resetAnimation() {
+        pauseAnimation();
+        goToStep(0);
+      }
+
+      function setSpeed(speed) {
+        playSpeed = speed;
+        document.querySelectorAll('.speed-btn').forEach(b => {
+          b.classList.toggle('active', parseFloat(b.getAttribute('data-speed')) === speed);
+        });
+      }
+
+      // Init on load
+      selectCircuit('mrr');
     </script>
     
     <footer class="cose-foot">
