@@ -23,7 +23,7 @@ lanes:
   - id: plasma_membrane_conduit
     compartment: plasma_membrane
     node_width: 220
-    nodes: [PM_SENSORY_INPUT, PM_RBOHD_BURST, PM_CALCIUM_GATE]
+    nodes: [PM_SENSORY_INPUT, PM_CALCIUM_GATE, PM_RBOHD_BURST]
 
   - id: chloroplast_double
     compartment: chloroplast
@@ -103,17 +103,17 @@ nodes:
     units: ["spaceflight stress acclimation", "bioenergetic homeostasis"]
 
 edges:
-  - [PM_SENSORY_INPUT, PM_CALCIUM_GATE, activates, "mechanical stretch gates Ca2+"]
-  - [PM_CALCIUM_GATE, PM_RBOHD_BURST, activates, "CPK phosphorylation activates RBOHD"]
-  - [PM_CALCIUM_GATE, CHLORO_PHOTOSYSTEMS, activates, "calcium wave entry"]
-  - [PM_CALCIUM_GATE, MITO_RESPIRATORY_CHAIN, activates, "calcium uptake via MCU"]
-  - [PM_RBOHD_BURST, CHLORO_PRR_HUB, activates, "H2O2 enters via PIP2;1 -> oxidizes SAL1"]
-  - [PM_RBOHD_BURST, MITO_MRR_ANAC017, activates, "H2O2 activates rhomboid cleavage"]
-  - [CHLORO_RUBISCO, PEROXISOMAL_SHUTTLE, metabolite_flux, "glycolate exported via PLGG1"]
-  - [PEROXISOMAL_SHUTTLE, MITO_GDC_ENGINE, metabolite_flux, "glycine enters mitochondria"]
-  - [MITO_GDC_ENGINE, PEROXISOMAL_SHUTTLE, metabolite_flux, "serine returns to peroxisome"]
-  - [PEROXISOMAL_SHUTTLE, CHLORO_RUBISCO, metabolite_flux, "glycerate returns to Calvin cycle"]
-  - [CHLORO_PRR_HUB, NUCLEAR_PHANGS_TARGETS, activates, "PAP & GUN1 signal to ABI4"]
-  - [MITO_MRR_ANAC017, NUCLEAR_MDRE_TARGETS, activates, "cleaved ANAC017 binds MDRE"]
-  - [NUCLEAR_MDRE_TARGETS, GENOME_REPROGRAMMING, activates, "induces stress proteome"]
-  - [NUCLEAR_PHANGS_TARGETS, GENOME_REPROGRAMMING, activates, "tunes photosynthetic capacity"]
+  - [PM_SENSORY_INPUT, PM_CALCIUM_GATE, activates, "stretch gating"]
+  - [PM_CALCIUM_GATE, PM_RBOHD_BURST, activates, "CPK activation"]
+  - [PM_CALCIUM_GATE, CHLORO_PHOTOSYSTEMS, activates, "Ca2+ wave"]
+  - [PM_CALCIUM_GATE, MITO_RESPIRATORY_CHAIN, activates, "MCU uptake"]
+  - [PM_RBOHD_BURST, CHLORO_PRR_HUB, activates, "H2O2 (PIP2;1)"]
+  - [PM_RBOHD_BURST, MITO_MRR_ANAC017, activates, "rhomboid cleavage"]
+  - [CHLORO_RUBISCO, PEROXISOMAL_SHUTTLE, metabolite_flux, "glycolate (PLGG1)"]
+  - [PEROXISOMAL_SHUTTLE, MITO_GDC_ENGINE, metabolite_flux, "glycine import"]
+  - [MITO_GDC_ENGINE, PEROXISOMAL_SHUTTLE, metabolite_flux, "serine shuttle"]
+  - [PEROXISOMAL_SHUTTLE, CHLORO_RUBISCO, metabolite_flux, "glycerate return"]
+  - [CHLORO_PRR_HUB, NUCLEAR_PHANGS_TARGETS, activates, "PAP/GUN1 signal"]
+  - [MITO_MRR_ANAC017, NUCLEAR_MDRE_TARGETS, activates, "MDRE binding"]
+  - [NUCLEAR_MDRE_TARGETS, GENOME_REPROGRAMMING, activates, "stress proteome"]
+  - [NUCLEAR_PHANGS_TARGETS, GENOME_REPROGRAMMING, activates, "PhANG tuning"]

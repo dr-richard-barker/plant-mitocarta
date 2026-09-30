@@ -37,7 +37,7 @@ lanes:
   - id: peroxisomal_phase2
     compartment: peroxisome
     node_width: 210
-    nodes: [HPR_GLYCERATE_REDUCTASE, PEROXISOMAL_SERINE_POOL]
+    nodes: [PEROXISOMAL_SERINE_POOL, HPR_GLYCERATE_REDUCTASE]
 
   - id: chloroplast_return
     compartment: chloroplast_stroma
@@ -102,17 +102,17 @@ nodes:
     units: ["re-enters Calvin-Benson cycle"]
 
 edges:
-  - [RUBISCO_O2_REACTION, CHLORO_2_PG_POOL, metabolite_flux, "oxygen fixation"]
-  - [CHLORO_2_PG_POOL, PLGG1_GLYCOLATE_EXPORT, metabolite_flux, "PGLP1 dephosphorylation"]
-  - [PLGG1_GLYCOLATE_EXPORT, GOX_OXIDASE, metabolite_flux, "glycolate enters peroxisome"]
-  - [GOX_OXIDASE, CATALASE_CAT2, activates, "generates H2O2"]
-  - [GOX_OXIDASE, GGT_AMINOTRANSFERASE, metabolite_flux, "glyoxylate intermediate"]
-  - [GGT_AMINOTRANSFERASE, GDC_P_T_H_L_COMPLEX, metabolite_flux, "glycine enters mitochondria"]
-  - [GDC_P_T_H_L_COMPLEX, SHMT1_SERINE_SYNTH, metabolite_flux, "5,10-CH2-THF transfer"]
-  - [GDC_P_T_H_L_COMPLEX, MATRIX_NADH_PRODUCTION, activates, "releases NADH, CO2, NH3"]
-  - [MATRIX_NADH_PRODUCTION, COMPLEX_I_CA_INTERACTION, activates, "CO2 trapping / electron flow"]
-  - [SHMT1_SERINE_SYNTH, PEROXISOMAL_SERINE_POOL, metabolite_flux, "serine exported to peroxisome"]
-  - [PEROXISOMAL_SERINE_POOL, HPR_GLYCERATE_REDUCTASE, metabolite_flux, "hydroxypyruvate reduction"]
+  - [RUBISCO_O2_REACTION, CHLORO_2_PG_POOL, metabolite_flux, "oxygenation"]
+  - [CHLORO_2_PG_POOL, PLGG1_GLYCOLATE_EXPORT, metabolite_flux, "PGLP1 cut"]
+  - [PLGG1_GLYCOLATE_EXPORT, GOX_OXIDASE, metabolite_flux, "glycolate import"]
+  - [GOX_OXIDASE, CATALASE_CAT2, activates, "H2O2 generation"]
+  - [GOX_OXIDASE, GGT_AMINOTRANSFERASE, metabolite_flux, "transamination"]
+  - [GGT_AMINOTRANSFERASE, GDC_P_T_H_L_COMPLEX, metabolite_flux, "glycine import"]
+  - [GDC_P_T_H_L_COMPLEX, SHMT1_SERINE_SYNTH, metabolite_flux, "THF transfer"]
+  - [GDC_P_T_H_L_COMPLEX, MATRIX_NADH_PRODUCTION, activates, "NADH + CO2 + NH3"]
+  - [MATRIX_NADH_PRODUCTION, COMPLEX_I_CA_INTERACTION, activates, "CO2 fix / ETC"]
+  - [SHMT1_SERINE_SYNTH, PEROXISOMAL_SERINE_POOL, metabolite_flux, "serine export"]
+  - [PEROXISOMAL_SERINE_POOL, HPR_GLYCERATE_REDUCTASE, metabolite_flux, "reduction"]
   - [HPR_GLYCERATE_REDUCTASE, DIT1_GLYCERATE_IMPORT, metabolite_flux, "glycerate export"]
-  - [DIT1_GLYCERATE_IMPORT, GLYCERATE_KINASE_GLYK, metabolite_flux, "stromal glycerate entry"]
-  - [GLYCERATE_KINASE_GLYK, THREE_PGA_CALVIN_RETURN, metabolite_flux, "3-PGA returned to Calvin cycle"]
+  - [DIT1_GLYCERATE_IMPORT, GLYCERATE_KINASE_GLYK, metabolite_flux, "glycerate import"]
+  - [GLYCERATE_KINASE_GLYK, THREE_PGA_CALVIN_RETURN, metabolite_flux, "3-PGA return"]

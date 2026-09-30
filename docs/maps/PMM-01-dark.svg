@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1351.9 650.0" width="1351.9" height="650.0" class="pmc-svg" data-theme="dark">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1715.9 768.1" width="1715.9" height="768.1" class="pmc-svg" data-theme="dark">
 <style>
 :root {
   --pmc-bg: #ffffff;
@@ -9,7 +9,7 @@
   --pmc-hairline: #9ca3af;
   --pmc-edge: #4b5563;
   --pmc-card-bg: #ffffff;
-  --pmc-compartment-fill: rgba(0, 0, 0, 0.03);
+  --pmc-compartment-fill: rgba(0, 0, 0, 0.025);
 }
 :root[data-theme="dark"], body.dark-mode {
   --pmc-bg: #0b0f19;
@@ -20,7 +20,7 @@
   --pmc-hairline: #4b5563;
   --pmc-edge: #9ca3af;
   --pmc-card-bg: #111827;
-  --pmc-compartment-fill: rgba(255, 255, 255, 0.04);
+  --pmc-compartment-fill: rgba(255, 255, 255, 0.035);
 }
 
 .pmc-canvas { fill: var(--pmc-bg); }
@@ -40,6 +40,15 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .tier-T4 { stroke-width: 1.5px; stroke-dasharray: 2 3; stroke: var(--pmc-ink-soft); }
 .tier-T5 { stroke-width: 0.8px; stroke: var(--pmc-hairline); }
 
+/* Evidence Tier Badges */
+.tier-badge-bg { rx: 3px; ry: 3px; stroke-width: 0.5px; }
+.tier-badge-T1 { fill: #0072b2; stroke: #005a8e; }
+.tier-badge-T2 { fill: #009e73; stroke: #007a59; }
+.tier-badge-T3 { fill: #e69f00; stroke: #b87f00; }
+.tier-badge-T4 { fill: #56b4e9; stroke: #3a97cc; }
+.tier-badge-T5 { fill: #9ca3af; stroke: #6b7280; }
+.tier-badge-text { font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }
+
 .pmc-compartment { fill: var(--pmc-compartment-fill); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
 .pmc-compartment-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--pmc-ink-soft); }
 
@@ -49,7 +58,10 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .pmc-edge-activates { stroke: #E69F00; stroke-width: 1.8px; }
 .pmc-edge-inhibits { stroke: #D55E00; stroke-width: 2.0px; }
 .pmc-edge-cleaved_by { stroke: #CC79A7; stroke-dasharray: 5 3; }
-.pmc-edge-label { font-size: 9.5px; fill: var(--pmc-ink-soft); font-weight: 500; text-anchor: middle; }
+
+/* Edge Label Scrim Chip */
+.pmc-edge-label-bg { fill: var(--pmc-card-bg); stroke: var(--pmc-hairline); stroke-width: 0.8px; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08)); }
+.pmc-edge-label { font-size: 9px; fill: var(--pmc-ink); font-weight: 600; text-anchor: middle; letter-spacing: 0.01em; }
 </style>
 <defs>
 <marker id="pmc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="var(--pmc-edge)" /></marker>
@@ -57,134 +69,218 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <marker id="pmc-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#009E73" /></marker>
 <marker id="pmc-arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#E69F00" /></marker>
 <marker id="pmc-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#D55E00" /></marker>
+<marker id="pmc-arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#CC79A7" /></marker>
 <marker id="pmc-inhibit" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><line x1="5" y1="1" x2="5" y2="9" stroke="#D55E00" stroke-width="2.5" /></marker>
 </defs>
-<rect class="pmc-canvas" width="1351.9" height="650.0" />
+<rect class="pmc-canvas" width="1715.9" height="768.1" />
 <text class="pmc-title" x="32" y="44">Plant Mitochondrial Electron Transport and Oxidative Phosphorylation</text>
 <text class="pmc-subtitle" x="32" y="66">Conserved respiratory Complexes I–V integrated with plant-specific bypasses (AOX, Type II NDHs, and the Complex I Carbonic Anhydrase domain).</text>
-<rect class="pmc-compartment" x="24.0" y="90.0" width="246.8" height="276.4" stroke="#5c3407" />
-<text class="pmc-compartment-label" x="36.0" y="108.0">Mitochondrial Matrix</text>
-<rect class="pmc-compartment" x="250.8" y="90.0" width="542.4" height="474.1" stroke="#8c5618" />
-<text class="pmc-compartment-label" x="262.8" y="108.0">Mitochondrial Inner Membrane (IMM)</text>
-<rect class="pmc-compartment" x="773.1" y="90.0" width="536.6" height="397.1" stroke="#6b3f0d" />
-<text class="pmc-compartment-label" x="785.1" y="108.0">Mitochondrial Cristae</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="204.0" y1="154.1" x2="278.8" y2="160.3" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="241.4" y="153.2">2e−</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="128.0" y1="178.1" x2="385.6" y2="395.4" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="256.8" y="282.8">bypass</text>
-<line class="pmc-edge pmc-edge-activates" x1="393.5" y1="190.6" x2="391.4" y2="222.6" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="392.4" y="202.6">structural assembly</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="207.6" y1="234.2" x2="278.8" y2="339.3" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="243.2" y="282.8">2e−</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="508.2" y1="160.3" x2="551.5" y2="154.1" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="529.9" y="153.2">QH2</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="440.1" y1="339.3" x2="551.5" y2="154.1" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="495.8" y="242.7">QH2</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="385.6" y1="395.4" x2="654.7" y2="178.1" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="520.1" y="282.8">QH2</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="397.1" y1="488.0" x2="654.7" y2="178.1" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="525.9" y="329.1">QH2</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="654.7" y1="178.1" x2="658.3" y2="210.1" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="656.5" y="190.1">relief valve</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="551.5" y1="248.2" x2="242.8" y2="314.3" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="397.1" y="277.3">4e− -&gt; 2 H2O</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="757.8" y1="154.1" x2="801.1" y2="160.3" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="779.5" y="153.2">Q cycle</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="919.5" y1="190.6" x2="867.3" y2="222.6" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="893.4" y="202.6">1e−</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="867.3" y1="270.8" x2="902.1" y2="302.8" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="884.8" y="282.8">1e−</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="801.1" y1="326.8" x2="242.8" y2="314.3" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="522.0" y="316.6">4e− -&gt; 2 H2O</text>
-<line class="pmc-edge pmc-edge-activates" x1="508.2" y1="160.3" x2="1073.9" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="791.1" y="153.2">H+ gradient</text>
-<line class="pmc-edge pmc-edge-activates" x1="1038.0" y1="160.3" x2="1073.9" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1055.9" y="153.2">H+ gradient</text>
-<line class="pmc-edge pmc-edge-activates" x1="1003.1" y1="326.8" x2="1073.9" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1038.5" y="236.4">H+ gradient</text>
-<line class="pmc-edge pmc-edge-inhibits" x1="1161.6" y1="178.1" x2="1177.8" y2="210.1" marker-end="url(#pmc-inhibit)" />
-<text class="pmc-edge-label" x="1169.7" y="190.1">proton uncoupling</text>
-<line class="pmc-edge pmc-edge-activates" x1="508.2" y1="160.3" x2="1073.9" y2="328.4" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="791.1" y="240.3">electron leak</text>
-<line class="pmc-edge pmc-edge-activates" x1="1038.0" y1="160.3" x2="1073.9" y2="328.4" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1055.9" y="240.3">electron leak</text>
-<line class="pmc-edge pmc-edge-activates" x1="1172.0" y1="366.5" x2="1169.1" y2="398.5" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1170.6" y="378.5">stress signaling</text>
-<g class="pmc-node-group" id="node-MATRIX_NADH"><rect class="pmc-node tier-T4" x="52.0" y="130.0" width="152.0" height="48.1" />
-<text class="pmc-label" x="128.0" y="148.1">Matrix NADH Pool</text>
-<text class="pmc-sub" x="128.0" y="163.1">matrix redox couple</text>
+<rect class="pmc-compartment" x="40.0" y="110.0" width="238.8" height="300.4" stroke="#5c3407" />
+<text class="pmc-compartment-label" x="52.0" y="128.0">Mitochondrial Matrix</text>
+<rect class="pmc-compartment" x="334.8" y="110.0" width="602.4" height="530.1" stroke="#8c5618" />
+<text class="pmc-compartment-label" x="346.8" y="128.0">Mitochondrial Inner Membrane (IMM)</text>
+<rect class="pmc-compartment" x="993.1" y="110.0" width="598.8" height="437.1" stroke="#6b3f0d" />
+<text class="pmc-compartment-label" x="1005.1" y="128.0">Mitochondrial Cristae</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 170.1 L 303.6 170.1 Q 306.8 170.1 306.8 173.2 L 306.8 173.2 Q 306.8 176.3 309.9 176.3 L 358.8 176.3" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="293.9" y="164.2" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="306.8" y="176.2">2e−</text>
 </g>
-<g class="pmc-node-group" id="node-SUCCINATE_POOL"><rect class="pmc-node tier-T4" x="52.0" y="210.1" width="155.6" height="48.1" />
-<text class="pmc-label" x="129.8" y="228.2">Succinate Pool</text>
-<text class="pmc-sub" x="129.8" y="243.2">TCA cycle intermediate</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 170.1 L 298.8 170.1 Q 306.8 170.1 306.8 178.1 L 306.8 481.7 Q 306.8 489.7 314.8 489.7 L 358.8 489.7" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="285.1" y="320.9" width="43.3" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="306.8" y="332.9">bypass</text>
 </g>
-<g class="pmc-node-group" id="node-O2_SUBSTRATE"><rect class="pmc-node tier-T4" x="52.0" y="290.2" width="190.8" height="48.1" />
-<text class="pmc-label" x="147.4" y="308.3">Molecular Oxygen (O2)</text>
-<text class="pmc-sub" x="147.4" y="323.3">electron acceptor</text>
+<path class="pmc-edge pmc-edge-activates" d="M 477.1 206.6 L 477.1 254.6" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="443.7" y="215.8" width="66.9" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="477.1" y="228.6">structural</text>
+<text class="pmc-edge-label" x="477.1" y="239.1">assembly</text>
 </g>
-<g class="pmc-node-group" id="node-COMPLEX_I_CORE"><rect class="pmc-node tier-T1" x="278.8" y="130.0" width="229.5" height="60.6" />
-<text class="pmc-label" x="393.5" y="148.3">Complex I (Catalytic Core)</text>
-<text class="pmc-sub" x="393.5" y="163.3">14 conserved subunits • 8 × Fe/S •</text>
-<text class="pmc-sub" x="393.5" y="175.3">FMN</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 266.2 L 298.8 266.2 Q 306.8 266.2 306.8 274.2 L 306.8 379.3 Q 306.8 387.3 314.8 387.3 L 358.8 387.3" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="293.9" y="317.8" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="306.8" y="329.8">2e−</text>
 </g>
-<g class="pmc-node-group" id="node-COMPLEX_I_CA_DOMAIN"><rect class="pmc-node tier-T1" x="278.8" y="222.6" width="225.2" height="60.6" />
-<text class="pmc-label" x="391.4" y="240.9">Complex I CA Domain</text>
-<text class="pmc-sub" x="391.4" y="255.9">CAL1/CAL2/CA1-3 • plant-specific •</text>
-<text class="pmc-sub" x="391.4" y="267.9">absent in mammals</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 595.5 176.3 L 644.4 176.3 Q 647.5 176.3 647.5 173.2 L 647.5 173.2 Q 647.5 170.1 650.7 170.1 L 699.5 170.1" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="634.7" y="164.2" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="647.5" y="176.2">QH2</text>
 </g>
-<g class="pmc-node-group" id="node-COMPLEX_II_SDH"><rect class="pmc-node tier-T1" x="278.8" y="315.2" width="161.4" height="48.1" />
-<text class="pmc-label" x="359.4" y="333.3">Complex II (SDH)</text>
-<text class="pmc-sub" x="359.4" y="348.3">SDH1-4 • FAD • 3 × Fe/S</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 595.5 387.3 L 639.5 387.3 Q 647.5 387.3 647.5 379.3 L 647.5 178.1 Q 647.5 170.1 655.5 170.1 L 699.5 170.1" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="634.7" y="269.8" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="647.5" y="281.7">QH2</text>
 </g>
-<g class="pmc-node-group" id="node-ALT_NDH_INTERNAL"><rect class="pmc-node tier-T1" x="278.8" y="395.4" width="213.6" height="60.6" />
-<text class="pmc-label" x="385.6" y="413.7">Internal Type II NDH</text>
-<text class="pmc-sub" x="385.6" y="428.7">NDA1/NDA2/NDC1 • matrix-facing •</text>
-<text class="pmc-sub" x="385.6" y="440.7">bypass</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 595.5 489.7 L 639.5 489.7 Q 647.5 489.7 647.5 481.7 L 647.5 178.1 Q 647.5 170.1 655.5 170.1 L 699.5 170.1" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="634.7" y="320.9" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="647.5" y="332.9">QH2</text>
 </g>
-<g class="pmc-node-group" id="node-ALT_NDH_EXTERNAL"><rect class="pmc-node tier-T1" x="278.8" y="488.0" width="236.8" height="48.1" />
-<text class="pmc-label" x="397.1" y="506.1">External Type II NDH</text>
-<text class="pmc-sub" x="397.1" y="521.1">NDB1/NDB2/NDB4 • IMS-facing • bypass</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 595.5 592.1 L 639.5 592.1 Q 647.5 592.1 647.5 584.1 L 647.5 178.1 Q 647.5 170.1 655.5 170.1 L 699.5 170.1" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="634.7" y="372.1" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="647.5" y="384.1">QH2</text>
 </g>
-<g class="pmc-node-group" id="node-UBIQUINONE_POOL"><rect class="pmc-node tier-T4" x="551.5" y="130.0" width="206.2" height="48.1" />
-<text class="pmc-label" x="654.7" y="148.1">Ubiquinone Pool (Q/QH2)</text>
-<text class="pmc-sub" x="654.7" y="163.1">membrane quinone</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 806.3 194.1 L 806.3 242.1" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="767.0" y="209.2" width="78.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="806.3" y="221.1">relief valve</text>
 </g>
-<g class="pmc-node-group" id="node-AOX_BYPASS"><rect class="pmc-node tier-T1" x="551.5" y="210.1" width="213.6" height="76.2" />
-<text class="pmc-label" x="658.3" y="228.8">Alternative Oxidase</text>
-<text class="pmc-label" x="658.3" y="243.8">(AOX1a)</text>
-<text class="pmc-sub" x="658.3" y="258.8">di-iron carboxylate •</text>
-<text class="pmc-sub" x="658.3" y="270.8">cyanide-resistant • no H+ pumped</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 699.5 280.2 L 655.5 280.2 Q 647.5 280.2 647.5 272.2 L 647.5 114.0 Q 647.5 106.0 639.5 106.0 L 314.8 106.0 Q 306.8 106.0 306.8 114.0 L 306.8 354.3 Q 306.8 362.3 298.8 362.3 L 254.8 362.3" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="437.8" y="97.1" width="78.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="477.1" y="109.0">4e− -&gt; 2 H2O</text>
 </g>
-<g class="pmc-node-group" id="node-COMPLEX_III_BC1"><rect class="pmc-node tier-T1" x="801.1" y="130.0" width="236.8" height="60.6" />
-<text class="pmc-label" x="919.5" y="148.3">Complex III (bc1 Complex)</text>
-<text class="pmc-sub" x="919.5" y="163.3">Rieske [2Fe-2S] • Cyt b • Cyt c1 • Q</text>
-<text class="pmc-sub" x="919.5" y="175.3">cycle</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 913.1 170.1 L 962.0 170.1 Q 965.1 170.1 965.1 173.2 L 965.1 173.2 Q 965.1 176.3 968.3 176.3 L 1017.1 176.3" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="940.5" y="164.2" width="49.2" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="965.1" y="176.2">Q cycle</text>
 </g>
-<g class="pmc-node-group" id="node-CYTOCHROME_C"><rect class="pmc-node tier-T4" x="801.1" y="222.6" width="132.4" height="48.1" />
-<text class="pmc-label" x="867.3" y="240.7">Cytochrome c</text>
-<text class="pmc-sub" x="867.3" y="255.7">mobile IMS carrier</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 1135.5 206.6 L 1135.5 254.6" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1122.7" y="221.7" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="1135.5" y="233.6">1e−</text>
 </g>
-<g class="pmc-node-group" id="node-COMPLEX_IV_COX"><rect class="pmc-node tier-T1" x="801.1" y="302.8" width="202.0" height="48.1" />
-<text class="pmc-label" x="902.1" y="320.8">Complex IV (COX)</text>
-<text class="pmc-sub" x="902.1" y="335.8">heme a3/CuB • terminal oxidase</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 1135.5 302.8 L 1135.5 350.8" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1122.7" y="317.8" width="25.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="1135.5" y="329.8">1e−</text>
 </g>
-<g class="pmc-node-group" id="node-COMPLEX_V_ATPASE"><rect class="pmc-node tier-T1" x="1073.9" y="130.0" width="175.2" height="48.1" />
-<text class="pmc-label" x="1161.6" y="148.1">ATP Synthase (F1Fo)</text>
-<text class="pmc-sub" x="1161.6" y="163.1">H+ motor • yields ATP</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 1017.1 374.8 L 973.1 374.8 Q 965.1 374.8 965.1 366.8 L 965.1 102.0 Q 965.1 94.0 957.1 94.0 L 314.8 94.0 Q 306.8 94.0 306.8 102.0 L 306.8 354.3 Q 306.8 362.3 298.8 362.3 L 254.8 362.3" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="596.6" y="85.1" width="78.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="636.0" y="97.0">4e− -&gt; 2 H2O</text>
 </g>
-<g class="pmc-node-group" id="node-PUMP_UNCOUPLING"><rect class="pmc-node tier-T1" x="1073.9" y="210.1" width="207.8" height="48.1" />
-<text class="pmc-label" x="1177.8" y="228.2">Plant UCP1 (PUMP1)</text>
-<text class="pmc-sub" x="1177.8" y="243.2">dissipates H+ • thermotolerance</text>
+<path class="pmc-edge pmc-edge-activates" d="M 595.5 176.3 L 639.5 176.3 Q 647.5 176.3 647.5 168.3 L 647.5 90.0 Q 647.5 82.0 655.5 82.0 L 1297.9 82.0 Q 1305.9 82.0 1305.9 90.0 L 1305.9 162.1 Q 1305.9 170.1 1313.9 170.1 L 1357.9 170.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="940.4" y="73.1" width="72.8" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="976.7" y="85.0">H+ gradient</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_ROS_BURST"><rect class="pmc-node tier-T1" x="1073.9" y="290.2" width="196.2" height="76.2" />
-<text class="pmc-label" x="1172.0" y="308.9">Mitochondrial</text>
-<text class="pmc-label" x="1172.0" y="323.9">Superoxide/H2O2</text>
-<text class="pmc-sub" x="1172.0" y="338.9">retrograde signal • leak from</text>
-<text class="pmc-sub" x="1172.0" y="350.9">CI/CIII</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1254.0 176.3 L 1302.8 176.3 Q 1305.9 176.3 1305.9 173.2 L 1305.9 173.2 Q 1305.9 170.1 1309.1 170.1 L 1357.9 170.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1269.6" y="164.2" width="72.8" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="1305.9" y="176.2">H+ gradient</text>
 </g>
-<g class="pmc-node-group" id="node-DTC_CITRATE_CARRIER"><rect class="pmc-node tier-T1" x="1073.9" y="398.5" width="190.4" height="60.6" />
-<text class="pmc-label" x="1169.1" y="416.8">DTC Translocator</text>
-<text class="pmc-sub" x="1169.1" y="431.8">exports citrate • epigenetic</text>
-<text class="pmc-sub" x="1169.1" y="443.8">signaling</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1254.0 374.8 L 1297.9 374.8 Q 1305.9 374.8 1305.9 366.8 L 1305.9 178.1 Q 1305.9 170.1 1313.9 170.1 L 1357.9 170.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1269.6" y="263.5" width="72.8" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="1305.9" y="275.4">H+ gradient</text>
+</g>
+<path class="pmc-edge pmc-edge-inhibits" d="M 1462.9 194.1 L 1462.9 242.1" marker-end="url(#pmc-inhibit)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1429.5" y="203.2" width="66.9" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="1462.9" y="216.1">proton</text>
+<text class="pmc-edge-label" x="1462.9" y="226.6">uncoupling</text>
+</g>
+<path class="pmc-edge pmc-edge-activates" d="M 595.5 176.3 L 639.5 176.3 Q 647.5 176.3 647.5 168.3 L 647.5 126.0 Q 647.5 118.0 655.5 118.0 L 1297.9 118.0 Q 1305.9 118.0 1305.9 126.0 L 1305.9 368.4 Q 1305.9 376.4 1313.9 376.4 L 1357.9 376.4" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="934.5" y="109.1" width="84.6" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="976.7" y="121.0">electron leak</text>
+</g>
+<path class="pmc-edge pmc-edge-activates" d="M 1254.0 176.3 L 1297.9 176.3 Q 1305.9 176.3 1305.9 184.3 L 1305.9 368.4 Q 1305.9 376.4 1313.9 376.4 L 1357.9 376.4" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1263.7" y="267.4" width="84.6" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="1305.9" y="279.3">electron leak</text>
+</g>
+<path class="pmc-edge pmc-edge-activates" d="M 1462.9 414.5 L 1462.9 462.5" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1432.4" y="423.6" width="61.0" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="1462.9" y="436.5">stress</text>
+<text class="pmc-edge-label" x="1462.9" y="447.0">signaling</text>
+</g>
+<g class="pmc-node-group" id="node-MATRIX_NADH"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="190.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.8" y="161.5">T4</text></g>
+<text class="pmc-label" x="159.4" y="164.1">Matrix NADH Pool</text>
+<text class="pmc-sub" x="159.4" y="179.1">matrix redox couple</text>
+</g>
+<g class="pmc-node-group" id="node-SUCCINATE_POOL"><rect class="pmc-node tier-T4" x="64.0" y="242.1" width="190.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.8" y="257.6">T4</text></g>
+<text class="pmc-label" x="159.4" y="260.2">Succinate Pool</text>
+<text class="pmc-sub" x="159.4" y="275.2">TCA cycle intermediate</text>
+</g>
+<g class="pmc-node-group" id="node-O2_SUBSTRATE"><rect class="pmc-node tier-T4" x="64.0" y="338.2" width="190.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.8" y="353.8">T4</text></g>
+<text class="pmc-label" x="159.4" y="356.3">Molecular Oxygen (O2)</text>
+<text class="pmc-sub" x="159.4" y="371.3">electron acceptor</text>
+</g>
+<g class="pmc-node-group" id="node-COMPLEX_I_CORE"><rect class="pmc-node tier-T1" x="358.8" y="146.0" width="236.8" height="60.6" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="567.5" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="578.5" y="161.5">T1</text></g>
+<text class="pmc-label" x="477.1" y="164.3">Complex I (Catalytic Core)</text>
+<text class="pmc-sub" x="477.1" y="179.3">14 conserved subunits • 8 × Fe/S •</text>
+<text class="pmc-sub" x="477.1" y="191.3">FMN</text>
+</g>
+<g class="pmc-node-group" id="node-COMPLEX_I_CA_DOMAIN"><rect class="pmc-node tier-T1" x="358.8" y="254.6" width="236.8" height="60.6" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="567.5" y="260.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="578.5" y="270.1">T1</text></g>
+<text class="pmc-label" x="477.1" y="272.9">Complex I CA Domain</text>
+<text class="pmc-sub" x="477.1" y="287.9">CAL1/CAL2/CA1-3 • plant-specific •</text>
+<text class="pmc-sub" x="477.1" y="299.9">absent in mammals</text>
+</g>
+<g class="pmc-node-group" id="node-COMPLEX_II_SDH"><rect class="pmc-node tier-T1" x="358.8" y="363.2" width="236.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="567.5" y="369.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="578.5" y="378.8">T1</text></g>
+<text class="pmc-label" x="477.1" y="381.3">Complex II (SDH)</text>
+<text class="pmc-sub" x="477.1" y="396.3">SDH1-4 • FAD • 3 × Fe/S</text>
+</g>
+<g class="pmc-node-group" id="node-ALT_NDH_INTERNAL"><rect class="pmc-node tier-T1" x="358.8" y="459.4" width="236.8" height="60.6" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="567.5" y="465.4" width="22.0" height="13.0" /><text class="tier-badge-text" x="578.5" y="474.9">T1</text></g>
+<text class="pmc-label" x="477.1" y="477.7">Internal Type II NDH</text>
+<text class="pmc-sub" x="477.1" y="492.7">NDA1/NDA2/NDC1 • matrix-facing •</text>
+<text class="pmc-sub" x="477.1" y="504.7">bypass</text>
+</g>
+<g class="pmc-node-group" id="node-ALT_NDH_EXTERNAL"><rect class="pmc-node tier-T1" x="358.8" y="568.0" width="236.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="567.5" y="574.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="578.5" y="583.5">T1</text></g>
+<text class="pmc-label" x="477.1" y="586.1">External Type II NDH</text>
+<text class="pmc-sub" x="477.1" y="601.1">NDB1/NDB2/NDB4 • IMS-facing • bypass</text>
+</g>
+<g class="pmc-node-group" id="node-UBIQUINONE_POOL"><rect class="pmc-node tier-T4" x="699.5" y="146.0" width="213.6" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="885.1" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="896.1" y="161.5">T4</text></g>
+<text class="pmc-label" x="806.3" y="164.1">Ubiquinone Pool (Q/QH2)</text>
+<text class="pmc-sub" x="806.3" y="179.1">membrane quinone</text>
+</g>
+<g class="pmc-node-group" id="node-AOX_BYPASS"><rect class="pmc-node tier-T1" x="699.5" y="242.1" width="213.6" height="76.2" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="885.1" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="896.1" y="257.6">T1</text></g>
+<text class="pmc-label" x="806.3" y="260.8">Alternative Oxidase</text>
+<text class="pmc-label" x="806.3" y="275.8">(AOX1a)</text>
+<text class="pmc-sub" x="806.3" y="290.8">di-iron carboxylate •</text>
+<text class="pmc-sub" x="806.3" y="302.8">cyanide-resistant • no H+ pumped</text>
+</g>
+<g class="pmc-node-group" id="node-COMPLEX_III_BC1"><rect class="pmc-node tier-T1" x="1017.1" y="146.0" width="236.8" height="60.6" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1226.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1237.0" y="161.5">T1</text></g>
+<text class="pmc-label" x="1135.5" y="164.3">Complex III (bc1 Complex)</text>
+<text class="pmc-sub" x="1135.5" y="179.3">Rieske [2Fe-2S] • Cyt b • Cyt c1 • Q</text>
+<text class="pmc-sub" x="1135.5" y="191.3">cycle</text>
+</g>
+<g class="pmc-node-group" id="node-CYTOCHROME_C"><rect class="pmc-node tier-T4" x="1017.1" y="254.6" width="236.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1226.0" y="260.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="1237.0" y="270.1">T4</text></g>
+<text class="pmc-label" x="1135.5" y="272.7">Cytochrome c</text>
+<text class="pmc-sub" x="1135.5" y="287.7">mobile IMS carrier</text>
+</g>
+<g class="pmc-node-group" id="node-COMPLEX_IV_COX"><rect class="pmc-node tier-T1" x="1017.1" y="350.8" width="236.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1226.0" y="356.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="1237.0" y="366.2">T1</text></g>
+<text class="pmc-label" x="1135.5" y="368.8">Complex IV (COX)</text>
+<text class="pmc-sub" x="1135.5" y="383.8">heme a3/CuB • terminal oxidase</text>
+</g>
+<g class="pmc-node-group" id="node-COMPLEX_V_ATPASE"><rect class="pmc-node tier-T1" x="1357.9" y="146.0" width="210.0" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1539.9" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1550.9" y="161.5">T1</text></g>
+<text class="pmc-label" x="1462.9" y="164.1">ATP Synthase (F1Fo)</text>
+<text class="pmc-sub" x="1462.9" y="179.1">H+ motor • yields ATP</text>
+</g>
+<g class="pmc-node-group" id="node-PUMP_UNCOUPLING"><rect class="pmc-node tier-T1" x="1357.9" y="242.1" width="210.0" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1539.9" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1550.9" y="257.6">T1</text></g>
+<text class="pmc-label" x="1462.9" y="260.2">Plant UCP1 (PUMP1)</text>
+<text class="pmc-sub" x="1462.9" y="275.2">dissipates H+ • thermotolerance</text>
+</g>
+<g class="pmc-node-group" id="node-MITO_ROS_BURST"><rect class="pmc-node tier-T1" x="1357.9" y="338.2" width="210.0" height="76.2" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1539.9" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1550.9" y="353.8">T1</text></g>
+<text class="pmc-label" x="1462.9" y="356.9">Mitochondrial</text>
+<text class="pmc-label" x="1462.9" y="371.9">Superoxide/H2O2</text>
+<text class="pmc-sub" x="1462.9" y="386.9">retrograde signal • leak from</text>
+<text class="pmc-sub" x="1462.9" y="398.9">CI/CIII</text>
+</g>
+<g class="pmc-node-group" id="node-DTC_CITRATE_CARRIER"><rect class="pmc-node tier-T1" x="1357.9" y="462.5" width="210.0" height="60.6" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1539.9" y="468.5" width="22.0" height="13.0" /><text class="tier-badge-text" x="1550.9" y="478.0">T1</text></g>
+<text class="pmc-label" x="1462.9" y="480.8">DTC Translocator</text>
+<text class="pmc-sub" x="1462.9" y="495.8">exports citrate • epigenetic</text>
+<text class="pmc-sub" x="1462.9" y="507.8">signaling</text>
 </g>
 </svg>

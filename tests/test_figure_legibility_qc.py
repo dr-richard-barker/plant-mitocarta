@@ -247,5 +247,76 @@ def test_nasa_osdr_multiomics_studio_qc():
     assert "OSD-37" in osdr_html
 
 
+def test_maps_zero_edge_node_collisions():
+    """ABAI QC Check 10: Ensure no edge paths intersect or collide with intermediate node boxes."""
+    from plant_mitocarta.layout import route_edge, MIN_GUTTER_X
+    maps = compile_all_maps()
+    collisions = []
+
+    def sample_polyline(pts, num_samples_per_seg=12):
+        samples = []
+        for i in range(len(pts) - 1):
+            x1, y1 = pts[i]
+            x2, y2 = pts[i+1]
+            for step in range(num_samples_per_seg):
+                t = step / num_samples_per_seg
+                samples.append((x1 + t*(x2 - x1), y1 + t*(y2 - y1)))
+        samples.append(pts[-1])
+        return samples
+
+    def point_in_box(pt, box, margin=1.0):
+        return (box.x - margin <= pt[0] <= box.x2 + margin and
+                box.y - margin <= pt[1] <= box.y2 + margin)
+
+    for m in maps:
+        nodes_by_id = {n.id: n for n in m.nodes}
+        highway_slot = 0
+        for e in m.edges:
+            s = nodes_by_id[e.src]
+            d = nodes_by_id[e.dst]
+            if abs(d.col - s.col) >= 2:
+                highway_slot += 1
+            route = route_edge(s, d, m.nodes, gutter_x=MIN_GUTTER_X, edge_label=e.label, edge_kind=e.kind, highway_slot=highway_slot)
+            sampled = sample_polyline(route.waypoints, 15)
+            for n in m.nodes:
+                if n.id in (e.src, e.dst):
+                    continue
+                for pt in sampled:
+                    if point_in_box(pt, n.box, margin=1.0):
+                        collisions.append(f"Map {m.id}: Edge '{e.src}' -> '{e.dst}' intersects Node '{n.id}'")
+                        break
+
+    assert not collisions, f"Found {len(collisions)} edge-node collisions:\n" + "\n".join(collisions)
+
+
+def test_maps_zero_edge_label_collisions():
+    """ABAI QC Check 11: Ensure edge label background chips maintain zero intersection with any node."""
+    from plant_mitocarta.layout import route_edge, MIN_GUTTER_X
+    maps = compile_all_maps()
+    collisions = []
+
+    for m in maps:
+        nodes_by_id = {n.id: n for n in m.nodes}
+        highway_slot = 0
+        for e in m.edges:
+            if not e.label:
+                continue
+            s = nodes_by_id[e.src]
+            d = nodes_by_id[e.dst]
+            if abs(d.col - s.col) >= 2:
+                highway_slot += 1
+            route = route_edge(s, d, m.nodes, gutter_x=MIN_GUTTER_X, edge_label=e.label, edge_kind=e.kind, highway_slot=highway_slot)
+            if route.label_box:
+                lb = route.label_box
+                for n in m.nodes:
+                    x_ov = not (lb.x2 <= n.box.x or n.box.x2 <= lb.x)
+                    y_ov = not (lb.y2 <= n.box.y or n.box.y2 <= lb.y)
+                    if x_ov and y_ov:
+                        collisions.append(f"Map {m.id}: Label '{e.label}' ({e.src}->{e.dst}) collides with Node '{n.id}'")
+
+    assert not collisions, f"Found {len(collisions)} label-node collisions:\n" + "\n".join(collisions)
+
+
+
 
 

@@ -79,7 +79,7 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
     node_boxes: dict[str, Box] = {}
 
     start_x = CANVAS_MARGIN + 20.0
-    start_y = 100.0  # Room for title/subtitle
+    start_y = 110.0  # Room for title/subtitle and overhead highway
 
     current_x = start_x
     max_h_overall = 0.0
@@ -92,11 +92,10 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
         lane_node_ids = lane.get("nodes", [])
         pref_w = float(lane.get("node_width", 200.0))
 
-        current_y = start_y + 30.0
-        lane_max_w = pref_w
-
         lane_boxes.setdefault(comp_id, [])
 
+        # Pass 1: Size all nodes in this lane to find maximum required width
+        temp_sized = []
         for row_idx, nid in enumerate(lane_node_ids):
             n_spec = nodes_spec.get(nid, {})
             pmco_id = n_spec.get("pmco")
@@ -127,6 +126,14 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
                 preferred_width=pref_w,
                 weight="bold",
             )
+            temp_sized.append((nid, box, lines, sublines, lane_id, row_idx, pmco_id, tier, desc))
+
+        lane_max_w = max([pref_w] + [item[1].w for item in temp_sized])
+
+        # Pass 2: Place all nodes with uniform width in this lane
+        current_y = start_y + 36.0
+        for nid, box, lines, sublines, l_id, row_idx, pmco_id, tier, desc in temp_sized:
+            box.w = lane_max_w
             box.x = current_x
             box.y = current_y
 
@@ -138,7 +145,7 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
                 font_weight="bold",
                 sublines=sublines,
                 sub_font_size=10.0,
-                lane=lane_id,
+                lane=l_id,
                 row=row_idx,
                 col=lane_idx,
                 payload={
@@ -147,7 +154,6 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
                     "description": desc,
                 },
             )
-            # Add dynamic attribute for tier
             lnode.evidence_tier = tier
 
             laid_out_nodes.append(lnode)
@@ -155,7 +161,6 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
             lane_boxes[comp_id].append(box)
 
             current_y += box.h + MIN_GUTTER_Y
-            lane_max_w = max(lane_max_w, box.w)
 
         max_h_overall = max(max_h_overall, current_y)
         current_x += lane_max_w + MIN_GUTTER_X
@@ -190,8 +195,8 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
             if src in node_boxes and dst in node_boxes:
                 edges.append(MapEdge(src=src, dst=dst, kind=kind, label=elbl))
 
-    canvas_w = max(current_x + CANVAS_MARGIN, 1000.0)
-    canvas_h = max(max_h_overall + CANVAS_MARGIN + 40.0, 650.0)
+    canvas_w = max(current_x + CANVAS_MARGIN, 1150.0)
+    canvas_h = max(max_h_overall + CANVAS_MARGIN + 60.0, 720.0)
     canvas_box = Box(0, 0, canvas_w, canvas_h)
 
     return Map(

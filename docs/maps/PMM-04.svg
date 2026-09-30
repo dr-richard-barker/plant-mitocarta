@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1390.4 650.0" width="1390.4" height="650.0" class="pmc-svg" data-theme="light">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1754.4 720.0" width="1754.4" height="720.0" class="pmc-svg" data-theme="light">
 <style>
 :root {
   --pmc-bg: #ffffff;
@@ -9,7 +9,7 @@
   --pmc-hairline: #9ca3af;
   --pmc-edge: #4b5563;
   --pmc-card-bg: #ffffff;
-  --pmc-compartment-fill: rgba(0, 0, 0, 0.03);
+  --pmc-compartment-fill: rgba(0, 0, 0, 0.025);
 }
 :root[data-theme="dark"], body.dark-mode {
   --pmc-bg: #0b0f19;
@@ -20,7 +20,7 @@
   --pmc-hairline: #4b5563;
   --pmc-edge: #9ca3af;
   --pmc-card-bg: #111827;
-  --pmc-compartment-fill: rgba(255, 255, 255, 0.04);
+  --pmc-compartment-fill: rgba(255, 255, 255, 0.035);
 }
 
 .pmc-canvas { fill: var(--pmc-bg); }
@@ -40,6 +40,15 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .tier-T4 { stroke-width: 1.5px; stroke-dasharray: 2 3; stroke: var(--pmc-ink-soft); }
 .tier-T5 { stroke-width: 0.8px; stroke: var(--pmc-hairline); }
 
+/* Evidence Tier Badges */
+.tier-badge-bg { rx: 3px; ry: 3px; stroke-width: 0.5px; }
+.tier-badge-T1 { fill: #0072b2; stroke: #005a8e; }
+.tier-badge-T2 { fill: #009e73; stroke: #007a59; }
+.tier-badge-T3 { fill: #e69f00; stroke: #b87f00; }
+.tier-badge-T4 { fill: #56b4e9; stroke: #3a97cc; }
+.tier-badge-T5 { fill: #9ca3af; stroke: #6b7280; }
+.tier-badge-text { font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }
+
 .pmc-compartment { fill: var(--pmc-compartment-fill); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
 .pmc-compartment-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--pmc-ink-soft); }
 
@@ -49,7 +58,10 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .pmc-edge-activates { stroke: #E69F00; stroke-width: 1.8px; }
 .pmc-edge-inhibits { stroke: #D55E00; stroke-width: 2.0px; }
 .pmc-edge-cleaved_by { stroke: #CC79A7; stroke-dasharray: 5 3; }
-.pmc-edge-label { font-size: 9.5px; fill: var(--pmc-ink-soft); font-weight: 500; text-anchor: middle; }
+
+/* Edge Label Scrim Chip */
+.pmc-edge-label-bg { fill: var(--pmc-card-bg); stroke: var(--pmc-hairline); stroke-width: 0.8px; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08)); }
+.pmc-edge-label { font-size: 9px; fill: var(--pmc-ink); font-weight: 600; text-anchor: middle; letter-spacing: 0.01em; }
 </style>
 <defs>
 <marker id="pmc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="var(--pmc-edge)" /></marker>
@@ -57,111 +69,179 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <marker id="pmc-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#009E73" /></marker>
 <marker id="pmc-arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#E69F00" /></marker>
 <marker id="pmc-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#D55E00" /></marker>
+<marker id="pmc-arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#CC79A7" /></marker>
 <marker id="pmc-inhibit" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><line x1="5" y1="1" x2="5" y2="9" stroke="#D55E00" stroke-width="2.5" /></marker>
 </defs>
-<rect class="pmc-canvas" width="1390.4" height="650.0" />
+<rect class="pmc-canvas" width="1754.4" height="720.0" />
 <text class="pmc-title" x="32" y="44">Plasma Membrane Perception, Gravity Sensing, and Systemic Waves</text>
 <text class="pmc-subtitle" x="32" y="66">Cell surface mechanical and gravity sensing driving calcium spikes and apoplastic ROS waves that propagate inward to mitochondria and chloroplasts.</text>
-<rect class="pmc-compartment" x="24.0" y="90.0" width="270.0" height="304.5" stroke="#3d3d3d" />
-<text class="pmc-compartment-label" x="36.0" y="108.0">Apoplast &amp; Cell Wall</text>
-<rect class="pmc-compartment" x="274.0" y="90.0" width="548.2" height="381.5" stroke="#1d4e6b" />
-<text class="pmc-compartment-label" x="286.0" y="108.0">Plasma Membrane</text>
-<rect class="pmc-compartment" x="802.2" y="90.0" width="548.2" height="276.4" stroke="#264b63" />
-<text class="pmc-compartment-label" x="814.2" y="108.0">Cytosol</text>
-<line class="pmc-edge pmc-edge-activates" x1="230.8" y1="168.1" x2="302.0" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="266.4" y="157.1">mechanical stretch</text>
-<line class="pmc-edge pmc-edge-activates" x1="266.0" y1="262.3" x2="302.0" y2="234.2" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="284.0" y="244.2">oligogalacturonide binding</text>
-<line class="pmc-edge pmc-edge-activates" x1="230.8" y1="168.1" x2="302.0" y2="322.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="266.4" y="241.1">membrane tension</text>
-<line class="pmc-edge pmc-edge-activates" x1="509.8" y1="154.1" x2="557.4" y2="160.3" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="533.6" y="153.2">triggers Ca2+ gating</text>
-<line class="pmc-edge pmc-edge-activates" x1="521.4" y1="322.1" x2="830.2" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="675.8" y="234.1">cation influx</text>
-<line class="pmc-edge pmc-edge-activates" x1="794.2" y1="160.3" x2="830.2" y2="154.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="812.2" y="153.2">rapid Ca2+ influx</text>
-<line class="pmc-edge pmc-edge-activates" x1="925.6" y1="178.1" x2="939.9" y2="210.1" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="932.7" y="190.1">Ca2+ binding to EF-hands</text>
-<line class="pmc-edge pmc-edge-activates" x1="830.2" y1="234.2" x2="776.8" y2="252.9" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="803.5" y="239.6">Ser-343/347 phosphorylation</text>
-<line class="pmc-edge pmc-edge-electron_transfer" x1="250.5" y1="342.4" x2="557.4" y2="252.9" marker-end="url(#pmc-arrow-blue)" />
-<text class="pmc-edge-label" x="403.9" y="293.7">generates O2•-</text>
-<line class="pmc-edge pmc-edge-metabolite_flux" x1="667.1" y1="283.2" x2="658.4" y2="315.2" marker-end="url(#pmc-arrow-green)" />
-<text class="pmc-edge-label" x="662.8" y="295.2">O2•- -&gt; H2O2 diffusion</text>
-<line class="pmc-edge pmc-edge-metabolite_flux" x1="759.4" y1="339.3" x2="830.2" y2="314.3" marker-end="url(#pmc-arrow-green)" />
-<text class="pmc-edge-label" x="794.8" y="322.8">channels H2O2 into cytosol</text>
-<line class="pmc-edge pmc-edge-activates" x1="1020.9" y1="154.1" x2="1085.6" y2="161.9" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1053.3" y="154.0">MCU channel uptake</text>
-<line class="pmc-edge pmc-edge-activates" x1="1005.4" y1="314.3" x2="1085.6" y2="161.9" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1045.5" y="234.1">activates rhomboid/AOX1a</text>
-<line class="pmc-edge pmc-edge-activates" x1="1020.9" y1="154.1" x2="1085.6" y2="249.8" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1053.3" y="197.9">stromal Ca2+ signaling</text>
-<line class="pmc-edge pmc-edge-activates" x1="1005.4" y1="314.3" x2="1085.6" y2="249.8" marker-end="url(#pmc-arrow-orange)" />
-<text class="pmc-edge-label" x="1045.5" y="278.1">oxidizes SAL1</text>
-<g class="pmc-node-group" id="node-WALL_STRAIN"><rect class="pmc-node tier-T4" x="52.0" y="130.0" width="178.8" height="76.2" />
-<text class="pmc-label" x="141.4" y="148.6">Mechanical /</text>
-<text class="pmc-label" x="141.4" y="163.6">Microgravity Strain</text>
-<text class="pmc-sub" x="141.4" y="178.6">wall deformation • gravity</text>
-<text class="pmc-sub" x="141.4" y="190.6">vector shift</text>
+<rect class="pmc-compartment" x="40.0" y="110.0" width="262.0" height="328.5" stroke="#3d3d3d" />
+<text class="pmc-compartment-label" x="52.0" y="128.0">Apoplast &amp; Cell Wall</text>
+<rect class="pmc-compartment" x="358.0" y="110.0" width="608.2" height="421.5" stroke="#1d4e6b" />
+<text class="pmc-compartment-label" x="370.0" y="128.0">Plasma Membrane</text>
+<rect class="pmc-compartment" x="1022.2" y="110.0" width="608.2" height="300.4" stroke="#264b63" />
+<text class="pmc-compartment-label" x="1034.2" y="128.0">Cytosol</text>
+<path class="pmc-edge pmc-edge-activates" d="M 278.0 184.1 L 323.0 184.1 Q 330.0 184.1 330.0 177.1 L 330.0 177.1 Q 330.0 170.1 337.0 170.1 L 382.0 170.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="302.4" y="162.2" width="55.1" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="330.0" y="175.1">membrane</text>
+<text class="pmc-edge-label" x="330.0" y="185.6">stretch</text>
 </g>
-<g class="pmc-node-group" id="node-APOPLASTIC_PECTIN"><rect class="pmc-node tier-T4" x="52.0" y="238.2" width="214.0" height="48.1" />
-<text class="pmc-label" x="159.0" y="256.3">Apoplastic Pectin Matrix</text>
-<text class="pmc-sub" x="159.0" y="271.3">oligogalacturonides • crosslinks</text>
+<path class="pmc-edge pmc-edge-activates" d="M 278.0 294.3 L 322.0 294.3 Q 330.0 294.3 330.0 286.3 L 330.0 274.2 Q 330.0 266.2 338.0 266.2 L 382.0 266.2" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="296.6" y="271.3" width="66.9" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="330.0" y="283.2">OG binding</text>
 </g>
-<g class="pmc-node-group" id="node-EXTRACELLULAR_O2"><rect class="pmc-node tier-T4" x="52.0" y="318.4" width="198.5" height="48.1" />
-<text class="pmc-label" x="151.2" y="336.4">Apoplastic Oxygen Pool</text>
-<text class="pmc-sub" x="151.2" y="351.4">substrate for RBOHD</text>
+<path class="pmc-edge pmc-edge-activates" d="M 278.0 184.1 L 322.0 184.1 Q 330.0 184.1 330.0 192.1 L 330.0 362.1 Q 330.0 370.1 338.0 370.1 L 382.0 370.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="305.4" y="262.2" width="49.2" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="330.0" y="275.1">stretch</text>
+<text class="pmc-edge-label" x="330.0" y="285.6">gating</text>
 </g>
-<g class="pmc-node-group" id="node-FERONIA_RECEPTOR"><rect class="pmc-node tier-T1" x="302.0" y="130.0" width="207.8" height="48.1" />
-<text class="pmc-label" x="405.9" y="148.1">FERONIA Receptor Kinase</text>
-<text class="pmc-sub" x="405.9" y="163.1">CrRLK1L • RALF peptide receptor</text>
+<path class="pmc-edge pmc-edge-activates" d="M 601.4 170.1 L 650.3 170.1 Q 653.4 170.1 653.4 173.2 L 653.4 173.2 Q 653.4 176.3 656.5 176.3 L 705.4 176.3" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="617.0" y="164.2" width="72.8" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="653.4" y="176.2">Ca2+ gating</text>
 </g>
-<g class="pmc-node-group" id="node-WAK1_PECTIN_KINASE"><rect class="pmc-node tier-T1" x="302.0" y="210.1" width="207.8" height="48.1" />
-<text class="pmc-label" x="405.9" y="228.2">WAK1 Kinase</text>
-<text class="pmc-sub" x="405.9" y="243.2">binds pectin • cell wall sensor</text>
+<path class="pmc-edge pmc-edge-activates" d="M 601.4 370.1 L 645.4 370.1 Q 653.4 370.1 653.4 362.1 L 653.4 114.0 Q 653.4 106.0 661.4 106.0 L 986.2 106.0 Q 994.2 106.0 994.2 114.0 L 994.2 162.1 Q 994.2 170.1 1002.2 170.1 L 1046.2 170.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="781.5" y="97.1" width="84.6" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="823.8" y="109.0">cation influx</text>
 </g>
-<g class="pmc-node-group" id="node-MSL10_STRETCH_GATE"><rect class="pmc-node tier-T1" x="302.0" y="290.2" width="219.4" height="63.8" />
-<text class="pmc-label" x="411.7" y="308.6">MSL10 Mechanosensitive</text>
-<text class="pmc-label" x="411.7" y="323.6">Channel</text>
-<text class="pmc-sub" x="411.7" y="338.6">stretch-activated • turgor sensor</text>
+<path class="pmc-edge pmc-edge-activates" d="M 942.2 176.3 L 991.1 176.3 Q 994.2 176.3 994.2 173.2 L 994.2 173.2 Q 994.2 170.1 997.3 170.1 L 1046.2 170.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="960.7" y="164.2" width="66.9" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="994.2" y="176.2">rapid Ca2+</text>
 </g>
-<g class="pmc-node-group" id="node-GLR_CALCIUM_CHANNELS"><rect class="pmc-node tier-T1" x="557.4" y="130.0" width="236.8" height="60.6" />
-<text class="pmc-label" x="675.8" y="148.3">GLR3.3 / GLR3.6 Channels</text>
-<text class="pmc-sub" x="675.8" y="163.3">Ca2+ influx gates • rapid electrical</text>
-<text class="pmc-sub" x="675.8" y="175.3">wave</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1155.9 194.1 L 1155.9 242.1" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1131.3" y="203.2" width="49.2" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="1155.9" y="216.1">EF-hand</text>
+<text class="pmc-edge-label" x="1155.9" y="226.6">binding</text>
 </g>
-<g class="pmc-node-group" id="node-RBOHD_OXIDASE"><rect class="pmc-node tier-T1" x="557.4" y="222.6" width="219.4" height="60.6" />
-<text class="pmc-label" x="667.1" y="240.9">RBOHD NADPH Oxidase</text>
-<text class="pmc-sub" x="667.1" y="255.9">apoplastic superoxide generator •</text>
-<text class="pmc-sub" x="667.1" y="267.9">Ca2+ activated</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1046.2 266.2 L 1002.2 266.2 Q 994.2 266.2 994.2 274.2 L 994.2 276.9 Q 994.2 284.9 986.2 284.9 L 942.2 284.9" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="954.9" y="266.6" width="78.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="994.2" y="278.6">Ser343/347-P</text>
 </g>
-<g class="pmc-node-group" id="node-PIP2_1_AQUAPORIN"><rect class="pmc-node tier-T1" x="557.4" y="315.2" width="202.0" height="48.1" />
-<text class="pmc-label" x="658.4" y="333.3">PIP2;1 Aquaporin</text>
-<text class="pmc-sub" x="658.4" y="348.3">channels H2O2 • inward conduit</text>
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 278.0 390.4 L 322.0 390.4 Q 330.0 390.4 330.0 398.4 L 330.0 551.5 Q 330.0 559.5 338.0 559.5 L 645.4 559.5 Q 653.4 559.5 653.4 551.5 L 653.4 292.9 Q 653.4 284.9 661.4 284.9 L 705.4 284.9" marker-end="url(#pmc-arrow-blue)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="461.2" y="544.6" width="61.0" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="491.7" y="557.5">generates</text>
+<text class="pmc-edge-label" x="491.7" y="568.0">O2•-</text>
 </g>
-<g class="pmc-node-group" id="node-AHA1_PROTON_PUMP"><rect class="pmc-node tier-T1" x="557.4" y="395.4" width="219.4" height="48.1" />
-<text class="pmc-label" x="667.1" y="413.4">AHA1 H+-ATPase</text>
-<text class="pmc-sub" x="667.1" y="428.4">electrogenic pump • maintains ΔpH</text>
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 823.8 315.2 L 823.8 363.2" marker-end="url(#pmc-arrow-green)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="784.5" y="330.3" width="78.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="823.8" y="342.2">O2•- -&gt; H2O2</text>
 </g>
-<g class="pmc-node-group" id="node-CYTOSOLIC_CA_SPIKE"><rect class="pmc-node tier-T4" x="830.2" y="130.0" width="190.8" height="48.1" />
-<text class="pmc-label" x="925.6" y="148.1">Cytosolic [Ca2+] Wave</text>
-<text class="pmc-sub" x="925.6" y="163.1">second messenger spike</text>
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 942.2 387.3 L 986.2 387.3 Q 994.2 387.3 994.2 379.3 L 994.2 370.3 Q 994.2 362.3 1002.2 362.3 L 1046.2 362.3" marker-end="url(#pmc-arrow-green)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="960.7" y="359.9" width="66.9" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="994.2" y="372.8">H2O2</text>
+<text class="pmc-edge-label" x="994.2" y="383.3">channeling</text>
 </g>
-<g class="pmc-node-group" id="node-CPK_KINASES"><rect class="pmc-node tier-T4" x="830.2" y="210.1" width="219.4" height="48.1" />
-<text class="pmc-label" x="939.9" y="228.2">CPKs / BIK1 Kinases</text>
-<text class="pmc-sub" x="939.9" y="243.2">calcium-dependent phosphorylation</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1265.6 170.1 L 1313.7 170.1 Q 1317.6 170.1 1317.6 174.0 L 1317.6 174.0 Q 1317.6 177.9 1321.5 177.9 L 1369.6 177.9" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1284.1" y="165.0" width="66.9" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="1317.6" y="177.0">MCU uptake</text>
 </g>
-<g class="pmc-node-group" id="node-INWARD_H2O2_FLUX"><rect class="pmc-node tier-T4" x="830.2" y="290.2" width="175.2" height="48.1" />
-<text class="pmc-label" x="917.8" y="308.3">Cytosolic H2O2 Wave</text>
-<text class="pmc-sub" x="917.8" y="323.3">redox messenger</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1265.6 362.3 L 1309.6 362.3 Q 1317.6 362.3 1317.6 354.3 L 1317.6 185.9 Q 1317.6 177.9 1325.6 177.9 L 1369.6 177.9" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1284.1" y="255.2" width="66.9" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="1317.6" y="268.1">rhomboid /</text>
+<text class="pmc-edge-label" x="1317.6" y="278.6">AOX1a</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_PERCEPTION"><rect class="pmc-node tier-T4" x="1085.6" y="130.0" width="236.8" height="63.8" />
-<text class="pmc-label" x="1204.0" y="148.4">Mitochondrial Bioenergetic</text>
-<text class="pmc-label" x="1204.0" y="163.4">Tuning</text>
-<text class="pmc-sub" x="1204.0" y="178.4">MCU Ca2+ uptake • stimulates TCA/AOX</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1265.6 170.1 L 1309.6 170.1 Q 1317.6 170.1 1317.6 178.1 L 1317.6 273.8 Q 1317.6 281.8 1325.6 281.8 L 1369.6 281.8" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1278.3" y="217.0" width="78.7" height="17.9" rx="4" />
+<text class="pmc-edge-label" x="1317.6" y="228.9">stromal Ca2+</text>
 </g>
-<g class="pmc-node-group" id="node-CHLORO_PERCEPTION"><rect class="pmc-node tier-T4" x="1085.6" y="225.8" width="221.8" height="48.1" />
-<text class="pmc-label" x="1196.5" y="243.8">Chloroplast Stroma Tuning</text>
-<text class="pmc-sub" x="1196.5" y="258.8">stromal Ca2+ • redox adjustments</text>
+<path class="pmc-edge pmc-edge-activates" d="M 1265.6 362.3 L 1309.6 362.3 Q 1317.6 362.3 1317.6 354.3 L 1317.6 289.8 Q 1317.6 281.8 1325.6 281.8 L 1369.6 281.8" marker-end="url(#pmc-arrow-orange)" />
+<g class="pmc-edge-label-group">
+<rect class="pmc-edge-label-bg" x="1287.1" y="307.2" width="61.0" height="29.8" rx="4" />
+<text class="pmc-edge-label" x="1317.6" y="320.1">SAL1</text>
+<text class="pmc-edge-label" x="1317.6" y="330.6">oxidation</text>
+</g>
+<g class="pmc-node-group" id="node-WALL_STRAIN"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="214.0" height="76.2" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="250.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="161.5">T4</text></g>
+<text class="pmc-label" x="171.0" y="164.6">Mechanical /</text>
+<text class="pmc-label" x="171.0" y="179.6">Microgravity Strain</text>
+<text class="pmc-sub" x="171.0" y="194.6">wall deformation • gravity</text>
+<text class="pmc-sub" x="171.0" y="206.6">vector shift</text>
+</g>
+<g class="pmc-node-group" id="node-APOPLASTIC_PECTIN"><rect class="pmc-node tier-T4" x="64.0" y="270.2" width="214.0" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="250.0" y="276.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="285.8">T4</text></g>
+<text class="pmc-label" x="171.0" y="288.3">Apoplastic Pectin Matrix</text>
+<text class="pmc-sub" x="171.0" y="303.3">oligogalacturonides • crosslinks</text>
+</g>
+<g class="pmc-node-group" id="node-EXTRACELLULAR_O2"><rect class="pmc-node tier-T4" x="64.0" y="366.4" width="214.0" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="250.0" y="372.4" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="381.9">T4</text></g>
+<text class="pmc-label" x="171.0" y="384.4">Apoplastic Oxygen Pool</text>
+<text class="pmc-sub" x="171.0" y="399.4">substrate for RBOHD</text>
+</g>
+<g class="pmc-node-group" id="node-FERONIA_RECEPTOR"><rect class="pmc-node tier-T1" x="382.0" y="146.0" width="219.4" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="573.4" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="584.4" y="161.5">T1</text></g>
+<text class="pmc-label" x="491.7" y="164.1">FERONIA Receptor Kinase</text>
+<text class="pmc-sub" x="491.7" y="179.1">CrRLK1L • RALF peptide receptor</text>
+</g>
+<g class="pmc-node-group" id="node-WAK1_PECTIN_KINASE"><rect class="pmc-node tier-T1" x="382.0" y="242.1" width="219.4" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="573.4" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="584.4" y="257.6">T1</text></g>
+<text class="pmc-label" x="491.7" y="260.2">WAK1 Kinase</text>
+<text class="pmc-sub" x="491.7" y="275.2">binds pectin • cell wall sensor</text>
+</g>
+<g class="pmc-node-group" id="node-MSL10_STRETCH_GATE"><rect class="pmc-node tier-T1" x="382.0" y="338.2" width="219.4" height="63.8" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="573.4" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="584.4" y="353.8">T1</text></g>
+<text class="pmc-label" x="491.7" y="356.6">MSL10 Mechanosensitive</text>
+<text class="pmc-label" x="491.7" y="371.6">Channel</text>
+<text class="pmc-sub" x="491.7" y="386.6">stretch-activated • turgor sensor</text>
+</g>
+<g class="pmc-node-group" id="node-GLR_CALCIUM_CHANNELS"><rect class="pmc-node tier-T1" x="705.4" y="146.0" width="236.8" height="60.6" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="914.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="925.2" y="161.5">T1</text></g>
+<text class="pmc-label" x="823.8" y="164.3">GLR3.3 / GLR3.6 Channels</text>
+<text class="pmc-sub" x="823.8" y="179.3">Ca2+ influx gates • rapid electrical</text>
+<text class="pmc-sub" x="823.8" y="191.3">wave</text>
+</g>
+<g class="pmc-node-group" id="node-RBOHD_OXIDASE"><rect class="pmc-node tier-T1" x="705.4" y="254.6" width="236.8" height="60.6" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="914.2" y="260.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="925.2" y="270.1">T1</text></g>
+<text class="pmc-label" x="823.8" y="272.9">RBOHD NADPH Oxidase</text>
+<text class="pmc-sub" x="823.8" y="287.9">apoplastic superoxide generator •</text>
+<text class="pmc-sub" x="823.8" y="299.9">Ca2+ activated</text>
+</g>
+<g class="pmc-node-group" id="node-PIP2_1_AQUAPORIN"><rect class="pmc-node tier-T1" x="705.4" y="363.2" width="236.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="914.2" y="369.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="925.2" y="378.8">T1</text></g>
+<text class="pmc-label" x="823.8" y="381.3">PIP2;1 Aquaporin</text>
+<text class="pmc-sub" x="823.8" y="396.3">channels H2O2 • inward conduit</text>
+</g>
+<g class="pmc-node-group" id="node-AHA1_PROTON_PUMP"><rect class="pmc-node tier-T1" x="705.4" y="459.4" width="236.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="914.2" y="465.4" width="22.0" height="13.0" /><text class="tier-badge-text" x="925.2" y="474.9">T1</text></g>
+<text class="pmc-label" x="823.8" y="477.4">AHA1 H+-ATPase</text>
+<text class="pmc-sub" x="823.8" y="492.4">electrogenic pump • maintains ΔpH</text>
+</g>
+<g class="pmc-node-group" id="node-CYTOSOLIC_CA_SPIKE"><rect class="pmc-node tier-T4" x="1046.2" y="146.0" width="219.4" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1237.6" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1248.6" y="161.5">T4</text></g>
+<text class="pmc-label" x="1155.9" y="164.1">Cytosolic [Ca2+] Wave</text>
+<text class="pmc-sub" x="1155.9" y="179.1">second messenger spike</text>
+</g>
+<g class="pmc-node-group" id="node-CPK_KINASES"><rect class="pmc-node tier-T4" x="1046.2" y="242.1" width="219.4" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1237.6" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1248.6" y="257.6">T4</text></g>
+<text class="pmc-label" x="1155.9" y="260.2">CPKs / BIK1 Kinases</text>
+<text class="pmc-sub" x="1155.9" y="275.2">calcium-dependent phosphorylation</text>
+</g>
+<g class="pmc-node-group" id="node-INWARD_H2O2_FLUX"><rect class="pmc-node tier-T4" x="1046.2" y="338.2" width="219.4" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1237.6" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1248.6" y="353.8">T4</text></g>
+<text class="pmc-label" x="1155.9" y="356.3">Cytosolic H2O2 Wave</text>
+<text class="pmc-sub" x="1155.9" y="371.3">redox messenger</text>
+</g>
+<g class="pmc-node-group" id="node-MITO_PERCEPTION"><rect class="pmc-node tier-T4" x="1369.6" y="146.0" width="236.8" height="63.8" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1578.4" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1589.4" y="161.5">T4</text></g>
+<text class="pmc-label" x="1488.0" y="164.4">Mitochondrial Bioenergetic</text>
+<text class="pmc-label" x="1488.0" y="179.4">Tuning</text>
+<text class="pmc-sub" x="1488.0" y="194.4">MCU Ca2+ uptake • stimulates TCA/AOX</text>
+</g>
+<g class="pmc-node-group" id="node-CHLORO_PERCEPTION"><rect class="pmc-node tier-T4" x="1369.6" y="257.8" width="236.8" height="48.1" />
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1578.4" y="263.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="1589.4" y="273.2">T4</text></g>
+<text class="pmc-label" x="1488.0" y="275.8">Chloroplast Stroma Tuning</text>
+<text class="pmc-sub" x="1488.0" y="290.8">stromal Ca2+ • redox adjustments</text>
 </g>
 </svg>
