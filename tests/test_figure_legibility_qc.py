@@ -117,6 +117,19 @@ def test_digital_doubles_geometry_and_legibility():
             assert s.color_hex.startswith("#"), f"Invalid hex color for {s.id}: {s.color_hex}"
             assert s.go_cc.startswith("GO:"), f"Invalid GO-CCO term for {s.id}: {s.go_cc}"
 
+        # Strict pairwise AABB non-overlap verification
+        for i in range(len(d.subcompartments)):
+            for j in range(i + 1, len(d.subcompartments)):
+                s1, s2 = d.subcompartments[i], d.subcompartments[j]
+                b1, b2 = s1.box, s2.box
+                x_overlap = not (b1.x2 <= b2.x or b2.x2 <= b1.x)
+                y_overlap = not (b1.y2 <= b2.y or b2.y2 <= b1.y)
+                assert not (x_overlap and y_overlap), (
+                    f"Double {d_id}: Subcompartment '{s1.id}' ({b1.x},{b1.y},{b1.w},{b1.h}) "
+                    f"overlaps with '{s2.id}' ({b2.x},{b2.y},{b2.w},{b2.h})"
+                )
+
+
 
 def test_retrograde_circuit_architectures_and_legibility():
     """ABAI QC Check 6: All 5 retrograde signaling circuits have non-overlapping nodes and complete animations."""
@@ -189,7 +202,11 @@ def test_digital_doubles_contrast_optimization():
 
     assert "function getContrastColor(hexColor)" in doubles_html
     assert "function getSubContrastColor(hexColor)" in doubles_html
+    assert "function wrapTextLines(text, maxChars)" in doubles_html
     assert 'data-mode="synoptic"' in doubles_html
     assert 'data-mode="chloroplast"' in doubles_html
     assert "rgba(15, 23, 42, 0.88)" in doubles_html
+    assert "'0 0 960 600'" in doubles_html
+
+
 

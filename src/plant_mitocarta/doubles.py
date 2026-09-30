@@ -48,52 +48,52 @@ class DigitalDouble:
 
 def get_mitochondrion_double() -> DigitalDouble:
     """Build the Plant Mitochondrion Digital Double."""
-    box = Box(0, 0, 700, 480)
+    box = Box(0, 0, 960, 600)
     subcomps = [
         Subcompartment(
             id="mitochondrial_outer_membrane",
             label="Outer Mitochondrial Membrane (OMM)",
             go_cc="GO:0005741",
-            box=Box(20, 20, 660, 440),
+            box=Box(20, 20, 920, 80),
             color_hex="#8c5618",
             description="TOM complex, VDAC channels, ANAC017/013 transmembrane cleavage anchors",
-            anchor_ports={"tom": (100, 20), "anac_tether": (500, 20), "vdac": (350, 460)},
+            anchor_ports={"tom": (100, 40), "anac_tether": (500, 40), "vdac": (850, 40)},
         ),
         Subcompartment(
             id="mitochondrial_intermembrane_space",
             label="Intermembrane Space (IMS)",
             go_cc="GO:0005758",
-            box=Box(40, 40, 620, 400),
+            box=Box(20, 115, 920, 80),
             color_hex="#9e6522",
             description="Mia40-Erv1 disulfide relay, Cytochrome c, external NDB dehydrogenases",
-            anchor_ports={"cyt_c": (300, 50), "ndb_ext": (450, 50)},
+            anchor_ports={"cyt_c": (300, 135), "ndb_ext": (650, 135)},
         ),
         Subcompartment(
             id="mitochondrial_inner_membrane",
             label="Inner Mitochondrial Membrane (IMM)",
             go_cc="GO:0005743",
-            box=Box(60, 60, 580, 360),
+            box=Box(20, 210, 920, 80),
             color_hex="#8c5618",
             description="Complexes I-V, AOX terminal bypass, internal NDA dehydrogenases, DTC carrier",
-            anchor_ports={"complex_I": (120, 70), "aox": (240, 70), "dtc": (480, 70)},
+            anchor_ports={"complex_I": (150, 230), "aox": (450, 230), "dtc": (750, 230)},
         ),
         Subcompartment(
             id="cristae",
             label="Cristae Lumen & Invaginations",
             go_cc="GO:0005746",
-            box=Box(80, 100, 260, 280),
+            box=Box(20, 305, 450, 275),
             color_hex="#6b3f0d",
             description="High-density respiratory chain proton-trapping folds and CA-domain",
-            anchor_ports={"ca_domain": (140, 200), "atp_synthase": (200, 320)},
+            anchor_ports={"ca_domain": (140, 350), "atp_synthase": (250, 450)},
         ),
         Subcompartment(
             id="mitochondrial_matrix",
             label="Mitochondrial Matrix",
             go_cc="GO:0005759",
-            box=Box(360, 100, 260, 280),
+            box=Box(490, 305, 450, 275),
             color_hex="#5c3407",
             description="TCA enzymes, Glycine Decarboxylase (GDC) photorespiration, Fe-S ISC machinery",
-            anchor_ports={"gdc": (420, 180), "tca": (480, 240), "nucleoid": (520, 320)},
+            anchor_ports={"gdc": (550, 350), "tca": (680, 420), "nucleoid": (800, 480)},
         ),
     ]
     return DigitalDouble(
@@ -108,43 +108,43 @@ def get_mitochondrion_double() -> DigitalDouble:
 
 def get_chloroplast_double() -> DigitalDouble:
     """Build the Chloroplast Digital Double."""
-    box = Box(0, 0, 700, 480)
+    box = Box(0, 0, 960, 600)
     subcomps = [
         Subcompartment(
             id="chloroplast_outer_envelope",
             label="Outer Envelope Membrane (OEM)",
             go_cc="GO:0009707",
-            box=Box(20, 20, 660, 440),
+            box=Box(20, 20, 920, 85),
             color_hex="#106e54",
-            description="TOC translocon complex and outer pores",
-            anchor_ports={"toc": (120, 20), "stromule_root": (640, 100)},
+            description="TOC translocon complex and outer pores • Stromule initiation sites",
+            anchor_ports={"toc": (150, 40), "stromule_root": (800, 40)},
         ),
         Subcompartment(
             id="chloroplast_inner_envelope",
             label="Inner Envelope Membrane (IEM)",
             go_cc="GO:0009706",
-            box=Box(45, 45, 610, 390),
+            box=Box(20, 120, 920, 85),
             color_hex="#106e54",
             description="TIC complex, TPT translocator, DiT1 dicarboxylate carrier, PAPST1 transporter",
-            anchor_ports={"tic": (120, 45), "papst1": (480, 45), "dit1": (320, 435)},
+            anchor_ports={"tic": (150, 140), "papst1": (500, 140), "dit1": (800, 140)},
         ),
         Subcompartment(
             id="chloroplast_stroma",
-            label="Chloroplast Stroma",
+            label="Chloroplast Stroma (Plastidial Matrix)",
             go_cc="GO:0009570",
-            box=Box(70, 70, 560, 170),
+            box=Box(20, 220, 920, 175),
             color_hex="#084736",
-            description="RuBisCO, Calvin cycle, GUN1 hub, SAL1 phosphatase, MEcPP accumulation",
-            anchor_ports={"rubisco": (160, 130), "gun1": (320, 130), "sal1": (480, 130)},
+            description="RuBisCO, Calvin-Benson cycle, GUN1 PPR hub, SAL1 phosphatase, MEcPP accumulation",
+            anchor_ports={"rubisco": (200, 270), "gun1": (500, 270), "sal1": (800, 270)},
         ),
         Subcompartment(
             id="thylakoid_membrane",
             label="Thylakoid Membrane & Grana Stacks",
             go_cc="GO:0042651",
-            box=Box(70, 260, 560, 150),
+            box=Box(20, 410, 920, 170),
             color_hex="#063d2e",
             description="Photosystems II and I, Cytochrome b6f, ATP synthase, EXECUTER 1/2 singlet oxygen sensors",
-            anchor_ports={"psii": (140, 320), "b6f": (280, 320), "psi": (420, 320), "ex1": (530, 320)},
+            anchor_ports={"psii": (160, 460), "b6f": (380, 460), "psi": (600, 460), "ex1": (800, 460)},
         ),
     ]
     return DigitalDouble(
@@ -159,34 +159,34 @@ def get_chloroplast_double() -> DigitalDouble:
 
 def get_nucleus_double() -> DigitalDouble:
     """Build the Nucleus Digital Double."""
-    box = Box(0, 0, 600, 450)
+    box = Box(0, 0, 960, 600)
     subcomps = [
         Subcompartment(
             id="nuclear_outer_membrane",
-            label="Nuclear Envelope & Pores",
+            label="Nuclear Envelope & Nuclear Pore Complexes",
             go_cc="GO:0005640",
-            box=Box(20, 20, 560, 410),
+            box=Box(20, 20, 920, 90),
             color_hex="#5c3569",
             description="Outer/inner membranes and Nuclear Pore Complexes (NPC) importing translocated factors",
-            anchor_ports={"npc_import": (60, 20), "npc_mrna": (500, 20), "stromule_dock": (20, 200)},
+            anchor_ports={"npc_import": (150, 45), "npc_mrna": (750, 45), "stromule_dock": (450, 45)},
         ),
         Subcompartment(
             id="nucleoplasm",
             label="Nucleoplasm & Chromatin",
             go_cc="GO:0005654",
-            box=Box(50, 50, 500, 250),
+            box=Box(20, 125, 600, 455),
             color_hex="#3b2044",
             description="MDRE promoters, ANAC017/013 binding, ABI4, GLK1/2, XRN2/3 exoribonucleases",
-            anchor_ports={"mdre": (140, 140), "anac_target": (280, 140), "xrn_target": (420, 140)},
+            anchor_ports={"mdre": (160, 220), "anac_target": (320, 220), "xrn_target": (480, 220)},
         ),
         Subcompartment(
             id="nucleolus",
-            label="Nucleolus",
+            label="Nucleolus Subnuclear Domain",
             go_cc="GO:0005730",
-            box=Box(180, 310, 240, 120),
+            box=Box(640, 125, 300, 455),
             color_hex="#2b1433",
             description="rRNA synthesis, ribosome biogenesis, and nucleolar stress surveillance",
-            anchor_ports={"rrna": (300, 370)},
+            anchor_ports={"rrna": (790, 250)},
         ),
     ]
     return DigitalDouble(
@@ -201,34 +201,34 @@ def get_nucleus_double() -> DigitalDouble:
 
 def get_plasma_membrane_double() -> DigitalDouble:
     """Build the Plasma Membrane Digital Double."""
-    box = Box(0, 0, 750, 360)
+    box = Box(0, 0, 960, 600)
     subcomps = [
         Subcompartment(
             id="apoplast",
             label="Apoplast & Cell Wall Matrix",
             go_cc="GO:0048046",
-            box=Box(20, 20, 710, 90),
+            box=Box(20, 20, 920, 175),
             color_hex="#3d3d3d",
             description="Pectin network, wall strain perception, apoplastic superoxide generated by RBOHD",
-            anchor_ports={"wall_strain": (150, 60), "apoplast_ros": (450, 60)},
+            anchor_ports={"wall_strain": (250, 80), "apoplast_ros": (700, 80)},
         ),
         Subcompartment(
             id="plasma_membrane",
             label="Plasma Membrane Lipid Bilayer",
             go_cc="GO:0005886",
-            box=Box(20, 120, 710, 120),
+            box=Box(20, 210, 920, 185),
             color_hex="#1d4e6b",
             description="FERONIA, WAK1, RBOHD, MSL10, GLR3.3/3.6, PIP2;1 aquaporin, AHA1 H+-ATPase",
-            anchor_ports={"fer": (80, 170), "wak1": (200, 170), "rbohd": (350, 170), "glr": (500, 170), "pip": (650, 170)},
+            anchor_ports={"fer": (120, 270), "wak1": (280, 270), "rbohd": (460, 270), "glr": (640, 270), "pip": (820, 270)},
         ),
         Subcompartment(
             id="cytosol",
             label="Cortical Cytoplasm",
             go_cc="GO:0005829",
-            box=Box(20, 250, 710, 90),
+            box=Box(20, 410, 920, 170),
             color_hex="#264b63",
             description="Cytosolic calcium spikes, CPK phosphorylation of RBOHD, inward H2O2 flux",
-            anchor_ports={"ca_spike": (250, 290), "ros_wave": (480, 290)},
+            anchor_ports={"ca_spike": (300, 470), "ros_wave": (650, 470)},
         ),
     ]
     return DigitalDouble(

@@ -1,9 +1,9 @@
 {
-  "digest": "340a0d2b3a1f6979805b0f53f5f6fbfc3316a72f70c85b69064a22108d9f4254",
+  "digest": "a162809dc0a44ba9dc710ac9547bca32e7162ad27c24847294cfbd083f7bde70",
   "files": 39,
   "verdict": "clear",
-  "note": "ABAI QC passed: optimized digital doubles contrast, delivered full retrograde architectures and animation controls for 5 circuits, verified zero overlapping boxes",
+  "note": "ABAI QC passed: non-overlapping digital double subcompartments, multi-line text wrapping, zero label overflow",
   "session": "",
-  "checked_at": "2026-09-29T20:02:13-0400",
-  "head": "d68c293b1f28a14077d8262a92b531a2f016e66f"
+  "checked_at": "2026-09-29T22:30:36-0400",
+  "head": "57a27fe84fc984981f0b1d6abad06a150605ed71"
 }

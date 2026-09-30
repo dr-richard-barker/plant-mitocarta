@@ -976,6 +976,23 @@ def build_digital_doubles_page(ont):
         `;
       }}
 
+      function wrapTextLines(text, maxChars) {{
+        if (!text) return [];
+        const words = text.split(' ');
+        const lines = [];
+        let cur = '';
+        for (let w of words) {{
+          if ((cur + ' ' + w).trim().length <= maxChars) {{
+            cur = (cur + ' ' + w).trim();
+          }} else {{
+            if (cur) lines.push(cur);
+            cur = w;
+          }}
+        }}
+        if (cur) lines.push(cur);
+        return lines;
+      }}
+
       function switchDouble(mode) {{
         currentMode = mode;
         document.querySelectorAll('.view-select-btn').forEach(b => {{
@@ -991,34 +1008,56 @@ def build_digital_doubles_page(ont):
         const dMeta = doublesData[mode];
         document.getElementById('canvas-title').innerText = dMeta.name;
         const svg = document.getElementById('double-svg');
-        svg.setAttribute('viewBox', '0 0 750 500');
+        svg.setAttribute('viewBox', '0 0 960 600');
 
         let rects = '';
         dMeta.subcomps.forEach((s, idx) => {{
           const fill = getColor(mode, s.id);
           const p = projData[mode] ? projData[mode][s.id] : null;
-          const statText = p ? `log2FC: ${{p.val > 0 ? '+' : ''}}${{p.val}} (p=${{p.p_val}})` : '';
+          const statText = p ? `log2FC: ${{p.val > 0 ? '+' : ''}}${{p.val}} (p=${{p.p_val}})` : 'Baseline Anatomy';
           const textColor = getContrastColor(fill);
           const subColor = getSubContrastColor(fill);
           const strokeColor = textColor === '#0f172a' ? '#334155' : 'rgba(255,255,255,0.7)';
           const badgeBg = 'rgba(15, 23, 42, 0.88)';
-          const badgeText = p ? (p.val > 0 ? '#fb923c' : '#38bdf8') : '#ffffff';
+          const badgeText = p ? (p.val > 0 ? '#fb923c' : '#38bdf8') : '#94a3b8';
+
+          // Word-wrap description so text NEVER runs out the side of the box
+          const maxChars = Math.max(25, Math.floor((s.box.w - 40) / 7.2));
+          const descLines = wrapTextLines(s.desc, maxChars);
+          const descTspans = descLines.slice(0, 3).map((line, lIdx) =>
+            `<tspan x="${{s.box.x + 18}}" dy="${{lIdx === 0 ? 0 : 16}}">${{line}}</tspan>`
+          ).join('');
+
+          const badgeH = 24;
+          const badgeY = s.box.y + s.box.h - badgeH - 12;
+          const badgeW = Math.min(s.box.w - 36, 320);
 
           rects += `
             <g style="cursor: pointer;" onclick="inspectSubcomp('${{mode}}', '${{s.id}}')">
-              <rect x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="8" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
-              <text x="${{s.box.x + 16}}" y="${{s.box.y + 26}}" font-family="Inter, sans-serif" font-weight="700" font-size="15" fill="${{textColor}}">${{s.label}}</text>
-              <text x="${{s.box.x + 16}}" y="${{s.box.y + 48}}" font-family="Inter, sans-serif" font-size="12" fill="${{subColor}}">${{s.desc.substring(0, 68)}}...</text>
-              ${{p ? `
-                <rect x="${{s.box.x + 14}}" y="${{s.box.y + s.box.h - 32}}" width="${{Math.min(s.box.w - 28, 280)}}" height="22" rx="4" fill="${{badgeBg}}" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                <text x="${{s.box.x + 22}}" y="${{s.box.y + s.box.h - 17}}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="${{badgeText}}">${{statText}}</text>
-              ` : ''}}
+              <!-- Subcompartment Card Background -->
+              <rect x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="10" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
+              
+              <!-- GO-CCO tag pill (top right) -->
+              <rect x="${{s.box.x + s.box.w - 116}}" y="${{s.box.y + 10}}" width="102" height="20" rx="4" fill="rgba(15, 23, 42, 0.80)" />
+              <text x="${{s.box.x + s.box.w - 65}}" y="${{s.box.y + 24}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#38bdf8">${{s.go_cc}}</text>
+
+              <!-- Label / Subcompartment Title -->
+              <text x="${{s.box.x + 18}}" y="${{s.box.y + 26}}" font-family="Inter, sans-serif" font-weight="800" font-size="15" fill="${{textColor}}">${{s.label}}</text>
+              
+              <!-- Wrapped Description Lines -->
+              <text x="${{s.box.x + 18}}" y="${{s.box.y + 48}}" font-family="Inter, sans-serif" font-size="11.5" fill="${{subColor}}">
+                ${{descTspans}}
+              </text>
+              
+              <!-- Padded Stat Badge Scrim -->
+              <rect x="${{s.box.x + 18}}" y="${{badgeY}}" width="${{badgeW}}" height="${{badgeH}}" rx="4" fill="${{badgeBg}}" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+              <text x="${{s.box.x + 28}}" y="${{badgeY + 16}}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="${{badgeText}}">${{statText}} • Click to Inspect</text>
             </g>
           `;
         }});
 
         svg.innerHTML = `
-          <rect x="0" y="0" width="750" height="500" fill="var(--bg)" />
+          <rect x="0" y="0" width="960" height="600" fill="var(--bg)" rx="10" />
           ${{rects}}
         `;
       }}
