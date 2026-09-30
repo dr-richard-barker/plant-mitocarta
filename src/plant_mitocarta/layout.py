@@ -126,6 +126,7 @@ class LaidOutNode:
     row: int = 0
     col: int = 0
     reserve_bottom: float = 0.0
+    badges: list[tuple[str, str]] = dataclasses.field(default_factory=list)
     payload: dict = dataclasses.field(default_factory=dict)
 
 

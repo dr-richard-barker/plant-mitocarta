@@ -10,9 +10,9 @@
         "RuBisCO Oxygenation"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
-        "w": 202.0,
+        "x": 64.0,
+        "y": 146.0,
+        "w": 221.75,
         "h": 48.125
       }
     },
@@ -24,8 +24,8 @@
         "2-Phosphoglycolate (2-PG)"
       ],
       "box": {
-        "x": 52.0,
-        "y": 210.125,
+        "x": 64.0,
+        "y": 242.125,
         "w": 221.75,
         "h": 60.625
       }
@@ -38,9 +38,9 @@
         "PLGG1 Translocator"
       ],
       "box": {
-        "x": 52.0,
-        "y": 302.75,
-        "w": 190.39999999999998,
+        "x": 64.0,
+        "y": 350.75,
+        "w": 221.75,
         "h": 60.625
       }
     },
@@ -52,8 +52,8 @@
         "Glycolate Oxidase (GOX)"
       ],
       "box": {
-        "x": 309.75,
-        "y": 130.0,
+        "x": 389.75,
+        "y": 146.0,
         "w": 231.0,
         "h": 60.625
       }
@@ -66,9 +66,9 @@
         "Catalase 2 (CAT2)"
       ],
       "box": {
-        "x": 309.75,
-        "y": 222.625,
-        "w": 178.79999999999998,
+        "x": 389.75,
+        "y": 254.625,
+        "w": 231.0,
         "h": 48.125
       }
     },
@@ -81,9 +81,9 @@
         "(GGT)"
       ],
       "box": {
-        "x": 309.75,
-        "y": 302.75,
-        "w": 206.25,
+        "x": 389.75,
+        "y": 350.75,
+        "w": 231.0,
         "h": 63.75
       }
     },
@@ -95,10 +95,10 @@
         "Glycine Decarboxylase (GDC)"
       ],
       "box": {
-        "x": 576.75,
-        "y": 130.0,
+        "x": 724.75,
+        "y": 146.0,
         "w": 237.25,
-        "h": 60.625
+        "h": 66.125
       }
     },
     {
@@ -109,9 +109,9 @@
         "SHMT1"
       ],
       "box": {
-        "x": 576.75,
-        "y": 222.625,
-        "w": 178.79999999999998,
+        "x": 724.75,
+        "y": 260.125,
+        "w": 237.25,
         "h": 48.125
       }
     },
@@ -124,9 +124,9 @@
         "Release"
       ],
       "box": {
-        "x": 576.75,
-        "y": 302.75,
-        "w": 206.25,
+        "x": 724.75,
+        "y": 356.25,
+        "w": 237.25,
         "h": 76.25
       }
     },
@@ -138,25 +138,10 @@
         "Complex I CA Domain Nexus"
       ],
       "box": {
-        "x": 576.75,
-        "y": 411.0,
-        "w": 225.2,
-        "h": 60.625
-      }
-    },
-    {
-      "id": "HPR_GLYCERATE_REDUCTASE",
-      "pmco_id": null,
-      "tier": "T4",
-      "lines": [
-        "Hydroxypyruvate Reductase",
-        "(HPR)"
-      ],
-      "box": {
-        "x": 850.0,
-        "y": 130.0,
-        "w": 221.75,
-        "h": 63.75
+        "x": 724.75,
+        "y": 480.5,
+        "w": 237.25,
+        "h": 66.125
       }
     },
     {
@@ -168,9 +153,24 @@
         "Peroxisome"
       ],
       "box": {
-        "x": 850.0,
-        "y": 225.75,
-        "w": 175.25,
+        "x": 1066.0,
+        "y": 146.0,
+        "w": 221.75,
+        "h": 63.75
+      }
+    },
+    {
+      "id": "HPR_GLYCERATE_REDUCTASE",
+      "pmco_id": null,
+      "tier": "T4",
+      "lines": [
+        "Hydroxypyruvate Reductase",
+        "(HPR)"
+      ],
+      "box": {
+        "x": 1066.0,
+        "y": 257.75,
+        "w": 221.75,
         "h": 63.75
       }
     },
@@ -182,8 +182,8 @@
         "DiT1 / PLGG1 Translocator"
       ],
       "box": {
-        "x": 1107.75,
-        "y": 130.0,
+        "x": 1391.75,
+        "y": 146.0,
         "w": 221.75,
         "h": 48.125
       }
@@ -196,9 +196,9 @@
         "Glycerate Kinase (GLYK)"
       ],
       "box": {
-        "x": 1107.75,
-        "y": 210.125,
-        "w": 206.25,
+        "x": 1391.75,
+        "y": 242.125,
+        "w": 221.75,
         "h": 48.125
       }
     },
@@ -211,9 +211,9 @@
         "(3-PGA)"
       ],
       "box": {
-        "x": 1107.75,
-        "y": 290.25,
-        "w": 196.2,
+        "x": 1391.75,
+        "y": 338.25,
+        "w": 221.75,
         "h": 63.75
       }
     }
@@ -223,67 +223,67 @@
       "source": "RUBISCO_O2_REACTION",
       "target": "CHLORO_2_PG_POOL",
       "kind": "metabolite_flux",
-      "label": "oxygen fixation"
+      "label": "oxygenation"
     },
     {
       "source": "CHLORO_2_PG_POOL",
       "target": "PLGG1_GLYCOLATE_EXPORT",
       "kind": "metabolite_flux",
-      "label": "PGLP1 dephosphorylation"
+      "label": "PGLP1 cut"
     },
     {
       "source": "PLGG1_GLYCOLATE_EXPORT",
       "target": "GOX_OXIDASE",
       "kind": "metabolite_flux",
-      "label": "glycolate enters peroxisome"
+      "label": "glycolate import"
     },
     {
       "source": "GOX_OXIDASE",
       "target": "CATALASE_CAT2",
       "kind": "activates",
-      "label": "generates H2O2"
+      "label": "H2O2 generation"
     },
     {
       "source": "GOX_OXIDASE",
       "target": "GGT_AMINOTRANSFERASE",
       "kind": "metabolite_flux",
-      "label": "glyoxylate intermediate"
+      "label": "transamination"
     },
     {
       "source": "GGT_AMINOTRANSFERASE",
       "target": "GDC_P_T_H_L_COMPLEX",
       "kind": "metabolite_flux",
-      "label": "glycine enters mitochondria"
+      "label": "glycine import"
     },
     {
       "source": "GDC_P_T_H_L_COMPLEX",
       "target": "SHMT1_SERINE_SYNTH",
       "kind": "metabolite_flux",
-      "label": "5,10-CH2-THF transfer"
+      "label": "THF transfer"
     },
     {
       "source": "GDC_P_T_H_L_COMPLEX",
       "target": "MATRIX_NADH_PRODUCTION",
       "kind": "activates",
-      "label": "releases NADH, CO2, NH3"
+      "label": "NADH + CO2 + NH3"
     },
     {
       "source": "MATRIX_NADH_PRODUCTION",
       "target": "COMPLEX_I_CA_INTERACTION",
       "kind": "activates",
-      "label": "CO2 trapping / electron flow"
+      "label": "CO2 fix / ETC"
     },
     {
       "source": "SHMT1_SERINE_SYNTH",
       "target": "PEROXISOMAL_SERINE_POOL",
       "kind": "metabolite_flux",
-      "label": "serine exported to peroxisome"
+      "label": "serine export"
     },
     {
       "source": "PEROXISOMAL_SERINE_POOL",
       "target": "HPR_GLYCERATE_REDUCTASE",
       "kind": "metabolite_flux",
-      "label": "hydroxypyruvate reduction"
+      "label": "reduction"
     },
     {
       "source": "HPR_GLYCERATE_REDUCTASE",
@@ -295,13 +295,13 @@
       "source": "DIT1_GLYCERATE_IMPORT",
       "target": "GLYCERATE_KINASE_GLYK",
       "kind": "metabolite_flux",
-      "label": "stromal glycerate entry"
+      "label": "glycerate import"
     },
     {
       "source": "GLYCERATE_KINASE_GLYK",
       "target": "THREE_PGA_CALVIN_RETURN",
       "kind": "metabolite_flux",
-      "label": "3-PGA returned to Calvin cycle"
+      "label": "3-PGA return"
     }
   ]
 }

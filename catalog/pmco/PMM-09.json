@@ -10,8 +10,8 @@
         "Human MitoCarta OXPHOS"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
+        "x": 64.0,
+        "y": 146.0,
         "w": 242.6,
         "h": 60.625
       }
@@ -24,9 +24,9 @@
         "Human MitoCarta TCA"
       ],
       "box": {
-        "x": 52.0,
-        "y": 222.625,
-        "w": 231.0,
+        "x": 64.0,
+        "y": 254.625,
+        "w": 242.6,
         "h": 60.625
       }
     },
@@ -38,8 +38,8 @@
         "Human POLG / TWNK"
       ],
       "box": {
-        "x": 52.0,
-        "y": 315.25,
+        "x": 64.0,
+        "y": 363.25,
         "w": 242.6,
         "h": 60.625
       }
@@ -52,10 +52,10 @@
         "Plant Conserved Core (Q1)"
       ],
       "box": {
-        "x": 330.6,
-        "y": 130.0,
+        "x": 410.6,
+        "y": 146.0,
         "w": 231.0,
-        "h": 60.625
+        "h": 78.625
       }
     },
     {
@@ -66,9 +66,9 @@
         "Plant Conserved TCA (Q1)"
       ],
       "box": {
-        "x": 330.6,
-        "y": 222.625,
-        "w": 225.2,
+        "x": 410.6,
+        "y": 272.625,
+        "w": 231.0,
         "h": 60.625
       }
     },
@@ -80,8 +80,8 @@
         "Plant ISC Machinery (Q1)"
       ],
       "box": {
-        "x": 330.6,
-        "y": 315.25,
+        "x": 410.6,
+        "y": 381.25,
         "w": 231.0,
         "h": 60.625
       }
@@ -94,10 +94,10 @@
         "Alternative Oxidase (Q2)"
       ],
       "box": {
-        "x": 597.6,
-        "y": 130.0,
-        "w": 231.0,
-        "h": 60.625
+        "x": 745.6,
+        "y": 146.0,
+        "w": 230.0,
+        "h": 66.125
       }
     },
     {
@@ -108,10 +108,10 @@
         "Type II NDH Bypasses (Q2)"
       ],
       "box": {
-        "x": 597.6,
-        "y": 222.625,
-        "w": 221.75,
-        "h": 60.625
+        "x": 745.6,
+        "y": 260.125,
+        "w": 230.0,
+        "h": 66.125
       }
     },
     {
@@ -122,9 +122,9 @@
         "Complex I CA Domain (Q2)"
       ],
       "box": {
-        "x": 597.6,
-        "y": 315.25,
-        "w": 214.0,
+        "x": 745.6,
+        "y": 374.25,
+        "w": 230.0,
         "h": 60.625
       }
     },
@@ -136,9 +136,9 @@
         "Photorespiratory GDC (Q2)"
       ],
       "box": {
-        "x": 597.6,
-        "y": 407.875,
-        "w": 225.2,
+        "x": 745.6,
+        "y": 482.875,
+        "w": 230.0,
         "h": 60.625
       }
     },
@@ -150,8 +150,8 @@
         "Dual-Targeted PolIA/B (Q3)"
       ],
       "box": {
-        "x": 864.6,
-        "y": 130.0,
+        "x": 1079.6,
+        "y": 146.0,
         "w": 229.5,
         "h": 48.125
       }
@@ -164,9 +164,9 @@
         "Dual-Targeted AARSs (Q3)"
       ],
       "box": {
-        "x": 864.6,
-        "y": 210.125,
-        "w": 214.0,
+        "x": 1079.6,
+        "y": 242.125,
+        "w": 229.5,
         "h": 60.625
       }
     },
@@ -178,9 +178,9 @@
         "Expanded PPR Family (Q4)"
       ],
       "box": {
-        "x": 864.6,
-        "y": 302.75,
-        "w": 219.39999999999998,
+        "x": 1079.6,
+        "y": 350.75,
+        "w": 229.5,
         "h": 60.625
       }
     },
@@ -192,8 +192,8 @@
         "Human Mitochondrial Medicine"
       ],
       "box": {
-        "x": 1130.1,
-        "y": 130.0,
+        "x": 1413.1,
+        "y": 146.0,
         "w": 245.0,
         "h": 60.625
       }
@@ -207,9 +207,9 @@
         "Disease"
       ],
       "box": {
-        "x": 1130.1,
-        "y": 222.625,
-        "w": 207.79999999999998,
+        "x": 1413.1,
+        "y": 254.625,
+        "w": 245.0,
         "h": 76.25
       }
     }
@@ -219,55 +219,55 @@
       "source": "HUMAN_OXPHOS_CORE",
       "target": "PLANT_CONSERVED_OXPHOS",
       "kind": "activates",
-      "label": "strict orthology (58-85% identity)"
+      "label": "orthology (58-85% id)"
     },
     {
       "source": "HUMAN_TCA_CYCLE",
       "target": "PLANT_CONSERVED_TCA",
       "kind": "activates",
-      "label": "enzymatic homology"
+      "label": "homology"
     },
     {
       "source": "HUMAN_POLG_REPLICATION",
       "target": "DUAL_TARGETED_POLIA_B",
       "kind": "activates",
-      "label": "functional analog -> dual targeted"
+      "label": "dual-targeted"
     },
     {
       "source": "PLANT_CONSERVED_OXPHOS",
       "target": "PLANT_AOX_INNOVATION",
       "kind": "activates",
-      "label": "AOX bypasses CI-CIV"
+      "label": "AOX bypass"
     },
     {
       "source": "PLANT_CONSERVED_OXPHOS",
       "target": "PLANT_NDH_BYPASSES",
       "kind": "activates",
-      "label": "NDHs bypass CI"
+      "label": "NDH bypass"
     },
     {
       "source": "PLANT_CONSERVED_OXPHOS",
       "target": "PLANT_CA_DOMAIN_COMPLEX_I",
       "kind": "activates",
-      "label": "assembles with membrane arm"
+      "label": "CA assembly"
     },
     {
       "source": "PLANT_CONSERVED_TCA",
       "target": "PLANT_GDC_PHOTORESP",
       "kind": "activates",
-      "label": "photorespiratory nitrogen cycle"
+      "label": "photorespiration"
     },
     {
       "source": "HUMAN_OXPHOS_CORE",
       "target": "HUMAN_DISEASE_INSIGHTS",
       "kind": "activates",
-      "label": "structural pathology"
+      "label": "pathology"
     },
     {
       "source": "PLANT_AOX_INNOVATION",
       "target": "AOX_HUMAN_RESCUE_POTENTIAL",
       "kind": "activates",
-      "label": "heterologous gene therapy rescue"
+      "label": "AOX rescue"
     }
   ]
 }

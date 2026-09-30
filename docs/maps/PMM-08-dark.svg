@@ -10,6 +10,8 @@
   --pmc-edge: #4b5563;
   --pmc-card-bg: #ffffff;
   --pmc-compartment-fill: rgba(0, 0, 0, 0.025);
+  --pmc-bilayer-head: rgba(75, 85, 99, 0.45);
+  --pmc-bilayer-tail: rgba(107, 114, 128, 0.35);
 }
 :root[data-theme="dark"], body.dark-mode {
   --pmc-bg: #0b0f19;
@@ -21,6 +23,8 @@
   --pmc-edge: #9ca3af;
   --pmc-card-bg: #111827;
   --pmc-compartment-fill: rgba(255, 255, 255, 0.035);
+  --pmc-bilayer-head: rgba(156, 163, 175, 0.55);
+  --pmc-bilayer-tail: rgba(156, 163, 175, 0.40);
 }
 
 .pmc-canvas { fill: var(--pmc-bg); }
@@ -49,6 +53,40 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .tier-badge-T5 { fill: #9ca3af; stroke: #6b7280; }
 .tier-badge-text { font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }
 
+/* Bilayer Membrane Architectural Rails & Badges */
+.pmc-bilayer-rail { fill: url(#pmc-bilayer-pattern); opacity: 0.85; }
+.pmc-membrane-tag-group { opacity: 0.95; }
+.pmc-membrane-chip-bg { fill: var(--pmc-card-bg); stroke: var(--pmc-hairline); stroke-width: 0.8px; rx: 3px; ry: 3px; }
+.pmc-membrane-badge { font-size: 8px; font-weight: 700; font-family: 'DejaVu Sans Mono', monospace; letter-spacing: 0.03em; fill: var(--pmc-ink-soft); }
+
+/* Holo-Complex I Super-Assembly Halo in PMM-01 */
+.pmc-superassembly-halo { fill: rgba(0, 114, 178, 0.035); stroke: #0072b2; stroke-width: 1.5px; stroke-dasharray: 5 4; rx: 10px; ry: 10px; }
+:root[data-theme="dark"] .pmc-superassembly-halo, body.dark-mode .pmc-superassembly-halo { fill: rgba(86, 180, 233, 0.06); stroke: #56b4e9; }
+.pmc-superassembly-title { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; fill: #0072b2; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #56b4e9; }
+
+/* Catalytic Cofactor & Innovation Badges */
+.pmc-pill-bg { stroke-width: 0.8px; rx: 3px; ry: 3px; }
+.pmc-pill-text { font-size: 8px; font-weight: 700; font-family: 'DejaVu Sans Mono', monospace; text-anchor: middle; letter-spacing: 0.02em; }
+
+.pmc-pill-cofactor { fill: #eef2ff; stroke: #6366f1; }
+.pmc-pill-cofactor-text { fill: #312e81; }
+.pmc-pill-bypass { fill: #fef3c7; stroke: #d97706; }
+.pmc-pill-bypass-text { fill: #78350f; }
+.pmc-pill-plant_spec { fill: #ecfdf5; stroke: #059669; }
+.pmc-pill-plant_spec-text { fill: #064e3b; }
+.pmc-pill-sensor { fill: #f5f3ff; stroke: #8b5cf6; }
+.pmc-pill-sensor-text { fill: #4c1d95; }
+
+:root[data-theme="dark"] .pmc-pill-cofactor, body.dark-mode .pmc-pill-cofactor { fill: #1e1b4b; stroke: #818cf8; }
+:root[data-theme="dark"] .pmc-pill-cofactor-text, body.dark-mode .pmc-pill-cofactor-text { fill: #e0e7ff; }
+:root[data-theme="dark"] .pmc-pill-bypass, body.dark-mode .pmc-pill-bypass { fill: #451a03; stroke: #f59e0b; }
+:root[data-theme="dark"] .pmc-pill-bypass-text, body.dark-mode .pmc-pill-bypass-text { fill: #fef3c7; }
+:root[data-theme="dark"] .pmc-pill-plant_spec, body.dark-mode .pmc-pill-plant_spec { fill: #064e3b; stroke: #10b981; }
+:root[data-theme="dark"] .pmc-pill-plant_spec-text, body.dark-mode .pmc-pill-plant_spec-text { fill: #d1fae5; }
+:root[data-theme="dark"] .pmc-pill-sensor, body.dark-mode .pmc-pill-sensor { fill: #2e1065; stroke: #a78bfa; }
+:root[data-theme="dark"] .pmc-pill-sensor-text, body.dark-mode .pmc-pill-sensor-text { fill: #ede9fe; }
+
 .pmc-compartment { fill: var(--pmc-compartment-fill); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
 .pmc-compartment-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--pmc-ink-soft); }
 
@@ -71,20 +109,36 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <marker id="pmc-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#D55E00" /></marker>
 <marker id="pmc-arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#CC79A7" /></marker>
 <marker id="pmc-inhibit" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><line x1="5" y1="1" x2="5" y2="9" stroke="#D55E00" stroke-width="2.5" /></marker>
+<pattern id="pmc-bilayer-pattern" width="16" height="14" patternUnits="userSpaceOnUse">
+  <circle cx="4" cy="2.5" r="2.0" fill="var(--pmc-bilayer-head)" />
+  <circle cx="12" cy="2.5" r="2.0" fill="var(--pmc-bilayer-head)" />
+  <path d="M 3.2 4.5 C 2.5 6.5, 4.5 8.0, 3.5 10.0 M 4.8 4.5 C 5.5 6.5, 3.5 8.0, 4.5 10.0" stroke="var(--pmc-bilayer-tail)" stroke-width="0.8" fill="none" />
+  <path d="M 11.2 4.5 C 10.5 6.5, 12.5 8.0, 11.5 10.0 M 12.8 4.5 C 13.5 6.5, 11.5 8.0, 12.5 10.0" stroke="var(--pmc-bilayer-tail)" stroke-width="0.8" fill="none" />
+  <circle cx="4" cy="11.5" r="2.0" fill="var(--pmc-bilayer-head)" />
+  <circle cx="12" cy="11.5" r="2.0" fill="var(--pmc-bilayer-head)" />
+</pattern>
 </defs>
 <rect class="pmc-canvas" width="1734.2" height="720.0" />
 <text class="pmc-title" x="32" y="44">Organelle Membrane Contact Sites (MCS) and Stromule-Nuclear Docking</text>
 <text class="pmc-subtitle" x="32" y="66">Non-vesicular lipid and ion exchange across physical organellar contact sites, and dynamic chloroplast stromule docking directly onto the nuclear envelope.</text>
 <rect class="pmc-compartment" x="40.0" y="110.0" width="267.4" height="204.2" stroke="#666666" />
-<text class="pmc-compartment-label" x="52.0" y="128.0">Chloroplast Outer Envelope (OEM)</text>
+<rect class="pmc-bilayer-rail" x="41.0" y="111.0" width="265.4" height="13.0" rx="6" />
+<g class="pmc-membrane-tag-group"><rect class="pmc-membrane-chip-bg" x="179.4" y="128.0" width="116.0" height="13.0" /><text class="pmc-membrane-badge" x="237.4" y="137.5" text-anchor="middle">OEM • OUTER ENVELOPE</text></g>
+<text class="pmc-compartment-label" x="52.0" y="138.0">Chloroplast Outer Envelope (OEM)</text>
 <rect class="pmc-compartment" x="363.4" y="110.0" width="258.0" height="229.2" stroke="#0d684f" />
 <text class="pmc-compartment-label" x="375.4" y="128.0">Stromule (Stroma-filled tubule)</text>
 <rect class="pmc-compartment" x="677.4" y="110.0" width="285.2" height="232.4" stroke="#666666" />
-<text class="pmc-compartment-label" x="689.4" y="128.0">Nuclear Outer Membrane</text>
+<rect class="pmc-bilayer-rail" x="678.4" y="111.0" width="283.2" height="13.0" rx="6" />
+<g class="pmc-membrane-tag-group"><rect class="pmc-membrane-chip-bg" x="824.2" y="128.0" width="126.4" height="13.0" /><text class="pmc-membrane-badge" x="887.5" y="137.5" text-anchor="middle">ONM • CONTINUOUS W/ ER</text></g>
+<text class="pmc-compartment-label" x="689.4" y="138.0">Nuclear Outer Membrane</text>
 <rect class="pmc-compartment" x="1018.7" y="110.0" width="277.5" height="300.4" stroke="#855c1b" />
-<text class="pmc-compartment-label" x="1030.7" y="128.0">Mitochondria-ER Associated Membrane (MEAM)</text>
+<rect class="pmc-bilayer-rail" x="1019.7" y="111.0" width="275.5" height="13.0" rx="6" />
+<g class="pmc-membrane-tag-group"><rect class="pmc-membrane-chip-bg" x="1152.6" y="128.0" width="131.6" height="13.0" /><text class="pmc-membrane-badge" x="1218.4" y="137.5" text-anchor="middle">MCS • TETHERED JUNCTION</text></g>
+<text class="pmc-compartment-label" x="1030.7" y="138.0">Mitochondria-ER Associated Membrane (MEAM)</text>
 <rect class="pmc-compartment" x="1352.2" y="110.0" width="258.0" height="232.4" stroke="#666666" />
-<text class="pmc-compartment-label" x="1364.2" y="128.0">Mitochondrial Outer Membrane (OMM)</text>
+<rect class="pmc-bilayer-rail" x="1353.2" y="111.0" width="256.0" height="13.0" rx="6" />
+<g class="pmc-membrane-tag-group"><rect class="pmc-membrane-chip-bg" x="1487.4" y="128.0" width="110.8" height="13.0" /><text class="pmc-membrane-badge" x="1542.8" y="137.5" text-anchor="middle">OMM • PORIN BILAYER</text></g>
+<text class="pmc-compartment-label" x="1364.2" y="138.0">Mitochondrial Outer Membrane (OMM)</text>
 <path class="pmc-edge pmc-edge-activates" d="M 173.7 194.1 L 173.7 242.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="140.2" y="203.2" width="66.9" height="29.8" rx="4" />

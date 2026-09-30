@@ -11,9 +11,9 @@
         "Hypoxia"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
-        "w": 175.25,
+        "x": 64.0,
+        "y": 146.0,
+        "w": 214.0,
         "h": 76.25
       }
     },
@@ -25,8 +25,8 @@
         "Mitochondrial ROS (H2O2)"
       ],
       "box": {
-        "x": 52.0,
-        "y": 238.25,
+        "x": 64.0,
+        "y": 270.25,
         "w": 214.0,
         "h": 60.625
       }
@@ -39,10 +39,10 @@
         "Rhomboid-Like Proteases"
       ],
       "box": {
-        "x": 302.0,
-        "y": 130.0,
-        "w": 207.79999999999998,
-        "h": 60.625
+        "x": 382.0,
+        "y": 146.0,
+        "w": 210.0,
+        "h": 66.125
       }
     },
     {
@@ -53,10 +53,10 @@
         "Membrane-Bound ANAC017"
       ],
       "box": {
-        "x": 302.0,
-        "y": 222.625,
-        "w": 236.79999999999998,
-        "h": 48.125
+        "x": 382.0,
+        "y": 260.125,
+        "w": 210.0,
+        "h": 66.125
       }
     },
     {
@@ -67,10 +67,10 @@
         "Membrane-Bound ANAC013"
       ],
       "box": {
-        "x": 302.0,
-        "y": 302.75,
-        "w": 202.0,
-        "h": 48.125
+        "x": 382.0,
+        "y": 374.25,
+        "w": 210.0,
+        "h": 66.125
       }
     },
     {
@@ -82,10 +82,10 @@
         "Domain)"
       ],
       "box": {
-        "x": 574.8,
-        "y": 130.0,
-        "w": 213.6,
-        "h": 63.75
+        "x": 696.0,
+        "y": 146.0,
+        "w": 200.0,
+        "h": 81.75
       }
     },
     {
@@ -97,10 +97,10 @@
         "Domain)"
       ],
       "box": {
-        "x": 574.8,
-        "y": 225.75,
-        "w": 183.0,
-        "h": 63.75
+        "x": 696.0,
+        "y": 275.75,
+        "w": 200.0,
+        "h": 69.25
       }
     },
     {
@@ -111,9 +111,9 @@
         "Citrate / 2-OG Efflux"
       ],
       "box": {
-        "x": 574.8,
-        "y": 321.5,
-        "w": 190.75,
+        "x": 696.0,
+        "y": 393.0,
+        "w": 200.0,
         "h": 60.625
       }
     },
@@ -125,9 +125,9 @@
         "Nuclear Pore Complex"
       ],
       "box": {
-        "x": 824.4,
-        "y": 130.0,
-        "w": 183.0,
+        "x": 1000.0,
+        "y": 146.0,
+        "w": 214.0,
         "h": 48.125
       }
     },
@@ -139,8 +139,8 @@
         "Importin-\u03b1 / \u03b2 Machinery"
       ],
       "box": {
-        "x": 824.4,
-        "y": 210.125,
+        "x": 1000.0,
+        "y": 242.125,
         "w": 214.0,
         "h": 48.125
       }
@@ -153,10 +153,10 @@
         "MDRE Promoter Cis-Element"
       ],
       "box": {
-        "x": 1074.4,
-        "y": 130.0,
-        "w": 221.75,
-        "h": 48.125
+        "x": 1318.0,
+        "y": 146.0,
+        "w": 237.25,
+        "h": 66.125
       }
     },
     {
@@ -167,10 +167,10 @@
         "AOX1a Transcriptional Surge"
       ],
       "box": {
-        "x": 1074.4,
-        "y": 210.125,
+        "x": 1318.0,
+        "y": 260.125,
         "w": 237.25,
-        "h": 60.625
+        "h": 66.125
       }
     },
     {
@@ -182,9 +182,9 @@
         "(UPM1)"
       ],
       "box": {
-        "x": 1074.4,
-        "y": 302.75,
-        "w": 231.0,
+        "x": 1318.0,
+        "y": 374.25,
+        "w": 237.25,
         "h": 63.75
       }
     }
@@ -194,37 +194,37 @@
       "source": "OXPHOS_LESION",
       "target": "MITO_SUPEROXIDE_ACCUMULATION",
       "kind": "activates",
-      "label": "generates superoxide"
+      "label": "superoxide leak"
     },
     {
       "source": "MITO_SUPEROXIDE_ACCUMULATION",
       "target": "RHOMBOID_PROTEASE_ACT",
       "kind": "activates",
-      "label": "oxidative activation"
+      "label": "ROS activation"
     },
     {
       "source": "RHOMBOID_PROTEASE_ACT",
       "target": "ANAC017_TETHERED",
       "kind": "cleaved_by",
-      "label": "intramembrane cleavage"
+      "label": "rhomboid cut"
     },
     {
       "source": "RHOMBOID_PROTEASE_ACT",
       "target": "ANAC013_TETHERED",
       "kind": "cleaved_by",
-      "label": "intramembrane cleavage"
+      "label": "rhomboid cut"
     },
     {
       "source": "ANAC017_TETHERED",
       "target": "ANAC017_SOLUBLE_NAC",
       "kind": "activates",
-      "label": "releases into cytosol"
+      "label": "cytosol release"
     },
     {
       "source": "ANAC013_TETHERED",
       "target": "ANAC013_SOLUBLE_NAC",
       "kind": "activates",
-      "label": "releases into cytosol"
+      "label": "cytosol release"
     },
     {
       "source": "OXPHOS_LESION",
@@ -236,37 +236,37 @@
       "source": "ANAC017_SOLUBLE_NAC",
       "target": "NPC_TRANSLOCATION_GATE",
       "kind": "activates",
-      "label": "interacts with NPCs"
+      "label": "NPC interaction"
     },
     {
       "source": "ANAC013_SOLUBLE_NAC",
       "target": "NPC_TRANSLOCATION_GATE",
       "kind": "activates",
-      "label": "interacts with NPCs"
+      "label": "NPC interaction"
     },
     {
       "source": "NPC_TRANSLOCATION_GATE",
       "target": "MDRE_BINDING_SITE",
       "kind": "activates",
-      "label": "nuclear entry & MDRE binding"
+      "label": "MDRE entry"
     },
     {
       "source": "CITRATE_2OG_EXPORT",
       "target": "MDRE_BINDING_SITE",
       "kind": "activates",
-      "label": "epigenetic chromatin opening"
+      "label": "chromatin opening"
     },
     {
       "source": "MDRE_BINDING_SITE",
       "target": "AOX1A_INDUCTION",
       "kind": "activates",
-      "label": "high-level transcription"
+      "label": "AOX1a induction"
     },
     {
       "source": "MDRE_BINDING_SITE",
       "target": "UPM1_HSP70_INDUCTION",
       "kind": "activates",
-      "label": "MSR induction"
+      "label": "UPM1/Hsp70"
     }
   ]
 }

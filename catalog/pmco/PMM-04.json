@@ -11,9 +11,9 @@
         "Microgravity Strain"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
-        "w": 178.79999999999998,
+        "x": 64.0,
+        "y": 146.0,
+        "w": 214.0,
         "h": 76.25
       }
     },
@@ -25,8 +25,8 @@
         "Apoplastic Pectin Matrix"
       ],
       "box": {
-        "x": 52.0,
-        "y": 238.25,
+        "x": 64.0,
+        "y": 270.25,
         "w": 214.0,
         "h": 48.125
       }
@@ -39,9 +39,9 @@
         "Apoplastic Oxygen Pool"
       ],
       "box": {
-        "x": 52.0,
-        "y": 318.375,
-        "w": 198.5,
+        "x": 64.0,
+        "y": 366.375,
+        "w": 214.0,
         "h": 48.125
       }
     },
@@ -53,9 +53,9 @@
         "FERONIA Receptor Kinase"
       ],
       "box": {
-        "x": 302.0,
-        "y": 130.0,
-        "w": 207.79999999999998,
+        "x": 382.0,
+        "y": 146.0,
+        "w": 210.0,
         "h": 48.125
       }
     },
@@ -67,9 +67,9 @@
         "WAK1 Kinase"
       ],
       "box": {
-        "x": 302.0,
-        "y": 210.125,
-        "w": 207.79999999999998,
+        "x": 382.0,
+        "y": 242.125,
+        "w": 210.0,
         "h": 48.125
       }
     },
@@ -82,10 +82,10 @@
         "Channel"
       ],
       "box": {
-        "x": 302.0,
-        "y": 290.25,
-        "w": 219.39999999999998,
-        "h": 63.75
+        "x": 382.0,
+        "y": 338.25,
+        "w": 210.0,
+        "h": 81.75
       }
     },
     {
@@ -96,8 +96,8 @@
         "GLR3.3 / GLR3.6 Channels"
       ],
       "box": {
-        "x": 557.4,
-        "y": 130.0,
+        "x": 696.0,
+        "y": 146.0,
         "w": 236.79999999999998,
         "h": 60.625
       }
@@ -110,9 +110,9 @@
         "RBOHD NADPH Oxidase"
       ],
       "box": {
-        "x": 557.4,
-        "y": 222.625,
-        "w": 219.39999999999998,
+        "x": 696.0,
+        "y": 254.625,
+        "w": 236.79999999999998,
         "h": 60.625
       }
     },
@@ -124,9 +124,9 @@
         "PIP2;1 Aquaporin"
       ],
       "box": {
-        "x": 557.4,
-        "y": 315.25,
-        "w": 202.0,
+        "x": 696.0,
+        "y": 363.25,
+        "w": 236.79999999999998,
         "h": 48.125
       }
     },
@@ -138,9 +138,9 @@
         "AHA1 H+-ATPase"
       ],
       "box": {
-        "x": 557.4,
-        "y": 395.375,
-        "w": 219.39999999999998,
+        "x": 696.0,
+        "y": 459.375,
+        "w": 236.79999999999998,
         "h": 48.125
       }
     },
@@ -152,9 +152,9 @@
         "Cytosolic [Ca2+] Wave"
       ],
       "box": {
-        "x": 830.1999999999999,
-        "y": 130.0,
-        "w": 190.75,
+        "x": 1036.8,
+        "y": 146.0,
+        "w": 219.39999999999998,
         "h": 48.125
       }
     },
@@ -166,8 +166,8 @@
         "CPKs / BIK1 Kinases"
       ],
       "box": {
-        "x": 830.1999999999999,
-        "y": 210.125,
+        "x": 1036.8,
+        "y": 242.125,
         "w": 219.39999999999998,
         "h": 48.125
       }
@@ -180,9 +180,9 @@
         "Cytosolic H2O2 Wave"
       ],
       "box": {
-        "x": 830.1999999999999,
-        "y": 290.25,
-        "w": 175.25,
+        "x": 1036.8,
+        "y": 338.25,
+        "w": 219.39999999999998,
         "h": 48.125
       }
     },
@@ -195,8 +195,8 @@
         "Tuning"
       ],
       "box": {
-        "x": 1085.6,
-        "y": 130.0,
+        "x": 1360.1999999999998,
+        "y": 146.0,
         "w": 236.79999999999998,
         "h": 63.75
       }
@@ -209,9 +209,9 @@
         "Chloroplast Stroma Tuning"
       ],
       "box": {
-        "x": 1085.6,
-        "y": 225.75,
-        "w": 221.75,
+        "x": 1360.1999999999998,
+        "y": 257.75,
+        "w": 236.79999999999998,
         "h": 48.125
       }
     }
@@ -221,25 +221,25 @@
       "source": "WALL_STRAIN",
       "target": "FERONIA_RECEPTOR",
       "kind": "activates",
-      "label": "mechanical stretch"
+      "label": "membrane stretch"
     },
     {
       "source": "APOPLASTIC_PECTIN",
       "target": "WAK1_PECTIN_KINASE",
       "kind": "activates",
-      "label": "oligogalacturonide binding"
+      "label": "OG binding"
     },
     {
       "source": "WALL_STRAIN",
       "target": "MSL10_STRETCH_GATE",
       "kind": "activates",
-      "label": "membrane tension"
+      "label": "stretch gating"
     },
     {
       "source": "FERONIA_RECEPTOR",
       "target": "GLR_CALCIUM_CHANNELS",
       "kind": "activates",
-      "label": "triggers Ca2+ gating"
+      "label": "Ca2+ gating"
     },
     {
       "source": "MSL10_STRETCH_GATE",
@@ -251,19 +251,19 @@
       "source": "GLR_CALCIUM_CHANNELS",
       "target": "CYTOSOLIC_CA_SPIKE",
       "kind": "activates",
-      "label": "rapid Ca2+ influx"
+      "label": "rapid Ca2+"
     },
     {
       "source": "CYTOSOLIC_CA_SPIKE",
       "target": "CPK_KINASES",
       "kind": "activates",
-      "label": "Ca2+ binding to EF-hands"
+      "label": "EF-hand binding"
     },
     {
       "source": "CPK_KINASES",
       "target": "RBOHD_OXIDASE",
       "kind": "activates",
-      "label": "Ser-343/347 phosphorylation"
+      "label": "Ser343/347-P"
     },
     {
       "source": "EXTRACELLULAR_O2",
@@ -275,37 +275,37 @@
       "source": "RBOHD_OXIDASE",
       "target": "PIP2_1_AQUAPORIN",
       "kind": "metabolite_flux",
-      "label": "O2\u2022- -> H2O2 diffusion"
+      "label": "O2\u2022- -> H2O2"
     },
     {
       "source": "PIP2_1_AQUAPORIN",
       "target": "INWARD_H2O2_FLUX",
       "kind": "metabolite_flux",
-      "label": "channels H2O2 into cytosol"
+      "label": "H2O2 channeling"
     },
     {
       "source": "CYTOSOLIC_CA_SPIKE",
       "target": "MITO_PERCEPTION",
       "kind": "activates",
-      "label": "MCU channel uptake"
+      "label": "MCU uptake"
     },
     {
       "source": "INWARD_H2O2_FLUX",
       "target": "MITO_PERCEPTION",
       "kind": "activates",
-      "label": "activates rhomboid/AOX1a"
+      "label": "rhomboid / AOX1a"
     },
     {
       "source": "CYTOSOLIC_CA_SPIKE",
       "target": "CHLORO_PERCEPTION",
       "kind": "activates",
-      "label": "stromal Ca2+ signaling"
+      "label": "stromal Ca2+"
     },
     {
       "source": "INWARD_H2O2_FLUX",
       "target": "CHLORO_PERCEPTION",
       "kind": "activates",
-      "label": "oxidizes SAL1"
+      "label": "SAL1 oxidation"
     }
   ]
 }

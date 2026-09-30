@@ -20,6 +20,7 @@ from .layout import (
     LaidOutNode,
     MIN_GUTTER_X,
     MIN_GUTTER_Y,
+    PAD_X,
     size_node,
 )
 from .ontology import Entity, Ontology, load_ontology
@@ -61,6 +62,74 @@ class Map:
 def load_map_source(path: pathlib.Path) -> dict[str, Any]:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
+
+
+def classify_unit(unit_str: str) -> tuple[str | None, str | None]:
+    """Classify a unit string into (badge_text, badge_type) or (None, None)."""
+    u = unit_str.strip()
+    u_lower = u.lower()
+
+    # 1. Catalytic cofactors & coenzymes
+    if "8 × fe/s" in u_lower or "8 x fe/s" in u_lower:
+        return ("8×Fe-S", "cofactor")
+    if "3 × fe/s" in u_lower or "3 x fe/s" in u_lower:
+        return ("3×Fe-S", "cofactor")
+    if "rieske" in u_lower and "fe-2s" in u_lower:
+        return ("Rieske 2Fe-2S", "cofactor")
+    if u in ("[2Fe-2S]", "Fe/S", "Fe-S"):
+        return ("Fe-S", "cofactor")
+    if u == "FMN":
+        return ("FMN", "cofactor")
+    if u == "FAD":
+        return ("FAD", "cofactor")
+    if "heme a3/cub" in u_lower:
+        return ("heme a3/CuB", "cofactor")
+    if "di-iron" in u_lower:
+        return ("di-iron Fe-Fe", "cofactor")
+    if "splits h2o" in u_lower or "mn4cao5" in u_lower:
+        return ("Mn4CaO5 cluster", "cofactor")
+    if u in ("Cyt b", "Cyt c1"):
+        return (u, "cofactor")
+
+    # 2. Plant respiratory bypasses
+    if u_lower in ("bypass", "stress bypass"):
+        return ("PLANT BYPASS", "bypass")
+    if "cyanide-resistant" in u_lower:
+        return ("CN-RESISTANT", "bypass")
+    if "no h+ pumped" in u_lower:
+        return ("NO H+ PUMP", "bypass")
+    if "rotenone-insensitive" in u_lower:
+        return ("ROT-INSENSITIVE", "bypass")
+    if "alternative respiration" in u_lower:
+        return ("ALT-RESPIRATION", "bypass")
+
+    # 3. Plant-specific innovations
+    if "plant-specific" in u_lower:
+        return ("PLANT-SPECIFIC", "plant_spec")
+    if "carbonic anhydrase domain" in u_lower:
+        return ("CA DOMAIN", "plant_spec")
+
+    # 4. Retrograde sensors, transducers & gates
+    if "1o2 sensor" in u_lower:
+        return ("1O2 SENSOR", "sensor")
+    if "stretch-activated" in u_lower:
+        return ("MECHANO-GATED", "sensor")
+    if "master mrr factor" in u_lower:
+        return ("MRR MASTER", "sensor")
+    if "master plastid integrator" in u_lower:
+        return ("PRR MASTER", "sensor")
+    if "intramembrane serine protease" in u_lower:
+        return ("SERINE PROTEASE", "sensor")
+    if "er/omm anchored" in u_lower:
+        return ("ER/OMM TETHER", "sensor")
+    if "cleaved n-fragment" in u_lower:
+        return ("CLEAVED NAC", "sensor")
+    if "cttgnnnnncag" in u_lower:
+        return ("MDM MOTIF", "sensor")
+    if "matrix photorespiratory engine" in u_lower:
+        return ("GDC MULTIENZYME", "sensor")
+
+    return (None, None)
 
 
 def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
@@ -115,9 +184,18 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
                     pass
 
             label = label or nid
-            units = n_spec.get("units", [])
-            if units:
-                sublabel = " • ".join(units)
+            raw_units = n_spec.get("units", [])
+            badges: list[tuple[str, str]] = []
+            descs: list[str] = []
+            for u in raw_units:
+                b_text, b_type = classify_unit(u)
+                if b_text and (b_text, b_type) not in badges:
+                    badges.append((b_text, b_type))
+                else:
+                    descs.append(u)
+
+            if descs:
+                sublabel = " • ".join(descs)
 
             box, lines, sublines = size_node(
                 label,
@@ -126,13 +204,20 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
                 preferred_width=pref_w,
                 weight="bold",
             )
-            temp_sized.append((nid, box, lines, sublines, lane_id, row_idx, pmco_id, tier, desc))
+
+            # Accommodate badges row
+            if badges:
+                total_badges_w = sum(len(b[0]) * 5.6 + 12.0 for b in badges) + max(0, len(badges) - 1) * 6.0
+                box.w = max(box.w, total_badges_w + 2 * PAD_X)
+                box.h += 18.0
+
+            temp_sized.append((nid, box, lines, sublines, lane_id, row_idx, pmco_id, tier, desc, badges))
 
         lane_max_w = max([pref_w] + [item[1].w for item in temp_sized])
 
         # Pass 2: Place all nodes with uniform width in this lane
         current_y = start_y + 36.0
-        for nid, box, lines, sublines, l_id, row_idx, pmco_id, tier, desc in temp_sized:
+        for nid, box, lines, sublines, l_id, row_idx, pmco_id, tier, desc, badges in temp_sized:
             box.w = lane_max_w
             box.x = current_x
             box.y = current_y
@@ -148,6 +233,7 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
                 lane=l_id,
                 row=row_idx,
                 col=lane_idx,
+                badges=badges,
                 payload={
                     "pmco_id": pmco_id,
                     "evidence_tier": tier,

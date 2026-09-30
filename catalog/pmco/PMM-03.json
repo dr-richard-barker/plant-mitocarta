@@ -10,9 +10,9 @@
         "Nuclear Pore Complex"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
-        "w": 183.0,
+        "x": 64.0,
+        "y": 146.0,
+        "w": 190.0,
         "h": 60.625
       }
     },
@@ -25,9 +25,9 @@
         "Transportins"
       ],
       "box": {
-        "x": 52.0,
-        "y": 222.625,
-        "w": 184.6,
+        "x": 64.0,
+        "y": 254.625,
+        "w": 190.0,
         "h": 76.25
       }
     },
@@ -39,10 +39,10 @@
         "ANAC017 (NAC Domain)"
       ],
       "box": {
-        "x": 278.0,
-        "y": 130.0,
-        "w": 213.6,
-        "h": 48.125
+        "x": 358.0,
+        "y": 146.0,
+        "w": 231.0,
+        "h": 66.125
       }
     },
     {
@@ -53,9 +53,9 @@
         "ANAC013 (NAC Domain)"
       ],
       "box": {
-        "x": 278.0,
-        "y": 210.125,
-        "w": 213.6,
+        "x": 358.0,
+        "y": 260.125,
+        "w": 231.0,
         "h": 60.625
       }
     },
@@ -67,8 +67,8 @@
         "Nuclear PAP Pool"
       ],
       "box": {
-        "x": 278.0,
-        "y": 302.75,
+        "x": 358.0,
+        "y": 368.75,
         "w": 231.0,
         "h": 60.625
       }
@@ -81,9 +81,9 @@
         "ABI4 Repressor"
       ],
       "box": {
-        "x": 545.0,
-        "y": 130.0,
-        "w": 196.2,
+        "x": 693.0,
+        "y": 146.0,
+        "w": 229.5,
         "h": 48.125
       }
     },
@@ -95,9 +95,9 @@
         "GLK1/GLK2 Activators"
       ],
       "box": {
-        "x": 545.0,
-        "y": 210.125,
-        "w": 183.0,
+        "x": 693.0,
+        "y": 242.125,
+        "w": 229.5,
         "h": 48.125
       }
     },
@@ -109,8 +109,8 @@
         "XRN2/XRN3 Exoribonucleases"
       ],
       "box": {
-        "x": 545.0,
-        "y": 290.25,
+        "x": 693.0,
+        "y": 338.25,
         "w": 229.5,
         "h": 48.125
       }
@@ -123,10 +123,10 @@
         "MDRE Promoter Elements"
       ],
       "box": {
-        "x": 810.5,
-        "y": 130.0,
-        "w": 231.0,
-        "h": 48.125
+        "x": 1026.5,
+        "y": 146.0,
+        "w": 220.0,
+        "h": 66.125
       }
     },
     {
@@ -137,9 +137,9 @@
         "PhANGs Promoters"
       ],
       "box": {
-        "x": 810.5,
-        "y": 210.125,
-        "w": 207.79999999999998,
+        "x": 1026.5,
+        "y": 260.125,
+        "w": 220.0,
         "h": 60.625
       }
     },
@@ -151,9 +151,9 @@
         "AOX1a mRNA Induction"
       ],
       "box": {
-        "x": 1077.5,
-        "y": 130.0,
-        "w": 183.0,
+        "x": 1350.5,
+        "y": 146.0,
+        "w": 237.25,
         "h": 48.125
       }
     },
@@ -165,8 +165,8 @@
         "MSR Chaperones (HSP70/UPM1)"
       ],
       "box": {
-        "x": 1077.5,
-        "y": 210.125,
+        "x": 1350.5,
+        "y": 242.125,
         "w": 237.25,
         "h": 48.125
       }
@@ -180,9 +180,9 @@
         "(Lhcb/RbcS)"
       ],
       "box": {
-        "x": 1077.5,
-        "y": 290.25,
-        "w": 167.5,
+        "x": 1350.5,
+        "y": 338.25,
+        "w": 237.25,
         "h": 63.75
       }
     },
@@ -194,8 +194,8 @@
         "Nucleolar Stress Checkpoint"
       ],
       "box": {
-        "x": 1077.5,
-        "y": 386.0,
+        "x": 1350.5,
+        "y": 450.0,
         "w": 237.25,
         "h": 48.125
       }
@@ -224,13 +224,13 @@
       "source": "ANAC017_ACTIVE",
       "target": "MDRE_PROMOTER_LOCUS",
       "kind": "activates",
-      "label": "binds MDRE palindromic motif"
+      "label": "MDRE binding"
     },
     {
       "source": "ANAC013_ACTIVE",
       "target": "MDRE_PROMOTER_LOCUS",
       "kind": "activates",
-      "label": "binds MDRE motif"
+      "label": "MDRE binding"
     },
     {
       "source": "MDRE_PROMOTER_LOCUS",
@@ -248,25 +248,25 @@
       "source": "PAP_NUCLEAR_POOL",
       "target": "XRN2_TARGET",
       "kind": "inhibits",
-      "label": "direct enzymatic inhibition"
+      "label": "XRN inhibition"
     },
     {
       "source": "XRN2_TARGET",
       "target": "AOX1A_MRNA",
       "kind": "activates",
-      "label": "transcript stabilization"
+      "label": "mRNA stability"
     },
     {
       "source": "ABI4_REPRESSOR_TF",
       "target": "PHANGS_PROMOTER_LOCUS",
       "kind": "inhibits",
-      "label": "represses transcription"
+      "label": "PhANGs repression"
     },
     {
       "source": "GLK1_ACTIVATOR_TF",
       "target": "PHANGS_PROMOTER_LOCUS",
       "kind": "activates",
-      "label": "activates transcription"
+      "label": "PhANGs activation"
     },
     {
       "source": "PHANGS_PROMOTER_LOCUS",
@@ -278,7 +278,7 @@
       "source": "AOX1A_MRNA",
       "target": "NUCLEOLUS_SURVEILLANCE",
       "kind": "activates",
-      "label": "energy coordination"
+      "label": "surveillance"
     }
   ]
 }

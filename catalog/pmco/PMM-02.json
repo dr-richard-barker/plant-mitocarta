@@ -11,8 +11,8 @@
         "Substrate"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
+        "x": 64.0,
+        "y": 146.0,
         "w": 184.6,
         "h": 63.75
       }
@@ -25,9 +25,9 @@
         "Thylakoid Lumen H+"
       ],
       "box": {
-        "x": 52.0,
-        "y": 225.75,
-        "w": 167.5,
+        "x": 64.0,
+        "y": 257.75,
+        "w": 184.6,
         "h": 48.125
       }
     },
@@ -39,10 +39,10 @@
         "Photosystem II (PSII)"
       ],
       "box": {
-        "x": 272.6,
-        "y": 130.0,
-        "w": 196.2,
-        "h": 48.125
+        "x": 352.6,
+        "y": 146.0,
+        "w": 213.6,
+        "h": 66.125
       }
     },
     {
@@ -53,8 +53,8 @@
         "Cytochrome b6f"
       ],
       "box": {
-        "x": 272.6,
-        "y": 210.125,
+        "x": 352.6,
+        "y": 260.125,
         "w": 213.6,
         "h": 48.125
       }
@@ -67,9 +67,9 @@
         "Photosystem I (PSI)"
       ],
       "box": {
-        "x": 272.6,
-        "y": 290.25,
-        "w": 175.25,
+        "x": 352.6,
+        "y": 356.25,
+        "w": 213.6,
         "h": 48.125
       }
     },
@@ -81,9 +81,9 @@
         "Thylakoid ATP Synthase"
       ],
       "box": {
-        "x": 272.6,
-        "y": 370.375,
-        "w": 198.5,
+        "x": 352.6,
+        "y": 452.375,
+        "w": 213.6,
         "h": 48.125
       }
     },
@@ -95,10 +95,10 @@
         "EXECUTER 1 (EX1)"
       ],
       "box": {
-        "x": 272.6,
-        "y": 450.5,
-        "w": 178.79999999999998,
-        "h": 48.125
+        "x": 352.6,
+        "y": 548.5,
+        "w": 213.6,
+        "h": 66.125
       }
     },
     {
@@ -109,9 +109,9 @@
         "Stromal NADPH Pool"
       ],
       "box": {
-        "x": 522.2,
-        "y": 130.0,
-        "w": 167.5,
+        "x": 670.2,
+        "y": 146.0,
+        "w": 200.0,
         "h": 48.125
       }
     },
@@ -123,9 +123,9 @@
         "Stromal ATP Pool"
       ],
       "box": {
-        "x": 522.2,
-        "y": 210.125,
-        "w": 152.0,
+        "x": 670.2,
+        "y": 242.125,
+        "w": 200.0,
         "h": 48.125
       }
     },
@@ -137,9 +137,9 @@
         "Stromal H2O2 / 1O2"
       ],
       "box": {
-        "x": 522.2,
-        "y": 290.25,
-        "w": 167.5,
+        "x": 670.2,
+        "y": 338.25,
+        "w": 200.0,
         "h": 48.125
       }
     },
@@ -151,8 +151,8 @@
         "RuBisCO Holoenzyme"
       ],
       "box": {
-        "x": 758.2,
-        "y": 130.0,
+        "x": 974.2,
+        "y": 146.0,
         "w": 231.0,
         "h": 48.125
       }
@@ -165,9 +165,9 @@
         "Calvin-Benson Cycle"
       ],
       "box": {
-        "x": 758.2,
-        "y": 210.125,
-        "w": 178.79999999999998,
+        "x": 974.2,
+        "y": 242.125,
+        "w": 231.0,
         "h": 48.125
       }
     },
@@ -179,9 +179,9 @@
         "TPT Translocator"
       ],
       "box": {
-        "x": 758.2,
-        "y": 290.25,
-        "w": 196.2,
+        "x": 974.2,
+        "y": 338.25,
+        "w": 231.0,
         "h": 48.125
       }
     },
@@ -193,9 +193,9 @@
         "SAL1 Phosphatase"
       ],
       "box": {
-        "x": 1025.2,
-        "y": 130.0,
-        "w": 202.0,
+        "x": 1309.2,
+        "y": 146.0,
+        "w": 210.0,
         "h": 48.125
       }
     },
@@ -207,9 +207,9 @@
         "PAP Retrograde Signal"
       ],
       "box": {
-        "x": 1025.2,
-        "y": 210.125,
-        "w": 190.75,
+        "x": 1309.2,
+        "y": 242.125,
+        "w": 210.0,
         "h": 48.125
       }
     },
@@ -221,9 +221,9 @@
         "PAPST1 Transporter"
       ],
       "box": {
-        "x": 1025.2,
-        "y": 290.25,
-        "w": 167.5,
+        "x": 1309.2,
+        "y": 338.25,
+        "w": 210.0,
         "h": 48.125
       }
     },
@@ -235,10 +235,10 @@
         "GUN1 PPR Hub"
       ],
       "box": {
-        "x": 1025.2,
-        "y": 370.375,
-        "w": 173.0,
-        "h": 48.125
+        "x": 1309.2,
+        "y": 434.375,
+        "w": 210.0,
+        "h": 53.625
       }
     },
     {
@@ -249,9 +249,9 @@
         "MEcPP Metabolite"
       ],
       "box": {
-        "x": 1025.2,
-        "y": 450.5,
-        "w": 173.0,
+        "x": 1309.2,
+        "y": 536.0,
+        "w": 210.0,
         "h": 48.125
       }
     }
@@ -279,31 +279,31 @@
       "source": "PSI_COMPLEX",
       "target": "PLASTID_NADPH",
       "kind": "electron_transfer",
-      "label": "Fd -> FNR -> NADPH"
+      "label": "Fd -> FNR"
     },
     {
       "source": "PSII_OEC",
       "target": "LUMEN_PROTONS",
       "kind": "activates",
-      "label": "pumps H+"
+      "label": "H+ pump"
     },
     {
       "source": "CYT_B6F",
       "target": "LUMEN_PROTONS",
       "kind": "activates",
-      "label": "pumps H+"
+      "label": "H+ pump"
     },
     {
       "source": "LUMEN_PROTONS",
       "target": "THYL_ATP_SYNTHASE",
       "kind": "activates",
-      "label": "drives ATP synthesis"
+      "label": "H+ motor"
     },
     {
       "source": "THYL_ATP_SYNTHASE",
       "target": "PLASTID_ATP",
       "kind": "activates",
-      "label": "yields ATP"
+      "label": "ATP yield"
     },
     {
       "source": "PLASTID_NADPH",
@@ -315,7 +315,7 @@
       "source": "PLASTID_ATP",
       "target": "CALVIN_BENSON_FLUX",
       "kind": "metabolite_flux",
-      "label": "phosphorylation"
+      "label": "ATP synthesis"
     },
     {
       "source": "CALVIN_BENSON_FLUX",
@@ -333,7 +333,7 @@
       "source": "PSII_OEC",
       "target": "EX1_SENSOR",
       "kind": "activates",
-      "label": "1O2 photodamage"
+      "label": "1O2 damage"
     },
     {
       "source": "PSII_OEC",
@@ -345,13 +345,13 @@
       "source": "STROMAL_ROS",
       "target": "SAL1_NUCLEOTIDASE",
       "kind": "inhibits",
-      "label": "oxidative inactivation"
+      "label": "oxidation"
     },
     {
       "source": "SAL1_NUCLEOTIDASE",
       "target": "PAP_METABOLITE",
       "kind": "inhibits",
-      "label": "constitutive degradation"
+      "label": "degradation"
     },
     {
       "source": "PAP_METABOLITE",
@@ -363,13 +363,13 @@
       "source": "STROMAL_ROS",
       "target": "GUN1_INTEGRATOR",
       "kind": "activates",
-      "label": "plastid protein stress"
+      "label": "protein stress"
     },
     {
       "source": "STROMAL_ROS",
       "target": "MECPP_INTERMEDIATE",
       "kind": "activates",
-      "label": "MEP pathway stress"
+      "label": "MEP stress"
     }
   ]
 }

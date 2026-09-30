@@ -11,9 +11,9 @@
         "Burst"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
-        "w": 183.0,
+        "x": 64.0,
+        "y": 146.0,
+        "w": 206.25,
         "h": 63.75
       }
     },
@@ -26,9 +26,9 @@
         "Defect"
       ],
       "box": {
-        "x": 52.0,
-        "y": 225.75,
-        "w": 175.25,
+        "x": 64.0,
+        "y": 257.75,
+        "w": 206.25,
         "h": 63.75
       }
     },
@@ -40,9 +40,9 @@
         "MEP Pathway Arrest"
       ],
       "box": {
-        "x": 52.0,
-        "y": 321.5,
-        "w": 173.0,
+        "x": 64.0,
+        "y": 369.5,
+        "w": 206.25,
         "h": 48.125
       }
     },
@@ -54,8 +54,8 @@
         "Stromal Redox Oxidation"
       ],
       "box": {
-        "x": 52.0,
-        "y": 401.625,
+        "x": 64.0,
+        "y": 465.625,
         "w": 206.25,
         "h": 48.125
       }
@@ -68,9 +68,9 @@
         "EXECUTER 1 (EX1)"
       ],
       "box": {
-        "x": 294.25,
-        "y": 130.0,
-        "w": 196.2,
+        "x": 374.25,
+        "y": 146.0,
+        "w": 231.0,
         "h": 48.125
       }
     },
@@ -82,8 +82,8 @@
         "GUN1 PPR Hub"
       ],
       "box": {
-        "x": 294.25,
-        "y": 210.125,
+        "x": 374.25,
+        "y": 242.125,
         "w": 231.0,
         "h": 48.125
       }
@@ -96,9 +96,9 @@
         "MEcPP Retrograde Messenger"
       ],
       "box": {
-        "x": 294.25,
-        "y": 290.25,
-        "w": 229.5,
+        "x": 374.25,
+        "y": 338.25,
+        "w": 231.0,
         "h": 48.125
       }
     },
@@ -111,9 +111,9 @@
         "Inactivation"
       ],
       "box": {
-        "x": 294.25,
-        "y": 370.375,
-        "w": 178.79999999999998,
+        "x": 374.25,
+        "y": 434.375,
+        "w": 231.0,
         "h": 63.75
       }
     },
@@ -125,8 +125,8 @@
         "PAP Accumulation"
       ],
       "box": {
-        "x": 561.25,
-        "y": 130.0,
+        "x": 709.25,
+        "y": 146.0,
         "w": 213.6,
         "h": 48.125
       }
@@ -139,9 +139,9 @@
         "PAPST1 Transporter"
       ],
       "box": {
-        "x": 561.25,
-        "y": 210.125,
-        "w": 184.6,
+        "x": 709.25,
+        "y": 242.125,
+        "w": 213.6,
         "h": 48.125
       }
     },
@@ -153,9 +153,9 @@
         "MEcPP Envelope Export"
       ],
       "box": {
-        "x": 561.25,
-        "y": 290.25,
-        "w": 190.75,
+        "x": 709.25,
+        "y": 338.25,
+        "w": 213.6,
         "h": 48.125
       }
     },
@@ -167,8 +167,8 @@
         "ABI4 Transcription Factor"
       ],
       "box": {
-        "x": 810.85,
-        "y": 130.0,
+        "x": 1026.85,
+        "y": 146.0,
         "w": 221.75,
         "h": 48.125
       }
@@ -182,9 +182,9 @@
         "Exoribonucleases"
       ],
       "box": {
-        "x": 810.85,
-        "y": 210.125,
-        "w": 152.0,
+        "x": 1026.85,
+        "y": 242.125,
+        "w": 221.75,
         "h": 63.75
       }
     },
@@ -196,9 +196,9 @@
         "ICS1 Defense Promoter"
       ],
       "box": {
-        "x": 810.85,
-        "y": 305.875,
-        "w": 190.75,
+        "x": 1026.85,
+        "y": 353.875,
+        "w": 221.75,
         "h": 48.125
       }
     },
@@ -210,9 +210,9 @@
         "Repression of PhANGs"
       ],
       "box": {
-        "x": 1068.6,
-        "y": 130.0,
-        "w": 183.0,
+        "x": 1352.6,
+        "y": 146.0,
+        "w": 214.0,
         "h": 48.125
       }
     },
@@ -225,9 +225,9 @@
         "Induction"
       ],
       "box": {
-        "x": 1068.6,
-        "y": 210.125,
-        "w": 198.5,
+        "x": 1352.6,
+        "y": 242.125,
+        "w": 214.0,
         "h": 63.75
       }
     },
@@ -240,8 +240,8 @@
         "Acclimation"
       ],
       "box": {
-        "x": 1068.6,
-        "y": 305.875,
+        "x": 1352.6,
+        "y": 353.875,
         "w": 214.0,
         "h": 63.75
       }
@@ -252,79 +252,79 @@
       "source": "EXCESS_LIGHT_1O2",
       "target": "EX1_GRANA_SENSOR",
       "kind": "activates",
-      "label": "sensed at grana margins"
+      "label": "grana sensing"
     },
     {
       "source": "EX1_GRANA_SENSOR",
       "target": "PCD_ACCLIMATION_SWITCH",
       "kind": "activates",
-      "label": "transduces 1O2 signal to nucleus"
+      "label": "1O2 signal"
     },
     {
       "source": "PLASTID_TRANSLATION_ARREST",
       "target": "GUN1_INTEGRATION_HUB",
       "kind": "activates",
-      "label": "accumulates unimported proteins"
+      "label": "preprotein stall"
     },
     {
       "source": "GUN1_INTEGRATION_HUB",
       "target": "ABI4_REPRESSION_TF",
       "kind": "activates",
-      "label": "signals to nuclear ABI4"
+      "label": "ABI4 signal"
     },
     {
       "source": "ABI4_REPRESSION_TF",
       "target": "PHANGS_REPRESSED",
       "kind": "activates",
-      "label": "represses PhANGs transcription"
+      "label": "PhANGs repression"
     },
     {
       "source": "MEP_PATHWAY_BOTTLENECK",
       "target": "MECPP_SIGNAL_POOL",
       "kind": "activates",
-      "label": "metabolite accumulation"
+      "label": "MEcPP accumulation"
     },
     {
       "source": "MECPP_SIGNAL_POOL",
       "target": "MECPP_EXPORT_GATE",
       "kind": "metabolite_flux",
-      "label": "export to cytosol"
+      "label": "cytosol export"
     },
     {
       "source": "MECPP_EXPORT_GATE",
       "target": "ICS1_DEFENSE_PROMOTER",
       "kind": "activates",
-      "label": "induces ICS1 / salicylic acid"
+      "label": "ICS1 induction"
     },
     {
       "source": "STROMAL_OXIDATIVE_STRESS",
       "target": "SAL1_OXIDATIVE_INACTIVATION",
       "kind": "inhibits",
-      "label": "oxidizes catalytic cysteines"
+      "label": "cysteine oxidation"
     },
     {
       "source": "SAL1_OXIDATIVE_INACTIVATION",
       "target": "PAP_STROMAL_POOL",
       "kind": "activates",
-      "label": "PAP catabolism halted"
+      "label": "PAP accumulation"
     },
     {
       "source": "PAP_STROMAL_POOL",
       "target": "PAPST1_TRANSLOCATOR",
       "kind": "metabolite_flux",
-      "label": "envelope export"
+      "label": "PAPST1 transport"
     },
     {
       "source": "PAPST1_TRANSLOCATOR",
       "target": "XRN2_3_EXORIBONUCLEASES",
       "kind": "inhibits",
-      "label": "enters nucleus and inhibits XRNs"
+      "label": "XRN inhibition"
     },
     {
       "source": "XRN2_3_EXORIBONUCLEASES",
       "target": "DROUGHT_STRESS_INDUCED",
       "kind": "activates",
-      "label": "stabilizes drought/stress mRNAs"
+      "label": "mRNA stability"
     }
   ]
 }

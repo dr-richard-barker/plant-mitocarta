@@ -10,8 +10,8 @@
         "Stromal H2O2 Generation"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
+        "x": 64.0,
+        "y": 146.0,
         "w": 219.39999999999998,
         "h": 48.125
       }
@@ -24,9 +24,9 @@
         "Stromule Induction"
       ],
       "box": {
-        "x": 52.0,
-        "y": 210.125,
-        "w": 213.6,
+        "x": 64.0,
+        "y": 242.125,
+        "w": 219.39999999999998,
         "h": 48.125
       }
     },
@@ -38,9 +38,9 @@
         "Stromule Extension"
       ],
       "box": {
-        "x": 307.4,
-        "y": 130.0,
-        "w": 184.6,
+        "x": 387.4,
+        "y": 146.0,
+        "w": 210.0,
         "h": 60.625
       }
     },
@@ -52,9 +52,9 @@
         "Privileged H2O2 Flux"
       ],
       "box": {
-        "x": 307.4,
-        "y": 222.625,
-        "w": 184.6,
+        "x": 387.4,
+        "y": 254.625,
+        "w": 210.0,
         "h": 60.625
       }
     },
@@ -67,9 +67,9 @@
         "Zone"
       ],
       "box": {
-        "x": 553.4,
-        "y": 130.0,
-        "w": 214.0,
+        "x": 701.4,
+        "y": 146.0,
+        "w": 237.25,
         "h": 63.75
       }
     },
@@ -81,8 +81,8 @@
         "Nuclear Redox Reprogramming"
       ],
       "box": {
-        "x": 553.4,
-        "y": 225.75,
+        "x": 701.4,
+        "y": 257.75,
         "w": 237.25,
         "h": 60.625
       }
@@ -95,8 +95,8 @@
         "VAP27-anchored MCS Tethers"
       ],
       "box": {
-        "x": 826.65,
-        "y": 130.0,
+        "x": 1042.65,
+        "y": 146.0,
         "w": 229.5,
         "h": 48.125
       }
@@ -109,8 +109,8 @@
         "MEAM Phospholipid Transfer"
       ],
       "box": {
-        "x": 826.65,
-        "y": 210.125,
+        "x": 1042.65,
+        "y": 242.125,
         "w": 229.5,
         "h": 48.125
       }
@@ -123,9 +123,9 @@
         "MEAM Calcium Tunneling"
       ],
       "box": {
-        "x": 826.65,
-        "y": 290.25,
-        "w": 198.5,
+        "x": 1042.65,
+        "y": 338.25,
+        "w": 229.5,
         "h": 48.125
       }
     },
@@ -137,9 +137,9 @@
         "OMM VDAC1-3 Channels"
       ],
       "box": {
-        "x": 1092.15,
-        "y": 130.0,
-        "w": 183.0,
+        "x": 1376.15,
+        "y": 146.0,
+        "w": 210.0,
         "h": 48.125
       }
     },
@@ -152,9 +152,9 @@
         "Microdomain"
       ],
       "box": {
-        "x": 1092.15,
-        "y": 210.125,
-        "w": 202.0,
+        "x": 1376.15,
+        "y": 242.125,
+        "w": 210.0,
         "h": 76.25
       }
     }
@@ -164,61 +164,61 @@
       "source": "STROMA_H2O2_CORE",
       "target": "STROMULE_ELONGATION_ACTIN",
       "kind": "activates",
-      "label": "stress induces elongation"
+      "label": "ROS elongation"
     },
     {
       "source": "STROMULE_ELONGATION_ACTIN",
       "target": "STROMULE_CHANNEL",
       "kind": "activates",
-      "label": "extends along actin"
+      "label": "actin tracking"
     },
     {
       "source": "STROMULE_CHANNEL",
       "target": "DIRECT_H2O2_CONDUIT",
       "kind": "activates",
-      "label": "channels stromal contents"
+      "label": "stromal conduit"
     },
     {
       "source": "DIRECT_H2O2_CONDUIT",
       "target": "NUCLEAR_ENVELOPE_RECEPTOR",
       "kind": "activates",
-      "label": "physical membrane docking"
+      "label": "nuclear docking"
     },
     {
       "source": "NUCLEAR_ENVELOPE_RECEPTOR",
       "target": "LOCALIZED_NUCLEOPLASM_H2O2",
       "kind": "metabolite_flux",
-      "label": "direct H2O2 delivery into nucleus"
+      "label": "H2O2 delivery"
     },
     {
       "source": "VAP27_TETHER_COMPLEX",
       "target": "MEAM_LIPID_TRANSFER",
       "kind": "activates",
-      "label": "holds ER and OMM in 15-30 nm proximity"
+      "label": "15-30 nm tether"
     },
     {
       "source": "MEAM_LIPID_TRANSFER",
       "target": "OMM_VDAC_JUNCTION",
       "kind": "metabolite_flux",
-      "label": "lipid exchange"
+      "label": "lipid transfer"
     },
     {
       "source": "VAP27_TETHER_COMPLEX",
       "target": "MEAM_CALCIUM_FLUX",
       "kind": "activates",
-      "label": "calcium microdomain"
+      "label": "Ca2+ microdomain"
     },
     {
       "source": "MEAM_CALCIUM_FLUX",
       "target": "OMM_VDAC_JUNCTION",
       "kind": "metabolite_flux",
-      "label": "Ca2+ flux through VDAC"
+      "label": "VDAC flux"
     },
     {
       "source": "OMM_VDAC_JUNCTION",
       "target": "MITO_LOCALIZED_CA_MICRODOMAIN",
       "kind": "activates",
-      "label": "matrix Ca2+ uptake"
+      "label": "MCU uptake"
     }
   ]
 }

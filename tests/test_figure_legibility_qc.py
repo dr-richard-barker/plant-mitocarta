@@ -317,6 +317,53 @@ def test_maps_zero_edge_label_collisions():
     assert not collisions, f"Found {len(collisions)} label-node collisions:\n" + "\n".join(collisions)
 
 
+def test_maps_membrane_bilayers_rendered():
+    """ABAI QC Check 12: Ensure authentic lipid bilayer architectural rails and tags are rendered on membrane compartments."""
+    from plant_mitocarta.render import render_map_svg, MEMBRANE_COMPARTMENTS
+    maps = compile_all_maps()
+    for m in maps:
+        svg = render_map_svg(m, "light")
+        has_membrane = any(comp.id in MEMBRANE_COMPARTMENTS for comp in m.compartments)
+        if has_membrane:
+            assert "pmc-bilayer-rail" in svg, f"Map {m.id} contains membrane compartments but lacks pmc-bilayer-rail"
+            assert "pmc-membrane-badge" in svg, f"Map {m.id} lacks membrane architecture badges"
+
+
+def test_maps_catalytic_cofactor_and_bypass_badges():
+    """ABAI QC Check 13: Ensure catalytic cofactors and plant bypass badges are extracted and rendered as pill chips."""
+    from plant_mitocarta.render import render_map_svg
+    maps = compile_all_maps()
+    pmm01 = next(m for m in maps if m.id == "PMM-01")
+    svg01 = render_map_svg(pmm01, "light")
+
+    # PMM-01 must feature Fe-S, FMN, FAD, heme a3/CuB, di-iron Fe-Fe, and PLANT BYPASS
+    assert "8×Fe-S" in svg01, "PMM-01 missing 8×Fe-S cofactor badge"
+    assert "FMN" in svg01, "PMM-01 missing FMN cofactor badge"
+    assert "FAD" in svg01, "PMM-01 missing FAD cofactor badge"
+    assert "heme a3/CuB" in svg01, "PMM-01 missing heme a3/CuB cofactor badge"
+    assert "di-iron Fe-Fe" in svg01, "PMM-01 missing di-iron Fe-Fe cofactor badge"
+    assert "PLANT BYPASS" in svg01, "PMM-01 missing PLANT BYPASS badge"
+    assert "pmc-pill-cofactor" in svg01, "PMM-01 missing pmc-pill-cofactor CSS class"
+    assert "pmc-pill-bypass" in svg01, "PMM-01 missing pmc-pill-bypass CSS class"
+
+    # PMM-02 must feature Mn4CaO5 cluster and 1O2 SENSOR
+    pmm02 = next(m for m in maps if m.id == "PMM-02")
+    svg02 = render_map_svg(pmm02, "light")
+    assert "Mn4CaO5 cluster" in svg02, "PMM-02 missing Mn4CaO5 cluster badge"
+    assert "1O2 SENSOR" in svg02, "PMM-02 missing 1O2 SENSOR badge"
+
+
+def test_pmm01_holo_complex_i_superassembly():
+    """ABAI QC Check 14: Ensure PMM-01 renders the Plant Holo-Complex I L-shaped super-assembly grouping halo."""
+    from plant_mitocarta.render import render_map_svg
+    maps = compile_all_maps()
+    pmm01 = next(m for m in maps if m.id == "PMM-01")
+    svg = render_map_svg(pmm01, "light")
+
+    assert 'id="group-holo-complex-i"' in svg, "PMM-01 missing group-holo-complex-i SVG element"
+    assert "PLANT HOLO-COMPLEX I (L-SHAPED SUPER-ASSEMBLY)" in svg, "PMM-01 missing super-assembly header title"
+
+
 
 
 

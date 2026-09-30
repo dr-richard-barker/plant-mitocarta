@@ -11,24 +11,10 @@
         "Sensors"
       ],
       "box": {
-        "x": 52.0,
-        "y": 130.0,
-        "w": 231.0,
-        "h": 76.25
-      }
-    },
-    {
-      "id": "PM_RBOHD_BURST",
-      "pmco_id": "PMCO:RBOHD_NADPH_OXIDASE",
-      "tier": "T1",
-      "lines": [
-        "Apoplastic ROS Wave (RBOHD)"
-      ],
-      "box": {
-        "x": 52.0,
-        "y": 238.25,
+        "x": 64.0,
+        "y": 146.0,
         "w": 237.25,
-        "h": 60.625
+        "h": 76.25
       }
     },
     {
@@ -40,10 +26,24 @@
         "(GLR3.3/3.6)"
       ],
       "box": {
-        "x": 52.0,
-        "y": 330.875,
-        "w": 183.0,
+        "x": 64.0,
+        "y": 270.25,
+        "w": 237.25,
         "h": 63.75
+      }
+    },
+    {
+      "id": "PM_RBOHD_BURST",
+      "pmco_id": "PMCO:RBOHD_NADPH_OXIDASE",
+      "tier": "T1",
+      "lines": [
+        "Apoplastic ROS Wave (RBOHD)"
+      ],
+      "box": {
+        "x": 64.0,
+        "y": 382.0,
+        "w": 237.25,
+        "h": 60.625
       }
     },
     {
@@ -54,8 +54,8 @@
         "Chloroplast Light Reactions"
       ],
       "box": {
-        "x": 325.25,
-        "y": 130.0,
+        "x": 405.25,
+        "y": 146.0,
         "w": 237.25,
         "h": 48.125
       }
@@ -69,9 +69,9 @@
         "Fixation"
       ],
       "box": {
-        "x": 325.25,
-        "y": 210.125,
-        "w": 225.2,
+        "x": 405.25,
+        "y": 242.125,
+        "w": 237.25,
         "h": 63.75
       }
     },
@@ -83,9 +83,9 @@
         "Plastid Retrograde Signals"
       ],
       "box": {
-        "x": 325.25,
-        "y": 305.875,
-        "w": 229.5,
+        "x": 405.25,
+        "y": 353.875,
+        "w": 237.25,
         "h": 48.125
       }
     },
@@ -98,8 +98,8 @@
         "Photorespiration"
       ],
       "box": {
-        "x": 598.5,
-        "y": 130.0,
+        "x": 746.5,
+        "y": 146.0,
         "w": 225.2,
         "h": 76.25
       }
@@ -112,9 +112,9 @@
         "Plant MitoCarta OXPHOS"
       ],
       "box": {
-        "x": 859.7,
-        "y": 130.0,
-        "w": 236.79999999999998,
+        "x": 1075.7,
+        "y": 146.0,
+        "w": 245.0,
         "h": 60.625
       }
     },
@@ -126,9 +126,9 @@
         "Matrix GDC Complex"
       ],
       "box": {
-        "x": 859.7,
-        "y": 222.625,
-        "w": 219.39999999999998,
+        "x": 1075.7,
+        "y": 254.625,
+        "w": 245.0,
         "h": 48.125
       }
     },
@@ -140,8 +140,8 @@
         "Mitochondrial Retrograde MRR"
       ],
       "box": {
-        "x": 859.7,
-        "y": 302.75,
+        "x": 1075.7,
+        "y": 350.75,
         "w": 245.0,
         "h": 48.125
       }
@@ -154,9 +154,9 @@
         "MDRE Promoter Induction"
       ],
       "box": {
-        "x": 1140.7,
-        "y": 130.0,
-        "w": 219.39999999999998,
+        "x": 1424.7,
+        "y": 146.0,
+        "w": 231.0,
         "h": 48.125
       }
     },
@@ -168,8 +168,8 @@
         "PhANGs Coordinate Control"
       ],
       "box": {
-        "x": 1140.7,
-        "y": 210.125,
+        "x": 1424.7,
+        "y": 242.125,
         "w": 231.0,
         "h": 60.625
       }
@@ -182,9 +182,9 @@
         "Whole-Cell Acclimation"
       ],
       "box": {
-        "x": 1140.7,
-        "y": 302.75,
-        "w": 213.6,
+        "x": 1424.7,
+        "y": 350.75,
+        "w": 231.0,
         "h": 60.625
       }
     }
@@ -194,85 +194,85 @@
       "source": "PM_SENSORY_INPUT",
       "target": "PM_CALCIUM_GATE",
       "kind": "activates",
-      "label": "mechanical stretch gates Ca2+"
+      "label": "stretch gating"
     },
     {
       "source": "PM_CALCIUM_GATE",
       "target": "PM_RBOHD_BURST",
       "kind": "activates",
-      "label": "CPK phosphorylation activates RBOHD"
+      "label": "CPK activation"
     },
     {
       "source": "PM_CALCIUM_GATE",
       "target": "CHLORO_PHOTOSYSTEMS",
       "kind": "activates",
-      "label": "calcium wave entry"
+      "label": "Ca2+ wave"
     },
     {
       "source": "PM_CALCIUM_GATE",
       "target": "MITO_RESPIRATORY_CHAIN",
       "kind": "activates",
-      "label": "calcium uptake via MCU"
+      "label": "MCU uptake"
     },
     {
       "source": "PM_RBOHD_BURST",
       "target": "CHLORO_PRR_HUB",
       "kind": "activates",
-      "label": "H2O2 enters via PIP2;1 -> oxidizes SAL1"
+      "label": "H2O2 (PIP2;1)"
     },
     {
       "source": "PM_RBOHD_BURST",
       "target": "MITO_MRR_ANAC017",
       "kind": "activates",
-      "label": "H2O2 activates rhomboid cleavage"
+      "label": "rhomboid cleavage"
     },
     {
       "source": "CHLORO_RUBISCO",
       "target": "PEROXISOMAL_SHUTTLE",
       "kind": "metabolite_flux",
-      "label": "glycolate exported via PLGG1"
+      "label": "glycolate (PLGG1)"
     },
     {
       "source": "PEROXISOMAL_SHUTTLE",
       "target": "MITO_GDC_ENGINE",
       "kind": "metabolite_flux",
-      "label": "glycine enters mitochondria"
+      "label": "glycine import"
     },
     {
       "source": "MITO_GDC_ENGINE",
       "target": "PEROXISOMAL_SHUTTLE",
       "kind": "metabolite_flux",
-      "label": "serine returns to peroxisome"
+      "label": "serine shuttle"
     },
     {
       "source": "PEROXISOMAL_SHUTTLE",
       "target": "CHLORO_RUBISCO",
       "kind": "metabolite_flux",
-      "label": "glycerate returns to Calvin cycle"
+      "label": "glycerate return"
     },
     {
       "source": "CHLORO_PRR_HUB",
       "target": "NUCLEAR_PHANGS_TARGETS",
       "kind": "activates",
-      "label": "PAP & GUN1 signal to ABI4"
+      "label": "PAP/GUN1 signal"
     },
     {
       "source": "MITO_MRR_ANAC017",
       "target": "NUCLEAR_MDRE_TARGETS",
       "kind": "activates",
-      "label": "cleaved ANAC017 binds MDRE"
+      "label": "MDRE binding"
     },
     {
       "source": "NUCLEAR_MDRE_TARGETS",
       "target": "GENOME_REPROGRAMMING",
       "kind": "activates",
-      "label": "induces stress proteome"
+      "label": "stress proteome"
     },
     {
       "source": "NUCLEAR_PHANGS_TARGETS",
       "target": "GENOME_REPROGRAMMING",
       "kind": "activates",
-      "label": "tunes photosynthetic capacity"
+      "label": "PhANG tuning"
     }
   ]
 }
