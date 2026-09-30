@@ -23,13 +23,14 @@ from plant_mitocarta.ontology import load_ontology
 from plant_mitocarta.render import render_map_svg
 from plant_mitocarta.sbgn import map_to_sbgn
 from plant_mitocarta.doubles import get_all_doubles, get_synoptic_cell_layout
-from plant_mitocarta.suba import load_suba_dataset
-from plant_mitocarta.mitocarta import load_mitocarta_reference
+from plant_mitocarta.suba import load_suba_dataset, get_curated_suba_records
+from plant_mitocarta.mitocarta import load_mitocarta_reference, get_curated_ortholog_pairs
 from plant_mitocarta.osdr import (
     load_expression_table,
     get_available_studies,
     get_organellar_multiomics_matrix,
     get_concordance_dataset,
+    CURATED_MULTIOMICS_ENTRIES,
 )
 from plant_mitocarta.project import project_expression_onto_double, project_onto_map
 from plant_mitocarta.compare import compartment_specificity_test
@@ -532,10 +533,167 @@ def html_footer():
 """
 
 
+def build_map_omics_dataset(ont, maps):
+    omics_dict = {e["locus"]: e for e in CURATED_MULTIOMICS_ENTRIES}
+    suba_dict = get_curated_suba_records()
+    ortho_dict = {p.agi_locus: p for p in get_curated_ortholog_pairs()}
+
+    NODE_FALLBACK_LOCI = {
+        "CATALASE_CAT2": "AT4G35090",
+        "GOX_OXIDASE": "AT3G14420",
+        "GGT_AMINOTRANSFERASE": "AT1G23310",
+        "HPR_GLYCERATE_REDUCTASE": "AT1G68010",
+        "GLYCERATE_KINASE_GLYK": "AT1G80380",
+        "TPT_TRANSLOCATOR": "AT5G46110",
+        "THYL_ATP_SYNTHASE": "AT5G13450",
+        "IMPORTIN_ALPHA": "AT3G05720",
+        "CPK_KINASES": "AT5G19450",
+        "VAP27_TETHER_COMPLEX": "AT3G60600",
+        "OMM_VDAC_JUNCTION": "AT3G01280",
+        "ANAC017_SOLUBLE_NAC": "AT1G34190",
+        "ANAC013_SOLUBLE_NAC": "AT1G32870",
+        "AOX1A_MRNA": "AT3G22370",
+        "LHCB_RBCS_MRNA": "AT1G67090",
+        "PLANT_AOX_INNOVATION": "AT3G22370",
+        "PLANT_NDH_BYPASSES": "AT1G07180",
+        "PLANT_CA_DOMAIN_COMPLEX_I": "AT1G47260",
+        "PLANT_GDC_PHOTORESP": "AT4G33010",
+        "DUAL_TARGETED_POLIA_B": "AT1G50840",
+        "PLANT_CONSERVED_OXPHOS": "AT5G08530",
+        "PLANT_CONSERVED_TCA": "AT5G66760",
+        "PLANT_FE_S_ISC_CORE": "AT5G13440",
+        "EXPANDED_PPR_FAMILY": "AT2G31490",
+        "CYTOCHROME_C": "AT4G11100",
+        "COMPLEX_II_SDH": "AT5G66760",
+        "COMPLEX_IV_COX": "AT3G15640",
+        "COMPLEX_V_ATP_SYNTH": "AT5G13450",
+        "COMPLEX_I": "AT5G08530",
+        "AOX_BYPASS": "AT3G22370",
+        "ALT_NADH_DH_INT": "AT1G07180",
+        "ALT_NADH_DH_EXT": "AT4G05020",
+        "UCP_PUMP": "AT3G54110",
+        "TOM_TIM_IMPORT": "AT3G63160",
+        "VDAC_PORIN": "AT3G01280",
+    }
+
+    dataset = {}
+    for m in maps:
+        dataset[m.id] = {}
+        for n in m.nodes:
+            pmco = n.payload.get("pmco_id")
+            ent = ont.entities.get(pmco) if pmco else None
+            loci = list(ent.agi_loci) if ent else []
+            if not loci and n.id in NODE_FALLBACK_LOCI:
+                loci = [NODE_FALLBACK_LOCI[n.id]]
+
+            primary_locus = loci[0] if loci else ""
+            omics_entry = omics_dict.get(primary_locus)
+            suba_entry = suba_dict.get(primary_locus)
+            ortho_entry = ortho_dict.get(primary_locus)
+
+            contrasts = omics_entry["contrasts"] if omics_entry else {}
+            assayed = bool(contrasts)
+
+            node_info = {
+                "id": n.id,
+                "title": " ".join(n.lines),
+                "subtitle": " ".join(n.sublines) if n.sublines else "",
+                "tier": getattr(n, "evidence_tier", n.payload.get("evidence_tier", "T4")),
+                "pmco_id": pmco or "",
+                "locus": primary_locus,
+                "all_loci": loci,
+                "symbol": omics_entry["symbol"] if omics_entry else (ent.label if ent else n.lines[0]),
+                "compartment": omics_entry["subcompartment_label"] if omics_entry else (ent.compartment if ent else ""),
+                "pathway": omics_entry["pathway"] if omics_entry else (ent.label if ent else ""),
+                "desc": omics_entry["desc"] if omics_entry else (ent.description if ent else ""),
+                "assayed": assayed,
+                "contrasts": contrasts,
+            }
+
+            # Concordance (mRNA vs Protein)
+            if assayed and "osd120_root" in contrasts and "osd427_protein" in contrasts:
+                m_fc = contrasts["osd120_root"]["fc"]
+                m_sig = contrasts["osd120_root"]["sig"]
+                p_fc = contrasts["osd427_protein"]["fc"]
+                p_sig = contrasts["osd427_protein"]["sig"]
+                diff = round(p_fc - m_fc, 3)
+                if m_sig and p_sig:
+                    cat = "Concordantly Induced" if m_fc > 0 else "Concordantly Suppressed"
+                elif m_sig and not p_sig:
+                    cat = "Post-transcriptionally Buffered"
+                elif not m_sig and p_sig:
+                    cat = "Protein-Level Specific Regulation"
+                else:
+                    cat = "Unaltered / Steady"
+                node_info["concordance"] = {
+                    "mrna_fc": m_fc,
+                    "mrna_sig": m_sig,
+                    "prot_fc": p_fc,
+                    "prot_sig": p_sig,
+                    "delta": diff,
+                    "category": cat,
+                }
+
+            # SUBA5 Localization
+            if suba_entry:
+                node_info["suba"] = {
+                    "consensus": suba_entry.subacon_compartment,
+                    "score": suba_entry.subacon_score,
+                    "has_ms": suba_entry.has_ms,
+                    "has_gfp": suba_entry.has_gfp,
+                    "ms_comps": list(suba_entry.ms_compartments),
+                    "gfp_comps": list(suba_entry.gfp_compartments),
+                    "dual": suba_entry.dual_targeted,
+                    "dual_classes": list(suba_entry.dual_classes),
+                }
+            elif ent and ent.suba5:
+                node_info["suba"] = {
+                    "consensus": ent.suba5.consensus_compartment,
+                    "score": ent.suba5.consensus_score,
+                    "has_ms": ent.suba5.ms_evidence,
+                    "has_gfp": ent.suba5.gfp_evidence,
+                    "ms_comps": [ent.suba5.consensus_compartment] if ent.suba5.ms_evidence else [],
+                    "gfp_comps": [ent.suba5.consensus_compartment] if ent.suba5.gfp_evidence else [],
+                    "dual": ent.suba5.dual_targeted,
+                    "dual_classes": list(ent.suba5.dual_compartments),
+                }
+
+            # MitoCarta 3.0 Synteny
+            if ortho_entry:
+                node_info["mitocarta"] = {
+                    "human_symbol": ortho_entry.human_symbol,
+                    "human_entrez": ortho_entry.human_entrez,
+                    "mitopathway": ortho_entry.mitopathway,
+                    "quadrant": ortho_entry.conservation_category,
+                    "identity_pct": ortho_entry.sequence_identity_pct,
+                    "clinical": ortho_entry.clinical_phenotype,
+                    "notes": ortho_entry.inference_note,
+                }
+            elif ent and ent.mitocarta and ent.mitocarta.human_symbol:
+                node_info["mitocarta"] = {
+                    "human_symbol": ent.mitocarta.human_symbol,
+                    "human_entrez": ent.mitocarta.human_entrez or 0,
+                    "mitopathway": ent.mitocarta.mitopathway or "",
+                    "quadrant": ent.mitocarta.conservation_category or "Ortholog",
+                    "identity_pct": 75.0,
+                    "clinical": ent.mitocarta.clinical_significance or "",
+                    "notes": "",
+                }
+
+            dataset[m.id][n.id] = node_info
+    return dataset
+
+
 def build_index_page(ont, maps):
     all_ent = ont.all_entities()
     cards_html = []
     figures_html = []
+
+    # Pre-render SVGs and assemble multi-omics dataset
+    map_svgs = {m.id: render_map_svg(m, "light") for m in maps}
+    map_omics = build_map_omics_dataset(ont, maps)
+    map_svgs_json = json.dumps(map_svgs).replace("</script>", "<\\/script>")
+    map_omics_json = json.dumps(map_omics).replace("</script>", "<\\/script>")
 
     for m in maps:
         tiers = {}
@@ -557,7 +715,7 @@ def build_index_page(ont, maps):
           <div class="card-footer">
             <span style="font-size: 0.8rem; color: var(--text-soft);">{len(m.nodes)} nodes • {len(m.edges)} edges</span>
             <div style="display: flex; gap: 6px;">
-              <a href="#{esc(m.id)}" class="btn primary">View Map</a>
+              <button type="button" onclick="switchStudioMap('{esc(m.id)}'); document.getElementById('interactive-map-studio').scrollIntoView({{behavior: 'smooth'}});" class="btn primary">Load in Studio</button>
               <a href="maps/{esc(m.id)}.svg" target="_blank" class="btn btn-secondary">SVG</a>
             </div>
           </div>
@@ -579,7 +737,8 @@ def build_index_page(ont, maps):
                 <span>{tier_badges}</span>
               </div>
               <div class="map-meta-right">
-                <a href="maps/{esc(m.id)}.svg" target="_blank" class="btn primary">Full Vector SVG</a>
+                <button type="button" onclick="switchStudioMap('{esc(m.id)}'); document.getElementById('interactive-map-studio').scrollIntoView({{behavior: 'smooth'}});" class="btn primary">Open in Studio</button>
+                <a href="maps/{esc(m.id)}.svg" target="_blank" class="btn btn-secondary">Full Vector SVG</a>
                 <a href="maps/{esc(m.id)}-dark.svg" target="_blank" class="btn btn-secondary">Dark SVG</a>
                 <a href="maps/{esc(m.id)}.sbgn" download class="btn btn-secondary">SBGN-ML</a>
                 <a href="catalog/pmco/{esc(m.id)}.json" target="_blank" class="btn btn-secondary">PMCO Sidecar</a>
@@ -588,6 +747,351 @@ def build_index_page(ont, maps):
           </figcaption>
         </figure>
         """)
+
+    map_options_items = []
+    for m in maps:
+        sel = ' selected="selected"' if m.id == "PMM-01" else ""
+        map_options_items.append(f'<option value="{esc(m.id)}"{sel}>{esc(m.id)}: {esc(m.title)}</option>')
+    map_options_html = "\n".join(map_options_items)
+
+    studio_css = """
+    /* Interactive Spaceflight Pathway Map Studio */
+    #interactive-map-studio {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 28px 0 48px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    .studio-header {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+    }
+    .tag-accent {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--primary-light);
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .studio-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .studio-desc {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      max-width: 95ch;
+      margin: 0 0 16px 0;
+      line-height: 1.55;
+    }
+    .studio-controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+    }
+    .control-group label {
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .control-group select {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.86rem;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .control-group select:focus {
+      outline: 2px solid var(--primary);
+    }
+    .control-group-toggle {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+    .toggle-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--ink);
+      user-select: none;
+    }
+    .toggle-container input {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Live Telemetry HUD & Legend */
+    .studio-hud-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding: 14px 18px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .hud-stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .hud-stat-chip {
+      display: flex;
+      flex-direction: column;
+    }
+    .hud-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .hud-val {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .studio-legend-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 260px;
+    }
+    .legend-scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .legend-scale-bar {
+      height: 10px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #0072B2 0%, #a0c4df 35%, #e2e8f0 50%, #f7b282 65%, #D55E00 100%);
+      border: 1px solid var(--line);
+    }
+
+    /* Studio Viewport & Drawer Layout */
+    .studio-viewport-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--card-bg);
+      min-height: 620px;
+      display: flex;
+    }
+    .studio-svg-box {
+      width: 100%;
+      overflow-x: auto;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .studio-svg-box svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Omics Inspector Drawer */
+    .inspector-drawer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 440px;
+      max-width: 92vw;
+      background: var(--surface);
+      border-left: 1px solid var(--line);
+      box-shadow: -6px 0 24px rgba(0,0,0,0.18);
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .inspector-drawer.open {
+      transform: translateX(0);
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+    .drawer-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .drawer-title-wrap h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0 0 4px 0;
+      color: var(--ink);
+    }
+    .drawer-locus {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: monospace;
+    }
+    .drawer-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .drawer-close-btn:hover {
+      color: var(--ink);
+      background: var(--surface-2);
+    }
+    .drawer-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .drawer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .drawer-section h4 {
+      font-size: 0.84rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0;
+      color: var(--muted);
+    }
+    .contrasts-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .contrast-row {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 10px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      gap: 4px;
+    }
+    .contrast-header-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .contrast-name {
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .contrast-stat-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .fc-badge {
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.8rem;
+    }
+    .fc-up { background: rgba(213, 94, 0, 0.15); color: #D55E00; }
+    .fc-down { background: rgba(0, 114, 178, 0.15); color: #0072B2; }
+    .fc-neutral { background: var(--surface-2); color: var(--muted); }
+    .sig-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: rgba(0, 158, 115, 0.15);
+      color: #009E73;
+    }
+    .bar-track {
+      height: 6px;
+      background: var(--line);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-fill {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: 3px;
+    }
+    .concordance-box, .suba-box, .mitocarta-box {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 0.84rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .drawer-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      margin-top: auto;
+    }
+    """
 
     content = f"""
     {nav_header(active='home')}
@@ -637,6 +1141,122 @@ def build_index_page(ont, maps):
         <div class="tier-legend-item"><div class="legend-box legend-t5"></div><span><strong>T5</strong> Anatomical Context</span></div>
       </div>
 
+      <!-- INTERACTIVE SPACEFLIGHT PATHWAY STUDIO -->
+      <section id="interactive-map-studio">
+        <div class="studio-header">
+          <div class="tag-accent">DYNAMIC MULTI-OMICS PROJECTION STUDIO</div>
+          <h3 class="studio-title">Interactive Spaceflight Pathway Studio</h3>
+          <p class="studio-desc">
+            Project measured NASA OSDR microgravity transcriptomics and proteomics directly onto declarative bioenergetic maps. Dynamic Okabe-Ito diverging palette, statistical significance gating, live pathway telemetry HUD, and interactive slide-over multi-omics inspector.
+          </p>
+
+          <div class="studio-controls-bar">
+            <div class="control-group">
+              <label for="map-select"><strong>Map Architecture:</strong></label>
+              <select id="map-select" onchange="switchStudioMap(this.value)">
+                {map_options_html}
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label for="omics-contrast-select"><strong>Spaceflight Omics Overlay:</strong></label>
+              <select id="omics-contrast-select" onchange="setOmicsContrast(this.value)">
+                <option value="none">Baseline Architecture (Evidence Tiers T1-T5)</option>
+                <option value="osd120_root" selected>OSD-120: Col-0 Root RNA-seq (Spaceflight vs Ground)</option>
+                <option value="osd120_shoot">OSD-120: Col-0 Shoot RNA-seq (Spaceflight vs Ground)</option>
+                <option value="osd427_protein">OSD-427: Whole Plant Proteomics (Spaceflight vs Ground)</option>
+                <option value="osd37">OSD-37: Seedling Microgravity (EMCS Spaceflight)</option>
+                <option value="osd782">OSD-782: Dark Seedling Microgravity (Spaceflight vs Ground)</option>
+                <option value="osd8">OSD-8: Seedling Microgravity vs 1g Centrifuge Control</option>
+              </select>
+            </div>
+
+            <div class="control-group-toggle">
+              <label class="toggle-container" title="Dim non-significant nodes (p > 0.05 or |log2FC| < 0.5)">
+                <input type="checkbox" id="sig-filter-toggle" onchange="toggleSigFilter(this.checked)">
+                <span class="toggle-label">Highlight p &le; 0.05 only</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="studio-hud-bar">
+          <div id="studio-telemetry-hud" class="hud-stats-grid">
+            <div class="hud-stat-chip">
+              <span class="hud-label">Assayed Nodes</span>
+              <span class="hud-val" id="hud-assayed-count">--</span>
+            </div>
+            <div class="hud-stat-chip">
+              <span class="hud-label">Pathway Mean log2FC</span>
+              <span class="hud-val" id="hud-mean-fc">--</span>
+            </div>
+            <div class="hud-stat-chip">
+              <span class="hud-label">Significantly Regulated</span>
+              <span class="hud-val" id="hud-sig-count">--</span>
+            </div>
+            <div class="hud-stat-chip">
+              <span class="hud-label">Top Spaceflight Responder</span>
+              <span class="hud-val" id="hud-top-responder">--</span>
+            </div>
+          </div>
+
+          <div class="studio-legend-block">
+            <div class="legend-scale-labels">
+              <span>&le; -1.5 (Down)</span>
+              <span>0.0 (Unaltered)</span>
+              <span>&ge; +1.5 (Up)</span>
+            </div>
+            <div class="legend-scale-bar"></div>
+          </div>
+        </div>
+
+        <div class="studio-viewport-wrapper">
+          <div id="studio-svg-container" class="studio-svg-box">
+            {map_svgs["PMM-01"]}
+          </div>
+
+          <!-- Omics Inspector Slide-Over Drawer -->
+          <aside id="node-inspector-drawer" class="inspector-drawer">
+            <div class="drawer-header">
+              <div class="drawer-title-wrap">
+                <span class="drawer-tag" id="drawer-node-type">PROTEIN COMPLEX</span>
+                <h3 id="drawer-node-title">Click any node to inspect</h3>
+                <span class="drawer-locus" id="drawer-node-locus">Select a node in the pathway diagram</span>
+              </div>
+              <button type="button" class="drawer-close-btn" onclick="closeInspectorDrawer()" aria-label="Close Inspector">&times;</button>
+            </div>
+
+            <div class="drawer-body">
+              <div class="drawer-section">
+                <h4>Multi-Contrast Spaceflight Expression Profile</h4>
+                <div id="drawer-contrasts-grid" class="contrasts-grid"></div>
+              </div>
+
+              <div class="drawer-section">
+                <h4>Multi-Omics Concordance (mRNA vs Protein)</h4>
+                <div id="drawer-concordance-box" class="concordance-box"></div>
+              </div>
+
+              <div class="drawer-section">
+                <h4>SUBA5 Subcellular Localization</h4>
+                <div id="drawer-suba-box" class="suba-box"></div>
+              </div>
+
+              <div class="drawer-section">
+                <h4>Broad MitoCarta 3.0 Mammalian Homology</h4>
+                <div id="drawer-mitocarta-box" class="mitocarta-box"></div>
+              </div>
+
+              <div class="drawer-footer-links">
+                <a id="drawer-tair-link" href="#" target="_blank" class="btn btn-secondary">TAIR Locus</a>
+                <a id="drawer-osdr-link" href="#" target="_blank" class="btn btn-secondary">NASA OSDR</a>
+                <a id="drawer-suba-link" href="#" target="_blank" class="btn btn-secondary">SUBA5 Proteome</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <h3 style="font-size: 1.3rem; font-weight: 700;">Declarative Pathway & Organelle Map Catalog</h3>
         <span style="color: var(--text-soft); font-size: 0.9rem;">Derived deterministically from text metrics; zero hardcoded coordinates</span>
@@ -657,9 +1277,427 @@ def build_index_page(ont, maps):
         {''.join(figures_html)}
       </div>
     </main>
+
+    <script>
+    (function() {{
+      const mapSvgs = {map_svgs_json};
+      const mapOmicsData = {map_omics_json};
+
+      window.mapSvgs = mapSvgs;
+      window.mapOmicsData = mapOmicsData;
+
+      let currentMapId = 'PMM-01';
+      let currentContrast = 'osd120_root';
+      let sigFilterActive = false;
+      let activeInspectorNode = null;
+
+      function getContrastColor(fc, isDark) {{
+        const norm = Math.max(-1.0, Math.min(1.0, fc / 1.5));
+        const neutral = isDark ? [30, 41, 59] : [248, 250, 252];
+        const down = [0, 114, 178];  // Okabe-Ito Blue
+        const up = [213, 94, 0];     // Okabe-Ito Vermillion
+        let r, g, b;
+        if (norm < 0) {{
+          const t = -norm;
+          r = Math.round(neutral[0] + t * (down[0] - neutral[0]));
+          g = Math.round(neutral[1] + t * (down[1] - neutral[1]));
+          b = Math.round(neutral[2] + t * (down[2] - neutral[2]));
+        }} else {{
+          const t = norm;
+          r = Math.round(neutral[0] + t * (up[0] - neutral[0]));
+          g = Math.round(neutral[1] + t * (up[1] - neutral[1]));
+          b = Math.round(neutral[2] + t * (up[2] - neutral[2]));
+        }}
+        return {{
+          hex: '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1),
+          lum: (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
+        }};
+      }}
+
+      window.switchStudioMap = function(mapId) {{
+        currentMapId = mapId;
+        const select = document.getElementById('map-select');
+        if (select && select.value !== mapId) select.value = mapId;
+        const container = document.getElementById('studio-svg-container');
+        if (!container || !mapSvgs[mapId]) return;
+        container.innerHTML = mapSvgs[mapId];
+        attachNodeClickListeners();
+        applyOmicsOverlay();
+        if (activeInspectorNode) {{
+          if (mapOmicsData[currentMapId] && mapOmicsData[currentMapId][activeInspectorNode]) {{
+            inspectStudioNode(activeInspectorNode);
+          }} else {{
+            closeInspectorDrawer();
+          }}
+        }}
+      }};
+
+      window.setOmicsContrast = function(contrastKey) {{
+        currentContrast = contrastKey;
+        applyOmicsOverlay();
+        if (activeInspectorNode) {{
+          inspectStudioNode(activeInspectorNode);
+        }}
+      }};
+
+      window.toggleSigFilter = function(checked) {{
+        sigFilterActive = checked;
+        applyOmicsOverlay();
+      }};
+
+      function attachNodeClickListeners() {{
+        const container = document.getElementById('studio-svg-container');
+        if (!container) return;
+        const nodes = container.querySelectorAll('.pmc-node-group');
+        nodes.forEach(function(group) {{
+          const nodeId = group.getAttribute('data-node-id') || group.id.replace(/^node-/, '');
+          group.style.cursor = 'pointer';
+          group.onclick = function(e) {{
+            e.stopPropagation();
+            inspectStudioNode(nodeId);
+          }};
+          group.onkeydown = function(e) {{
+            if (e.key === 'Enter' || e.key === ' ') {{
+              e.preventDefault();
+              inspectStudioNode(nodeId);
+            }}
+          }};
+        }});
+      }}
+
+      function applyOmicsOverlay() {{
+        const container = document.getElementById('studio-svg-container');
+        if (!container) return;
+        const mapData = mapOmicsData[currentMapId] || {{}};
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const isBaseline = currentContrast === 'none';
+
+        const nodeGroups = container.querySelectorAll('.pmc-node-group');
+        nodeGroups.forEach(function(group) {{
+          const nodeId = group.getAttribute('data-node-id') || group.id.replace(/^node-/, '');
+          const rect = group.querySelector('.pmc-node');
+          const labels = group.querySelectorAll('.pmc-label, .pmc-sub');
+          let statPill = group.querySelector('.pmc-omics-stat-pill');
+
+          if (isBaseline) {{
+            if (rect) {{
+              rect.style.fill = '';
+              rect.style.stroke = '';
+            }}
+            labels.forEach(l => l.style.fill = '');
+            if (statPill) statPill.remove();
+            group.style.opacity = '1.0';
+            group.style.filter = 'none';
+            return;
+          }}
+
+          const nInfo = mapData[nodeId];
+          if (nInfo && nInfo.assayed && nInfo.contrasts && nInfo.contrasts[currentContrast]) {{
+            const c = nInfo.contrasts[currentContrast];
+            const colorInfo = getContrastColor(c.fc, isDark);
+            if (rect) {{
+              rect.style.fill = colorInfo.hex;
+            }}
+            // Adaptive text luminance for WCAG AAA compliance
+            const textFill = colorInfo.lum < 0.45 ? '#f8fafc' : '#111827';
+            labels.forEach(l => l.style.fill = textFill);
+
+            // Stat pill
+            if (!statPill && rect) {{
+              statPill = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+              statPill.setAttribute('class', 'pmc-omics-stat-pill');
+              const rx = parseFloat(rect.getAttribute('x')) + 6;
+              const ry = parseFloat(rect.getAttribute('y')) + 6;
+              statPill.innerHTML = `
+                <rect x="${{rx}}" y="${{ry}}" width="42" height="13" rx="3" fill="#0f172a" opacity="0.88" />
+                <text x="${{rx + 21}}" y="${{ry + 9.5}}" font-size="9px" font-weight="700" fill="#38bdf8" text-anchor="middle">
+                  ${{c.fc >= 0 ? '+' : ''}}${{c.fc.toFixed(2)}}${{c.sig ? '*' : ''}}
+                </text>
+              `;
+              group.appendChild(statPill);
+            }} else if (statPill && rect) {{
+              const rx = parseFloat(rect.getAttribute('x')) + 6;
+              const ry = parseFloat(rect.getAttribute('y')) + 6;
+              statPill.innerHTML = `
+                <rect x="${{rx}}" y="${{ry}}" width="42" height="13" rx="3" fill="#0f172a" opacity="0.88" />
+                <text x="${{rx + 21}}" y="${{ry + 9.5}}" font-size="9px" font-weight="700" fill="#38bdf8" text-anchor="middle">
+                  ${{c.fc >= 0 ? '+' : ''}}${{c.fc.toFixed(2)}}${{c.sig ? '*' : ''}}
+                </text>
+              `;
+            }}
+
+            // Significance filter gating
+            if (sigFilterActive && !c.sig) {{
+              group.style.opacity = '0.30';
+              group.style.filter = 'grayscale(70%)';
+            }} else {{
+              group.style.opacity = '1.0';
+              group.style.filter = 'none';
+            }}
+          }} else {{
+            // Non-assayed / metabolite
+            if (rect) {{
+              rect.style.fill = '';
+            }}
+            labels.forEach(l => l.style.fill = '');
+            if (statPill) statPill.remove();
+            if (sigFilterActive) {{
+              group.style.opacity = '0.35';
+              group.style.filter = 'none';
+            }} else {{
+              group.style.opacity = '1.0';
+              group.style.filter = 'none';
+            }}
+          }}
+        }});
+
+        updateTelemetryHud(mapData, currentContrast);
+      }}
+
+      function updateTelemetryHud(mapData, contrastKey) {{
+        const isBaseline = contrastKey === 'none';
+        const nodes = Object.values(mapData);
+        const total = nodes.length;
+
+        if (isBaseline) {{
+          document.getElementById('hud-assayed-count').textContent = total + ' Nodes';
+          document.getElementById('hud-mean-fc').textContent = 'Baseline (T1-T5)';
+          const t1Count = nodes.filter(n => n.tier === 'T1').length;
+          document.getElementById('hud-sig-count').textContent = t1Count + ' T1 Empirical';
+          document.getElementById('hud-top-responder').textContent = 'MitoCarta Synteny';
+          return;
+        }}
+
+        const assayedNodes = nodes.filter(n => n.assayed && n.contrasts && n.contrasts[contrastKey]);
+        const assayedCount = assayedNodes.length;
+        const pctAssayed = total > 0 ? ((assayedCount / total) * 100).toFixed(1) : 0;
+        document.getElementById('hud-assayed-count').textContent = `${{assayedCount}} / ${{total}} (${{pctAssayed}}%)`;
+
+        if (assayedCount === 0) {{
+          document.getElementById('hud-mean-fc').textContent = 'N/A';
+          document.getElementById('hud-sig-count').textContent = '0 (0.0%)';
+          document.getElementById('hud-top-responder').textContent = 'None';
+          return;
+        }}
+
+        let sumFc = 0;
+        let sigCount = 0;
+        let topNode = null;
+        let maxAbsFc = -1;
+
+        assayedNodes.forEach(n => {{
+          const c = n.contrasts[contrastKey];
+          sumFc += c.fc;
+          if (c.sig) sigCount++;
+          const absVal = Math.abs(c.fc);
+          if (absVal > maxAbsFc) {{
+            maxAbsFc = absVal;
+            topNode = {{ symbol: n.symbol, fc: c.fc, sig: c.sig }};
+          }}
+        }});
+
+        const meanFc = (sumFc / assayedCount).toFixed(2);
+        const sigPct = ((sigCount / assayedCount) * 100).toFixed(1);
+
+        document.getElementById('hud-mean-fc').textContent = `${{meanFc >= 0 ? '+' : ''}}${{meanFc}}`;
+        document.getElementById('hud-sig-count').textContent = `${{sigCount}} (${{sigPct}}%)`;
+        if (topNode) {{
+          document.getElementById('hud-top-responder').textContent = `${{topNode.symbol}} (${{topNode.fc >= 0 ? '+' : ''}}${{topNode.fc.toFixed(2)}}${{topNode.sig ? '*' : ''}})`;
+        }} else {{
+          document.getElementById('hud-top-responder').textContent = 'None';
+        }}
+      }}
+
+      window.inspectStudioNode = function(nodeId) {{
+        activeInspectorNode = nodeId;
+        const mapData = mapOmicsData[currentMapId] || {{}};
+        const node = mapData[nodeId];
+        const drawer = document.getElementById('node-inspector-drawer');
+        if (!drawer) return;
+
+        // Highlight selected node in SVG
+        const container = document.getElementById('studio-svg-container');
+        if (container) {{
+          container.querySelectorAll('.pmc-node').forEach(r => r.style.outline = '');
+          const activeGroup = container.querySelector(`[data-node-id="${{nodeId}}"]`) || container.querySelector(`#node-${{nodeId}}`);
+          if (activeGroup) {{
+            const activeRect = activeGroup.querySelector('.pmc-node');
+            if (activeRect) activeRect.style.outline = '3px solid var(--primary)';
+          }}
+        }}
+
+        if (!node) {{
+          document.getElementById('drawer-node-type').textContent = 'UNKNOWN NODE';
+          document.getElementById('drawer-node-title').textContent = nodeId;
+          document.getElementById('drawer-node-locus').textContent = 'No database entry found';
+          drawer.classList.add('open');
+          return;
+        }}
+
+        // Header
+        document.getElementById('drawer-node-type').textContent = node.assayed ? 'PROTEIN COMPLEX • TIER ' + node.tier : 'METABOLITE / PHYSIOLOGICAL POOL';
+        document.getElementById('drawer-node-title').textContent = node.title || node.symbol;
+        document.getElementById('drawer-node-locus').textContent = (node.locus ? (node.locus + ' • ') : '') + (node.compartment || 'Cellular Compartment');
+
+        // Contrasts Grid
+        const contrastsGrid = document.getElementById('drawer-contrasts-grid');
+        if (contrastsGrid) {{
+          if (node.assayed && node.contrasts && Object.keys(node.contrasts).length > 0) {{
+            const contrastLabels = {{
+              'osd120_root': 'OSD-120: Col-0 Root RNA-seq',
+              'osd120_shoot': 'OSD-120: Col-0 Shoot RNA-seq',
+              'osd427_protein': 'OSD-427: Plant Proteomics (TMT)',
+              'osd37': 'OSD-37: Seedling Microgravity (EMCS)',
+              'osd782': 'OSD-782: Dark Seedling Microgravity',
+              'osd8': 'OSD-8: Radiation vs 1g Centrifuge',
+            }};
+            let rowsHtml = '';
+            for (const [key, c] of Object.entries(node.contrasts)) {{
+              const fcClass = c.fc > 0.3 ? 'fc-up' : (c.fc < -0.3 ? 'fc-down' : 'fc-neutral');
+              const sign = c.fc >= 0 ? '+' : '';
+              const barPct = Math.min(100, Math.abs(c.fc) / 2.0 * 50);
+              const barStyle = c.fc >= 0 
+                ? `left: 50%; width: ${{barPct}}%; background: #D55E00;`
+                : `right: 50%; width: ${{barPct}}%; background: #0072B2;`;
+              rowsHtml += `
+                <div class="contrast-row">
+                  <div class="contrast-header-line">
+                    <span class="contrast-name">${{contrastLabels[key] || key}}</span>
+                    <div class="contrast-stat-badges">
+                      <span class="fc-badge ${{fcClass}}">${{sign}}${{c.fc.toFixed(2)}} log2FC</span>
+                      <span class="sig-pill" style="${{c.sig ? '' : 'background: var(--surface-2); color: var(--muted);'}}">
+                        ${{c.sig ? 'p &le; 0.05' : 'p=' + c.pval.toFixed(3)}}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="bar-track">
+                    <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--muted);"></div>
+                    <div class="bar-fill" style="${{barStyle}}"></div>
+                  </div>
+                </div>
+              `;
+            }}
+            contrastsGrid.innerHTML = rowsHtml;
+          }} else {{
+            contrastsGrid.innerHTML = `
+              <div style="padding: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: 0.85rem;">
+                Non-transcriptional pool or structural component. Not directly measured by RNA-seq or proteomics. Participates in biochemical flux with associated enzymes.
+              </div>
+            `;
+          }}
+        }}
+
+        // Concordance Box
+        const concBox = document.getElementById('drawer-concordance-box');
+        if (concBox) {{
+          if (node.concordance) {{
+            const conc = node.concordance;
+            concBox.innerHTML = `
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="color: var(--ink);">Response Mode:</strong>
+                <span class="sig-pill" style="font-weight: 700;">${{conc.category}}</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
+                <div><span style="color: var(--muted);">mRNA (OSD-120 Root):</span> <strong>${{conc.mrna_fc >= 0 ? '+' : ''}}${{conc.mrna_fc.toFixed(2)}}</strong></div>
+                <div><span style="color: var(--muted);">Protein (OSD-427):</span> <strong>${{conc.prot_fc >= 0 ? '+' : ''}}${{conc.prot_fc.toFixed(2)}}</strong></div>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">
+                Delta (Protein - mRNA): <strong>${{conc.delta >= 0 ? '+' : ''}}${{conc.delta.toFixed(2)}}</strong>.
+                ${{conc.category === 'Post-transcriptionally Buffered' ? 'Transcriptional change is buffered at the translation/degradation level in spaceflight.' : 'Coordinated directional change across transcript and proteome tiers.'}}
+              </div>
+            `;
+          }} else {{
+            concBox.innerHTML = '<span style="color: var(--muted);">No paired mRNA-protein spaceflight concordance data available for this locus.</span>';
+          }}
+        }}
+
+        // SUBA5 Box
+        const subaBox = document.getElementById('drawer-suba-box');
+        if (subaBox) {{
+          if (node.suba) {{
+            const s = node.suba;
+            subaBox.innerHTML = `
+              <div><strong style="color: var(--ink);">SUBAcon Consensus:</strong> <span style="color: var(--primary); font-weight: 700;">${{s.consensus.replace(/_/g, ' ').toUpperCase()}}</span> (${{(s.score * 100).toFixed(0)}}% confidence)</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
+                <div><span style="color: var(--muted);">MS Proteomics:</span> <strong>${{s.has_ms ? 'Detected (' + s.ms_comps.join(', ') + ')' : 'No peptides'}}</strong></div>
+                <div><span style="color: var(--muted);">GFP Imaging:</span> <strong>${{s.has_gfp ? 'Observed (' + s.gfp_comps.join(', ') + ')' : 'No imaging'}}</strong></div>
+              </div>
+              <div style="margin-top: 4px; font-size: 0.8rem;">
+                <span style="color: var(--muted);">Dual Targeting:</span> <strong>${{s.dual ? 'Yes (' + s.dual_classes.join(', ') + ')' : 'Single Compartment Target'}}</strong>
+              </div>
+            `;
+          }} else {{
+            subaBox.innerHTML = `<div><strong style="color: var(--ink);">Compartment:</strong> ${{node.compartment || 'Unspecified'}}</div>`;
+          }}
+        }}
+
+        // MitoCarta Box
+        const mitoBox = document.getElementById('drawer-mitocarta-box');
+        if (mitoBox) {{
+          if (node.mitocarta) {{
+            const mc = node.mitocarta;
+            mitoBox.innerHTML = `
+              <div><strong style="color: var(--ink);">Human Ortholog:</strong> <span style="color: var(--primary); font-weight: 700;">${{mc.human_symbol}}</span> ${{mc.human_entrez ? '(Entrez: ' + mc.human_entrez + ')' : ''}}</div>
+              <div><span style="color: var(--muted);">MitoPathway:</span> <strong>${{mc.mitopathway || 'OXPHOS / Metabolism'}}</strong></div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
+                <div><span style="color: var(--muted);">Evolutionary Quadrant:</span> <strong>${{mc.quadrant}}</strong></div>
+                <div><span style="color: var(--muted);">Synteny Identity:</span> <strong>${{mc.identity_pct}}%</strong></div>
+              </div>
+              ${{mc.notes || mc.clinical ? `<div style="font-size: 0.78rem; color: var(--muted); margin-top: 4px;">${{mc.notes || mc.clinical}}</div>` : ''}}
+            `;
+          }} else {{
+            mitoBox.innerHTML = '<div><strong style="color: var(--ink);">Broad MitoCarta 3.0 Synteny:</strong> Plant-Specific Innovation / Non-Mammalian Machinery (absent in human MitoCarta 3.0).</div>';
+          }}
+        }}
+
+        // External Links
+        const tairLink = document.getElementById('drawer-tair-link');
+        if (tairLink) {{
+          if (node.locus) {{
+            tairLink.href = `https://www.arabidopsis.org/servlets/TairObject?type=locus&name=${{node.locus}}`;
+            tairLink.style.display = 'inline-flex';
+          }} else {{
+            tairLink.style.display = 'none';
+          }}
+        }}
+        const osdrLink = document.getElementById('drawer-osdr-link');
+        if (osdrLink) {{
+          osdrLink.href = 'https://osdr.nasa.gov/bio/repo/data/studies/OSD-120';
+        }}
+        const subaLink = document.getElementById('drawer-suba-link');
+        if (subaLink) {{
+          subaLink.href = 'https://suba.live/';
+        }}
+
+        drawer.classList.add('open');
+      }};
+
+      window.closeInspectorDrawer = function() {{
+        const drawer = document.getElementById('node-inspector-drawer');
+        if (drawer) drawer.classList.remove('open');
+        const container = document.getElementById('studio-svg-container');
+        if (container) {{
+          container.querySelectorAll('.pmc-node').forEach(r => r.style.outline = '');
+        }}
+        activeInspectorNode = null;
+      }};
+
+      // Theme toggle hook
+      const themeBtn = document.getElementById('cose-theme-toggle');
+      if (themeBtn) {{
+        themeBtn.addEventListener('click', function() {{
+          setTimeout(applyOmicsOverlay, 50);
+        }});
+      }}
+
+      // Initialize default map
+      attachNodeClickListeners();
+      applyOmicsOverlay();
+    }})();
+    </script>
     {html_footer()}
     """
-    return html_head("Plant MitoCarta Atlas") + content
+    return html_head("Plant MitoCarta Atlas", extra_css=studio_css) + content
 
 
 def build_digital_doubles_page(ont):

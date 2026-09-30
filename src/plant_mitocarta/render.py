@@ -149,6 +149,8 @@ def get_stylesheet() -> str:
         .pmc-sub {{ font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }}
 
         .pmc-node {{ fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }}
+        .pmc-node-group {{ cursor: pointer; transition: transform 0.15s ease, opacity 0.2s ease; }}
+        .pmc-node-group:hover .pmc-node {{ filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }}
         
         /* Evidence Tiers as Border Channels */
         .tier-T1 {{ stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }}
@@ -394,7 +396,7 @@ def render_map_svg(
         tier_badge_class = f"tier-badge-{node.evidence_tier}"
 
         out.append(
-            f'<g class="pmc-node-group" id="node-{esc(node.id)}">'
+            f'<g class="pmc-node-group" id="node-{esc(node.id)}" data-node-id="{esc(node.id)}" tabindex="0" role="button" aria-label="{esc(node.id)}">'
             f'<rect class="pmc-node {tier_class}" x="{b.x:.1f}" y="{b.y:.1f}" '
             f'width="{b.w:.1f}" height="{b.h:.1f}" />'
         )

@@ -36,6 +36,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
 
 .pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+.pmc-node-group { cursor: pointer; transition: transform 0.15s ease, opacity 0.2s ease; }
+.pmc-node-group:hover .pmc-node { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }
 
 /* Evidence Tiers as Border Channels */
 .tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
@@ -233,95 +235,95 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <rect class="pmc-edge-label-bg" x="1056.2" y="669.7" width="66.9" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1089.7" y="681.6">MEP stress</text>
 </g>
-<g class="pmc-node-group" id="node-PHOTONS_H2O"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="184.6" height="63.8" />
+<g class="pmc-node-group" id="node-PHOTONS_H2O" data-node-id="PHOTONS_H2O" tabindex="0" role="button" aria-label="PHOTONS_H2O"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="184.6" height="63.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="220.6" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="231.6" y="161.5">T4</text></g>
 <text class="pmc-label" x="156.3" y="164.4">Photons &amp; H2O</text>
 <text class="pmc-label" x="156.3" y="179.4">Substrate</text>
 <text class="pmc-sub" x="156.3" y="194.4">light harvest • O2 evolving</text>
 </g>
-<g class="pmc-node-group" id="node-LUMEN_PROTONS"><rect class="pmc-node tier-T4" x="64.0" y="257.8" width="184.6" height="48.1" />
+<g class="pmc-node-group" id="node-LUMEN_PROTONS" data-node-id="LUMEN_PROTONS" tabindex="0" role="button" aria-label="LUMEN_PROTONS"><rect class="pmc-node tier-T4" x="64.0" y="257.8" width="184.6" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="220.6" y="263.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="231.6" y="273.2">T4</text></g>
 <text class="pmc-label" x="156.3" y="275.8">Thylakoid Lumen H+</text>
 <text class="pmc-sub" x="156.3" y="290.8">proton accumulation</text>
 </g>
-<g class="pmc-node-group" id="node-PSII_OEC"><rect class="pmc-node tier-T1" x="352.6" y="146.0" width="213.6" height="66.1" />
+<g class="pmc-node-group" id="node-PSII_OEC" data-node-id="PSII_OEC" tabindex="0" role="button" aria-label="PSII_OEC"><rect class="pmc-node tier-T1" x="352.6" y="146.0" width="213.6" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="538.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="549.2" y="161.5">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-cofactor" x="413.9" y="193.1" width="91.0" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-cofactor-text" x="459.4" y="202.6">Mn4CaO5 cluster</text></g>
 <text class="pmc-label" x="459.4" y="164.1">Photosystem II (PSII)</text>
 <text class="pmc-sub" x="459.4" y="179.1">D1/PsbA turnover</text>
 </g>
-<g class="pmc-node-group" id="node-CYT_B6F"><rect class="pmc-node tier-T1" x="352.6" y="260.1" width="213.6" height="48.1" />
+<g class="pmc-node-group" id="node-CYT_B6F" data-node-id="CYT_B6F" tabindex="0" role="button" aria-label="CYT_B6F"><rect class="pmc-node tier-T1" x="352.6" y="260.1" width="213.6" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="538.2" y="266.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="549.2" y="275.6">T1</text></g>
 <text class="pmc-label" x="459.4" y="278.2">Cytochrome b6f</text>
 <text class="pmc-sub" x="459.4" y="293.2">plastoquinol oxidation • Q cycle</text>
 </g>
-<g class="pmc-node-group" id="node-PSI_COMPLEX"><rect class="pmc-node tier-T1" x="352.6" y="356.2" width="213.6" height="48.1" />
+<g class="pmc-node-group" id="node-PSI_COMPLEX" data-node-id="PSI_COMPLEX" tabindex="0" role="button" aria-label="PSI_COMPLEX"><rect class="pmc-node tier-T1" x="352.6" y="356.2" width="213.6" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="538.2" y="362.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="549.2" y="371.8">T1</text></g>
 <text class="pmc-label" x="459.4" y="374.3">Photosystem I (PSI)</text>
 <text class="pmc-sub" x="459.4" y="389.3">ferredoxin • FNR • NADPH</text>
 </g>
-<g class="pmc-node-group" id="node-THYL_ATP_SYNTHASE"><rect class="pmc-node tier-T4" x="352.6" y="452.4" width="213.6" height="48.1" />
+<g class="pmc-node-group" id="node-THYL_ATP_SYNTHASE" data-node-id="THYL_ATP_SYNTHASE" tabindex="0" role="button" aria-label="THYL_ATP_SYNTHASE"><rect class="pmc-node tier-T4" x="352.6" y="452.4" width="213.6" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="538.2" y="458.4" width="22.0" height="13.0" /><text class="tier-badge-text" x="549.2" y="467.9">T4</text></g>
 <text class="pmc-label" x="459.4" y="470.4">Thylakoid ATP Synthase</text>
 <text class="pmc-sub" x="459.4" y="485.4">CF1-CFo • yields ATP</text>
 </g>
-<g class="pmc-node-group" id="node-EX1_SENSOR"><rect class="pmc-node tier-T1" x="352.6" y="548.5" width="213.6" height="66.1" />
+<g class="pmc-node-group" id="node-EX1_SENSOR" data-node-id="EX1_SENSOR" tabindex="0" role="button" aria-label="EX1_SENSOR"><rect class="pmc-node tier-T1" x="352.6" y="548.5" width="213.6" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="538.2" y="554.5" width="22.0" height="13.0" /><text class="tier-badge-text" x="549.2" y="564.0">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="427.4" y="595.6" width="64.0" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="459.4" y="605.1">1O2 SENSOR</text></g>
 <text class="pmc-label" x="459.4" y="566.6">EXECUTER 1 (EX1)</text>
 <text class="pmc-sub" x="459.4" y="581.6">grana margins</text>
 </g>
-<g class="pmc-node-group" id="node-PLASTID_NADPH"><rect class="pmc-node tier-T4" x="670.2" y="146.0" width="200.0" height="48.1" />
+<g class="pmc-node-group" id="node-PLASTID_NADPH" data-node-id="PLASTID_NADPH" tabindex="0" role="button" aria-label="PLASTID_NADPH"><rect class="pmc-node tier-T4" x="670.2" y="146.0" width="200.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="842.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="853.2" y="161.5">T4</text></g>
 <text class="pmc-label" x="770.2" y="164.1">Stromal NADPH Pool</text>
 <text class="pmc-sub" x="770.2" y="179.1">reducing power</text>
 </g>
-<g class="pmc-node-group" id="node-PLASTID_ATP"><rect class="pmc-node tier-T4" x="670.2" y="242.1" width="200.0" height="48.1" />
+<g class="pmc-node-group" id="node-PLASTID_ATP" data-node-id="PLASTID_ATP" tabindex="0" role="button" aria-label="PLASTID_ATP"><rect class="pmc-node tier-T4" x="670.2" y="242.1" width="200.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="842.2" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="853.2" y="257.6">T4</text></g>
 <text class="pmc-label" x="770.2" y="260.2">Stromal ATP Pool</text>
 <text class="pmc-sub" x="770.2" y="275.2">energy charge</text>
 </g>
-<g class="pmc-node-group" id="node-STROMAL_ROS"><rect class="pmc-node tier-T4" x="670.2" y="338.2" width="200.0" height="48.1" />
+<g class="pmc-node-group" id="node-STROMAL_ROS" data-node-id="STROMAL_ROS" tabindex="0" role="button" aria-label="STROMAL_ROS"><rect class="pmc-node tier-T4" x="670.2" y="338.2" width="200.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="842.2" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="853.2" y="353.8">T4</text></g>
 <text class="pmc-label" x="770.2" y="356.3">Stromal H2O2 / 1O2</text>
 <text class="pmc-sub" x="770.2" y="371.3">redox signal</text>
 </g>
-<g class="pmc-node-group" id="node-RUBISCO_ENZYME"><rect class="pmc-node tier-T1" x="974.2" y="146.0" width="231.0" height="48.1" />
+<g class="pmc-node-group" id="node-RUBISCO_ENZYME" data-node-id="RUBISCO_ENZYME" tabindex="0" role="button" aria-label="RUBISCO_ENZYME"><rect class="pmc-node tier-T1" x="974.2" y="146.0" width="231.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1177.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1188.2" y="161.5">T1</text></g>
 <text class="pmc-label" x="1089.7" y="164.1">RuBisCO Holoenzyme</text>
 <text class="pmc-sub" x="1089.7" y="179.1">RbcL + RbcS • carboxylase/oxygenase</text>
 </g>
-<g class="pmc-node-group" id="node-CALVIN_BENSON_FLUX"><rect class="pmc-node tier-T4" x="974.2" y="242.1" width="231.0" height="48.1" />
+<g class="pmc-node-group" id="node-CALVIN_BENSON_FLUX" data-node-id="CALVIN_BENSON_FLUX" tabindex="0" role="button" aria-label="CALVIN_BENSON_FLUX"><rect class="pmc-node tier-T4" x="974.2" y="242.1" width="231.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1177.2" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1188.2" y="257.6">T4</text></g>
 <text class="pmc-label" x="1089.7" y="260.2">Calvin-Benson Cycle</text>
 <text class="pmc-sub" x="1089.7" y="275.2">triose phosphate synthesis</text>
 </g>
-<g class="pmc-node-group" id="node-TPT_TRANSLOCATOR"><rect class="pmc-node tier-T4" x="974.2" y="338.2" width="231.0" height="48.1" />
+<g class="pmc-node-group" id="node-TPT_TRANSLOCATOR" data-node-id="TPT_TRANSLOCATOR" tabindex="0" role="button" aria-label="TPT_TRANSLOCATOR"><rect class="pmc-node tier-T4" x="974.2" y="338.2" width="231.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1177.2" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1188.2" y="353.8">T4</text></g>
 <text class="pmc-label" x="1089.7" y="356.3">TPT Translocator</text>
 <text class="pmc-sub" x="1089.7" y="371.3">exports triose-P • imports Pi</text>
 </g>
-<g class="pmc-node-group" id="node-SAL1_NUCLEOTIDASE"><rect class="pmc-node tier-T1" x="1309.2" y="146.0" width="210.0" height="48.1" />
+<g class="pmc-node-group" id="node-SAL1_NUCLEOTIDASE" data-node-id="SAL1_NUCLEOTIDASE" tabindex="0" role="button" aria-label="SAL1_NUCLEOTIDASE"><rect class="pmc-node tier-T1" x="1309.2" y="146.0" width="210.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1491.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1502.2" y="161.5">T1</text></g>
 <text class="pmc-label" x="1414.2" y="164.1">SAL1 Phosphatase</text>
 <text class="pmc-sub" x="1414.2" y="179.1">redox-regulated • degrades PAP</text>
 </g>
-<g class="pmc-node-group" id="node-PAP_METABOLITE"><rect class="pmc-node tier-T1" x="1309.2" y="242.1" width="210.0" height="48.1" />
+<g class="pmc-node-group" id="node-PAP_METABOLITE" data-node-id="PAP_METABOLITE" tabindex="0" role="button" aria-label="PAP_METABOLITE"><rect class="pmc-node tier-T1" x="1309.2" y="242.1" width="210.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1491.2" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1502.2" y="257.6">T1</text></g>
 <text class="pmc-label" x="1414.2" y="260.2">PAP Retrograde Signal</text>
 <text class="pmc-sub" x="1414.2" y="275.2">accumulates under stress</text>
 </g>
-<g class="pmc-node-group" id="node-PAPST1_CHANNEL"><rect class="pmc-node tier-T1" x="1309.2" y="338.2" width="210.0" height="48.1" />
+<g class="pmc-node-group" id="node-PAPST1_CHANNEL" data-node-id="PAPST1_CHANNEL" tabindex="0" role="button" aria-label="PAPST1_CHANNEL"><rect class="pmc-node tier-T1" x="1309.2" y="338.2" width="210.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1491.2" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1502.2" y="353.8">T1</text></g>
 <text class="pmc-label" x="1414.2" y="356.3">PAPST1 Transporter</text>
 <text class="pmc-sub" x="1414.2" y="371.3">envelope export</text>
 </g>
-<g class="pmc-node-group" id="node-GUN1_INTEGRATOR"><rect class="pmc-node tier-T1" x="1309.2" y="434.4" width="210.0" height="53.6" />
+<g class="pmc-node-group" id="node-GUN1_INTEGRATOR" data-node-id="GUN1_INTEGRATOR" tabindex="0" role="button" aria-label="GUN1_INTEGRATOR"><rect class="pmc-node tier-T1" x="1309.2" y="434.4" width="210.0" height="53.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1491.2" y="440.4" width="22.0" height="13.0" /><text class="tier-badge-text" x="1502.2" y="449.9">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="1382.2" y="469.0" width="64.0" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="1414.2" y="478.5">PRR MASTER</text></g>
 <text class="pmc-label" x="1414.2" y="452.2">GUN1 PPR Hub</text>
 </g>
-<g class="pmc-node-group" id="node-MECPP_INTERMEDIATE"><rect class="pmc-node tier-T1" x="1309.2" y="536.0" width="210.0" height="48.1" />
+<g class="pmc-node-group" id="node-MECPP_INTERMEDIATE" data-node-id="MECPP_INTERMEDIATE" tabindex="0" role="button" aria-label="MECPP_INTERMEDIATE"><rect class="pmc-node tier-T1" x="1309.2" y="536.0" width="210.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1491.2" y="542.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1502.2" y="551.5">T1</text></g>
 <text class="pmc-label" x="1414.2" y="554.1">MEcPP Metabolite</text>
 <text class="pmc-sub" x="1414.2" y="569.1">MEP pathway stress signal</text>

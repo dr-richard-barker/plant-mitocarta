@@ -36,6 +36,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
 
 .pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+.pmc-node-group { cursor: pointer; transition: transform 0.15s ease, opacity 0.2s ease; }
+.pmc-node-group:hover .pmc-node { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }
 
 /* Evidence Tiers as Border Channels */
 .tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
@@ -194,81 +196,81 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <rect class="pmc-edge-label-bg" x="1600.4" y="313.1" width="78.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1639.8" y="325.1">surveillance</text>
 </g>
-<g class="pmc-node-group" id="node-NPC_GATE"><rect class="pmc-node tier-T1" x="64.0" y="146.0" width="190.0" height="60.6" />
+<g class="pmc-node-group" id="node-NPC_GATE" data-node-id="NPC_GATE" tabindex="0" role="button" aria-label="NPC_GATE"><rect class="pmc-node tier-T1" x="64.0" y="146.0" width="190.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="226.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.0" y="161.5">T1</text></g>
 <text class="pmc-label" x="159.0" y="164.3">Nuclear Pore Complex</text>
 <text class="pmc-sub" x="159.0" y="179.3">selective basket •</text>
 <text class="pmc-sub" x="159.0" y="191.3">macromolecular transport</text>
 </g>
-<g class="pmc-node-group" id="node-IMPORTIN_ALPHA"><rect class="pmc-node tier-T4" x="64.0" y="254.6" width="190.0" height="76.2" />
+<g class="pmc-node-group" id="node-IMPORTIN_ALPHA" data-node-id="IMPORTIN_ALPHA" tabindex="0" role="button" aria-label="IMPORTIN_ALPHA"><rect class="pmc-node tier-T4" x="64.0" y="254.6" width="190.0" height="76.2" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.0" y="260.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.0" y="270.1">T4</text></g>
 <text class="pmc-label" x="159.0" y="273.2">Importin-α / β</text>
 <text class="pmc-label" x="159.0" y="288.2">Transportins</text>
 <text class="pmc-sub" x="159.0" y="303.2">nuclear localization signal</text>
 <text class="pmc-sub" x="159.0" y="315.2">receptor</text>
 </g>
-<g class="pmc-node-group" id="node-ANAC017_ACTIVE"><rect class="pmc-node tier-T1" x="358.0" y="146.0" width="231.0" height="66.1" />
+<g class="pmc-node-group" id="node-ANAC017_ACTIVE" data-node-id="ANAC017_ACTIVE" tabindex="0" role="button" aria-label="ANAC017_ACTIVE"><rect class="pmc-node tier-T1" x="358.0" y="146.0" width="231.0" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="561.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="572.0" y="161.5">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="441.5" y="193.1" width="64.0" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="473.5" y="202.6">MRR MASTER</text></g>
 <text class="pmc-label" x="473.5" y="164.1">ANAC017 (NAC Domain)</text>
 <text class="pmc-sub" x="473.5" y="179.1">cleaved form</text>
 </g>
-<g class="pmc-node-group" id="node-ANAC013_ACTIVE"><rect class="pmc-node tier-T1" x="358.0" y="260.1" width="231.0" height="60.6" />
+<g class="pmc-node-group" id="node-ANAC013_ACTIVE" data-node-id="ANAC013_ACTIVE" tabindex="0" role="button" aria-label="ANAC013_ACTIVE"><rect class="pmc-node tier-T1" x="358.0" y="260.1" width="231.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="561.0" y="266.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="572.0" y="275.6">T1</text></g>
 <text class="pmc-label" x="473.5" y="278.4">ANAC013 (NAC Domain)</text>
 <text class="pmc-sub" x="473.5" y="293.4">secondary MRR factor • amplifies</text>
 <text class="pmc-sub" x="473.5" y="305.4">signaling</text>
 </g>
-<g class="pmc-node-group" id="node-PAP_NUCLEAR_POOL"><rect class="pmc-node tier-T4" x="358.0" y="368.8" width="231.0" height="60.6" />
+<g class="pmc-node-group" id="node-PAP_NUCLEAR_POOL" data-node-id="PAP_NUCLEAR_POOL" tabindex="0" role="button" aria-label="PAP_NUCLEAR_POOL"><rect class="pmc-node tier-T4" x="358.0" y="368.8" width="231.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="561.0" y="374.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="572.0" y="384.2">T4</text></g>
 <text class="pmc-label" x="473.5" y="387.1">Nuclear PAP Pool</text>
 <text class="pmc-sub" x="473.5" y="402.1">retrograde nucleotide • enters from</text>
 <text class="pmc-sub" x="473.5" y="414.1">stroma</text>
 </g>
-<g class="pmc-node-group" id="node-ABI4_REPRESSOR_TF"><rect class="pmc-node tier-T1" x="693.0" y="146.0" width="229.5" height="48.1" />
+<g class="pmc-node-group" id="node-ABI4_REPRESSOR_TF" data-node-id="ABI4_REPRESSOR_TF" tabindex="0" role="button" aria-label="ABI4_REPRESSOR_TF"><rect class="pmc-node tier-T1" x="693.0" y="146.0" width="229.5" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="894.5" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="905.5" y="161.5">T1</text></g>
 <text class="pmc-label" x="807.8" y="164.1">ABI4 Repressor</text>
 <text class="pmc-sub" x="807.8" y="179.1">AP2/ERF TF • represses PhANGs</text>
 </g>
-<g class="pmc-node-group" id="node-GLK1_ACTIVATOR_TF"><rect class="pmc-node tier-T1" x="693.0" y="242.1" width="229.5" height="48.1" />
+<g class="pmc-node-group" id="node-GLK1_ACTIVATOR_TF" data-node-id="GLK1_ACTIVATOR_TF" tabindex="0" role="button" aria-label="GLK1_ACTIVATOR_TF"><rect class="pmc-node tier-T1" x="693.0" y="242.1" width="229.5" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="894.5" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="905.5" y="257.6">T1</text></g>
 <text class="pmc-label" x="807.8" y="260.2">GLK1/GLK2 Activators</text>
 <text class="pmc-sub" x="807.8" y="275.2">GARP TF • activates PhANGs</text>
 </g>
-<g class="pmc-node-group" id="node-XRN2_TARGET"><rect class="pmc-node tier-T1" x="693.0" y="338.2" width="229.5" height="48.1" />
+<g class="pmc-node-group" id="node-XRN2_TARGET" data-node-id="XRN2_TARGET" tabindex="0" role="button" aria-label="XRN2_TARGET"><rect class="pmc-node tier-T1" x="693.0" y="338.2" width="229.5" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="894.5" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="905.5" y="353.8">T1</text></g>
 <text class="pmc-label" x="807.8" y="356.3">XRN2/XRN3 Exoribonucleases</text>
 <text class="pmc-sub" x="807.8" y="371.3">RNA turnover • inhibited by PAP</text>
 </g>
-<g class="pmc-node-group" id="node-MDRE_PROMOTER_LOCUS"><rect class="pmc-node tier-T1" x="1026.5" y="146.0" width="220.0" height="66.1" />
+<g class="pmc-node-group" id="node-MDRE_PROMOTER_LOCUS" data-node-id="MDRE_PROMOTER_LOCUS" tabindex="0" role="button" aria-label="MDRE_PROMOTER_LOCUS"><rect class="pmc-node tier-T1" x="1026.5" y="146.0" width="220.0" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1218.5" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1229.5" y="161.5">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="1107.2" y="193.1" width="58.6" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="1136.5" y="202.6">MDM MOTIF</text></g>
 <text class="pmc-label" x="1136.5" y="164.1">MDRE Promoter Elements</text>
 <text class="pmc-sub" x="1136.5" y="179.1">AOX1a promoter</text>
 </g>
-<g class="pmc-node-group" id="node-PHANGS_PROMOTER_LOCUS"><rect class="pmc-node tier-T4" x="1026.5" y="260.1" width="220.0" height="60.6" />
+<g class="pmc-node-group" id="node-PHANGS_PROMOTER_LOCUS" data-node-id="PHANGS_PROMOTER_LOCUS" tabindex="0" role="button" aria-label="PHANGS_PROMOTER_LOCUS"><rect class="pmc-node tier-T4" x="1026.5" y="260.1" width="220.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1218.5" y="266.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1229.5" y="275.6">T4</text></g>
 <text class="pmc-label" x="1136.5" y="278.4">PhANGs Promoters</text>
 <text class="pmc-sub" x="1136.5" y="293.4">CCAC / G-box motifs • Lhcb/RbcS</text>
 <text class="pmc-sub" x="1136.5" y="305.4">promoters</text>
 </g>
-<g class="pmc-node-group" id="node-AOX1A_MRNA"><rect class="pmc-node tier-T4" x="1350.5" y="146.0" width="237.2" height="48.1" />
+<g class="pmc-node-group" id="node-AOX1A_MRNA" data-node-id="AOX1A_MRNA" tabindex="0" role="button" aria-label="AOX1A_MRNA"><rect class="pmc-node tier-T4" x="1350.5" y="146.0" width="237.2" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1559.8" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1570.8" y="161.5">T4</text></g>
 <text class="pmc-label" x="1469.1" y="164.1">AOX1a mRNA Induction</text>
 <text class="pmc-sub" x="1469.1" y="179.1">stress relief valve</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_CHAPERONES_MRNA"><rect class="pmc-node tier-T4" x="1350.5" y="242.1" width="237.2" height="48.1" />
+<g class="pmc-node-group" id="node-MITO_CHAPERONES_MRNA" data-node-id="MITO_CHAPERONES_MRNA" tabindex="0" role="button" aria-label="MITO_CHAPERONES_MRNA"><rect class="pmc-node tier-T4" x="1350.5" y="242.1" width="237.2" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1559.8" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1570.8" y="257.6">T4</text></g>
 <text class="pmc-label" x="1469.1" y="260.2">MSR Chaperones (HSP70/UPM1)</text>
 <text class="pmc-sub" x="1469.1" y="275.2">proteostasis</text>
 </g>
-<g class="pmc-node-group" id="node-LHCB_RBCS_MRNA"><rect class="pmc-node tier-T4" x="1350.5" y="338.2" width="237.2" height="63.8" />
+<g class="pmc-node-group" id="node-LHCB_RBCS_MRNA" data-node-id="LHCB_RBCS_MRNA" tabindex="0" role="button" aria-label="LHCB_RBCS_MRNA"><rect class="pmc-node tier-T4" x="1350.5" y="338.2" width="237.2" height="63.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1559.8" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1570.8" y="353.8">T4</text></g>
 <text class="pmc-label" x="1469.1" y="356.6">PhANGs Transcripts</text>
 <text class="pmc-label" x="1469.1" y="371.6">(Lhcb/RbcS)</text>
 <text class="pmc-sub" x="1469.1" y="386.6">photosynthetic machinery</text>
 </g>
-<g class="pmc-node-group" id="node-NUCLEOLUS_SURVEILLANCE"><rect class="pmc-node tier-T4" x="1350.5" y="450.0" width="237.2" height="48.1" />
+<g class="pmc-node-group" id="node-NUCLEOLUS_SURVEILLANCE" data-node-id="NUCLEOLUS_SURVEILLANCE" tabindex="0" role="button" aria-label="NUCLEOLUS_SURVEILLANCE"><rect class="pmc-node tier-T4" x="1350.5" y="450.0" width="237.2" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1559.8" y="456.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1570.8" y="465.5">T4</text></g>
 <text class="pmc-label" x="1469.1" y="468.1">Nucleolar Stress Checkpoint</text>
 <text class="pmc-sub" x="1469.1" y="483.1">rRNA processing • energy monitor</text>

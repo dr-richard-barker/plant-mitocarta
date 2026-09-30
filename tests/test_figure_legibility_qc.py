@@ -407,6 +407,50 @@ def test_retrograde_signaling_mechanism_hud_and_glyphs():
     assert "startAnimation();" in retro_html, "Missing automatic startAnimation call"
 
 
+def test_interactive_multiomics_studio_qc():
+    """ABAI QC Check 17: Interactive spaceflight multi-omics pathway studio with dynamic Okabe-Ito shading, telemetry HUD, and inspector drawer."""
+    from pathlib import Path
+    index_html = Path("docs/index.html").read_text(encoding="utf-8")
+
+    # Assert Studio root container & controls
+    assert 'id="interactive-map-studio"' in index_html, "Missing interactive-map-studio in index.html"
+    assert 'id="map-select"' in index_html, "Missing map-select dropdown"
+    assert 'id="omics-contrast-select"' in index_html, "Missing omics-contrast-select dropdown"
+    assert 'id="sig-filter-toggle"' in index_html, "Missing sig-filter-toggle checkbox"
+
+    # Assert live telemetry HUD & stats chips
+    assert 'id="studio-telemetry-hud"' in index_html, "Missing studio-telemetry-hud in index.html"
+    assert 'id="hud-assayed-count"' in index_html, "Missing hud-assayed-count"
+    assert 'id="hud-mean-fc"' in index_html, "Missing hud-mean-fc"
+    assert 'id="hud-sig-count"' in index_html, "Missing hud-sig-count"
+    assert 'id="hud-top-responder"' in index_html, "Missing hud-top-responder"
+
+    # Assert SVG viewport & Slide-over Omics Inspector Drawer
+    assert 'id="studio-svg-container"' in index_html, "Missing studio-svg-container in index.html"
+    assert 'id="node-inspector-drawer"' in index_html, "Missing node-inspector-drawer in index.html"
+    assert 'id="drawer-contrasts-grid"' in index_html, "Missing drawer-contrasts-grid"
+    assert 'id="drawer-concordance-box"' in index_html, "Missing drawer-concordance-box"
+    assert 'id="drawer-suba-box"' in index_html, "Missing drawer-suba-box"
+    assert 'id="drawer-mitocarta-box"' in index_html, "Missing drawer-mitocarta-box"
+
+    # Assert client-side dataset embedding and dynamic logic
+    assert "mapOmicsData" in index_html, "Missing mapOmicsData client-side object"
+    assert "mapSvgs" in index_html, "Missing mapSvgs client-side object"
+    assert "getContrastColor" in index_html, "Missing getContrastColor function"
+    assert "applyOmicsOverlay" in index_html, "Missing applyOmicsOverlay function"
+    assert "inspectStudioNode" in index_html, "Missing inspectStudioNode function"
+    assert "switchStudioMap" in index_html, "Missing switchStudioMap function"
+
+    # Assert spaceflight study contrasts covered
+    assert "osd120_root" in index_html, "Missing OSD-120 root contrast in index.html"
+    assert "osd120_shoot" in index_html, "Missing OSD-120 shoot contrast in index.html"
+    assert "osd427_protein" in index_html, "Missing OSD-427 protein contrast in index.html"
+    assert "osd37" in index_html, "Missing OSD-37 seedling contrast in index.html"
+    assert "osd782" in index_html, "Missing OSD-782 dark seedling contrast in index.html"
+    assert "osd8" in index_html, "Missing OSD-8 radiation contrast in index.html"
+
+
+
 
 
 

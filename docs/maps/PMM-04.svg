@@ -36,6 +36,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
 
 .pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+.pmc-node-group { cursor: pointer; transition: transform 0.15s ease, opacity 0.2s ease; }
+.pmc-node-group:hover .pmc-node { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }
 
 /* Evidence Tiers as Border Channels */
 .tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
@@ -211,84 +213,84 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-edge-label" x="1308.2" y="320.1">SAL1</text>
 <text class="pmc-edge-label" x="1308.2" y="330.6">oxidation</text>
 </g>
-<g class="pmc-node-group" id="node-WALL_STRAIN"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="214.0" height="76.2" />
+<g class="pmc-node-group" id="node-WALL_STRAIN" data-node-id="WALL_STRAIN" tabindex="0" role="button" aria-label="WALL_STRAIN"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="214.0" height="76.2" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="250.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="161.5">T4</text></g>
 <text class="pmc-label" x="171.0" y="164.6">Mechanical /</text>
 <text class="pmc-label" x="171.0" y="179.6">Microgravity Strain</text>
 <text class="pmc-sub" x="171.0" y="194.6">wall deformation • gravity</text>
 <text class="pmc-sub" x="171.0" y="206.6">vector shift</text>
 </g>
-<g class="pmc-node-group" id="node-APOPLASTIC_PECTIN"><rect class="pmc-node tier-T4" x="64.0" y="270.2" width="214.0" height="48.1" />
+<g class="pmc-node-group" id="node-APOPLASTIC_PECTIN" data-node-id="APOPLASTIC_PECTIN" tabindex="0" role="button" aria-label="APOPLASTIC_PECTIN"><rect class="pmc-node tier-T4" x="64.0" y="270.2" width="214.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="250.0" y="276.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="285.8">T4</text></g>
 <text class="pmc-label" x="171.0" y="288.3">Apoplastic Pectin Matrix</text>
 <text class="pmc-sub" x="171.0" y="303.3">oligogalacturonides • crosslinks</text>
 </g>
-<g class="pmc-node-group" id="node-EXTRACELLULAR_O2"><rect class="pmc-node tier-T4" x="64.0" y="366.4" width="214.0" height="48.1" />
+<g class="pmc-node-group" id="node-EXTRACELLULAR_O2" data-node-id="EXTRACELLULAR_O2" tabindex="0" role="button" aria-label="EXTRACELLULAR_O2"><rect class="pmc-node tier-T4" x="64.0" y="366.4" width="214.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="250.0" y="372.4" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="381.9">T4</text></g>
 <text class="pmc-label" x="171.0" y="384.4">Apoplastic Oxygen Pool</text>
 <text class="pmc-sub" x="171.0" y="399.4">substrate for RBOHD</text>
 </g>
-<g class="pmc-node-group" id="node-FERONIA_RECEPTOR"><rect class="pmc-node tier-T1" x="382.0" y="146.0" width="210.0" height="48.1" />
+<g class="pmc-node-group" id="node-FERONIA_RECEPTOR" data-node-id="FERONIA_RECEPTOR" tabindex="0" role="button" aria-label="FERONIA_RECEPTOR"><rect class="pmc-node tier-T1" x="382.0" y="146.0" width="210.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="564.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="575.0" y="161.5">T1</text></g>
 <text class="pmc-label" x="487.0" y="164.1">FERONIA Receptor Kinase</text>
 <text class="pmc-sub" x="487.0" y="179.1">CrRLK1L • RALF peptide receptor</text>
 </g>
-<g class="pmc-node-group" id="node-WAK1_PECTIN_KINASE"><rect class="pmc-node tier-T1" x="382.0" y="242.1" width="210.0" height="48.1" />
+<g class="pmc-node-group" id="node-WAK1_PECTIN_KINASE" data-node-id="WAK1_PECTIN_KINASE" tabindex="0" role="button" aria-label="WAK1_PECTIN_KINASE"><rect class="pmc-node tier-T1" x="382.0" y="242.1" width="210.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="564.0" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="575.0" y="257.6">T1</text></g>
 <text class="pmc-label" x="487.0" y="260.2">WAK1 Kinase</text>
 <text class="pmc-sub" x="487.0" y="275.2">binds pectin • cell wall sensor</text>
 </g>
-<g class="pmc-node-group" id="node-MSL10_STRETCH_GATE"><rect class="pmc-node tier-T1" x="382.0" y="338.2" width="210.0" height="81.8" />
+<g class="pmc-node-group" id="node-MSL10_STRETCH_GATE" data-node-id="MSL10_STRETCH_GATE" tabindex="0" role="button" aria-label="MSL10_STRETCH_GATE"><rect class="pmc-node tier-T1" x="382.0" y="338.2" width="210.0" height="81.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="564.0" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="575.0" y="353.8">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="446.9" y="401.0" width="80.2" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="487.0" y="410.5">MECHANO-GATED</text></g>
 <text class="pmc-label" x="487.0" y="356.6">MSL10 Mechanosensitive</text>
 <text class="pmc-label" x="487.0" y="371.6">Channel</text>
 <text class="pmc-sub" x="487.0" y="386.6">turgor sensor</text>
 </g>
-<g class="pmc-node-group" id="node-GLR_CALCIUM_CHANNELS"><rect class="pmc-node tier-T1" x="696.0" y="146.0" width="236.8" height="60.6" />
+<g class="pmc-node-group" id="node-GLR_CALCIUM_CHANNELS" data-node-id="GLR_CALCIUM_CHANNELS" tabindex="0" role="button" aria-label="GLR_CALCIUM_CHANNELS"><rect class="pmc-node tier-T1" x="696.0" y="146.0" width="236.8" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="904.8" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="915.8" y="161.5">T1</text></g>
 <text class="pmc-label" x="814.4" y="164.3">GLR3.3 / GLR3.6 Channels</text>
 <text class="pmc-sub" x="814.4" y="179.3">Ca2+ influx gates • rapid electrical</text>
 <text class="pmc-sub" x="814.4" y="191.3">wave</text>
 </g>
-<g class="pmc-node-group" id="node-RBOHD_OXIDASE"><rect class="pmc-node tier-T1" x="696.0" y="254.6" width="236.8" height="60.6" />
+<g class="pmc-node-group" id="node-RBOHD_OXIDASE" data-node-id="RBOHD_OXIDASE" tabindex="0" role="button" aria-label="RBOHD_OXIDASE"><rect class="pmc-node tier-T1" x="696.0" y="254.6" width="236.8" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="904.8" y="260.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="915.8" y="270.1">T1</text></g>
 <text class="pmc-label" x="814.4" y="272.9">RBOHD NADPH Oxidase</text>
 <text class="pmc-sub" x="814.4" y="287.9">apoplastic superoxide generator •</text>
 <text class="pmc-sub" x="814.4" y="299.9">Ca2+ activated</text>
 </g>
-<g class="pmc-node-group" id="node-PIP2_1_AQUAPORIN"><rect class="pmc-node tier-T1" x="696.0" y="363.2" width="236.8" height="48.1" />
+<g class="pmc-node-group" id="node-PIP2_1_AQUAPORIN" data-node-id="PIP2_1_AQUAPORIN" tabindex="0" role="button" aria-label="PIP2_1_AQUAPORIN"><rect class="pmc-node tier-T1" x="696.0" y="363.2" width="236.8" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="904.8" y="369.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="915.8" y="378.8">T1</text></g>
 <text class="pmc-label" x="814.4" y="381.3">PIP2;1 Aquaporin</text>
 <text class="pmc-sub" x="814.4" y="396.3">channels H2O2 • inward conduit</text>
 </g>
-<g class="pmc-node-group" id="node-AHA1_PROTON_PUMP"><rect class="pmc-node tier-T1" x="696.0" y="459.4" width="236.8" height="48.1" />
+<g class="pmc-node-group" id="node-AHA1_PROTON_PUMP" data-node-id="AHA1_PROTON_PUMP" tabindex="0" role="button" aria-label="AHA1_PROTON_PUMP"><rect class="pmc-node tier-T1" x="696.0" y="459.4" width="236.8" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="904.8" y="465.4" width="22.0" height="13.0" /><text class="tier-badge-text" x="915.8" y="474.9">T1</text></g>
 <text class="pmc-label" x="814.4" y="477.4">AHA1 H+-ATPase</text>
 <text class="pmc-sub" x="814.4" y="492.4">electrogenic pump • maintains ΔpH</text>
 </g>
-<g class="pmc-node-group" id="node-CYTOSOLIC_CA_SPIKE"><rect class="pmc-node tier-T4" x="1036.8" y="146.0" width="219.4" height="48.1" />
+<g class="pmc-node-group" id="node-CYTOSOLIC_CA_SPIKE" data-node-id="CYTOSOLIC_CA_SPIKE" tabindex="0" role="button" aria-label="CYTOSOLIC_CA_SPIKE"><rect class="pmc-node tier-T4" x="1036.8" y="146.0" width="219.4" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1228.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1239.2" y="161.5">T4</text></g>
 <text class="pmc-label" x="1146.5" y="164.1">Cytosolic [Ca2+] Wave</text>
 <text class="pmc-sub" x="1146.5" y="179.1">second messenger spike</text>
 </g>
-<g class="pmc-node-group" id="node-CPK_KINASES"><rect class="pmc-node tier-T4" x="1036.8" y="242.1" width="219.4" height="48.1" />
+<g class="pmc-node-group" id="node-CPK_KINASES" data-node-id="CPK_KINASES" tabindex="0" role="button" aria-label="CPK_KINASES"><rect class="pmc-node tier-T4" x="1036.8" y="242.1" width="219.4" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1228.2" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1239.2" y="257.6">T4</text></g>
 <text class="pmc-label" x="1146.5" y="260.2">CPKs / BIK1 Kinases</text>
 <text class="pmc-sub" x="1146.5" y="275.2">calcium-dependent phosphorylation</text>
 </g>
-<g class="pmc-node-group" id="node-INWARD_H2O2_FLUX"><rect class="pmc-node tier-T4" x="1036.8" y="338.2" width="219.4" height="48.1" />
+<g class="pmc-node-group" id="node-INWARD_H2O2_FLUX" data-node-id="INWARD_H2O2_FLUX" tabindex="0" role="button" aria-label="INWARD_H2O2_FLUX"><rect class="pmc-node tier-T4" x="1036.8" y="338.2" width="219.4" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1228.2" y="344.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1239.2" y="353.8">T4</text></g>
 <text class="pmc-label" x="1146.5" y="356.3">Cytosolic H2O2 Wave</text>
 <text class="pmc-sub" x="1146.5" y="371.3">redox messenger</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_PERCEPTION"><rect class="pmc-node tier-T4" x="1360.2" y="146.0" width="236.8" height="63.8" />
+<g class="pmc-node-group" id="node-MITO_PERCEPTION" data-node-id="MITO_PERCEPTION" tabindex="0" role="button" aria-label="MITO_PERCEPTION"><rect class="pmc-node tier-T4" x="1360.2" y="146.0" width="236.8" height="63.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1569.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1580.0" y="161.5">T4</text></g>
 <text class="pmc-label" x="1478.6" y="164.4">Mitochondrial Bioenergetic</text>
 <text class="pmc-label" x="1478.6" y="179.4">Tuning</text>
 <text class="pmc-sub" x="1478.6" y="194.4">MCU Ca2+ uptake • stimulates TCA/AOX</text>
 </g>
-<g class="pmc-node-group" id="node-CHLORO_PERCEPTION"><rect class="pmc-node tier-T4" x="1360.2" y="257.8" width="236.8" height="48.1" />
+<g class="pmc-node-group" id="node-CHLORO_PERCEPTION" data-node-id="CHLORO_PERCEPTION" tabindex="0" role="button" aria-label="CHLORO_PERCEPTION"><rect class="pmc-node tier-T4" x="1360.2" y="257.8" width="236.8" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1569.0" y="263.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="1580.0" y="273.2">T4</text></g>
 <text class="pmc-label" x="1478.6" y="275.8">Chloroplast Stroma Tuning</text>
 <text class="pmc-sub" x="1478.6" y="290.8">stromal Ca2+ • redox adjustments</text>

@@ -36,6 +36,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
 
 .pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+.pmc-node-group { cursor: pointer; transition: transform 0.15s ease, opacity 0.2s ease; }
+.pmc-node-group:hover .pmc-node { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }
 
 /* Evidence Tiers as Border Channels */
 .tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
@@ -208,79 +210,79 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <rect class="pmc-edge-label-bg" x="1573.8" y="283.7" width="66.9" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1607.2" y="295.6">UPM1/Hsp70</text>
 </g>
-<g class="pmc-node-group" id="node-OXPHOS_LESION"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="214.0" height="76.2" />
+<g class="pmc-node-group" id="node-OXPHOS_LESION" data-node-id="OXPHOS_LESION" tabindex="0" role="button" aria-label="OXPHOS_LESION"><rect class="pmc-node tier-T4" x="64.0" y="146.0" width="214.0" height="76.2" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="250.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="161.5">T4</text></g>
 <text class="pmc-label" x="171.0" y="164.6">OXPHOS Inhibition /</text>
 <text class="pmc-label" x="171.0" y="179.6">Hypoxia</text>
 <text class="pmc-sub" x="171.0" y="194.6">antimycin A • rotenone •</text>
 <text class="pmc-sub" x="171.0" y="206.6">spaceflight hypoxia</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_SUPEROXIDE_ACCUMULATION"><rect class="pmc-node tier-T1" x="64.0" y="270.2" width="214.0" height="60.6" />
+<g class="pmc-node-group" id="node-MITO_SUPEROXIDE_ACCUMULATION" data-node-id="MITO_SUPEROXIDE_ACCUMULATION" tabindex="0" role="button" aria-label="MITO_SUPEROXIDE_ACCUMULATION"><rect class="pmc-node tier-T1" x="64.0" y="270.2" width="214.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="250.0" y="276.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="261.0" y="285.8">T1</text></g>
 <text class="pmc-label" x="171.0" y="288.6">Mitochondrial ROS (H2O2)</text>
 <text class="pmc-sub" x="171.0" y="303.6">membrane permeant • primary</text>
 <text class="pmc-sub" x="171.0" y="315.6">trigger</text>
 </g>
-<g class="pmc-node-group" id="node-RHOMBOID_PROTEASE_ACT"><rect class="pmc-node tier-T4" x="382.0" y="146.0" width="210.0" height="66.1" />
+<g class="pmc-node-group" id="node-RHOMBOID_PROTEASE_ACT" data-node-id="RHOMBOID_PROTEASE_ACT" tabindex="0" role="button" aria-label="RHOMBOID_PROTEASE_ACT"><rect class="pmc-node tier-T4" x="382.0" y="146.0" width="210.0" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="564.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="575.0" y="161.5">T4</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="441.5" y="193.1" width="91.0" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="487.0" y="202.6">SERINE PROTEASE</text></g>
 <text class="pmc-label" x="487.0" y="164.1">Rhomboid-Like Proteases</text>
 <text class="pmc-sub" x="487.0" y="179.1">ROS-activated</text>
 </g>
-<g class="pmc-node-group" id="node-ANAC017_TETHERED"><rect class="pmc-node tier-T1" x="382.0" y="260.1" width="210.0" height="66.1" />
+<g class="pmc-node-group" id="node-ANAC017_TETHERED" data-node-id="ANAC017_TETHERED" tabindex="0" role="button" aria-label="ANAC017_TETHERED"><rect class="pmc-node tier-T1" x="382.0" y="260.1" width="210.0" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="564.0" y="266.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="575.0" y="275.6">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="446.9" y="307.2" width="80.2" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="487.0" y="316.8">ER/OMM TETHER</text></g>
 <text class="pmc-label" x="487.0" y="278.2">Membrane-Bound ANAC017</text>
 <text class="pmc-sub" x="487.0" y="293.2">inactive precursor</text>
 </g>
-<g class="pmc-node-group" id="node-ANAC013_TETHERED"><rect class="pmc-node tier-T1" x="382.0" y="374.2" width="210.0" height="66.1" />
+<g class="pmc-node-group" id="node-ANAC013_TETHERED" data-node-id="ANAC013_TETHERED" tabindex="0" role="button" aria-label="ANAC013_TETHERED"><rect class="pmc-node tier-T1" x="382.0" y="374.2" width="210.0" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="564.0" y="380.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="575.0" y="389.8">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="446.9" y="421.4" width="80.2" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="487.0" y="430.9">ER/OMM TETHER</text></g>
 <text class="pmc-label" x="487.0" y="392.3">Membrane-Bound ANAC013</text>
 <text class="pmc-sub" x="487.0" y="407.3">co-regulator</text>
 </g>
-<g class="pmc-node-group" id="node-ANAC017_SOLUBLE_NAC"><rect class="pmc-node tier-T4" x="696.0" y="146.0" width="200.0" height="81.8" />
+<g class="pmc-node-group" id="node-ANAC017_SOLUBLE_NAC" data-node-id="ANAC017_SOLUBLE_NAC" tabindex="0" role="button" aria-label="ANAC017_SOLUBLE_NAC"><rect class="pmc-node tier-T4" x="696.0" y="146.0" width="200.0" height="81.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="868.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="879.0" y="161.5">T4</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="761.3" y="208.8" width="69.4" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="796.0" y="218.2">CLEAVED NAC</text></g>
 <text class="pmc-label" x="796.0" y="164.4">Soluble ANAC017 (NAC</text>
 <text class="pmc-label" x="796.0" y="179.4">Domain)</text>
 <text class="pmc-sub" x="796.0" y="194.4">carries NLS</text>
 </g>
-<g class="pmc-node-group" id="node-ANAC013_SOLUBLE_NAC"><rect class="pmc-node tier-T4" x="696.0" y="275.8" width="200.0" height="69.2" />
+<g class="pmc-node-group" id="node-ANAC013_SOLUBLE_NAC" data-node-id="ANAC013_SOLUBLE_NAC" tabindex="0" role="button" aria-label="ANAC013_SOLUBLE_NAC"><rect class="pmc-node tier-T4" x="696.0" y="275.8" width="200.0" height="69.2" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="868.0" y="281.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="879.0" y="291.2">T4</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="761.3" y="326.0" width="69.4" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="796.0" y="335.5">CLEAVED NAC</text></g>
 <text class="pmc-label" x="796.0" y="293.9">Soluble ANAC013 (NAC</text>
 <text class="pmc-label" x="796.0" y="308.9">Domain)</text>
 </g>
-<g class="pmc-node-group" id="node-CITRATE_2OG_EXPORT"><rect class="pmc-node tier-T1" x="696.0" y="393.0" width="200.0" height="60.6" />
+<g class="pmc-node-group" id="node-CITRATE_2OG_EXPORT" data-node-id="CITRATE_2OG_EXPORT" tabindex="0" role="button" aria-label="CITRATE_2OG_EXPORT"><rect class="pmc-node tier-T1" x="696.0" y="393.0" width="200.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="868.0" y="399.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="879.0" y="408.5">T1</text></g>
 <text class="pmc-label" x="796.0" y="411.3">Citrate / 2-OG Efflux</text>
 <text class="pmc-sub" x="796.0" y="426.3">DTC translocator • metabolic</text>
 <text class="pmc-sub" x="796.0" y="438.3">signal</text>
 </g>
-<g class="pmc-node-group" id="node-NPC_TRANSLOCATION_GATE"><rect class="pmc-node tier-T1" x="1000.0" y="146.0" width="214.0" height="48.1" />
+<g class="pmc-node-group" id="node-NPC_TRANSLOCATION_GATE" data-node-id="NPC_TRANSLOCATION_GATE" tabindex="0" role="button" aria-label="NPC_TRANSLOCATION_GATE"><rect class="pmc-node tier-T1" x="1000.0" y="146.0" width="214.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1186.0" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1197.0" y="161.5">T1</text></g>
 <text class="pmc-label" x="1107.0" y="164.1">Nuclear Pore Complex</text>
 <text class="pmc-sub" x="1107.0" y="179.1">regulates import</text>
 </g>
-<g class="pmc-node-group" id="node-KARYOPHERIN_IMPORT"><rect class="pmc-node tier-T4" x="1000.0" y="242.1" width="214.0" height="48.1" />
+<g class="pmc-node-group" id="node-KARYOPHERIN_IMPORT" data-node-id="KARYOPHERIN_IMPORT" tabindex="0" role="button" aria-label="KARYOPHERIN_IMPORT"><rect class="pmc-node tier-T4" x="1000.0" y="242.1" width="214.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1186.0" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1197.0" y="257.6">T4</text></g>
 <text class="pmc-label" x="1107.0" y="260.2">Importin-α / β Machinery</text>
 <text class="pmc-sub" x="1107.0" y="275.2">facilitated transport</text>
 </g>
-<g class="pmc-node-group" id="node-MDRE_BINDING_SITE"><rect class="pmc-node tier-T1" x="1318.0" y="146.0" width="237.2" height="66.1" />
+<g class="pmc-node-group" id="node-MDRE_BINDING_SITE" data-node-id="MDRE_BINDING_SITE" tabindex="0" role="button" aria-label="MDRE_BINDING_SITE"><rect class="pmc-node tier-T1" x="1318.0" y="146.0" width="237.2" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1527.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1538.2" y="161.5">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-sensor" x="1407.3" y="193.1" width="58.6" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-sensor-text" x="1436.6" y="202.6">MDM MOTIF</text></g>
 <text class="pmc-label" x="1436.6" y="164.1">MDRE Promoter Cis-Element</text>
 <text class="pmc-sub" x="1436.6" y="179.1">AOX1a promoter</text>
 </g>
-<g class="pmc-node-group" id="node-AOX1A_INDUCTION"><rect class="pmc-node tier-T1" x="1318.0" y="260.1" width="237.2" height="66.1" />
+<g class="pmc-node-group" id="node-AOX1A_INDUCTION" data-node-id="AOX1A_INDUCTION" tabindex="0" role="button" aria-label="AOX1A_INDUCTION"><rect class="pmc-node tier-T1" x="1318.0" y="260.1" width="237.2" height="66.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1527.2" y="266.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1538.2" y="275.6">T1</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-bypass" x="1391.1" y="307.2" width="91.0" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-bypass-text" x="1436.6" y="316.8">ALT-RESPIRATION</text></g>
 <text class="pmc-label" x="1436.6" y="278.2">AOX1a Transcriptional Surge</text>
 <text class="pmc-sub" x="1436.6" y="293.2">restores electron flow</text>
 </g>
-<g class="pmc-node-group" id="node-UPM1_HSP70_INDUCTION"><rect class="pmc-node tier-T4" x="1318.0" y="374.2" width="237.2" height="63.8" />
+<g class="pmc-node-group" id="node-UPM1_HSP70_INDUCTION" data-node-id="UPM1_HSP70_INDUCTION" tabindex="0" role="button" aria-label="UPM1_HSP70_INDUCTION"><rect class="pmc-node tier-T4" x="1318.0" y="374.2" width="237.2" height="63.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1527.2" y="380.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1538.2" y="389.8">T4</text></g>
 <text class="pmc-label" x="1436.6" y="392.6">Mitochondrial Chaperones</text>
 <text class="pmc-label" x="1436.6" y="407.6">(UPM1)</text>

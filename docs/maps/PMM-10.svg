@@ -36,6 +36,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 .pmc-sub { font-size: 10px; fill: var(--pmc-ink-soft); text-anchor: middle; }
 
 .pmc-node { fill: var(--pmc-node-fill); stroke: var(--pmc-node-stroke); rx: 6px; ry: 6px; }
+.pmc-node-group { cursor: pointer; transition: transform 0.15s ease, opacity 0.2s ease; }
+.pmc-node-group:hover .pmc-node { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }
 
 /* Evidence Tiers as Border Channels */
 .tier-T1 { stroke-width: 3.0px; stroke: var(--pmc-node-stroke); }
@@ -214,76 +216,76 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <rect class="pmc-edge-label-bg" x="1500.9" y="317.8" width="78.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1540.2" y="329.8">PhANG tuning</text>
 </g>
-<g class="pmc-node-group" id="node-PM_SENSORY_INPUT"><rect class="pmc-node tier-T1" x="64.0" y="146.0" width="237.2" height="76.2" />
+<g class="pmc-node-group" id="node-PM_SENSORY_INPUT" data-node-id="PM_SENSORY_INPUT" tabindex="0" role="button" aria-label="PM_SENSORY_INPUT"><rect class="pmc-node tier-T1" x="64.0" y="146.0" width="237.2" height="76.2" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="273.2" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="284.2" y="161.5">T1</text></g>
 <text class="pmc-label" x="182.6" y="164.6">PM Mechanical/Gravity</text>
 <text class="pmc-label" x="182.6" y="179.6">Sensors</text>
 <text class="pmc-sub" x="182.6" y="194.6">FERONIA, WAK1, MSL10 • detects wall</text>
 <text class="pmc-sub" x="182.6" y="206.6">strain</text>
 </g>
-<g class="pmc-node-group" id="node-PM_CALCIUM_GATE"><rect class="pmc-node tier-T1" x="64.0" y="270.2" width="237.2" height="63.8" />
+<g class="pmc-node-group" id="node-PM_CALCIUM_GATE" data-node-id="PM_CALCIUM_GATE" tabindex="0" role="button" aria-label="PM_CALCIUM_GATE"><rect class="pmc-node tier-T1" x="64.0" y="270.2" width="237.2" height="63.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="273.2" y="276.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="284.2" y="285.8">T1</text></g>
 <text class="pmc-label" x="182.6" y="288.6">Calcium Influx Gates</text>
 <text class="pmc-label" x="182.6" y="303.6">(GLR3.3/3.6)</text>
 <text class="pmc-sub" x="182.6" y="318.6">rapid electrical/Ca2+ wave</text>
 </g>
-<g class="pmc-node-group" id="node-PM_RBOHD_BURST"><rect class="pmc-node tier-T1" x="64.0" y="382.0" width="237.2" height="60.6" />
+<g class="pmc-node-group" id="node-PM_RBOHD_BURST" data-node-id="PM_RBOHD_BURST" tabindex="0" role="button" aria-label="PM_RBOHD_BURST"><rect class="pmc-node tier-T1" x="64.0" y="382.0" width="237.2" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="273.2" y="388.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="284.2" y="397.5">T1</text></g>
 <text class="pmc-label" x="182.6" y="400.3">Apoplastic ROS Wave (RBOHD)</text>
 <text class="pmc-sub" x="182.6" y="415.3">superoxide burst • channels via</text>
 <text class="pmc-sub" x="182.6" y="427.3">PIP2;1</text>
 </g>
-<g class="pmc-node-group" id="node-CHLORO_PHOTOSYSTEMS"><rect class="pmc-node tier-T1" x="405.2" y="146.0" width="237.2" height="48.1" />
+<g class="pmc-node-group" id="node-CHLORO_PHOTOSYSTEMS" data-node-id="CHLORO_PHOTOSYSTEMS" tabindex="0" role="button" aria-label="CHLORO_PHOTOSYSTEMS"><rect class="pmc-node tier-T1" x="405.2" y="146.0" width="237.2" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="614.5" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="625.5" y="161.5">T1</text></g>
 <text class="pmc-label" x="523.9" y="164.1">Chloroplast Light Reactions</text>
 <text class="pmc-sub" x="523.9" y="179.1">PSII, PSI, Cyt b6f, ATP synthase</text>
 </g>
-<g class="pmc-node-group" id="node-CHLORO_RUBISCO"><rect class="pmc-node tier-T1" x="405.2" y="242.1" width="237.2" height="63.8" />
+<g class="pmc-node-group" id="node-CHLORO_RUBISCO" data-node-id="CHLORO_RUBISCO" tabindex="0" role="button" aria-label="CHLORO_RUBISCO"><rect class="pmc-node tier-T1" x="405.2" y="242.1" width="237.2" height="63.8" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="614.5" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="625.5" y="257.6">T1</text></g>
 <text class="pmc-label" x="523.9" y="260.5">RuBisCO Carbon &amp; Oxygen</text>
 <text class="pmc-label" x="523.9" y="275.5">Fixation</text>
 <text class="pmc-sub" x="523.9" y="290.5">Calvin cycle • glycolate synthesis</text>
 </g>
-<g class="pmc-node-group" id="node-CHLORO_PRR_HUB"><rect class="pmc-node tier-T1" x="405.2" y="353.9" width="237.2" height="48.1" />
+<g class="pmc-node-group" id="node-CHLORO_PRR_HUB" data-node-id="CHLORO_PRR_HUB" tabindex="0" role="button" aria-label="CHLORO_PRR_HUB"><rect class="pmc-node tier-T1" x="405.2" y="353.9" width="237.2" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="614.5" y="359.9" width="22.0" height="13.0" /><text class="tier-badge-text" x="625.5" y="369.4">T1</text></g>
 <text class="pmc-label" x="523.9" y="371.9">Plastid Retrograde Signals</text>
 <text class="pmc-sub" x="523.9" y="386.9">SAL1-PAP, GUN1-ABI4, MEcPP, EX1</text>
 </g>
-<g class="pmc-node-group" id="node-PEROXISOMAL_SHUTTLE"><rect class="pmc-node tier-T1" x="746.5" y="146.0" width="225.2" height="76.2" />
+<g class="pmc-node-group" id="node-PEROXISOMAL_SHUTTLE" data-node-id="PEROXISOMAL_SHUTTLE" tabindex="0" role="button" aria-label="PEROXISOMAL_SHUTTLE"><rect class="pmc-node tier-T1" x="746.5" y="146.0" width="225.2" height="76.2" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="943.7" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="954.7" y="161.5">T1</text></g>
 <text class="pmc-label" x="859.1" y="164.6">Peroxisomal</text>
 <text class="pmc-label" x="859.1" y="179.6">Photorespiration</text>
 <text class="pmc-sub" x="859.1" y="194.6">GOX, GGT, HPR, CAT2 • glycolate -&gt;</text>
 <text class="pmc-sub" x="859.1" y="206.6">glycine</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_RESPIRATORY_CHAIN"><rect class="pmc-node tier-T1" x="1075.7" y="146.0" width="245.0" height="60.6" />
+<g class="pmc-node-group" id="node-MITO_RESPIRATORY_CHAIN" data-node-id="MITO_RESPIRATORY_CHAIN" tabindex="0" role="button" aria-label="MITO_RESPIRATORY_CHAIN"><rect class="pmc-node tier-T1" x="1075.7" y="146.0" width="245.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1292.7" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1303.7" y="161.5">T1</text></g>
 <text class="pmc-label" x="1198.2" y="164.3">Plant MitoCarta OXPHOS</text>
 <text class="pmc-sub" x="1198.2" y="179.3">Complexes I-V, AOX, Type II NDHs, CA</text>
 <text class="pmc-sub" x="1198.2" y="191.3">domain</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_GDC_ENGINE"><rect class="pmc-node tier-T1" x="1075.7" y="254.6" width="245.0" height="48.1" />
+<g class="pmc-node-group" id="node-MITO_GDC_ENGINE" data-node-id="MITO_GDC_ENGINE" tabindex="0" role="button" aria-label="MITO_GDC_ENGINE"><rect class="pmc-node tier-T1" x="1075.7" y="254.6" width="245.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1292.7" y="260.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="1303.7" y="270.1">T1</text></g>
 <text class="pmc-label" x="1198.2" y="272.7">Matrix GDC Complex</text>
 <text class="pmc-sub" x="1198.2" y="287.7">photorespiratory serine synthesis</text>
 </g>
-<g class="pmc-node-group" id="node-MITO_MRR_ANAC017"><rect class="pmc-node tier-T1" x="1075.7" y="350.8" width="245.0" height="48.1" />
+<g class="pmc-node-group" id="node-MITO_MRR_ANAC017" data-node-id="MITO_MRR_ANAC017" tabindex="0" role="button" aria-label="MITO_MRR_ANAC017"><rect class="pmc-node tier-T1" x="1075.7" y="350.8" width="245.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1292.7" y="356.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="1303.7" y="366.2">T1</text></g>
 <text class="pmc-label" x="1198.2" y="368.8">Mitochondrial Retrograde MRR</text>
 <text class="pmc-sub" x="1198.2" y="383.8">rhomboid cleavage of ANAC017/013</text>
 </g>
-<g class="pmc-node-group" id="node-NUCLEAR_MDRE_TARGETS"><rect class="pmc-node tier-T1" x="1424.7" y="146.0" width="231.0" height="48.1" />
+<g class="pmc-node-group" id="node-NUCLEAR_MDRE_TARGETS" data-node-id="NUCLEAR_MDRE_TARGETS" tabindex="0" role="button" aria-label="NUCLEAR_MDRE_TARGETS"><rect class="pmc-node tier-T1" x="1424.7" y="146.0" width="231.0" height="48.1" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1627.7" y="152.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1638.7" y="161.5">T1</text></g>
 <text class="pmc-label" x="1540.2" y="164.1">MDRE Promoter Induction</text>
 <text class="pmc-sub" x="1540.2" y="179.1">AOX1a, UPM1, HSP70 • MRR response</text>
 </g>
-<g class="pmc-node-group" id="node-NUCLEAR_PHANGS_TARGETS"><rect class="pmc-node tier-T1" x="1424.7" y="242.1" width="231.0" height="60.6" />
+<g class="pmc-node-group" id="node-NUCLEAR_PHANGS_TARGETS" data-node-id="NUCLEAR_PHANGS_TARGETS" tabindex="0" role="button" aria-label="NUCLEAR_PHANGS_TARGETS"><rect class="pmc-node tier-T1" x="1424.7" y="242.1" width="231.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T1" x="1627.7" y="248.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1638.7" y="257.6">T1</text></g>
 <text class="pmc-label" x="1540.2" y="260.4">PhANGs Coordinate Control</text>
 <text class="pmc-sub" x="1540.2" y="275.4">Lhcb, RbcS • ABI4 repression / GLK1</text>
 <text class="pmc-sub" x="1540.2" y="287.4">activation</text>
 </g>
-<g class="pmc-node-group" id="node-GENOME_REPROGRAMMING"><rect class="pmc-node tier-T4" x="1424.7" y="350.8" width="231.0" height="60.6" />
+<g class="pmc-node-group" id="node-GENOME_REPROGRAMMING" data-node-id="GENOME_REPROGRAMMING" tabindex="0" role="button" aria-label="GENOME_REPROGRAMMING"><rect class="pmc-node tier-T4" x="1424.7" y="350.8" width="231.0" height="60.6" />
 <g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1627.7" y="356.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="1638.7" y="366.2">T4</text></g>
 <text class="pmc-label" x="1540.2" y="369.1">Whole-Cell Acclimation</text>
 <text class="pmc-sub" x="1540.2" y="384.1">spaceflight stress acclimation •</text>
