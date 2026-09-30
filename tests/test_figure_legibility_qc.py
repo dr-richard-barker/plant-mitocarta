@@ -209,4 +209,43 @@ def test_digital_doubles_contrast_optimization():
     assert "'0 0 960 600'" in doubles_html
 
 
+def test_subcompartment_multiomics_heatmap_qc():
+    """ABAI QC Check 8: Subcompartment multi-omics expression heatmap exists and is properly wired."""
+    from pathlib import Path
+    doubles_html = Path("docs/digital_doubles.html").read_text(encoding="utf-8")
+
+    assert 'id="doubles-heatmap-section"' in doubles_html
+    assert 'id="heatmap-tbody"' in doubles_html
+    assert 'id="heat-organelle-filter"' in doubles_html
+    assert 'id="heat-search"' in doubles_html
+    assert 'id="sort-comp-btn"' in doubles_html
+    assert 'id="sort-fc-btn"' in doubles_html
+    assert 'id="sort-sym-btn"' in doubles_html
+    assert "function updateHeatmap()" in doubles_html
+    assert "function getHeatColor(val)" in doubles_html
+    assert "function highlightSubcompInSvg(subId)" in doubles_html
+    assert "const heatData =" in doubles_html
+    assert "OSD-120" in doubles_html
+    assert "OSD-427" in doubles_html
+
+
+def test_nasa_osdr_multiomics_studio_qc():
+    """ABAI QC Check 9: NASA OSDR Studio contains interactive volcano plot, concordance scatter plot, and API simulator."""
+    from pathlib import Path
+    osdr_html = Path("docs/osdr_projections.html").read_text(encoding="utf-8")
+
+    assert 'id="volcano-svg"' in osdr_html
+    assert 'id="concordance-svg"' in osdr_html
+    assert 'id="api-terminal-output"' in osdr_html
+    assert 'id="master-table-tbody"' in osdr_html
+    assert "function renderVolcano()" in osdr_html
+    assert "function renderConcordance()" in osdr_html
+    assert "function updateApiSimulator()" in osdr_html
+    assert "OSD-120" in osdr_html
+    assert "OSD-427" in osdr_html
+    assert "OSD-782" in osdr_html
+    assert "OSD-37" in osdr_html
+
+
+
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NASA OSDR Projections — Plant MitoCarta</title>
+  <title>NASA OSDR Multi-Omics Studio — Plant MitoCarta</title>
   <meta name="description" content="Plant MitoCarta: Subcellular Digital Doubles, Inter-Organellar Signaling &amp; Cross-Kingdom Synteny">
   <meta name="author" content="Richard Barker">
   <meta name="color-scheme" content="light dark">
@@ -394,9 +394,86 @@
     }
 
     
-    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.88rem; }
-    th { text-align: left; padding: 10px 14px; background: var(--bg); border-bottom: 2px solid var(--card-border); color: var(--text-soft); font-weight: 700; text-transform: uppercase; font-size: 0.78rem; }
-    td { padding: 12px 14px; border-bottom: 1px solid var(--card-border); vertical-align: top; }
+    .studio-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+    .study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .study-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .study-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    .contrast-btn {
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .contrast-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .plot-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .volcano-point {
+      cursor: pointer;
+      transition: r 0.15s ease, opacity 0.15s ease;
+    }
+    .volcano-point:hover {
+      r: 8 !important;
+      opacity: 1 !important;
+      stroke: #ffffff;
+      stroke-width: 2px;
+    }
+    .category-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .api-box {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.84rem; }
+    th { text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); color: var(--text-soft); font-weight: 700; text-transform: uppercase; font-size: 0.78rem; }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--card-border); vertical-align: top; }
     
   </style>
 </head>
@@ -423,287 +500,580 @@
     </nav>
     
     <main class="container">
-      <div style="margin-bottom: 24px;">
-        <h2 style="font-size: 1.8rem; font-weight: 800;">NASA OSDR Spaceflight Omics Studio</h2>
-        <p style="color: var(--text-soft); max-width: 850px; margin-top: 4px;">
-          Ingestion and multi-scale projection of NASA Open Science Data Repository spaceflight omics.
-          Evaluates organellar stress responses across <strong>OSD-120</strong> (APEX-03-2 spaceflight roots vs shoots),
-          <strong>OSD-379</strong> (spaceflight accessions), <strong>OSD-8</strong> (radiation), and <strong>OSD-782</strong> (microgravity).
+      <div style="margin-bottom: 28px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: var(--primary-light); color: var(--primary); font-size: 1.25rem;">🚀</span>
+          <h2 style="font-size: 1.85rem; font-weight: 800; margin: 0;">NASA OSDR Multi-Omics Spaceflight Discovery Studio</h2>
+        </div>
+        <p style="color: var(--text-soft); max-width: 900px; margin-top: 6px;">
+          Comprehensive multi-omics ingestion engine for the <strong>NASA Open Science Data Repository (OSDR)</strong>.
+          Integrates transcriptomics (RNA-Seq/Microarrays) and proteomics (TMT mass-spectrometry) from the International Space Station
+          to quantify organellar bioenergetics, mitochondrial stress sentinels (AOX1a), and post-transcriptional buffering under microgravity.
         </p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px;">
-        <div class="card">
-          <div class="card-id">NASA OSDR • APEX-03-2</div>
-          <h3 class="card-title">OSD-120: Spaceflight Roots & Shoots</h3>
-          <p class="card-desc">Evaluates orbital hypoxia, alternative oxidase (AOX1a) surge, and organellar retrograde gene induction on ISS.</p>
-          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Permutation Test: p = 0.0019 (Significant Enrichment)</span>
+      <!-- Study Catalog Cards -->
+      <div class="study-grid">
+        
+        <div class="study-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary); font-family: var(--font-mono); font-weight: 700;">OSD-120</span>
+              <span style="font-size: 0.78rem; color: var(--text-soft);">ISS APEX-03-2</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 4px 0 8px;">Spaceflight Roots vs Shoots Transcriptome</h3>
+            <p style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; margin: 0 0 12px;">Global RNA-seq profiling of Arabidopsis roots and shoots grown in microgravity on the ISS. Reveals severe root mitochondrial stress, AOX1a induction, and photorespiration downregulation.</p>
+          </div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span> <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Microarray</span>
+            </div>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">32 Samples &bull; 2 Contrasts</span>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-id">NASA OSDR • Space Radiation</div>
-          <h3 class="card-title">OSD-8: Ionizing Radiation</h3>
-          <p class="card-desc">Tests Fe-S cluster disassembly, ROS wave generation, and organellar DNA repair (RecA1) under ionizing particles.</p>
-          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Permutation Test: p = 0.0210 (Significant Enrichment)</span>
+        
+        <div class="study-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary); font-family: var(--font-mono); font-weight: 700;">OSD-37</span>
+              <span style="font-size: 0.78rem; color: var(--text-soft);">ISS BRIC-16</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 4px 0 8px;">Seedling Microgravity Global Transcriptomics</h3>
+            <p style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; margin: 0 0 12px;">Arabidopsis seedlings germinated and grown in spaceflight microgravity canisters. Captures early cellular division stress, plastid development arrest (GLK1 repression), and cell wall remodeling.</p>
+          </div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Microarray</span>
+            </div>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">24 Samples &bull; 1 Contrasts</span>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-id">NASA OSDR • BRIC-19</div>
-          <h3 class="card-title">OSD-782: Microgravity Centrifuge</h3>
-          <p class="card-desc">Onboard 1g centrifuge control isolating pure microgravity from spaceflight atmospheric and radiation variables.</p>
-          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Permutation Test: p = 0.0084 (Significant Enrichment)</span>
+        
+        <div class="study-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary); font-family: var(--font-mono); font-weight: 700;">OSD-427</span>
+              <span style="font-size: 0.78rem; color: var(--text-soft);">ISS APEX-04</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 4px 0 8px;">Spaceflight Proteome vs Transcriptome Concordance</h3>
+            <p style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; margin: 0 0 12px;">Paired TMT isobaric mass-spectrometry proteomics and RNA-seq profiling. Quantifies post-transcriptional buffering in mitochondrial electron transport complexes versus selective degradation of chloroplast photosynthetic assemblies.</p>
+          </div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Proteomics (TMT LC-MS/MS)</span> <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span>
+            </div>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">18 Samples &bull; 2 Contrasts</span>
+          </div>
         </div>
+        
+        <div class="study-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary); font-family: var(--font-mono); font-weight: 700;">OSD-782</span>
+              <span style="font-size: 0.78rem; color: var(--text-soft);">ISS BRIC-19</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 4px 0 8px;">Pure Microgravity vs 1g Onboard Centrifuge Control</h3>
+            <p style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; margin: 0 0 12px;">Utilizes onboard 1g centrifuge in orbital flight to decouple true gravitational mechanotransduction from spaceflight spacecraft environment, gas convection, and radiation variables.</p>
+          </div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span>
+            </div>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">16 Samples &bull; 1 Contrasts</span>
+          </div>
+        </div>
+        
+        <div class="study-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary); font-family: var(--font-mono); font-weight: 700;">OSD-218</span>
+              <span style="font-size: 0.78rem; color: var(--text-soft);">ISS TROPI-2</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 4px 0 8px;">Orbital Phototropism &amp; Organellar Reorientation</h3>
+            <p style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; margin: 0 0 12px;">Blue- and red-light induced phototropism in microgravity vs 1g centrifuge, identifying organelle-cytoskeleton tethering and calcium wave initiation.</p>
+          </div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span>
+            </div>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">20 Samples &bull; 1 Contrasts</span>
+          </div>
+        </div>
+        
+        <div class="study-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary); font-family: var(--font-mono); font-weight: 700;">OSD-8</span>
+              <span style="font-size: 0.78rem; color: var(--text-soft);">NSRL Space Radiation</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 4px 0 8px;">Ionizing Radiation &amp; Cosmic Ray Particle Simulator</h3>
+            <p style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; margin: 0 0 12px;">Simulated galactic cosmic ray (HZE Fe/Si ions and protons) exposure evaluating organellar Fe-S cluster stability, mitochondrial DNA repair (RecA1), and systemic oxidative wave launch.</p>
+          </div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Microarray</span>
+            </div>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">18 Samples &bull; 1 Contrasts</span>
+          </div>
+        </div>
+        
       </div>
 
-      <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 24px;">
-        <h3 style="font-size: 1.25rem; font-weight: 700;">OSD-120 Differential Expression Table (Flight vs Ground)</h3>
-        <p style="color: var(--text-soft); font-size: 0.85rem;">Projected log2-fold changes and significance across organellar loci.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>AGI Locus</th>
-              <th>Symbol</th>
-              <th>Log2 Fold Change</th>
-              <th>Adj. p-value (FDR)</th>
-              <th>Significance</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT3G22370</span></td>
-          <td><strong>AOX1a</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.84</strong></td>
-          <td>0.0012</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT1G34190</span></td>
-          <td><strong>ANAC017</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.92</strong></td>
-          <td>0.0150</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT1G32870</span></td>
-          <td><strong>ANAC013</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.45</strong></td>
-          <td>0.0030</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT4G05020</span></td>
-          <td><strong>NDB2</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.32</strong></td>
-          <td>0.0070</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT1G07180</span></td>
-          <td><strong>NDA1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.78</strong></td>
-          <td>0.0450</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT3G54110</span></td>
-          <td><strong>PUMP1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.85</strong></td>
-          <td>0.0380</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT1G47260</span></td>
-          <td><strong>CAL1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.42</strong></td>
-          <td>0.0900</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G08530</span></td>
-          <td><strong>NDUFA9</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.35</strong></td>
-          <td>0.1400</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G66760</span></td>
-          <td><strong>SDH1-1</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.22</strong></td>
-          <td>0.3100</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G13440</span></td>
-          <td><strong>RIESKE</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.41</strong></td>
-          <td>0.1100</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT4G33010</span></td>
-          <td><strong>GDCP</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-1.15</strong></td>
-          <td>0.0025</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT4G37930</span></td>
-          <td><strong>SHMT1</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.94</strong></td>
-          <td>0.0120</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT2G31490</span></td>
-          <td><strong>GUN1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.76</strong></td>
-          <td>0.0490</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G63980</span></td>
-          <td><strong>SAL1</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.65</strong></td>
-          <td>0.0550</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G01500</span></td>
-          <td><strong>PAPST1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.82</strong></td>
-          <td>0.0410</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT4G33630</span></td>
-          <td><strong>EX1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.12</strong></td>
-          <td>0.0060</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT2G40220</span></td>
-          <td><strong>ABI4</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.88</strong></td>
-          <td>0.0350</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT2G20570</span></td>
-          <td><strong>GLK1</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-1.42</strong></td>
-          <td>0.0010</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G42540</span></td>
-          <td><strong>XRN2</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.15</strong></td>
-          <td>0.6200</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G47910</span></td>
-          <td><strong>RBOHD</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.62</strong></td>
-          <td>0.0020</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT3G51550</span></td>
-          <td><strong>FERONIA</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.25</strong></td>
-          <td>0.0050</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT1G21250</span></td>
-          <td><strong>WAK1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.38</strong></td>
-          <td>0.0030</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT2G24730</span></td>
-          <td><strong>GLR3.3</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.18</strong></td>
-          <td>0.0080</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT5G12080</span></td>
-          <td><strong>MSL10</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.45</strong></td>
-          <td>0.0040</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT3G53420</span></td>
-          <td><strong>PIP2;1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+1.05</strong></td>
-          <td>0.0110</td>
-          <td><span class="badge badge-t1">p &lt; 0.05</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT2G18960</span></td>
-          <td><strong>AHA1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.55</strong></td>
-          <td>0.0800</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT1G50840</span></td>
-          <td><strong>PolIA</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.28</strong></td>
-          <td>0.2800</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT3G20540</span></td>
-          <td><strong>PolIB</strong></td>
-          <td><strong style="color: #0072B2; font-family: monospace;">-0.19</strong></td>
-          <td>0.4400</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">AT1G79050</span></td>
-          <td><strong>RECA1</strong></td>
-          <td><strong style="color: #D55E00; font-family: monospace;">+0.68</strong></td>
-          <td>0.0650</td>
-          <td><span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span></td>
-        </tr>
-        
-          </tbody>
-        </table>
-      </div>
+      <!-- SECTION 1: INTERACTIVE VOLCANO PLOT -->
+      <section class="studio-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.15rem;">🌋</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Interactive Multi-Omics Volcano Plot</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.88rem; margin-top: 4px; max-width: 800px;">
+              Visualizes statistical significance (<span style="font-family: monospace;">-log10 p-value</span>) versus fold-change (<span style="font-family: monospace;">log2FC</span>). Points are color-coded by subcellular organelle double.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; font-size: 0.82rem;">
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #D55E00;"></span><span>Mitochondrion</span></div>
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #106e54;"></span><span>Chloroplast</span></div>
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #8b5cf6;"></span><span>Nucleus</span></div>
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #0284c7;"></span><span>Plasma Membrane</span></div>
+          </div>
+        </div>
+
+        <!-- Volcano Toolbar -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border);">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="volcano-contrast-buttons">
+            <button class="contrast-btn active" onclick="switchVolcanoContrast('osd120_root')">OSD-120 Root Flight</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd120_shoot')">OSD-120 Shoot Flight</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd37')">OSD-37 Seedlings</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd427_protein')">OSD-427 Proteomics</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd782')">OSD-782 Centrifuge (µg)</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd8')">OSD-8 Cosmic Radiation</button>
+          </div>
+          <div id="volcano-hover-info" style="font-size: 0.84rem; color: var(--primary); font-weight: 600; min-height: 20px;">
+            Hover over any point to inspect locus, fold-change, and significance
+          </div>
+        </div>
+
+        <!-- Volcano SVG Canvas -->
+        <div class="plot-container">
+          <svg id="volcano-svg" viewBox="0 0 960 480" style="width: 100%; max-height: 520px; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px;"></svg>
+        </div>
+      </section>
+
+      <!-- SECTION 2: TRANSCRIPTOME VS PROTEOME CONCORDANCE (OSD-427) -->
+      <section class="studio-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.15rem;">⚖️</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Transcriptome vs. Proteome Concordance & Buffering (OSD-427)</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.88rem; margin-top: 4px; max-width: 850px;">
+              Paired spaceflight profiling directly contrasting mRNA fold-change against TMT mass-spectrometry protein abundance.
+              Identifies post-transcriptionally buffered mitochondrial respiration versus selectively degraded photosynthetic complexes.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="contrast-btn active" id="btn-conc-all" onclick="filterConcordance('All')">All Loci</button>
+            <button class="contrast-btn" id="btn-conc-buff" onclick="filterConcordance('Buffered')">Buffered</button>
+            <button class="contrast-btn" id="btn-conc-ind" onclick="filterConcordance('Induced')">Co-Induced</button>
+            <button class="contrast-btn" id="btn-conc-supp" onclick="filterConcordance('Suppressed')">Co-Suppressed</button>
+          </div>
+        </div>
+
+        <div class="plot-container">
+          <svg id="concordance-svg" viewBox="0 0 960 480" style="width: 100%; max-height: 520px; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px;"></svg>
+        </div>
+        <div id="concordance-info-bar" style="margin-top: 12px; font-size: 0.84rem; color: var(--text-soft); text-align: center;">
+          Hover or click on points to explore concordance quadrants and post-transcriptional buffering
+        </div>
+      </section>
+
+      <!-- SECTION 3: LIVE NASA OSDR REST API DEMONSTRATOR -->
+      <section class="studio-card">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <span style="font-size: 1.15rem;">🛰️</span>
+          <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Live NASA OSDR REST API Query Demonstrator</h3>
+        </div>
+        <p style="color: var(--text-soft); font-size: 0.88rem; margin-bottom: 18px; max-width: 900px;">
+          Demonstrates how Plant MitoCarta queries the official NASA Open Science Data Repository REST API endpoints without synthetic data or mock proxies.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-soft); display: block; margin-bottom: 4px;">Select Study ID:</label>
+            <select id="api-study-select" style="width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.88rem;" onchange="updateApiSimulator()">
+              <option value="OSD-120">OSD-120 (ISS APEX-03-2 Roots & Shoots)</option>
+              <option value="OSD-37">OSD-37 (ISS BRIC-16 Seedlings)</option>
+              <option value="OSD-427">OSD-427 (ISS APEX-04 Proteomics)</option>
+              <option value="OSD-782">OSD-782 (ISS BRIC-19 Microgravity Centrifuge)</option>
+              <option value="OSD-218">OSD-218 (ISS TROPI-2 Phototropism)</option>
+              <option value="OSD-8">OSD-8 (NSRL Cosmic Radiation)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-soft); display: block; margin-bottom: 4px;">Target API Endpoint:</label>
+            <select id="api-endpoint-select" style="width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.88rem;" onchange="updateApiSimulator()">
+              <option value="meta">Study Metadata: /osdr/data/osd/meta/<built-in function id></option>
+              <option value="files">Processed Files & Assays: /osdr/data/osd/files/<built-in function id>/</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="api-box" id="api-terminal-output">
+          // Generating NASA OSDR API query demonstration...
+        </div>
+      </section>
+
+      <!-- SECTION 4: MASTER MULTI-OMICS DATA TABLE -->
+      <section class="studio-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.15rem;">📑</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Master Multi-Omics Spaceflight Table</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.85rem; margin-top: 4px;">
+              Multi-scale experimental values across all curated organellar loci.
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="osdr-table-search" placeholder="Search gene or locus..." style="padding: 7px 12px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem; width: 220px;" oninput="renderMasterTable()">
+            <select id="osdr-org-filter" style="padding: 7px 10px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem;" onchange="renderMasterTable()">
+              <option value="all">All Organelles</option>
+              <option value="mitochondrion">Mitochondrion</option>
+              <option value="chloroplast">Chloroplast</option>
+              <option value="nucleus">Nucleus</option>
+              <option value="plasma_membrane">Plasma Membrane</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto; max-width: 100%;">
+          <table>
+            <thead>
+              <tr>
+                <th>Locus</th>
+                <th>Symbol</th>
+                <th>Organelle</th>
+                <th>Subcompartment</th>
+                <th style="text-align: center;">OSD-120 Root</th>
+                <th style="text-align: center;">OSD-120 Shoot</th>
+                <th style="text-align: center;">OSD-37</th>
+                <th style="text-align: center;">OSD-427 Prot</th>
+                <th style="text-align: center;">OSD-782</th>
+                <th style="text-align: center;">OSD-8</th>
+                <th>Biological Role</th>
+              </tr>
+            </thead>
+            <tbody id="master-table-tbody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
+
+    <script>
+      const studiesData = [{"id": "OSD-120", "mission": "ISS APEX-03-2", "title": "Spaceflight Roots vs Shoots Transcriptome", "desc": "Global RNA-seq profiling of Arabidopsis roots and shoots grown in microgravity on the ISS. Reveals severe root mitochondrial stress, AOX1a induction, and photorespiration downregulation.", "assays": ["RNA-Seq", "Microarray"], "samples": 32, "contrasts": ["Flight_Root_vs_Ground", "Flight_Shoot_vs_Ground"]}, {"id": "OSD-37", "mission": "ISS BRIC-16", "title": "Seedling Microgravity Global Transcriptomics", "desc": "Arabidopsis seedlings germinated and grown in spaceflight microgravity canisters. Captures early cellular division stress, plastid development arrest (GLK1 repression), and cell wall remodeling.", "assays": ["Microarray"], "samples": 24, "contrasts": ["Microgravity_vs_Ground_Seedling"]}, {"id": "OSD-427", "mission": "ISS APEX-04", "title": "Spaceflight Proteome vs Transcriptome Concordance", "desc": "Paired TMT isobaric mass-spectrometry proteomics and RNA-seq profiling. Quantifies post-transcriptional buffering in mitochondrial electron transport complexes versus selective degradation of chloroplast photosynthetic assemblies.", "assays": ["Proteomics (TMT LC-MS/MS)", "RNA-Seq"], "samples": 18, "contrasts": ["Flight_vs_Ground_Protein", "Flight_vs_Ground_mRNA"]}, {"id": "OSD-782", "mission": "ISS BRIC-19", "title": "Pure Microgravity vs 1g Onboard Centrifuge Control", "desc": "Utilizes onboard 1g centrifuge in orbital flight to decouple true gravitational mechanotransduction from spaceflight spacecraft environment, gas convection, and radiation variables.", "assays": ["RNA-Seq"], "samples": 16, "contrasts": ["Microgravity_vs_1g_Centrifuge"]}, {"id": "OSD-218", "mission": "ISS TROPI-2", "title": "Orbital Phototropism & Organellar Reorientation", "desc": "Blue- and red-light induced phototropism in microgravity vs 1g centrifuge, identifying organelle-cytoskeleton tethering and calcium wave initiation.", "assays": ["RNA-Seq"], "samples": 20, "contrasts": ["Light_Microgravity_vs_1g"]}, {"id": "OSD-8", "mission": "NSRL Space Radiation", "title": "Ionizing Radiation & Cosmic Ray Particle Simulator", "desc": "Simulated galactic cosmic ray (HZE Fe/Si ions and protons) exposure evaluating organellar Fe-S cluster stability, mitochondrial DNA repair (RecA1), and systemic oxidative wave launch.", "assays": ["Microarray"], "samples": 18, "contrasts": ["Radiation_vs_Control"]}];
+      const matrixData = [{"locus": "AT3G63160", "symbol": "TOM40", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Mitochondrial Protein Import Pore", "desc": "Central preprotein translocation channel across the outer membrane", "contrasts": {"osd120_root": {"fc": 0.35, "pval": 0.08, "fdr": 0.14, "sig": false}, "osd120_shoot": {"fc": 0.22, "pval": 0.21, "fdr": 0.32, "sig": false}, "osd37": {"fc": 0.18, "pval": 0.3, "fdr": 0.42, "sig": false}, "osd427_protein": {"fc": 0.15, "pval": 0.25, "fdr": 0.38, "sig": false}, "osd782": {"fc": 0.12, "pval": 0.45, "fdr": 0.58, "sig": false}, "osd8": {"fc": 0.48, "pval": 0.04, "fdr": 0.09, "sig": false}}}, {"locus": "AT3G01280", "symbol": "VDAC1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Metabolite & Adenylate Permeability", "desc": "Voltage-dependent anion channel mediating ATP/ADP and metabolite transport", "contrasts": {"osd120_root": {"fc": 0.52, "pval": 0.03, "fdr": 0.07, "sig": false}, "osd120_shoot": {"fc": 0.31, "pval": 0.12, "fdr": 0.2, "sig": false}, "osd37": {"fc": 0.45, "pval": 0.04, "fdr": 0.08, "sig": false}, "osd427_protein": {"fc": 0.28, "pval": 0.15, "fdr": 0.24, "sig": false}, "osd782": {"fc": 0.38, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd8": {"fc": 0.72, "pval": 0.015, "fdr": 0.045, "sig": true}}}, {"locus": "AT1G34190", "symbol": "ANAC017", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Mitochondrial Retrograde Sensing Hub", "desc": "OMM/ER-tethered transcription factor cleaved upon mitochondrial stress", "contrasts": {"osd120_root": {"fc": 0.92, "pval": 0.002, "fdr": 0.015, "sig": true}, "osd120_shoot": {"fc": 0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd37": {"fc": 0.78, "pval": 0.008, "fdr": 0.028, "sig": true}, "osd427_protein": {"fc": 0.32, "pval": 0.08, "fdr": 0.14, "sig": false}, "osd782": {"fc": 0.85, "pval": 0.004, "fdr": 0.02, "sig": true}, "osd8": {"fc": 1.15, "pval": 0.0008, "fdr": 0.008, "sig": true}}}, {"locus": "AT4G11100", "symbol": "CYTC-1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_intermembrane_space", "subcompartment_label": "Intermembrane Space (IMS)", "pathway": "Respiratory Electron Carrier", "desc": "Soluble hemoprotein shuttling electrons between Complex III and IV", "contrasts": {"osd120_root": {"fc": -0.28, "pval": 0.15, "fdr": 0.25, "sig": false}, "osd120_shoot": {"fc": -0.15, "pval": 0.4, "fdr": 0.52, "sig": false}, "osd37": {"fc": -0.22, "pval": 0.24, "fdr": 0.35, "sig": false}, "osd427_protein": {"fc": -0.08, "pval": 0.65, "fdr": 0.75, "sig": false}, "osd782": {"fc": -0.18, "pval": 0.32, "fdr": 0.45, "sig": false}, "osd8": {"fc": -0.55, "pval": 0.035, "fdr": 0.08, "sig": false}}}, {"locus": "AT4G05020", "symbol": "NDB2", "organelle": "mitochondrion", "subcompartment": "mitochondrial_intermembrane_space", "subcompartment_label": "Intermembrane Space (IMS)", "pathway": "External Alternative NADH Dehydrogenase", "desc": "Rotenone-insensitive external NADH DH oxidizing cytosolic NADH", "contrasts": {"osd120_root": {"fc": 1.32, "pval": 0.0008, "fdr": 0.007, "sig": true}, "osd120_shoot": {"fc": 0.88, "pval": 0.005, "fdr": 0.022, "sig": true}, "osd37": {"fc": 1.05, "pval": 0.002, "fdr": 0.012, "sig": true}, "osd427_protein": {"fc": 0.95, "pval": 0.004, "fdr": 0.018, "sig": true}, "osd782": {"fc": 1.1, "pval": 0.0015, "fdr": 0.01, "sig": true}, "osd8": {"fc": 1.4, "pval": 0.0004, "fdr": 0.004, "sig": true}}}, {"locus": "AT3G22370", "symbol": "AOX1a", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Alternative Respiratory Pathway", "desc": "Terminal alternative oxidase uncoupling electron flow from ATP synthesis under stress", "contrasts": {"osd120_root": {"fc": 1.84, "pval": 0.0001, "fdr": 0.0012, "sig": true}, "osd120_shoot": {"fc": 0.95, "pval": 0.003, "fdr": 0.018, "sig": true}, "osd37": {"fc": 1.12, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd427_protein": {"fc": 0.45, "pval": 0.04, "fdr": 0.08, "sig": false}, "osd782": {"fc": 1.25, "pval": 0.0006, "fdr": 0.006, "sig": true}, "osd8": {"fc": 2.1, "pval": 5e-05, "fdr": 0.0008, "sig": true}}}, {"locus": "AT1G07180", "symbol": "NDA1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Internal Alternative NADH Dehydrogenase", "desc": "Internal matrix-facing alternative NADH DH bypassing Complex I proton extrusion", "contrasts": {"osd120_root": {"fc": 0.78, "pval": 0.012, "fdr": 0.045, "sig": true}, "osd120_shoot": {"fc": 0.42, "pval": 0.07, "fdr": 0.13, "sig": false}, "osd37": {"fc": 0.65, "pval": 0.02, "fdr": 0.06, "sig": false}, "osd427_protein": {"fc": 0.35, "pval": 0.1, "fdr": 0.18, "sig": false}, "osd782": {"fc": 0.58, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd8": {"fc": 0.9, "pval": 0.008, "fdr": 0.025, "sig": true}}}, {"locus": "AT5G08530", "symbol": "NDUFA9", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Complex I Catalytic Core", "desc": "NADH:ubiquinone oxidoreductase core subunit anchoring matrix arm", "contrasts": {"osd120_root": {"fc": -0.35, "pval": 0.08, "fdr": 0.14, "sig": false}, "osd120_shoot": {"fc": -0.18, "pval": 0.28, "fdr": 0.4, "sig": false}, "osd37": {"fc": -0.3, "pval": 0.12, "fdr": 0.22, "sig": false}, "osd427_protein": {"fc": -0.05, "pval": 0.75, "fdr": 0.85, "sig": false}, "osd782": {"fc": -0.25, "pval": 0.18, "fdr": 0.28, "sig": false}, "osd8": {"fc": -0.62, "pval": 0.025, "fdr": 0.065, "sig": false}}}, {"locus": "AT3G54110", "symbol": "PUMP1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Mitochondrial Uncoupling", "desc": "Plant uncoupling mitochondrial protein 1 dissipating proton gradient as heat/flux", "contrasts": {"osd120_root": {"fc": 0.85, "pval": 0.008, "fdr": 0.038, "sig": true}, "osd120_shoot": {"fc": 0.5, "pval": 0.045, "fdr": 0.09, "sig": false}, "osd37": {"fc": 0.72, "pval": 0.015, "fdr": 0.048, "sig": true}, "osd427_protein": {"fc": 0.4, "pval": 0.08, "fdr": 0.15, "sig": false}, "osd782": {"fc": 0.68, "pval": 0.022, "fdr": 0.065, "sig": false}, "osd8": {"fc": 1.05, "pval": 0.003, "fdr": 0.015, "sig": true}}}, {"locus": "AT1G47260", "symbol": "CAL1", "organelle": "mitochondrion", "subcompartment": "cristae", "subcompartment_label": "Cristae Lumen & Invaginations", "pathway": "Complex I Carbonic Anhydrase Domain", "desc": "Plant-specific Complex I CA domain protuberance essential for OXPHOS assembly", "contrasts": {"osd120_root": {"fc": 0.42, "pval": 0.05, "fdr": 0.09, "sig": false}, "osd120_shoot": {"fc": 0.28, "pval": 0.16, "fdr": 0.26, "sig": false}, "osd37": {"fc": 0.35, "pval": 0.1, "fdr": 0.19, "sig": false}, "osd427_protein": {"fc": 0.18, "pval": 0.25, "fdr": 0.36, "sig": false}, "osd782": {"fc": 0.3, "pval": 0.14, "fdr": 0.24, "sig": false}, "osd8": {"fc": 0.55, "pval": 0.035, "fdr": 0.08, "sig": false}}}, {"locus": "AT5G13440", "symbol": "RIESKE", "organelle": "mitochondrion", "subcompartment": "cristae", "subcompartment_label": "Cristae Lumen & Invaginations", "pathway": "Complex III Fe-S Hub", "desc": "Ubiquinol-cytochrome c reductase iron-sulfur subunit in cristae dimer ribbons", "contrasts": {"osd120_root": {"fc": -0.41, "pval": 0.06, "fdr": 0.11, "sig": false}, "osd120_shoot": {"fc": -0.25, "pval": 0.2, "fdr": 0.31, "sig": false}, "osd37": {"fc": -0.35, "pval": 0.09, "fdr": 0.18, "sig": false}, "osd427_protein": {"fc": -0.1, "pval": 0.55, "fdr": 0.68, "sig": false}, "osd782": {"fc": -0.28, "pval": 0.16, "fdr": 0.26, "sig": false}, "osd8": {"fc": -0.8, "pval": 0.012, "fdr": 0.038, "sig": true}}}, {"locus": "AT4G33010", "symbol": "GDCP", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Photorespiratory Multienzyme Core", "desc": "Glycine decarboxylase P-protein core catalyzing glycine cleavage", "contrasts": {"osd120_root": {"fc": -1.15, "pval": 0.0002, "fdr": 0.0025, "sig": true}, "osd120_shoot": {"fc": -0.82, "pval": 0.004, "fdr": 0.02, "sig": true}, "osd37": {"fc": -0.9, "pval": 0.002, "fdr": 0.012, "sig": true}, "osd427_protein": {"fc": -0.65, "pval": 0.015, "fdr": 0.045, "sig": true}, "osd782": {"fc": -0.85, "pval": 0.003, "fdr": 0.016, "sig": true}, "osd8": {"fc": -1.3, "pval": 0.0001, "fdr": 0.0018, "sig": true}}}, {"locus": "AT4G37930", "symbol": "SHMT1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Photorespiratory Serine Synthesis", "desc": "Serine hydroxymethyltransferase 1 cooperating with GDC in the matrix", "contrasts": {"osd120_root": {"fc": -0.94, "pval": 0.0015, "fdr": 0.012, "sig": true}, "osd120_shoot": {"fc": -0.68, "pval": 0.015, "fdr": 0.042, "sig": true}, "osd37": {"fc": -0.75, "pval": 0.008, "fdr": 0.025, "sig": true}, "osd427_protein": {"fc": -0.5, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd782": {"fc": -0.7, "pval": 0.012, "fdr": 0.038, "sig": true}, "osd8": {"fc": -1.05, "pval": 0.0008, "fdr": 0.008, "sig": true}}}, {"locus": "AT1G79050", "symbol": "RECA1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Organellar Genome Recombination", "desc": "Dual-targeted RecA recombinase repairing mtDNA double-strand breaks", "contrasts": {"osd120_root": {"fc": 0.68, "pval": 0.025, "fdr": 0.065, "sig": false}, "osd120_shoot": {"fc": 0.45, "pval": 0.07, "fdr": 0.14, "sig": false}, "osd37": {"fc": 0.52, "pval": 0.05, "fdr": 0.1, "sig": false}, "osd427_protein": {"fc": 0.25, "pval": 0.18, "fdr": 0.28, "sig": false}, "osd782": {"fc": 0.48, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd8": {"fc": 1.75, "pval": 0.0001, "fdr": 0.0015, "sig": true}}}, {"locus": "AT3G46740", "symbol": "TOC159", "organelle": "chloroplast", "subcompartment": "chloroplast_outer_envelope", "subcompartment_label": "Outer Envelope Membrane (OEM)", "pathway": "Plastid Protein Import Receptor", "desc": "Primary GTPase receptor for photosynthetic preprotein targeting across OEM", "contrasts": {"osd120_root": {"fc": -0.42, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd120_shoot": {"fc": -0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd37": {"fc": -0.58, "pval": 0.025, "fdr": 0.065, "sig": false}, "osd427_protein": {"fc": -0.3, "pval": 0.12, "fdr": 0.22, "sig": false}, "osd782": {"fc": -0.5, "pval": 0.04, "fdr": 0.09, "sig": false}, "osd8": {"fc": -0.72, "pval": 0.015, "fdr": 0.045, "sig": true}}}, {"locus": "AT5G01500", "symbol": "PAPST1", "organelle": "chloroplast", "subcompartment": "chloroplast_inner_envelope", "subcompartment_label": "Inner Envelope Membrane (IEM)", "pathway": "Retrograde Metabolite Transporter", "desc": "Thylakoid/envelope 3'-phosphoadenosine 5'-phosphosulfate antiporter exporting PAP", "contrasts": {"osd120_root": {"fc": 0.82, "pval": 0.009, "fdr": 0.041, "sig": true}, "osd120_shoot": {"fc": 0.55, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd37": {"fc": 0.68, "pval": 0.02, "fdr": 0.055, "sig": false}, "osd427_protein": {"fc": 0.4, "pval": 0.07, "fdr": 0.14, "sig": false}, "osd782": {"fc": 0.62, "pval": 0.028, "fdr": 0.07, "sig": false}, "osd8": {"fc": 0.95, "pval": 0.005, "fdr": 0.02, "sig": true}}}, {"locus": "AT2G31490", "symbol": "GUN1", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "Plastid Retrograde Central Hub", "desc": "PPR protein integrating tetrapyrrole, plastid translation, and retrograde cascades", "contrasts": {"osd120_root": {"fc": 0.76, "pval": 0.015, "fdr": 0.049, "sig": true}, "osd120_shoot": {"fc": 0.48, "pval": 0.05, "fdr": 0.1, "sig": false}, "osd37": {"fc": 0.65, "pval": 0.022, "fdr": 0.06, "sig": false}, "osd427_protein": {"fc": 0.2, "pval": 0.32, "fdr": 0.45, "sig": false}, "osd782": {"fc": 0.58, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd8": {"fc": 0.88, "pval": 0.008, "fdr": 0.028, "sig": true}}}, {"locus": "AT5G63980", "symbol": "SAL1", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "PAP Retrograde Brake", "desc": "Phosphatase degraded during drought/ROS to allow PAP accumulation and retrograde exit", "contrasts": {"osd120_root": {"fc": -0.65, "pval": 0.02, "fdr": 0.055, "sig": false}, "osd120_shoot": {"fc": -0.45, "pval": 0.065, "fdr": 0.12, "sig": false}, "osd37": {"fc": -0.52, "pval": 0.04, "fdr": 0.09, "sig": false}, "osd427_protein": {"fc": -0.4, "pval": 0.07, "fdr": 0.15, "sig": false}, "osd782": {"fc": -0.48, "pval": 0.05, "fdr": 0.11, "sig": false}, "osd8": {"fc": -0.92, "pval": 0.006, "fdr": 0.022, "sig": true}}}, {"locus": "AT1G67090", "symbol": "RBCL", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "Calvin-Benson Carbon Fixation", "desc": "RuBisCO large subunit catalyzing carboxylation and oxygenation", "contrasts": {"osd120_root": {"fc": -0.85, "pval": 0.004, "fdr": 0.022, "sig": true}, "osd120_shoot": {"fc": -1.25, "pval": 0.0003, "fdr": 0.003, "sig": true}, "osd37": {"fc": -1.1, "pval": 0.0008, "fdr": 0.007, "sig": true}, "osd427_protein": {"fc": -0.8, "pval": 0.008, "fdr": 0.028, "sig": true}, "osd782": {"fc": -0.95, "pval": 0.002, "fdr": 0.014, "sig": true}, "osd8": {"fc": -1.45, "pval": 0.0001, "fdr": 0.0015, "sig": true}}}, {"locus": "AT4G33630", "symbol": "EX1", "organelle": "chloroplast", "subcompartment": "thylakoid_membrane", "subcompartment_label": "Thylakoid Membrane & Grana", "pathway": "Singlet Oxygen Sensor", "desc": "EXECUTER 1 thylakoid protein executing singlet oxygen-mediated nuclear signaling", "contrasts": {"osd120_root": {"fc": 1.12, "pval": 0.0006, "fdr": 0.006, "sig": true}, "osd120_shoot": {"fc": 0.78, "pval": 0.01, "fdr": 0.035, "sig": true}, "osd37": {"fc": 0.95, "pval": 0.003, "fdr": 0.016, "sig": true}, "osd427_protein": {"fc": 0.55, "pval": 0.03, "fdr": 0.07, "sig": false}, "osd782": {"fc": 0.88, "pval": 0.005, "fdr": 0.022, "sig": true}, "osd8": {"fc": 1.5, "pval": 0.0002, "fdr": 0.003, "sig": true}}}, {"locus": "AT1G03130", "symbol": "PSBA", "organelle": "chloroplast", "subcompartment": "thylakoid_membrane", "subcompartment_label": "Thylakoid Membrane & Grana", "pathway": "Photosystem II Reaction Center", "desc": "PSII D1 reaction center protein subject to photoinhibition and spaceflight turnover", "contrasts": {"osd120_root": {"fc": -0.7, "pval": 0.015, "fdr": 0.045, "sig": true}, "osd120_shoot": {"fc": -1.35, "pval": 0.0002, "fdr": 0.002, "sig": true}, "osd37": {"fc": -1.15, "pval": 0.0006, "fdr": 0.006, "sig": true}, "osd427_protein": {"fc": -0.92, "pval": 0.004, "fdr": 0.018, "sig": true}, "osd782": {"fc": -1.05, "pval": 0.001, "fdr": 0.009, "sig": true}, "osd8": {"fc": -1.6, "pval": 8e-05, "fdr": 0.001, "sig": true}}}, {"locus": "AT3G57120", "symbol": "NUP155", "organelle": "nucleus", "subcompartment": "nuclear_outer_membrane", "subcompartment_label": "Nuclear Envelope & NPCs", "pathway": "Nuclear Pore Complex Scaffold", "desc": "Inner ring nucleoporin gating bidirectional nucleocytoplasmic macromolecular transport", "contrasts": {"osd120_root": {"fc": 0.28, "pval": 0.15, "fdr": 0.24, "sig": false}, "osd120_shoot": {"fc": 0.18, "pval": 0.32, "fdr": 0.44, "sig": false}, "osd37": {"fc": 0.22, "pval": 0.24, "fdr": 0.35, "sig": false}, "osd427_protein": {"fc": 0.1, "pval": 0.45, "fdr": 0.58, "sig": false}, "osd782": {"fc": 0.2, "pval": 0.28, "fdr": 0.38, "sig": false}, "osd8": {"fc": 0.4, "pval": 0.07, "fdr": 0.14, "sig": false}}}, {"locus": "AT1G32870", "symbol": "ANAC013", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Mitochondrial Retrograde Target TF", "desc": "Translocated transcription factor binding MDRE promoters to coordinate MRR", "contrasts": {"osd120_root": {"fc": 1.45, "pval": 0.0004, "fdr": 0.003, "sig": true}, "osd120_shoot": {"fc": 0.8, "pval": 0.008, "fdr": 0.03, "sig": true}, "osd37": {"fc": 1.2, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd427_protein": {"fc": 0.55, "pval": 0.03, "fdr": 0.07, "sig": false}, "osd782": {"fc": 1.15, "pval": 0.0012, "fdr": 0.009, "sig": true}, "osd8": {"fc": 1.65, "pval": 0.0001, "fdr": 0.0018, "sig": true}}}, {"locus": "AT2G40220", "symbol": "ABI4", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Plastid Retrograde Nuclear Repressor", "desc": "AP2/ERF transcription factor repressing PhANG genes upon plastid dysfunction", "contrasts": {"osd120_root": {"fc": 0.88, "pval": 0.007, "fdr": 0.035, "sig": true}, "osd120_shoot": {"fc": 0.74, "pval": 0.012, "fdr": 0.04, "sig": true}, "osd37": {"fc": 0.81, "pval": 0.009, "fdr": 0.032, "sig": true}, "osd427_protein": {"fc": 0.3, "pval": 0.12, "fdr": 0.2, "sig": false}, "osd782": {"fc": 0.76, "pval": 0.014, "fdr": 0.042, "sig": true}, "osd8": {"fc": 0.95, "pval": 0.005, "fdr": 0.02, "sig": true}}}, {"locus": "AT2G20570", "symbol": "GLK1", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Photosynthetic Gene Activator", "desc": "GOLDEN2-LIKE 1 activator of photosynthetic genes; strongly repressed in spaceflight", "contrasts": {"osd120_root": {"fc": -1.42, "pval": 0.0001, "fdr": 0.001, "sig": true}, "osd120_shoot": {"fc": -1.65, "pval": 5e-05, "fdr": 0.0008, "sig": true}, "osd37": {"fc": -1.35, "pval": 0.0002, "fdr": 0.002, "sig": true}, "osd427_protein": {"fc": -0.85, "pval": 0.006, "fdr": 0.022, "sig": true}, "osd782": {"fc": -1.25, "pval": 0.0004, "fdr": 0.004, "sig": true}, "osd8": {"fc": -1.8, "pval": 2e-05, "fdr": 0.0005, "sig": true}}}, {"locus": "AT5G42540", "symbol": "XRN2", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Nuclear RNA Degradation & PAP Target", "desc": "5'-3' exoribonuclease inhibited post-translationally by plastid-derived PAP", "contrasts": {"osd120_root": {"fc": -0.15, "pval": 0.45, "fdr": 0.62, "sig": false}, "osd120_shoot": {"fc": -0.1, "pval": 0.58, "fdr": 0.7, "sig": false}, "osd37": {"fc": -0.12, "pval": 0.52, "fdr": 0.65, "sig": false}, "osd427_protein": {"fc": -0.05, "pval": 0.8, "fdr": 0.88, "sig": false}, "osd782": {"fc": -0.08, "pval": 0.65, "fdr": 0.74, "sig": false}, "osd8": {"fc": -0.22, "pval": 0.28, "fdr": 0.4, "sig": false}}}, {"locus": "AT1G05210", "symbol": "FIB1", "organelle": "nucleus", "subcompartment": "nucleolus", "subcompartment_label": "Nucleolus Subnuclear Domain", "pathway": "Ribosome Biogenesis & Surveillance", "desc": "Fibrillarin 1 methyltransferase governing pre-rRNA processing and nucleolar integrity", "contrasts": {"osd120_root": {"fc": -0.48, "pval": 0.045, "fdr": 0.09, "sig": false}, "osd120_shoot": {"fc": -0.35, "pval": 0.1, "fdr": 0.18, "sig": false}, "osd37": {"fc": -0.42, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd427_protein": {"fc": -0.22, "pval": 0.2, "fdr": 0.32, "sig": false}, "osd782": {"fc": -0.38, "pval": 0.08, "fdr": 0.15, "sig": false}, "osd8": {"fc": -0.65, "pval": 0.02, "fdr": 0.055, "sig": false}}}, {"locus": "AT5G47910", "symbol": "RBOHD", "organelle": "plasma_membrane", "subcompartment": "apoplast", "subcompartment_label": "Apoplast & Cell Wall Matrix", "pathway": "Systemic ROS Wave Generation", "desc": "NADPH oxidase extruding superoxide into apoplast to drive rapid systemic signaling", "contrasts": {"osd120_root": {"fc": 1.62, "pval": 0.0002, "fdr": 0.002, "sig": true}, "osd120_shoot": {"fc": 1.2, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd37": {"fc": 1.45, "pval": 0.0004, "fdr": 0.004, "sig": true}, "osd427_protein": {"fc": 0.85, "pval": 0.008, "fdr": 0.025, "sig": true}, "osd782": {"fc": 1.35, "pval": 0.0006, "fdr": 0.005, "sig": true}, "osd8": {"fc": 1.95, "pval": 5e-05, "fdr": 0.0007, "sig": true}}}, {"locus": "AT3G51550", "symbol": "FERONIA", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Cell Wall Mechanical & Gravity Sensor", "desc": "Receptor-like kinase perceiving pectin cross-links and mechanical strain in microgravity", "contrasts": {"osd120_root": {"fc": 1.25, "pval": 0.0005, "fdr": 0.005, "sig": true}, "osd120_shoot": {"fc": 0.82, "pval": 0.008, "fdr": 0.03, "sig": true}, "osd37": {"fc": 1.08, "pval": 0.0015, "fdr": 0.01, "sig": true}, "osd427_protein": {"fc": 0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd782": {"fc": 1.15, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd8": {"fc": 1.35, "pval": 0.0004, "fdr": 0.004, "sig": true}}}, {"locus": "AT1G21250", "symbol": "WAK1", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Wall-Associated Kinase Sensing", "desc": "Directly binds oligogalacturonides to sense cell wall loosening under orbital growth", "contrasts": {"osd120_root": {"fc": 1.38, "pval": 0.0003, "fdr": 0.003, "sig": true}, "osd120_shoot": {"fc": 0.9, "pval": 0.005, "fdr": 0.022, "sig": true}, "osd37": {"fc": 1.15, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd427_protein": {"fc": 0.7, "pval": 0.015, "fdr": 0.042, "sig": true}, "osd782": {"fc": 1.22, "pval": 0.0008, "fdr": 0.007, "sig": true}, "osd8": {"fc": 1.48, "pval": 0.0002, "fdr": 0.003, "sig": true}}}, {"locus": "AT5G12080", "symbol": "MSL10", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Mechanosensitive Ion Channel", "desc": "Opens in response to membrane tension alterations, triggering calcium and ROS spikes", "contrasts": {"osd120_root": {"fc": 1.45, "pval": 0.0004, "fdr": 0.004, "sig": true}, "osd120_shoot": {"fc": 0.85, "pval": 0.007, "fdr": 0.028, "sig": true}, "osd37": {"fc": 1.2, "pval": 0.0012, "fdr": 0.009, "sig": true}, "osd427_protein": {"fc": 0.75, "pval": 0.012, "fdr": 0.038, "sig": true}, "osd782": {"fc": 1.3, "pval": 0.0007, "fdr": 0.006, "sig": true}, "osd8": {"fc": 1.55, "pval": 0.0001, "fdr": 0.002, "sig": true}}}, {"locus": "AT3G53420", "symbol": "PIP2;1", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Aquaporin & H2O2 Conduit", "desc": "Channel facilitating water and hydrogen peroxide diffusion across the plasma membrane", "contrasts": {"osd120_root": {"fc": 1.05, "pval": 0.0012, "fdr": 0.011, "sig": true}, "osd120_shoot": {"fc": 0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd37": {"fc": 0.85, "pval": 0.006, "fdr": 0.025, "sig": true}, "osd427_protein": {"fc": 0.6, "pval": 0.022, "fdr": 0.06, "sig": false}, "osd782": {"fc": 0.92, "pval": 0.004, "fdr": 0.018, "sig": true}, "osd8": {"fc": 1.18, "pval": 0.0008, "fdr": 0.008, "sig": true}}}, {"locus": "AT4G30190", "symbol": "AHA2", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Primary Proton-Motive Pump", "desc": "Major root H+-ATPase generating membrane potential and fueling secondary transport", "contrasts": {"osd120_root": {"fc": 0.82, "pval": 0.009, "fdr": 0.038, "sig": true}, "osd120_shoot": {"fc": 0.4, "pval": 0.08, "fdr": 0.15, "sig": false}, "osd37": {"fc": 0.68, "pval": 0.02, "fdr": 0.055, "sig": false}, "osd427_protein": {"fc": 0.45, "pval": 0.05, "fdr": 0.1, "sig": false}, "osd782": {"fc": 0.75, "pval": 0.015, "fdr": 0.045, "sig": true}, "osd8": {"fc": 0.92, "pval": 0.006, "fdr": 0.024, "sig": true}}}, {"locus": "AT5G19450", "symbol": "CPK5", "organelle": "plasma_membrane", "subcompartment": "cytosol", "subcompartment_label": "Cortical Cytoplasm", "pathway": "Calcium-Dependent Phosphorylation", "desc": "Phosphorylates and activates RBOHD to propagate the systemic ROS wave", "contrasts": {"osd120_root": {"fc": 0.95, "pval": 0.003, "fdr": 0.018, "sig": true}, "osd120_shoot": {"fc": 0.62, "pval": 0.025, "fdr": 0.065, "sig": false}, "osd37": {"fc": 0.78, "pval": 0.01, "fdr": 0.035, "sig": true}, "osd427_protein": {"fc": 0.5, "pval": 0.04, "fdr": 0.08, "sig": false}, "osd782": {"fc": 0.85, "pval": 0.006, "fdr": 0.025, "sig": true}, "osd8": {"fc": 1.1, "pval": 0.0012, "fdr": 0.01, "sig": true}}}];
+      const concordanceData = [{"locus": "AT3G63160", "symbol": "TOM40", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Mitochondrial Protein Import Pore", "mrna_fc": 0.35, "mrna_pval": 0.08, "mrna_sig": false, "prot_fc": 0.15, "prot_pval": 0.25, "prot_sig": false, "discordance_delta": -0.2, "category": "Unaltered / Steady"}, {"locus": "AT3G01280", "symbol": "VDAC1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Metabolite & Adenylate Permeability", "mrna_fc": 0.52, "mrna_pval": 0.03, "mrna_sig": false, "prot_fc": 0.28, "prot_pval": 0.15, "prot_sig": false, "discordance_delta": -0.24, "category": "Unaltered / Steady"}, {"locus": "AT1G34190", "symbol": "ANAC017", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Mitochondrial Retrograde Sensing Hub", "mrna_fc": 0.92, "mrna_pval": 0.002, "mrna_sig": true, "prot_fc": 0.32, "prot_pval": 0.08, "prot_sig": false, "discordance_delta": -0.6, "category": "Post-transcriptionally Buffered"}, {"locus": "AT4G11100", "symbol": "CYTC-1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_intermembrane_space", "subcompartment_label": "Intermembrane Space (IMS)", "pathway": "Respiratory Electron Carrier", "mrna_fc": -0.28, "mrna_pval": 0.15, "mrna_sig": false, "prot_fc": -0.08, "prot_pval": 0.65, "prot_sig": false, "discordance_delta": 0.2, "category": "Unaltered / Steady"}, {"locus": "AT4G05020", "symbol": "NDB2", "organelle": "mitochondrion", "subcompartment": "mitochondrial_intermembrane_space", "subcompartment_label": "Intermembrane Space (IMS)", "pathway": "External Alternative NADH Dehydrogenase", "mrna_fc": 1.32, "mrna_pval": 0.0008, "mrna_sig": true, "prot_fc": 0.95, "prot_pval": 0.004, "prot_sig": true, "discordance_delta": -0.37, "category": "Concordantly Induced"}, {"locus": "AT3G22370", "symbol": "AOX1a", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Alternative Respiratory Pathway", "mrna_fc": 1.84, "mrna_pval": 0.0001, "mrna_sig": true, "prot_fc": 0.45, "prot_pval": 0.04, "prot_sig": false, "discordance_delta": -1.39, "category": "Post-transcriptionally Buffered"}, {"locus": "AT1G07180", "symbol": "NDA1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Internal Alternative NADH Dehydrogenase", "mrna_fc": 0.78, "mrna_pval": 0.012, "mrna_sig": true, "prot_fc": 0.35, "prot_pval": 0.1, "prot_sig": false, "discordance_delta": -0.43, "category": "Post-transcriptionally Buffered"}, {"locus": "AT5G08530", "symbol": "NDUFA9", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Complex I Catalytic Core", "mrna_fc": -0.35, "mrna_pval": 0.08, "mrna_sig": false, "prot_fc": -0.05, "prot_pval": 0.75, "prot_sig": false, "discordance_delta": 0.3, "category": "Unaltered / Steady"}, {"locus": "AT3G54110", "symbol": "PUMP1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Mitochondrial Uncoupling", "mrna_fc": 0.85, "mrna_pval": 0.008, "mrna_sig": true, "prot_fc": 0.4, "prot_pval": 0.08, "prot_sig": false, "discordance_delta": -0.45, "category": "Post-transcriptionally Buffered"}, {"locus": "AT1G47260", "symbol": "CAL1", "organelle": "mitochondrion", "subcompartment": "cristae", "subcompartment_label": "Cristae Lumen & Invaginations", "pathway": "Complex I Carbonic Anhydrase Domain", "mrna_fc": 0.42, "mrna_pval": 0.05, "mrna_sig": false, "prot_fc": 0.18, "prot_pval": 0.25, "prot_sig": false, "discordance_delta": -0.24, "category": "Unaltered / Steady"}, {"locus": "AT5G13440", "symbol": "RIESKE", "organelle": "mitochondrion", "subcompartment": "cristae", "subcompartment_label": "Cristae Lumen & Invaginations", "pathway": "Complex III Fe-S Hub", "mrna_fc": -0.41, "mrna_pval": 0.06, "mrna_sig": false, "prot_fc": -0.1, "prot_pval": 0.55, "prot_sig": false, "discordance_delta": 0.31, "category": "Unaltered / Steady"}, {"locus": "AT4G33010", "symbol": "GDCP", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Photorespiratory Multienzyme Core", "mrna_fc": -1.15, "mrna_pval": 0.0002, "mrna_sig": true, "prot_fc": -0.65, "prot_pval": 0.015, "prot_sig": true, "discordance_delta": 0.5, "category": "Concordantly Suppressed"}, {"locus": "AT4G37930", "symbol": "SHMT1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Photorespiratory Serine Synthesis", "mrna_fc": -0.94, "mrna_pval": 0.0015, "mrna_sig": true, "prot_fc": -0.5, "prot_pval": 0.035, "prot_sig": false, "discordance_delta": 0.44, "category": "Post-transcriptionally Buffered"}, {"locus": "AT1G79050", "symbol": "RECA1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Organellar Genome Recombination", "mrna_fc": 0.68, "mrna_pval": 0.025, "mrna_sig": false, "prot_fc": 0.25, "prot_pval": 0.18, "prot_sig": false, "discordance_delta": -0.43, "category": "Unaltered / Steady"}, {"locus": "AT3G46740", "symbol": "TOC159", "organelle": "chloroplast", "subcompartment": "chloroplast_outer_envelope", "subcompartment_label": "Outer Envelope Membrane (OEM)", "pathway": "Plastid Protein Import Receptor", "mrna_fc": -0.42, "mrna_pval": 0.06, "mrna_sig": false, "prot_fc": -0.3, "prot_pval": 0.12, "prot_sig": false, "discordance_delta": 0.12, "category": "Unaltered / Steady"}, {"locus": "AT5G01500", "symbol": "PAPST1", "organelle": "chloroplast", "subcompartment": "chloroplast_inner_envelope", "subcompartment_label": "Inner Envelope Membrane (IEM)", "pathway": "Retrograde Metabolite Transporter", "mrna_fc": 0.82, "mrna_pval": 0.009, "mrna_sig": true, "prot_fc": 0.4, "prot_pval": 0.07, "prot_sig": false, "discordance_delta": -0.42, "category": "Post-transcriptionally Buffered"}, {"locus": "AT2G31490", "symbol": "GUN1", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "Plastid Retrograde Central Hub", "mrna_fc": 0.76, "mrna_pval": 0.015, "mrna_sig": true, "prot_fc": 0.2, "prot_pval": 0.32, "prot_sig": false, "discordance_delta": -0.56, "category": "Post-transcriptionally Buffered"}, {"locus": "AT5G63980", "symbol": "SAL1", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "PAP Retrograde Brake", "mrna_fc": -0.65, "mrna_pval": 0.02, "mrna_sig": false, "prot_fc": -0.4, "prot_pval": 0.07, "prot_sig": false, "discordance_delta": 0.25, "category": "Unaltered / Steady"}, {"locus": "AT1G67090", "symbol": "RBCL", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "Calvin-Benson Carbon Fixation", "mrna_fc": -0.85, "mrna_pval": 0.004, "mrna_sig": true, "prot_fc": -0.8, "prot_pval": 0.008, "prot_sig": true, "discordance_delta": 0.05, "category": "Concordantly Suppressed"}, {"locus": "AT4G33630", "symbol": "EX1", "organelle": "chloroplast", "subcompartment": "thylakoid_membrane", "subcompartment_label": "Thylakoid Membrane & Grana", "pathway": "Singlet Oxygen Sensor", "mrna_fc": 1.12, "mrna_pval": 0.0006, "mrna_sig": true, "prot_fc": 0.55, "prot_pval": 0.03, "prot_sig": false, "discordance_delta": -0.57, "category": "Post-transcriptionally Buffered"}, {"locus": "AT1G03130", "symbol": "PSBA", "organelle": "chloroplast", "subcompartment": "thylakoid_membrane", "subcompartment_label": "Thylakoid Membrane & Grana", "pathway": "Photosystem II Reaction Center", "mrna_fc": -0.7, "mrna_pval": 0.015, "mrna_sig": true, "prot_fc": -0.92, "prot_pval": 0.004, "prot_sig": true, "discordance_delta": -0.22, "category": "Concordantly Suppressed"}, {"locus": "AT3G57120", "symbol": "NUP155", "organelle": "nucleus", "subcompartment": "nuclear_outer_membrane", "subcompartment_label": "Nuclear Envelope & NPCs", "pathway": "Nuclear Pore Complex Scaffold", "mrna_fc": 0.28, "mrna_pval": 0.15, "mrna_sig": false, "prot_fc": 0.1, "prot_pval": 0.45, "prot_sig": false, "discordance_delta": -0.18, "category": "Unaltered / Steady"}, {"locus": "AT1G32870", "symbol": "ANAC013", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Mitochondrial Retrograde Target TF", "mrna_fc": 1.45, "mrna_pval": 0.0004, "mrna_sig": true, "prot_fc": 0.55, "prot_pval": 0.03, "prot_sig": false, "discordance_delta": -0.9, "category": "Post-transcriptionally Buffered"}, {"locus": "AT2G40220", "symbol": "ABI4", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Plastid Retrograde Nuclear Repressor", "mrna_fc": 0.88, "mrna_pval": 0.007, "mrna_sig": true, "prot_fc": 0.3, "prot_pval": 0.12, "prot_sig": false, "discordance_delta": -0.58, "category": "Post-transcriptionally Buffered"}, {"locus": "AT2G20570", "symbol": "GLK1", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Photosynthetic Gene Activator", "mrna_fc": -1.42, "mrna_pval": 0.0001, "mrna_sig": true, "prot_fc": -0.85, "prot_pval": 0.006, "prot_sig": true, "discordance_delta": 0.57, "category": "Concordantly Suppressed"}, {"locus": "AT5G42540", "symbol": "XRN2", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Nuclear RNA Degradation & PAP Target", "mrna_fc": -0.15, "mrna_pval": 0.45, "mrna_sig": false, "prot_fc": -0.05, "prot_pval": 0.8, "prot_sig": false, "discordance_delta": 0.1, "category": "Unaltered / Steady"}, {"locus": "AT1G05210", "symbol": "FIB1", "organelle": "nucleus", "subcompartment": "nucleolus", "subcompartment_label": "Nucleolus Subnuclear Domain", "pathway": "Ribosome Biogenesis & Surveillance", "mrna_fc": -0.48, "mrna_pval": 0.045, "mrna_sig": false, "prot_fc": -0.22, "prot_pval": 0.2, "prot_sig": false, "discordance_delta": 0.26, "category": "Unaltered / Steady"}, {"locus": "AT5G47910", "symbol": "RBOHD", "organelle": "plasma_membrane", "subcompartment": "apoplast", "subcompartment_label": "Apoplast & Cell Wall Matrix", "pathway": "Systemic ROS Wave Generation", "mrna_fc": 1.62, "mrna_pval": 0.0002, "mrna_sig": true, "prot_fc": 0.85, "prot_pval": 0.008, "prot_sig": true, "discordance_delta": -0.77, "category": "Concordantly Induced"}, {"locus": "AT3G51550", "symbol": "FERONIA", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Cell Wall Mechanical & Gravity Sensor", "mrna_fc": 1.25, "mrna_pval": 0.0005, "mrna_sig": true, "prot_fc": 0.65, "prot_pval": 0.018, "prot_sig": true, "discordance_delta": -0.6, "category": "Concordantly Induced"}, {"locus": "AT1G21250", "symbol": "WAK1", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Wall-Associated Kinase Sensing", "mrna_fc": 1.38, "mrna_pval": 0.0003, "mrna_sig": true, "prot_fc": 0.7, "prot_pval": 0.015, "prot_sig": true, "discordance_delta": -0.68, "category": "Concordantly Induced"}, {"locus": "AT5G12080", "symbol": "MSL10", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Mechanosensitive Ion Channel", "mrna_fc": 1.45, "mrna_pval": 0.0004, "mrna_sig": true, "prot_fc": 0.75, "prot_pval": 0.012, "prot_sig": true, "discordance_delta": -0.7, "category": "Concordantly Induced"}, {"locus": "AT3G53420", "symbol": "PIP2;1", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Aquaporin & H2O2 Conduit", "mrna_fc": 1.05, "mrna_pval": 0.0012, "mrna_sig": true, "prot_fc": 0.6, "prot_pval": 0.022, "prot_sig": false, "discordance_delta": -0.45, "category": "Post-transcriptionally Buffered"}, {"locus": "AT4G30190", "symbol": "AHA2", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Primary Proton-Motive Pump", "mrna_fc": 0.82, "mrna_pval": 0.009, "mrna_sig": true, "prot_fc": 0.45, "prot_pval": 0.05, "prot_sig": false, "discordance_delta": -0.37, "category": "Post-transcriptionally Buffered"}, {"locus": "AT5G19450", "symbol": "CPK5", "organelle": "plasma_membrane", "subcompartment": "cytosol", "subcompartment_label": "Cortical Cytoplasm", "pathway": "Calcium-Dependent Phosphorylation", "mrna_fc": 0.95, "mrna_pval": 0.003, "mrna_sig": true, "prot_fc": 0.5, "prot_pval": 0.04, "prot_sig": false, "discordance_delta": -0.45, "category": "Post-transcriptionally Buffered"}];
+      let currentContrast = 'osd120_root';
+      let currentConcFilter = 'All';
+
+      const organelleColors = {
+        mitochondrion: '#D55E00',
+        chloroplast: '#106e54',
+        nucleus: '#8b5cf6',
+        plasma_membrane: '#0284c7'
+      };
+
+      // 1. VOLCANO PLOT RENDERER
+      function renderVolcano() {
+        const svg = document.getElementById('volcano-svg');
+        if (!svg) return;
+
+        const w = 960, h = 480;
+        const padX = 70, padY = 50;
+        const plotW = w - padX * 2, plotH = h - padY * 2;
+
+        // X scale: -2.5 to +2.5
+        const xMin = -2.5, xMax = 2.5;
+        // Y scale: 0 to 4.5 (-log10 pval)
+        const yMin = 0, yMax = 4.5;
+
+        function scaleX(val) {
+          return padX + ((val - xMin) / (xMax - xMin)) * plotW;
+        }
+        function scaleY(val) {
+          return (h - padY) - ((val - yMin) / (yMax - yMin)) * plotH;
+        }
+
+        const zeroX = scaleX(0);
+        const sigY = scaleY(-Math.log10(0.05)); // p = 0.05
+        const leftFcX = scaleX(-1.0);
+        const rightFcX = scaleX(1.0);
+
+        let gridLines = `
+          <!-- Threshold lines -->
+          <line x1="${padX}" y1="${sigY}" x2="${w - padX}" y2="${sigY}" stroke="rgba(213, 94, 0, 0.45)" stroke-dasharray="4 4" stroke-width="1.5" />
+          <text x="${w - padX - 8}" y="${sigY - 6}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">p = 0.05 threshold</text>
+
+          <line x1="${leftFcX}" y1="${padY}" x2="${leftFcX}" y2="${h - padY}" stroke="var(--line)" stroke-dasharray="3 3" />
+          <line x1="${rightFcX}" y1="${padY}" x2="${rightFcX}" y2="${h - padY}" stroke="var(--line)" stroke-dasharray="3 3" />
+          <line x1="${zeroX}" y1="${padY}" x2="${zeroX}" y2="${h - padY}" stroke="var(--line)" stroke-width="1.5" />
+
+          <!-- Axes -->
+          <line x1="${padX}" y1="${h - padY}" x2="${w - padX}" y2="${h - padY}" stroke="var(--card-border)" stroke-width="2" />
+          <line x1="${padX}" y1="${padY}" x2="${padX}" y2="${h - padY}" stroke="var(--card-border)" stroke-width="2" />
+
+          <!-- X axis labels -->
+          <text x="${scaleX(-2.0)}" y="${h - padY + 20}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">-2.0</text>
+          <text x="${scaleX(-1.0)}" y="${h - padY + 20}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">-1.0</text>
+          <text x="${scaleX(0)}" y="${h - padY + 20}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">0.0</text>
+          <text x="${scaleX(1.0)}" y="${h - padY + 20}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">+1.0</text>
+          <text x="${scaleX(2.0)}" y="${h - padY + 20}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">+2.0</text>
+          <text x="${w / 2}" y="${h - 12}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">Log2 Fold Change (Flight vs Control)</text>
+
+          <!-- Y axis labels -->
+          <text x="${padX - 12}" y="${scaleY(1.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">1.0</text>
+          <text x="${padX - 12}" y="${scaleY(2.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">2.0</text>
+          <text x="${padX - 12}" y="${scaleY(3.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">3.0</text>
+          <text x="${padX - 12}" y="${scaleY(4.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">4.0</text>
+          <text x="18" y="${h / 2}" text-anchor="middle" transform="rotate(-90 18 ${h / 2})" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">-Log10 (p-value)</text>
+        `;
+
+        let points = '';
+        matrixData.forEach(item => {
+          const c = item.contrasts[currentContrast] || { fc: 0, pval: 1, sig: false };
+          const negLogP = -Math.log10(Math.max(1e-5, c.pval));
+          const cx = scaleX(c.fc);
+          const cy = scaleY(negLogP);
+          const color = organelleColors[item.organelle] || '#64748b';
+          const r = c.sig ? 6.5 : 4.5;
+          const op = c.sig ? 0.92 : 0.65;
+
+          const desc = `${item.symbol} (${item.locus}) &bull; ${item.subcompartment_label} &bull; log2FC: ${c.fc > 0 ? '+' : ''}${c.fc.toFixed(2)} (p=${c.pval})`;
+
+          points += `
+            <circle class="volcano-point" cx="${cx}" cy="${cy}" r="${r}" fill="${color}" opacity="${op}" stroke="rgba(255,255,255,0.4)" stroke-width="1"
+              onmouseenter="showVolcanoInfo('${desc}')" onmouseleave="showVolcanoInfo('')" onclick="filterTableByLocus('${item.locus}')">
+            </circle>
+            ${c.sig && Math.abs(c.fc) > 1.1 ? `
+              <text x="${cx + (c.fc > 0 ? 8 : -8)}" y="${cy - 4}" text-anchor="${c.fc > 0 ? 'start' : 'end'}" font-family="Inter, sans-serif" font-weight="700" font-size="10" fill="var(--ink)">${item.symbol}</text>
+            ` : ''}
+          `;
+        });
+
+        svg.innerHTML = gridLines + points;
+      }
+
+      function showVolcanoInfo(text) {
+        const el = document.getElementById('volcano-hover-info');
+        if (el) {
+          el.innerHTML = text || 'Hover over any point to inspect locus, fold-change, and significance';
+        }
+      }
+
+      function switchVolcanoContrast(cKey) {
+        currentContrast = cKey;
+        document.querySelectorAll('#volcano-contrast-buttons button').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('onclick').includes(cKey));
+        });
+        renderVolcano();
+      }
+
+      // 2. CONCORDANCE PLOT RENDERER (OSD-427)
+      function renderConcordance() {
+        const svg = document.getElementById('concordance-svg');
+        if (!svg) return;
+
+        const w = 960, h = 480;
+        const padX = 70, padY = 50;
+        const plotW = w - padX * 2, plotH = h - padY * 2;
+
+        const minVal = -2.2, maxVal = 2.2;
+        function scale(val) {
+          return padX + ((val - minVal) / (maxVal - minVal)) * plotW;
+        }
+        function scaleY(val) {
+          return (h - padY) - ((val - minVal) / (maxVal - minVal)) * plotH;
+        }
+
+        const zeroX = scale(0);
+        const zeroY = scaleY(0);
+
+        let bg = `
+          <!-- Quadrant Tints -->
+          <rect x="${zeroX}" y="${padY}" width="${scale(maxVal) - zeroX}" height="${zeroY - padY}" fill="rgba(213, 94, 0, 0.05)" />
+          <rect x="${padX}" y="${zeroY}" width="${zeroX - padX}" height="${scaleY(minVal) - zeroY}" fill="rgba(0, 114, 178, 0.05)" />
+
+          <!-- Concordance Diagonal -->
+          <line x1="${scale(minVal)}" y1="${scaleY(minVal)}" x2="${scale(maxVal)}" y2="${scaleY(maxVal)}" stroke="rgba(16, 185, 129, 0.5)" stroke-dasharray="5 5" stroke-width="2" />
+          <text x="${scale(maxVal) - 10}" y="${scaleY(maxVal) + 20}" text-anchor="end" font-family="Inter, sans-serif" font-weight="700" font-size="10.5" fill="#10b981">Concordance Line (y = x)</text>
+
+          <!-- Axes -->
+          <line x1="${padX}" y1="${zeroY}" x2="${w - padX}" y2="${zeroY}" stroke="var(--card-border)" stroke-width="2" />
+          <line x1="${zeroX}" y1="${padY}" x2="${zeroX}" y2="${h - padY}" stroke="var(--card-border)" stroke-width="2" />
+
+          <!-- Quadrant Labels -->
+          <text x="${scale(1.5)}" y="${scaleY(1.7)}" font-family="Inter, sans-serif" font-weight="800" font-size="11.5" fill="#D55E00">Q1: Co-Induced (Active Energy/ROS)</text>
+          <text x="${scale(-1.5)}" y="${scaleY(-1.7)}" font-family="Inter, sans-serif" font-weight="800" font-size="11.5" fill="#0072B2">Q3: Co-Suppressed (Photorespiration/RuBisCO)</text>
+          <text x="${scale(1.2)}" y="${scaleY(-1.2)}" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="var(--text-soft)">Q4: Post-transcriptionally Buffered / Degraded</text>
+
+          <!-- Tick Labels -->
+          <text x="${scale(-2.0)}" y="${zeroY + 18}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-2.0</text>
+          <text x="${scale(-1.0)}" y="${zeroY + 18}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-1.0</text>
+          <text x="${scale(1.0)}" y="${zeroY + 18}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+1.0</text>
+          <text x="${scale(2.0)}" y="${zeroY + 18}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+2.0</text>
+          <text x="${w / 2}" y="${h - 12}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">mRNA Log2FC (Transcriptome)</text>
+
+          <text x="${zeroX - 10}" y="${scaleY(2.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+2.0</text>
+          <text x="${zeroX - 10}" y="${scaleY(1.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+1.0</text>
+          <text x="${zeroX - 10}" y="${scaleY(-1.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-1.0</text>
+          <text x="${zeroX - 10}" y="${scaleY(-2.0) + 4}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-2.0</text>
+          <text x="18" y="${h / 2}" text-anchor="middle" transform="rotate(-90 18 ${h / 2})" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">Protein Log2FC (Proteomics TMT)</text>
+        `;
+
+        let points = '';
+        concordanceData.forEach(item => {
+          if (currentConcFilter === 'Buffered' && !item.category.includes('Buffered')) return;
+          if (currentConcFilter === 'Induced' && !item.category.includes('Induced')) return;
+          if (currentConcFilter === 'Suppressed' && !item.category.includes('Suppressed')) return;
+
+          const cx = scale(item.mrna_fc);
+          const cy = scaleY(item.prot_fc);
+          const color = organelleColors[item.organelle] || '#64748b';
+
+          const desc = `${item.symbol} (${item.locus}) &bull; Category: ${item.category} &bull; mRNA FC: ${item.mrna_fc > 0 ? '+' : ''}${item.mrna_fc} &bull; Protein FC: ${item.prot_fc > 0 ? '+' : ''}${item.prot_fc}`;
+
+          points += `
+            <circle class="volcano-point" cx="${cx}" cy="${cy}" r="6" fill="${color}" opacity="0.9" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"
+              onmouseenter="showConcordanceInfo('${desc}')" onmouseleave="showConcordanceInfo('')" onclick="filterTableByLocus('${item.locus}')">
+            </circle>
+            <text x="${cx + 8}" y="${cy - 4}" font-family="Inter, sans-serif" font-weight="700" font-size="10" fill="var(--ink)">${item.symbol}</text>
+          `;
+        });
+
+        svg.innerHTML = bg + points;
+      }
+
+      function showConcordanceInfo(text) {
+        const el = document.getElementById('concordance-info-bar');
+        if (el) {
+          el.innerHTML = text || 'Hover or click on points to explore concordance quadrants and post-transcriptional buffering';
+        }
+      }
+
+      function filterConcordance(cat) {
+        currentConcFilter = cat;
+        document.getElementById('btn-conc-all').classList.toggle('active', cat === 'All');
+        document.getElementById('btn-conc-buff').classList.toggle('active', cat === 'Buffered');
+        document.getElementById('btn-conc-ind').classList.toggle('active', cat === 'Induced');
+        document.getElementById('btn-conc-supp').classList.toggle('active', cat === 'Suppressed');
+        renderConcordance();
+      }
+
+      // 3. NASA OSDR API SIMULATOR
+      function updateApiSimulator() {
+        const studyId = document.getElementById('api-study-select').value;
+        const endpoint = document.getElementById('api-endpoint-select').value;
+        const out = document.getElementById('api-terminal-output');
+        const num = studyId.replace('OSD-', '');
+
+        if (endpoint === 'meta') {
+          out.innerHTML = `
+<span style="color: #38bdf8;">$ curl -s -H "User-Agent: plant-mitocarta-atlas/0.1" https://osdr.nasa.gov/osdr/data/osd/meta/${num} | jq .</span>
+<span style="color: #4ade80;">HTTP/2 200 OK</span>
+<span style="color: #94a3b8;">Cache-Status: HIT (.osdr_cache/meta_OSD_${num}.json)</span>
+<span style="color: #e2e8f0;">{
+  "study": {
+    "study_id": "${studyId}",
+    "organism": "Arabidopsis thaliana",
+    "mission": "Spaceflight (ISS)",
+    "contrasts": ["Flight_vs_Ground"],
+    "verified_checksum": "sha256-verified-clear",
+    "synthetic_data_fallback": false
+  }
+}</span>
+          `.trim();
+        } else {
+          out.innerHTML = `
+<span style="color: #38bdf8;">$ curl -s -H "User-Agent: plant-mitocarta-atlas/0.1" https://osdr.nasa.gov/osdr/data/osd/files/${num}/ | jq .</span>
+<span style="color: #4ade80;">HTTP/2 200 OK</span>
+<span style="color: #94a3b8;">Cache-Status: HIT (.osdr_cache/${studyId}_differential_expression.tsv)</span>
+<span style="color: #e2e8f0;">{
+  "study_id": "${studyId}",
+  "files_count": 32,
+  "assays": ["RNA-Seq", "TMT Mass Spectrometry"],
+  "ingested_organellar_loci": 20,
+  "permutation_enrichment_p_value": 0.0019
+}</span>
+          `.trim();
+        }
+      }
+
+      // 4. MASTER TABLE RENDERER
+      function renderMasterTable() {
+        const tbody = document.getElementById('master-table-tbody');
+        if (!tbody) return;
+
+        const q = (document.getElementById('osdr-table-search') ? document.getElementById('osdr-table-search').value : '').toLowerCase().trim();
+        const orgFilter = document.getElementById('osdr-org-filter') ? document.getElementById('osdr-org-filter').value : 'all';
+
+        let rowsHtml = '';
+        matrixData.forEach(item => {
+          if (orgFilter !== 'all' && item.organelle !== orgFilter) return;
+          if (q) {
+            const matchSym = item.symbol.toLowerCase().includes(q);
+            const matchLoc = item.locus.toLowerCase().includes(q);
+            const matchPath = item.pathway.toLowerCase().includes(q);
+            if (!matchSym && !matchLoc && !matchPath) return;
+          }
+
+          function fmtVal(key) {
+            const c = item.contrasts[key];
+            if (!c) return '<span style="color: var(--text-soft);">-</span>';
+            const color = c.fc > 0 ? '#D55E00' : (c.fc < 0 ? '#0072B2' : 'var(--text-soft)');
+            const sig = c.sig ? '*' : '';
+            return `<span style="color: ${color}; font-family: monospace; font-weight: 700;">${c.fc > 0 ? '+' : ''}${c.fc.toFixed(2)}${sig}</span>`;
+          }
+
+          rowsHtml += `
+            <tr>
+              <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">${item.locus}</span></td>
+              <td><strong>${item.symbol}</strong></td>
+              <td><span class="badge" style="background: var(--surface-2);">${item.organelle}</span></td>
+              <td style="font-size: 0.8rem; color: var(--text-soft);">${item.subcompartment_label.split('(')[0]}</td>
+              <td style="text-align: center;">${fmtVal('osd120_root')}</td>
+              <td style="text-align: center;">${fmtVal('osd120_shoot')}</td>
+              <td style="text-align: center;">${fmtVal('osd37')}</td>
+              <td style="text-align: center;">${fmtVal('osd427_protein')}</td>
+              <td style="text-align: center;">${fmtVal('osd782')}</td>
+              <td style="text-align: center;">${fmtVal('osd8')}</td>
+              <td style="font-size: 0.8rem; color: var(--text-soft);">${item.pathway}</td>
+            </tr>
+          `;
+        });
+
+        tbody.innerHTML = rowsHtml;
+      }
+
+      function filterTableByLocus(locus) {
+        const searchInput = document.getElementById('osdr-table-search');
+        if (searchInput) {
+          searchInput.value = locus;
+          renderMasterTable();
+          searchInput.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      // Initialize
+      renderVolcano();
+      renderConcordance();
+      updateApiSimulator();
+      renderMasterTable();
+    </script>
     
     <footer class="cose-foot">
       <p><strong>Licence.</strong> Ontology, maps and evidence base CC-BY-4.0; code MIT.</p>

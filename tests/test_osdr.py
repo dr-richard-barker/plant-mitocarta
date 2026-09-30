@@ -51,3 +51,34 @@ def test_specificity_permutation():
     assert res.n_loci == 4
     assert res.p_value <= 0.05
     assert res.significant is True
+
+
+def test_multiomics_matrix_and_studies():
+    from plant_mitocarta.osdr import get_available_studies, get_organellar_multiomics_matrix, get_concordance_dataset
+
+    studies = get_available_studies()
+    assert len(studies) >= 5
+    study_ids = [s["id"] for s in studies]
+    assert "OSD-120" in study_ids
+    assert "OSD-37" in study_ids
+    assert "OSD-427" in study_ids
+    assert "OSD-782" in study_ids
+
+    matrix = get_organellar_multiomics_matrix()
+    assert len(matrix) >= 20
+    # Check essential organelles are represented
+    organelles = {m["organelle"] for m in matrix}
+    assert organelles == {"mitochondrion", "chloroplast", "nucleus", "plasma_membrane"}
+
+    # Check key stress sentinels exist
+    loci = {m["locus"]: m for m in matrix}
+    assert "AT3G22370" in loci  # AOX1a
+    assert loci["AT3G22370"]["contrasts"]["osd120_root"]["fc"] > 1.0
+
+    # Test concordance dataset
+    conc = get_concordance_dataset()
+    assert len(conc) >= 20
+    aox_conc = [c for c in conc if c["symbol"] == "AOX1a"][0]
+    assert aox_conc["mrna_fc"] > 0
+    assert aox_conc["prot_fc"] > 0
+

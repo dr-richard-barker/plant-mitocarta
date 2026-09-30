@@ -456,6 +456,60 @@
       margin-top: 8px;
       font-size: 0.85rem;
     }
+    .heatmap-card {
+      margin-top: 36px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 24px;
+    }
+    .sort-btn {
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .sort-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .heat-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+    .heat-cell {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 8px 6px;
+      border-radius: 4px;
+      cursor: default;
+      transition: transform 0.1s ease;
+    }
+    .heat-cell:hover {
+      transform: scale(1.08);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      z-index: 2;
+      position: relative;
+    }
+    .heat-row {
+      transition: background-color 0.15s ease;
+    }
+    .heat-row:hover {
+      background: var(--surface-2) !important;
+    }
     
   </style>
 </head>
@@ -542,13 +596,98 @@
           <svg id="double-svg" viewBox="0 0 1600 1100" style="width: 100%; max-height: 700px; border-radius: 8px; background: var(--bg); border: 1px solid var(--card-border);"></svg>
         </section>
       </div>
+
+      <!-- SUBCOMPARTMENT MULTI-OMICS EXPRESSION & ABUNDANCE HEATMAP -->
+      <section class="heatmap-card" id="doubles-heatmap-section">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary); font-size: 1.15rem;">📊</span>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin: 0;">Subcompartment Multi-Omics Expression & Abundance Heatmap</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.92rem; margin-top: 6px; max-width: 950px;">
+              Direct molecular matrix quantifying spaceflight gene expression (<span style="font-family: monospace; font-weight: 600;">log2FC</span>) and protein abundance across organellar subcompartments. Synchronized with the active organelle double selected above.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--text-soft); background: var(--bg); padding: 8px 14px; border-radius: 6px; border: 1px solid var(--card-border);">
+            <span>Diverging Scale:</span>
+            <span style="color: #0072B2; font-weight: 700;">-2.0</span>
+            <div style="width: 80px; height: 10px; border-radius: 3px; background: linear-gradient(to right, #0072B2, #f1f5f9, #D55E00);"></div>
+            <span style="color: #D55E00; font-weight: 700;">+2.0 log2FC</span>
+          </div>
+        </div>
+
+        <!-- Heatmap Toolbar -->
+        <div class="heatmap-toolbar" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border);">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <div style="position: relative;">
+              <input type="text" id="heat-search" placeholder="Search gene symbol or locus..." style="padding: 7px 12px 7px 32px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem; width: 230px;" oninput="updateHeatmap()">
+              <span style="position: absolute; left: 10px; top: 8px; font-size: 0.85rem; color: var(--text-soft);">🔍</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-soft);">Organelle:</label>
+              <select id="heat-organelle-filter" style="padding: 6px 10px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem;" onchange="updateHeatmap()">
+                <option value="all">All Organelles (Synoptic)</option>
+                <option value="mitochondrion">Mitochondrion Only</option>
+                <option value="chloroplast">Chloroplast Only</option>
+                <option value="nucleus">Nucleus Only</option>
+                <option value="plasma_membrane">Plasma Membrane Only</option>
+              </select>
+            </div>
+            <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.84rem; color: var(--ink); cursor: pointer; margin-left: 6px;">
+              <input type="checkbox" id="heat-sig-only" onchange="updateHeatmap()" style="cursor: pointer;">
+              <span>Significant only (p &le; 0.05)</span>
+            </label>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 0.82rem; color: var(--text-soft); margin-right: 4px;">Sort:</span>
+            <button id="sort-comp-btn" class="sort-btn active" onclick="setHeatSort('compartment')">Compartment</button>
+            <button id="sort-fc-btn" class="sort-btn" onclick="setHeatSort('fc_desc')">Max |Log2FC|</button>
+            <button id="sort-sym-btn" class="sort-btn" onclick="setHeatSort('symbol')">Symbol</button>
+          </div>
+        </div>
+
+        <!-- Heatmap Table Container -->
+        <div style="overflow-x: auto; max-width: 100%;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.84rem;">
+            <thead>
+              <tr>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Compartment</th>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Symbol</th>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">AGI Locus</th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-120<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Root Flight</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-120<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Shoot Flight</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-37<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Seedlings</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-427<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Proteomics</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-782<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Centrifuge</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-8<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Radiation</span></th>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Biological Function</th>
+              </tr>
+            </thead>
+            <tbody id="heatmap-tbody">
+              <!-- Dynamically populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Heatmap Summary Metrics Bar -->
+        <div style="margin-top: 16px; padding: 12px 16px; background: var(--bg); border-radius: 6px; border: 1px solid var(--card-border); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.84rem;">
+          <div id="heat-metrics-left">Showing all organellar loci</div>
+          <div id="heat-metrics-right" style="color: var(--text-soft);">
+            Mean Spaceflight Log2FC: <strong id="heat-mean-fc" style="color: var(--primary);">+0.42</strong> &bull; Significant Fraction: <strong id="heat-sig-frac">68%</strong>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script>
       const doublesData = {"mitochondrion": {"name": "Plant Mitochondrion (Plant MitoCarta)", "go_cc": "GO:0005739", "desc": "Digital double featuring both conserved OXPHOS and plant-specific bypasses (AOX, CA domain, GDC photorespiration).", "subcomps": [{"id": "mitochondrial_outer_membrane", "label": "Outer Mitochondrial Membrane (OMM)", "go_cc": "GO:0005741", "desc": "TOM complex, VDAC channels, ANAC017/013 transmembrane cleavage anchors", "color": "#8c5618", "box": {"x": 20, "y": 20, "w": 920, "h": 80}}, {"id": "mitochondrial_intermembrane_space", "label": "Intermembrane Space (IMS)", "go_cc": "GO:0005758", "desc": "Mia40-Erv1 disulfide relay, Cytochrome c, external NDB dehydrogenases", "color": "#9e6522", "box": {"x": 20, "y": 115, "w": 920, "h": 80}}, {"id": "mitochondrial_inner_membrane", "label": "Inner Mitochondrial Membrane (IMM)", "go_cc": "GO:0005743", "desc": "Complexes I-V, AOX terminal bypass, internal NDA dehydrogenases, DTC carrier", "color": "#8c5618", "box": {"x": 20, "y": 210, "w": 920, "h": 80}}, {"id": "cristae", "label": "Cristae Lumen & Invaginations", "go_cc": "GO:0005746", "desc": "High-density respiratory chain proton-trapping folds and CA-domain", "color": "#6b3f0d", "box": {"x": 20, "y": 305, "w": 450, "h": 275}}, {"id": "mitochondrial_matrix", "label": "Mitochondrial Matrix", "go_cc": "GO:0005759", "desc": "TCA enzymes, Glycine Decarboxylase (GDC) photorespiration, Fe-S ISC machinery", "color": "#5c3407", "box": {"x": 490, "y": 305, "w": 450, "h": 275}}]}, "chloroplast": {"name": "Chloroplast Double (Plastidial Bioenergetics & Retrograde Engine)", "go_cc": "GO:0009507", "desc": "Digital double capturing light reactions, RuBisCO oxygenation, and the 4 plastid retrograde channels.", "subcomps": [{"id": "chloroplast_outer_envelope", "label": "Outer Envelope Membrane (OEM)", "go_cc": "GO:0009707", "desc": "TOC translocon complex and outer pores \u2022 Stromule initiation sites", "color": "#106e54", "box": {"x": 20, "y": 20, "w": 920, "h": 85}}, {"id": "chloroplast_inner_envelope", "label": "Inner Envelope Membrane (IEM)", "go_cc": "GO:0009706", "desc": "TIC complex, TPT translocator, DiT1 dicarboxylate carrier, PAPST1 transporter", "color": "#106e54", "box": {"x": 20, "y": 120, "w": 920, "h": 85}}, {"id": "chloroplast_stroma", "label": "Chloroplast Stroma (Plastidial Matrix)", "go_cc": "GO:0009570", "desc": "RuBisCO, Calvin-Benson cycle, GUN1 PPR hub, SAL1 phosphatase, MEcPP accumulation", "color": "#084736", "box": {"x": 20, "y": 220, "w": 920, "h": 175}}, {"id": "thylakoid_membrane", "label": "Thylakoid Membrane & Grana Stacks", "go_cc": "GO:0042651", "desc": "Photosystems II and I, Cytochrome b6f, ATP synthase, EXECUTER 1/2 singlet oxygen sensors", "color": "#063d2e", "box": {"x": 20, "y": 410, "w": 920, "h": 170}}]}, "nucleus": {"name": "Nucleus Double (Transcriptional Command & Retrograde Target)", "go_cc": "GO:0005634", "desc": "Digital double serving as the convergence hub for organellar signals driving nuclear reprogramming.", "subcomps": [{"id": "nuclear_outer_membrane", "label": "Nuclear Envelope & Nuclear Pore Complexes", "go_cc": "GO:0005640", "desc": "Outer/inner membranes and Nuclear Pore Complexes (NPC) importing translocated factors", "color": "#5c3569", "box": {"x": 20, "y": 20, "w": 920, "h": 90}}, {"id": "nucleoplasm", "label": "Nucleoplasm & Chromatin", "go_cc": "GO:0005654", "desc": "MDRE promoters, ANAC017/013 binding, ABI4, GLK1/2, XRN2/3 exoribonucleases", "color": "#3b2044", "box": {"x": 20, "y": 125, "w": 600, "h": 455}}, {"id": "nucleolus", "label": "Nucleolus Subnuclear Domain", "go_cc": "GO:0005730", "desc": "rRNA synthesis, ribosome biogenesis, and nucleolar stress surveillance", "color": "#2b1433", "box": {"x": 640, "y": 125, "w": 300, "h": 455}}]}, "plasma_membrane": {"name": "Plasma Membrane Double (Sensing, Gravity & Systemic Conduit)", "go_cc": "GO:0005886", "desc": "Digital double mediating mechanical/gravity perception and launching systemic ROS and Ca2+ waves.", "subcomps": [{"id": "apoplast", "label": "Apoplast & Cell Wall Matrix", "go_cc": "GO:0048046", "desc": "Pectin network, wall strain perception, apoplastic superoxide generated by RBOHD", "color": "#3d3d3d", "box": {"x": 20, "y": 20, "w": 920, "h": 175}}, {"id": "plasma_membrane", "label": "Plasma Membrane Lipid Bilayer", "go_cc": "GO:0005886", "desc": "FERONIA, WAK1, RBOHD, MSL10, GLR3.3/3.6, PIP2;1 aquaporin, AHA1 H+-ATPase", "color": "#1d4e6b", "box": {"x": 20, "y": 210, "w": 920, "h": 185}}, {"id": "cytosol", "label": "Cortical Cytoplasm", "go_cc": "GO:0005829", "desc": "Cytosolic calcium spikes, CPK phosphorylation of RBOHD, inward H2O2 flux", "color": "#264b63", "box": {"x": 20, "y": 410, "w": 920, "h": 170}}]}};
-      const projData = {"mitochondrion": {"mitochondrial_inner_membrane": {"val": 0.674, "sig": true, "p_val": 0.0012, "color": "#eac2a2", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G08530", "AT5G66760", "AT3G22370", "AT1G07180", "AT4G05020"]}, "cristae": {"val": 0.287, "sig": false, "p_val": 0.038, "color": "#f0dfd1", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G47260", "AT5G13440", "AT3G54110"]}, "mitochondrial_matrix": {"val": -0.376, "sig": false, "p_val": 0.0025, "color": "#c6dce8", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G50840", "AT3G20540", "AT1G79050", "AT4G33010", "AT4G37930"]}}, "chloroplast": {"chloroplast_inner_envelope": {"val": 0.82, "sig": true, "p_val": 0.041, "color": "#e7b790", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G01500"]}, "chloroplast_stroma": {"val": 0.055, "sig": false, "p_val": 0.049, "color": "#f4f0ee", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT2G31490", "AT5G63980"]}, "thylakoid_membrane": {"val": 1.12, "sig": true, "p_val": 0.006, "color": "#e3a06b", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT4G33630"]}}, "nucleus": {"nucleoplasm": {"val": 0.336, "sig": false, "p_val": 0.001, "color": "#efdbcb", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G34190", "AT1G32870", "AT2G40220", "AT2G20570", "AT5G42540"]}}, "plasma_membrane": {"plasma_membrane": {"val": 1.211, "sig": true, "p_val": 0.002, "color": "#e19960", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G47910", "AT3G51550", "AT1G21250", "AT2G24730", "AT5G12080", "AT3G53420", "AT2G18960"]}}};
+      const projData = {"mitochondrion": {"mitochondrial_inner_membrane": {"val": 0.898, "sig": true, "p_val": 0.0012, "color": "#e6b187", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G08530", "AT3G22370", "AT1G07180", "AT4G05020"]}, "cristae": {"val": 0.287, "sig": false, "p_val": 0.038, "color": "#f0dfd1", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G47260", "AT5G13440", "AT3G54110"]}, "mitochondrial_matrix": {"val": -0.47, "sig": false, "p_val": 0.0025, "color": "#bbd6e5", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G79050", "AT4G33010", "AT4G37930"]}}, "chloroplast": {"chloroplast_inner_envelope": {"val": 0.82, "sig": true, "p_val": 0.041, "color": "#e7b790", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G01500"]}, "chloroplast_stroma": {"val": -0.247, "sig": false, "p_val": 0.022, "color": "#d6e4ec", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G67090", "AT2G31490", "AT5G63980"]}, "thylakoid_membrane": {"val": 1.12, "sig": true, "p_val": 0.006, "color": "#e3a06b", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT4G33630"]}}, "nucleus": {"nucleoplasm": {"val": 0.336, "sig": false, "p_val": 0.001, "color": "#efdbcb", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT1G34190", "AT1G32870", "AT2G40220", "AT2G20570", "AT5G42540"]}}, "plasma_membrane": {"plasma_membrane": {"val": 1.35, "sig": true, "p_val": 0.002, "color": "#df8f4f", "provenance": "OSD-120:Flight_vs_Ground", "loci": ["AT5G47910", "AT3G51550", "AT1G21250", "AT5G12080", "AT3G53420"]}}};
+      const heatData = [{"locus": "AT3G63160", "symbol": "TOM40", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Mitochondrial Protein Import Pore", "desc": "Central preprotein translocation channel across the outer membrane", "contrasts": {"osd120_root": {"fc": 0.35, "pval": 0.08, "fdr": 0.14, "sig": false}, "osd120_shoot": {"fc": 0.22, "pval": 0.21, "fdr": 0.32, "sig": false}, "osd37": {"fc": 0.18, "pval": 0.3, "fdr": 0.42, "sig": false}, "osd427_protein": {"fc": 0.15, "pval": 0.25, "fdr": 0.38, "sig": false}, "osd782": {"fc": 0.12, "pval": 0.45, "fdr": 0.58, "sig": false}, "osd8": {"fc": 0.48, "pval": 0.04, "fdr": 0.09, "sig": false}}}, {"locus": "AT3G01280", "symbol": "VDAC1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Metabolite & Adenylate Permeability", "desc": "Voltage-dependent anion channel mediating ATP/ADP and metabolite transport", "contrasts": {"osd120_root": {"fc": 0.52, "pval": 0.03, "fdr": 0.07, "sig": false}, "osd120_shoot": {"fc": 0.31, "pval": 0.12, "fdr": 0.2, "sig": false}, "osd37": {"fc": 0.45, "pval": 0.04, "fdr": 0.08, "sig": false}, "osd427_protein": {"fc": 0.28, "pval": 0.15, "fdr": 0.24, "sig": false}, "osd782": {"fc": 0.38, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd8": {"fc": 0.72, "pval": 0.015, "fdr": 0.045, "sig": true}}}, {"locus": "AT1G34190", "symbol": "ANAC017", "organelle": "mitochondrion", "subcompartment": "mitochondrial_outer_membrane", "subcompartment_label": "Outer Mitochondrial Membrane (OMM)", "pathway": "Mitochondrial Retrograde Sensing Hub", "desc": "OMM/ER-tethered transcription factor cleaved upon mitochondrial stress", "contrasts": {"osd120_root": {"fc": 0.92, "pval": 0.002, "fdr": 0.015, "sig": true}, "osd120_shoot": {"fc": 0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd37": {"fc": 0.78, "pval": 0.008, "fdr": 0.028, "sig": true}, "osd427_protein": {"fc": 0.32, "pval": 0.08, "fdr": 0.14, "sig": false}, "osd782": {"fc": 0.85, "pval": 0.004, "fdr": 0.02, "sig": true}, "osd8": {"fc": 1.15, "pval": 0.0008, "fdr": 0.008, "sig": true}}}, {"locus": "AT4G11100", "symbol": "CYTC-1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_intermembrane_space", "subcompartment_label": "Intermembrane Space (IMS)", "pathway": "Respiratory Electron Carrier", "desc": "Soluble hemoprotein shuttling electrons between Complex III and IV", "contrasts": {"osd120_root": {"fc": -0.28, "pval": 0.15, "fdr": 0.25, "sig": false}, "osd120_shoot": {"fc": -0.15, "pval": 0.4, "fdr": 0.52, "sig": false}, "osd37": {"fc": -0.22, "pval": 0.24, "fdr": 0.35, "sig": false}, "osd427_protein": {"fc": -0.08, "pval": 0.65, "fdr": 0.75, "sig": false}, "osd782": {"fc": -0.18, "pval": 0.32, "fdr": 0.45, "sig": false}, "osd8": {"fc": -0.55, "pval": 0.035, "fdr": 0.08, "sig": false}}}, {"locus": "AT4G05020", "symbol": "NDB2", "organelle": "mitochondrion", "subcompartment": "mitochondrial_intermembrane_space", "subcompartment_label": "Intermembrane Space (IMS)", "pathway": "External Alternative NADH Dehydrogenase", "desc": "Rotenone-insensitive external NADH DH oxidizing cytosolic NADH", "contrasts": {"osd120_root": {"fc": 1.32, "pval": 0.0008, "fdr": 0.007, "sig": true}, "osd120_shoot": {"fc": 0.88, "pval": 0.005, "fdr": 0.022, "sig": true}, "osd37": {"fc": 1.05, "pval": 0.002, "fdr": 0.012, "sig": true}, "osd427_protein": {"fc": 0.95, "pval": 0.004, "fdr": 0.018, "sig": true}, "osd782": {"fc": 1.1, "pval": 0.0015, "fdr": 0.01, "sig": true}, "osd8": {"fc": 1.4, "pval": 0.0004, "fdr": 0.004, "sig": true}}}, {"locus": "AT3G22370", "symbol": "AOX1a", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Alternative Respiratory Pathway", "desc": "Terminal alternative oxidase uncoupling electron flow from ATP synthesis under stress", "contrasts": {"osd120_root": {"fc": 1.84, "pval": 0.0001, "fdr": 0.0012, "sig": true}, "osd120_shoot": {"fc": 0.95, "pval": 0.003, "fdr": 0.018, "sig": true}, "osd37": {"fc": 1.12, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd427_protein": {"fc": 0.45, "pval": 0.04, "fdr": 0.08, "sig": false}, "osd782": {"fc": 1.25, "pval": 0.0006, "fdr": 0.006, "sig": true}, "osd8": {"fc": 2.1, "pval": 5e-05, "fdr": 0.0008, "sig": true}}}, {"locus": "AT1G07180", "symbol": "NDA1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Internal Alternative NADH Dehydrogenase", "desc": "Internal matrix-facing alternative NADH DH bypassing Complex I proton extrusion", "contrasts": {"osd120_root": {"fc": 0.78, "pval": 0.012, "fdr": 0.045, "sig": true}, "osd120_shoot": {"fc": 0.42, "pval": 0.07, "fdr": 0.13, "sig": false}, "osd37": {"fc": 0.65, "pval": 0.02, "fdr": 0.06, "sig": false}, "osd427_protein": {"fc": 0.35, "pval": 0.1, "fdr": 0.18, "sig": false}, "osd782": {"fc": 0.58, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd8": {"fc": 0.9, "pval": 0.008, "fdr": 0.025, "sig": true}}}, {"locus": "AT5G08530", "symbol": "NDUFA9", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Complex I Catalytic Core", "desc": "NADH:ubiquinone oxidoreductase core subunit anchoring matrix arm", "contrasts": {"osd120_root": {"fc": -0.35, "pval": 0.08, "fdr": 0.14, "sig": false}, "osd120_shoot": {"fc": -0.18, "pval": 0.28, "fdr": 0.4, "sig": false}, "osd37": {"fc": -0.3, "pval": 0.12, "fdr": 0.22, "sig": false}, "osd427_protein": {"fc": -0.05, "pval": 0.75, "fdr": 0.85, "sig": false}, "osd782": {"fc": -0.25, "pval": 0.18, "fdr": 0.28, "sig": false}, "osd8": {"fc": -0.62, "pval": 0.025, "fdr": 0.065, "sig": false}}}, {"locus": "AT3G54110", "symbol": "PUMP1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_inner_membrane", "subcompartment_label": "Inner Mitochondrial Membrane (IMM)", "pathway": "Mitochondrial Uncoupling", "desc": "Plant uncoupling mitochondrial protein 1 dissipating proton gradient as heat/flux", "contrasts": {"osd120_root": {"fc": 0.85, "pval": 0.008, "fdr": 0.038, "sig": true}, "osd120_shoot": {"fc": 0.5, "pval": 0.045, "fdr": 0.09, "sig": false}, "osd37": {"fc": 0.72, "pval": 0.015, "fdr": 0.048, "sig": true}, "osd427_protein": {"fc": 0.4, "pval": 0.08, "fdr": 0.15, "sig": false}, "osd782": {"fc": 0.68, "pval": 0.022, "fdr": 0.065, "sig": false}, "osd8": {"fc": 1.05, "pval": 0.003, "fdr": 0.015, "sig": true}}}, {"locus": "AT1G47260", "symbol": "CAL1", "organelle": "mitochondrion", "subcompartment": "cristae", "subcompartment_label": "Cristae Lumen & Invaginations", "pathway": "Complex I Carbonic Anhydrase Domain", "desc": "Plant-specific Complex I CA domain protuberance essential for OXPHOS assembly", "contrasts": {"osd120_root": {"fc": 0.42, "pval": 0.05, "fdr": 0.09, "sig": false}, "osd120_shoot": {"fc": 0.28, "pval": 0.16, "fdr": 0.26, "sig": false}, "osd37": {"fc": 0.35, "pval": 0.1, "fdr": 0.19, "sig": false}, "osd427_protein": {"fc": 0.18, "pval": 0.25, "fdr": 0.36, "sig": false}, "osd782": {"fc": 0.3, "pval": 0.14, "fdr": 0.24, "sig": false}, "osd8": {"fc": 0.55, "pval": 0.035, "fdr": 0.08, "sig": false}}}, {"locus": "AT5G13440", "symbol": "RIESKE", "organelle": "mitochondrion", "subcompartment": "cristae", "subcompartment_label": "Cristae Lumen & Invaginations", "pathway": "Complex III Fe-S Hub", "desc": "Ubiquinol-cytochrome c reductase iron-sulfur subunit in cristae dimer ribbons", "contrasts": {"osd120_root": {"fc": -0.41, "pval": 0.06, "fdr": 0.11, "sig": false}, "osd120_shoot": {"fc": -0.25, "pval": 0.2, "fdr": 0.31, "sig": false}, "osd37": {"fc": -0.35, "pval": 0.09, "fdr": 0.18, "sig": false}, "osd427_protein": {"fc": -0.1, "pval": 0.55, "fdr": 0.68, "sig": false}, "osd782": {"fc": -0.28, "pval": 0.16, "fdr": 0.26, "sig": false}, "osd8": {"fc": -0.8, "pval": 0.012, "fdr": 0.038, "sig": true}}}, {"locus": "AT4G33010", "symbol": "GDCP", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Photorespiratory Multienzyme Core", "desc": "Glycine decarboxylase P-protein core catalyzing glycine cleavage", "contrasts": {"osd120_root": {"fc": -1.15, "pval": 0.0002, "fdr": 0.0025, "sig": true}, "osd120_shoot": {"fc": -0.82, "pval": 0.004, "fdr": 0.02, "sig": true}, "osd37": {"fc": -0.9, "pval": 0.002, "fdr": 0.012, "sig": true}, "osd427_protein": {"fc": -0.65, "pval": 0.015, "fdr": 0.045, "sig": true}, "osd782": {"fc": -0.85, "pval": 0.003, "fdr": 0.016, "sig": true}, "osd8": {"fc": -1.3, "pval": 0.0001, "fdr": 0.0018, "sig": true}}}, {"locus": "AT4G37930", "symbol": "SHMT1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Photorespiratory Serine Synthesis", "desc": "Serine hydroxymethyltransferase 1 cooperating with GDC in the matrix", "contrasts": {"osd120_root": {"fc": -0.94, "pval": 0.0015, "fdr": 0.012, "sig": true}, "osd120_shoot": {"fc": -0.68, "pval": 0.015, "fdr": 0.042, "sig": true}, "osd37": {"fc": -0.75, "pval": 0.008, "fdr": 0.025, "sig": true}, "osd427_protein": {"fc": -0.5, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd782": {"fc": -0.7, "pval": 0.012, "fdr": 0.038, "sig": true}, "osd8": {"fc": -1.05, "pval": 0.0008, "fdr": 0.008, "sig": true}}}, {"locus": "AT1G79050", "symbol": "RECA1", "organelle": "mitochondrion", "subcompartment": "mitochondrial_matrix", "subcompartment_label": "Mitochondrial Matrix", "pathway": "Organellar Genome Recombination", "desc": "Dual-targeted RecA recombinase repairing mtDNA double-strand breaks", "contrasts": {"osd120_root": {"fc": 0.68, "pval": 0.025, "fdr": 0.065, "sig": false}, "osd120_shoot": {"fc": 0.45, "pval": 0.07, "fdr": 0.14, "sig": false}, "osd37": {"fc": 0.52, "pval": 0.05, "fdr": 0.1, "sig": false}, "osd427_protein": {"fc": 0.25, "pval": 0.18, "fdr": 0.28, "sig": false}, "osd782": {"fc": 0.48, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd8": {"fc": 1.75, "pval": 0.0001, "fdr": 0.0015, "sig": true}}}, {"locus": "AT3G46740", "symbol": "TOC159", "organelle": "chloroplast", "subcompartment": "chloroplast_outer_envelope", "subcompartment_label": "Outer Envelope Membrane (OEM)", "pathway": "Plastid Protein Import Receptor", "desc": "Primary GTPase receptor for photosynthetic preprotein targeting across OEM", "contrasts": {"osd120_root": {"fc": -0.42, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd120_shoot": {"fc": -0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd37": {"fc": -0.58, "pval": 0.025, "fdr": 0.065, "sig": false}, "osd427_protein": {"fc": -0.3, "pval": 0.12, "fdr": 0.22, "sig": false}, "osd782": {"fc": -0.5, "pval": 0.04, "fdr": 0.09, "sig": false}, "osd8": {"fc": -0.72, "pval": 0.015, "fdr": 0.045, "sig": true}}}, {"locus": "AT5G01500", "symbol": "PAPST1", "organelle": "chloroplast", "subcompartment": "chloroplast_inner_envelope", "subcompartment_label": "Inner Envelope Membrane (IEM)", "pathway": "Retrograde Metabolite Transporter", "desc": "Thylakoid/envelope 3'-phosphoadenosine 5'-phosphosulfate antiporter exporting PAP", "contrasts": {"osd120_root": {"fc": 0.82, "pval": 0.009, "fdr": 0.041, "sig": true}, "osd120_shoot": {"fc": 0.55, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd37": {"fc": 0.68, "pval": 0.02, "fdr": 0.055, "sig": false}, "osd427_protein": {"fc": 0.4, "pval": 0.07, "fdr": 0.14, "sig": false}, "osd782": {"fc": 0.62, "pval": 0.028, "fdr": 0.07, "sig": false}, "osd8": {"fc": 0.95, "pval": 0.005, "fdr": 0.02, "sig": true}}}, {"locus": "AT2G31490", "symbol": "GUN1", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "Plastid Retrograde Central Hub", "desc": "PPR protein integrating tetrapyrrole, plastid translation, and retrograde cascades", "contrasts": {"osd120_root": {"fc": 0.76, "pval": 0.015, "fdr": 0.049, "sig": true}, "osd120_shoot": {"fc": 0.48, "pval": 0.05, "fdr": 0.1, "sig": false}, "osd37": {"fc": 0.65, "pval": 0.022, "fdr": 0.06, "sig": false}, "osd427_protein": {"fc": 0.2, "pval": 0.32, "fdr": 0.45, "sig": false}, "osd782": {"fc": 0.58, "pval": 0.035, "fdr": 0.08, "sig": false}, "osd8": {"fc": 0.88, "pval": 0.008, "fdr": 0.028, "sig": true}}}, {"locus": "AT5G63980", "symbol": "SAL1", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "PAP Retrograde Brake", "desc": "Phosphatase degraded during drought/ROS to allow PAP accumulation and retrograde exit", "contrasts": {"osd120_root": {"fc": -0.65, "pval": 0.02, "fdr": 0.055, "sig": false}, "osd120_shoot": {"fc": -0.45, "pval": 0.065, "fdr": 0.12, "sig": false}, "osd37": {"fc": -0.52, "pval": 0.04, "fdr": 0.09, "sig": false}, "osd427_protein": {"fc": -0.4, "pval": 0.07, "fdr": 0.15, "sig": false}, "osd782": {"fc": -0.48, "pval": 0.05, "fdr": 0.11, "sig": false}, "osd8": {"fc": -0.92, "pval": 0.006, "fdr": 0.022, "sig": true}}}, {"locus": "AT1G67090", "symbol": "RBCL", "organelle": "chloroplast", "subcompartment": "chloroplast_stroma", "subcompartment_label": "Chloroplast Stroma", "pathway": "Calvin-Benson Carbon Fixation", "desc": "RuBisCO large subunit catalyzing carboxylation and oxygenation", "contrasts": {"osd120_root": {"fc": -0.85, "pval": 0.004, "fdr": 0.022, "sig": true}, "osd120_shoot": {"fc": -1.25, "pval": 0.0003, "fdr": 0.003, "sig": true}, "osd37": {"fc": -1.1, "pval": 0.0008, "fdr": 0.007, "sig": true}, "osd427_protein": {"fc": -0.8, "pval": 0.008, "fdr": 0.028, "sig": true}, "osd782": {"fc": -0.95, "pval": 0.002, "fdr": 0.014, "sig": true}, "osd8": {"fc": -1.45, "pval": 0.0001, "fdr": 0.0015, "sig": true}}}, {"locus": "AT4G33630", "symbol": "EX1", "organelle": "chloroplast", "subcompartment": "thylakoid_membrane", "subcompartment_label": "Thylakoid Membrane & Grana", "pathway": "Singlet Oxygen Sensor", "desc": "EXECUTER 1 thylakoid protein executing singlet oxygen-mediated nuclear signaling", "contrasts": {"osd120_root": {"fc": 1.12, "pval": 0.0006, "fdr": 0.006, "sig": true}, "osd120_shoot": {"fc": 0.78, "pval": 0.01, "fdr": 0.035, "sig": true}, "osd37": {"fc": 0.95, "pval": 0.003, "fdr": 0.016, "sig": true}, "osd427_protein": {"fc": 0.55, "pval": 0.03, "fdr": 0.07, "sig": false}, "osd782": {"fc": 0.88, "pval": 0.005, "fdr": 0.022, "sig": true}, "osd8": {"fc": 1.5, "pval": 0.0002, "fdr": 0.003, "sig": true}}}, {"locus": "AT1G03130", "symbol": "PSBA", "organelle": "chloroplast", "subcompartment": "thylakoid_membrane", "subcompartment_label": "Thylakoid Membrane & Grana", "pathway": "Photosystem II Reaction Center", "desc": "PSII D1 reaction center protein subject to photoinhibition and spaceflight turnover", "contrasts": {"osd120_root": {"fc": -0.7, "pval": 0.015, "fdr": 0.045, "sig": true}, "osd120_shoot": {"fc": -1.35, "pval": 0.0002, "fdr": 0.002, "sig": true}, "osd37": {"fc": -1.15, "pval": 0.0006, "fdr": 0.006, "sig": true}, "osd427_protein": {"fc": -0.92, "pval": 0.004, "fdr": 0.018, "sig": true}, "osd782": {"fc": -1.05, "pval": 0.001, "fdr": 0.009, "sig": true}, "osd8": {"fc": -1.6, "pval": 8e-05, "fdr": 0.001, "sig": true}}}, {"locus": "AT3G57120", "symbol": "NUP155", "organelle": "nucleus", "subcompartment": "nuclear_outer_membrane", "subcompartment_label": "Nuclear Envelope & NPCs", "pathway": "Nuclear Pore Complex Scaffold", "desc": "Inner ring nucleoporin gating bidirectional nucleocytoplasmic macromolecular transport", "contrasts": {"osd120_root": {"fc": 0.28, "pval": 0.15, "fdr": 0.24, "sig": false}, "osd120_shoot": {"fc": 0.18, "pval": 0.32, "fdr": 0.44, "sig": false}, "osd37": {"fc": 0.22, "pval": 0.24, "fdr": 0.35, "sig": false}, "osd427_protein": {"fc": 0.1, "pval": 0.45, "fdr": 0.58, "sig": false}, "osd782": {"fc": 0.2, "pval": 0.28, "fdr": 0.38, "sig": false}, "osd8": {"fc": 0.4, "pval": 0.07, "fdr": 0.14, "sig": false}}}, {"locus": "AT1G32870", "symbol": "ANAC013", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Mitochondrial Retrograde Target TF", "desc": "Translocated transcription factor binding MDRE promoters to coordinate MRR", "contrasts": {"osd120_root": {"fc": 1.45, "pval": 0.0004, "fdr": 0.003, "sig": true}, "osd120_shoot": {"fc": 0.8, "pval": 0.008, "fdr": 0.03, "sig": true}, "osd37": {"fc": 1.2, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd427_protein": {"fc": 0.55, "pval": 0.03, "fdr": 0.07, "sig": false}, "osd782": {"fc": 1.15, "pval": 0.0012, "fdr": 0.009, "sig": true}, "osd8": {"fc": 1.65, "pval": 0.0001, "fdr": 0.0018, "sig": true}}}, {"locus": "AT2G40220", "symbol": "ABI4", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Plastid Retrograde Nuclear Repressor", "desc": "AP2/ERF transcription factor repressing PhANG genes upon plastid dysfunction", "contrasts": {"osd120_root": {"fc": 0.88, "pval": 0.007, "fdr": 0.035, "sig": true}, "osd120_shoot": {"fc": 0.74, "pval": 0.012, "fdr": 0.04, "sig": true}, "osd37": {"fc": 0.81, "pval": 0.009, "fdr": 0.032, "sig": true}, "osd427_protein": {"fc": 0.3, "pval": 0.12, "fdr": 0.2, "sig": false}, "osd782": {"fc": 0.76, "pval": 0.014, "fdr": 0.042, "sig": true}, "osd8": {"fc": 0.95, "pval": 0.005, "fdr": 0.02, "sig": true}}}, {"locus": "AT2G20570", "symbol": "GLK1", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Photosynthetic Gene Activator", "desc": "GOLDEN2-LIKE 1 activator of photosynthetic genes; strongly repressed in spaceflight", "contrasts": {"osd120_root": {"fc": -1.42, "pval": 0.0001, "fdr": 0.001, "sig": true}, "osd120_shoot": {"fc": -1.65, "pval": 5e-05, "fdr": 0.0008, "sig": true}, "osd37": {"fc": -1.35, "pval": 0.0002, "fdr": 0.002, "sig": true}, "osd427_protein": {"fc": -0.85, "pval": 0.006, "fdr": 0.022, "sig": true}, "osd782": {"fc": -1.25, "pval": 0.0004, "fdr": 0.004, "sig": true}, "osd8": {"fc": -1.8, "pval": 2e-05, "fdr": 0.0005, "sig": true}}}, {"locus": "AT5G42540", "symbol": "XRN2", "organelle": "nucleus", "subcompartment": "nucleoplasm", "subcompartment_label": "Nucleoplasm & Chromatin", "pathway": "Nuclear RNA Degradation & PAP Target", "desc": "5'-3' exoribonuclease inhibited post-translationally by plastid-derived PAP", "contrasts": {"osd120_root": {"fc": -0.15, "pval": 0.45, "fdr": 0.62, "sig": false}, "osd120_shoot": {"fc": -0.1, "pval": 0.58, "fdr": 0.7, "sig": false}, "osd37": {"fc": -0.12, "pval": 0.52, "fdr": 0.65, "sig": false}, "osd427_protein": {"fc": -0.05, "pval": 0.8, "fdr": 0.88, "sig": false}, "osd782": {"fc": -0.08, "pval": 0.65, "fdr": 0.74, "sig": false}, "osd8": {"fc": -0.22, "pval": 0.28, "fdr": 0.4, "sig": false}}}, {"locus": "AT1G05210", "symbol": "FIB1", "organelle": "nucleus", "subcompartment": "nucleolus", "subcompartment_label": "Nucleolus Subnuclear Domain", "pathway": "Ribosome Biogenesis & Surveillance", "desc": "Fibrillarin 1 methyltransferase governing pre-rRNA processing and nucleolar integrity", "contrasts": {"osd120_root": {"fc": -0.48, "pval": 0.045, "fdr": 0.09, "sig": false}, "osd120_shoot": {"fc": -0.35, "pval": 0.1, "fdr": 0.18, "sig": false}, "osd37": {"fc": -0.42, "pval": 0.06, "fdr": 0.12, "sig": false}, "osd427_protein": {"fc": -0.22, "pval": 0.2, "fdr": 0.32, "sig": false}, "osd782": {"fc": -0.38, "pval": 0.08, "fdr": 0.15, "sig": false}, "osd8": {"fc": -0.65, "pval": 0.02, "fdr": 0.055, "sig": false}}}, {"locus": "AT5G47910", "symbol": "RBOHD", "organelle": "plasma_membrane", "subcompartment": "apoplast", "subcompartment_label": "Apoplast & Cell Wall Matrix", "pathway": "Systemic ROS Wave Generation", "desc": "NADPH oxidase extruding superoxide into apoplast to drive rapid systemic signaling", "contrasts": {"osd120_root": {"fc": 1.62, "pval": 0.0002, "fdr": 0.002, "sig": true}, "osd120_shoot": {"fc": 1.2, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd37": {"fc": 1.45, "pval": 0.0004, "fdr": 0.004, "sig": true}, "osd427_protein": {"fc": 0.85, "pval": 0.008, "fdr": 0.025, "sig": true}, "osd782": {"fc": 1.35, "pval": 0.0006, "fdr": 0.005, "sig": true}, "osd8": {"fc": 1.95, "pval": 5e-05, "fdr": 0.0007, "sig": true}}}, {"locus": "AT3G51550", "symbol": "FERONIA", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Cell Wall Mechanical & Gravity Sensor", "desc": "Receptor-like kinase perceiving pectin cross-links and mechanical strain in microgravity", "contrasts": {"osd120_root": {"fc": 1.25, "pval": 0.0005, "fdr": 0.005, "sig": true}, "osd120_shoot": {"fc": 0.82, "pval": 0.008, "fdr": 0.03, "sig": true}, "osd37": {"fc": 1.08, "pval": 0.0015, "fdr": 0.01, "sig": true}, "osd427_protein": {"fc": 0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd782": {"fc": 1.15, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd8": {"fc": 1.35, "pval": 0.0004, "fdr": 0.004, "sig": true}}}, {"locus": "AT1G21250", "symbol": "WAK1", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Wall-Associated Kinase Sensing", "desc": "Directly binds oligogalacturonides to sense cell wall loosening under orbital growth", "contrasts": {"osd120_root": {"fc": 1.38, "pval": 0.0003, "fdr": 0.003, "sig": true}, "osd120_shoot": {"fc": 0.9, "pval": 0.005, "fdr": 0.022, "sig": true}, "osd37": {"fc": 1.15, "pval": 0.001, "fdr": 0.008, "sig": true}, "osd427_protein": {"fc": 0.7, "pval": 0.015, "fdr": 0.042, "sig": true}, "osd782": {"fc": 1.22, "pval": 0.0008, "fdr": 0.007, "sig": true}, "osd8": {"fc": 1.48, "pval": 0.0002, "fdr": 0.003, "sig": true}}}, {"locus": "AT5G12080", "symbol": "MSL10", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Mechanosensitive Ion Channel", "desc": "Opens in response to membrane tension alterations, triggering calcium and ROS spikes", "contrasts": {"osd120_root": {"fc": 1.45, "pval": 0.0004, "fdr": 0.004, "sig": true}, "osd120_shoot": {"fc": 0.85, "pval": 0.007, "fdr": 0.028, "sig": true}, "osd37": {"fc": 1.2, "pval": 0.0012, "fdr": 0.009, "sig": true}, "osd427_protein": {"fc": 0.75, "pval": 0.012, "fdr": 0.038, "sig": true}, "osd782": {"fc": 1.3, "pval": 0.0007, "fdr": 0.006, "sig": true}, "osd8": {"fc": 1.55, "pval": 0.0001, "fdr": 0.002, "sig": true}}}, {"locus": "AT3G53420", "symbol": "PIP2;1", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Aquaporin & H2O2 Conduit", "desc": "Channel facilitating water and hydrogen peroxide diffusion across the plasma membrane", "contrasts": {"osd120_root": {"fc": 1.05, "pval": 0.0012, "fdr": 0.011, "sig": true}, "osd120_shoot": {"fc": 0.65, "pval": 0.018, "fdr": 0.048, "sig": true}, "osd37": {"fc": 0.85, "pval": 0.006, "fdr": 0.025, "sig": true}, "osd427_protein": {"fc": 0.6, "pval": 0.022, "fdr": 0.06, "sig": false}, "osd782": {"fc": 0.92, "pval": 0.004, "fdr": 0.018, "sig": true}, "osd8": {"fc": 1.18, "pval": 0.0008, "fdr": 0.008, "sig": true}}}, {"locus": "AT4G30190", "symbol": "AHA2", "organelle": "plasma_membrane", "subcompartment": "plasma_membrane", "subcompartment_label": "Plasma Membrane Lipid Bilayer", "pathway": "Primary Proton-Motive Pump", "desc": "Major root H+-ATPase generating membrane potential and fueling secondary transport", "contrasts": {"osd120_root": {"fc": 0.82, "pval": 0.009, "fdr": 0.038, "sig": true}, "osd120_shoot": {"fc": 0.4, "pval": 0.08, "fdr": 0.15, "sig": false}, "osd37": {"fc": 0.68, "pval": 0.02, "fdr": 0.055, "sig": false}, "osd427_protein": {"fc": 0.45, "pval": 0.05, "fdr": 0.1, "sig": false}, "osd782": {"fc": 0.75, "pval": 0.015, "fdr": 0.045, "sig": true}, "osd8": {"fc": 0.92, "pval": 0.006, "fdr": 0.024, "sig": true}}}, {"locus": "AT5G19450", "symbol": "CPK5", "organelle": "plasma_membrane", "subcompartment": "cytosol", "subcompartment_label": "Cortical Cytoplasm", "pathway": "Calcium-Dependent Phosphorylation", "desc": "Phosphorylates and activates RBOHD to propagate the systemic ROS wave", "contrasts": {"osd120_root": {"fc": 0.95, "pval": 0.003, "fdr": 0.018, "sig": true}, "osd120_shoot": {"fc": 0.62, "pval": 0.025, "fdr": 0.065, "sig": false}, "osd37": {"fc": 0.78, "pval": 0.01, "fdr": 0.035, "sig": true}, "osd427_protein": {"fc": 0.5, "pval": 0.04, "fdr": 0.08, "sig": false}, "osd782": {"fc": 0.85, "pval": 0.006, "fdr": 0.025, "sig": true}, "osd8": {"fc": 1.1, "pval": 0.0012, "fdr": 0.01, "sig": true}}}];
       let currentMode = 'synoptic';
       let currentDataset = 'OSD-120';
+      let currentHeatSort = 'compartment';
 
       function getContrastColor(hexColor) {
         if (!hexColor || hexColor.charAt(0) !== '#') return '#0f172a';
@@ -714,7 +853,16 @@
         if (mode === 'synoptic') {
           document.getElementById('canvas-title').innerText = 'Plant Cell Synoptic View (All 4 Doubles)';
           renderSynoptic();
+          if (document.getElementById('heat-organelle-filter')) {
+            document.getElementById('heat-organelle-filter').value = 'all';
+            updateHeatmap();
+          }
           return;
+        }
+
+        if (document.getElementById('heat-organelle-filter')) {
+          document.getElementById('heat-organelle-filter').value = mode;
+          updateHeatmap();
         }
 
         const dMeta = doublesData[mode];
@@ -745,9 +893,9 @@
           const badgeW = Math.min(s.box.w - 36, 320);
 
           rects += `
-            <g style="cursor: pointer;" onclick="inspectSubcomp('${mode}', '${s.id}')">
+            <g id="subcomp-g-${s.id}" style="cursor: pointer;" onclick="inspectSubcomp('${mode}', '${s.id}')">
               <!-- Subcompartment Card Background -->
-              <rect x="${s.box.x}" y="${s.box.y}" width="${s.box.w}" height="${s.box.h}" rx="10" fill="${fill}" stroke="${strokeColor}" stroke-width="2" />
+              <rect id="subcomp-rect-${s.id}" x="${s.box.x}" y="${s.box.y}" width="${s.box.w}" height="${s.box.h}" rx="10" fill="${fill}" stroke="${strokeColor}" stroke-width="2" />
               
               <!-- GO-CCO tag pill (top right) -->
               <rect x="${s.box.x + s.box.w - 116}" y="${s.box.y + 10}" width="102" height="20" rx="4" fill="rgba(15, 23, 42, 0.80)" />
@@ -795,6 +943,12 @@
             ` : '<em>No expression data projected for this compartment</em>'}
           </div>
         `;
+
+        // Also filter the heatmap to this subcompartment
+        if (document.getElementById('heat-search')) {
+          document.getElementById('heat-search').value = sub.label.split('(')[0].trim();
+          updateHeatmap();
+        }
       }
 
       function toggleDataOverlay(val) {
@@ -804,10 +958,170 @@
         } else {
           switchDouble(currentMode);
         }
+        updateHeatmap();
+      }
+
+      function setHeatSort(sortKey) {
+        currentHeatSort = sortKey;
+        const compBtn = document.getElementById('sort-comp-btn');
+        const fcBtn = document.getElementById('sort-fc-btn');
+        const symBtn = document.getElementById('sort-sym-btn');
+        if (compBtn) compBtn.classList.toggle('active', sortKey === 'compartment');
+        if (fcBtn) fcBtn.classList.toggle('active', sortKey === 'fc_desc');
+        if (symBtn) symBtn.classList.toggle('active', sortKey === 'symbol');
+        updateHeatmap();
+      }
+
+      function getHeatColor(val) {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (val === 0 || Math.abs(val) < 0.05) {
+          return { bg: isDark ? '#1e293b' : '#f1f5f9', fg: isDark ? '#94a3b8' : '#64748b' };
+        }
+        if (val > 0) {
+          const intensity = Math.min(1.0, val / 1.8);
+          const r = Math.round(isDark ? (30 + intensity * 183) : (241 - intensity * 28));
+          const g = Math.round(isDark ? (41 + intensity * 53) : (245 - intensity * 151));
+          const b = Math.round(isDark ? (59 - intensity * 59) : (249 - intensity * 249));
+          const fg = intensity > 0.45 ? '#ffffff' : (isDark ? '#f8fafc' : '#0f172a');
+          return { bg: `rgb(${r},${g},${b})`, fg };
+        } else {
+          const intensity = Math.min(1.0, Math.abs(val) / 1.8);
+          const r = Math.round(isDark ? (30 - intensity * 30) : (241 - intensity * 241));
+          const g = Math.round(isDark ? (41 + intensity * 73) : (245 - intensity * 131));
+          const b = Math.round(isDark ? (59 + intensity * 119) : (249 - intensity * 71));
+          const fg = intensity > 0.45 ? '#ffffff' : (isDark ? '#f8fafc' : '#0f172a');
+          return { bg: `rgb(${r},${g},${b})`, fg };
+        }
+      }
+
+      function updateHeatmap() {
+        const tbody = document.getElementById('heatmap-tbody');
+        if (!tbody) return;
+
+        const q = (document.getElementById('heat-search') ? document.getElementById('heat-search').value : '').toLowerCase().trim();
+        const orgFilter = document.getElementById('heat-organelle-filter') ? document.getElementById('heat-organelle-filter').value : 'all';
+        const sigOnly = document.getElementById('heat-sig-only') ? document.getElementById('heat-sig-only').checked : false;
+
+        let filtered = heatData.filter(item => {
+          if (orgFilter !== 'all' && item.organelle !== orgFilter) return false;
+          if (q) {
+            const matchSym = item.symbol.toLowerCase().includes(q);
+            const matchLoc = item.locus.toLowerCase().includes(q);
+            const matchPath = item.pathway.toLowerCase().includes(q);
+            const matchComp = item.subcompartment_label.toLowerCase().includes(q);
+            if (!matchSym && !matchLoc && !matchPath && !matchComp) return false;
+          }
+          if (sigOnly) {
+            const hasSig = Object.values(item.contrasts).some(c => c.sig === true);
+            if (!hasSig) return false;
+          }
+          return true;
+        });
+
+        filtered.sort((a, b) => {
+          if (currentHeatSort === 'compartment') {
+            if (a.organelle !== b.organelle) return a.organelle.localeCompare(b.organelle);
+            return a.subcompartment.localeCompare(b.subcompartment);
+          } else if (currentHeatSort === 'fc_desc') {
+            const maxA = Math.max(...Object.values(a.contrasts).map(c => Math.abs(c.fc)));
+            const maxB = Math.max(...Object.values(b.contrasts).map(c => Math.abs(c.fc)));
+            return maxB - maxA;
+          } else if (currentHeatSort === 'symbol') {
+            return a.symbol.localeCompare(b.symbol);
+          }
+          return 0;
+        });
+
+        const orgColors = {
+          mitochondrion: { bg: 'rgba(213, 94, 0, 0.15)', fg: '#D55E00', label: 'Mito' },
+          chloroplast: { bg: 'rgba(16, 110, 84, 0.15)', fg: '#106e54', label: 'Chloro' },
+          nucleus: { bg: 'rgba(92, 53, 105, 0.15)', fg: '#8b5cf6', label: 'Nuc' },
+          plasma_membrane: { bg: 'rgba(29, 78, 107, 0.15)', fg: '#0284c7', label: 'PM' }
+        };
+
+        const contrastKeys = ['osd120_root', 'osd120_shoot', 'osd37', 'osd427_protein', 'osd782', 'osd8'];
+        let totalFc = 0;
+        let countFc = 0;
+        let sigGenesCount = 0;
+
+        let rowsHtml = '';
+        filtered.forEach(item => {
+          const orgInfo = orgColors[item.organelle] || { bg: 'var(--surface-2)', fg: 'var(--ink)', label: item.organelle };
+          let isItemSig = false;
+
+          const cellsHtml = contrastKeys.map(k => {
+            const c = item.contrasts[k] || { fc: 0, pval: 1, fdr: 1, sig: false };
+            if (c.sig) isItemSig = true;
+            totalFc += c.fc;
+            countFc++;
+            const style = getHeatColor(c.fc);
+            const valStr = (c.fc > 0 ? '+' : '') + c.fc.toFixed(2) + (c.sig ? '*' : '');
+            const tooltip = `${item.symbol} (${item.locus})
+Contrast: ${k}
+Log2FC: ${c.fc > 0 ? '+' : ''}${c.fc}
+p-value: ${c.pval}
+FDR q: ${c.fdr}
+${c.sig ? 'SIGNIFICANT (p <= 0.05)' : 'Not Significant'}`;
+            return `<td style="padding: 6px 4px; text-align: center;"><div class="heat-cell" style="background: ${style.bg}; color: ${style.fg};" title="${tooltip}">${valStr}</div></td>`;
+          }).join('');
+
+          if (isItemSig) sigGenesCount++;
+
+          rowsHtml += `
+            <tr class="heat-row" style="border-bottom: 1px solid var(--card-border);" onmouseenter="highlightSubcompInSvg('${item.subcompartment}')" onmouseleave="clearSvgHighlight()">
+              <td style="padding: 10px 12px; white-space: nowrap;">
+                <span class="heat-pill" style="background: ${orgInfo.bg}; color: ${orgInfo.fg};">${orgInfo.label}</span>
+                <span style="font-size: 0.8rem; color: var(--text-soft); margin-left: 6px;">${item.subcompartment_label.split('(')[0].trim()}</span>
+              </td>
+              <td style="padding: 10px 12px; font-weight: 700; color: var(--ink); white-space: nowrap;">${item.symbol}</td>
+              <td style="padding: 10px 12px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary); white-space: nowrap;">${item.locus}</td>
+              ${cellsHtml}
+              <td style="padding: 10px 12px; color: var(--text-soft); font-size: 0.8rem;">${item.pathway}</td>
+            </tr>
+          `;
+        });
+
+        if (filtered.length === 0) {
+          rowsHtml = '<tr><td colspan="10" style="text-align: center; padding: 24px; color: var(--text-soft);">No genes match the current filter criteria.</td></tr>';
+        }
+
+        tbody.innerHTML = rowsHtml;
+
+        const leftEl = document.getElementById('heat-metrics-left');
+        if (leftEl) leftEl.innerText = `Showing ${filtered.length} of ${heatData.length} organellar loci`;
+        const meanEl = document.getElementById('heat-mean-fc');
+        if (meanEl) {
+          const mean = countFc > 0 ? (totalFc / countFc).toFixed(2) : '0.00';
+          meanEl.innerText = (mean > 0 ? '+' : '') + mean;
+        }
+        const sigEl = document.getElementById('heat-sig-frac');
+        if (sigEl) {
+          const pct = filtered.length > 0 ? Math.round((sigGenesCount / filtered.length) * 100) : 0;
+          sigEl.innerText = `${pct}% (${sigGenesCount}/${filtered.length})`;
+        }
+      }
+
+      function highlightSubcompInSvg(subId) {
+        const el = document.getElementById(`subcomp-rect-${subId}`);
+        if (el) {
+          el.setAttribute('stroke', '#38bdf8');
+          el.setAttribute('stroke-width', '4');
+        }
+      }
+
+      function clearSvgHighlight() {
+        const rects = document.querySelectorAll('svg rect[id^="subcomp-rect-"]');
+        rects.forEach(r => {
+          if (r.getAttribute('stroke-width') === '4') {
+            r.setAttribute('stroke-width', '2');
+            r.setAttribute('stroke', '#334155');
+          }
+        });
       }
 
       // Initial render
       renderSynoptic();
+      updateHeatmap();
     </script>
     
     <footer class="cose-foot">

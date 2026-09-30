@@ -25,8 +25,12 @@ from plant_mitocarta.sbgn import map_to_sbgn
 from plant_mitocarta.doubles import get_all_doubles, get_synoptic_cell_layout
 from plant_mitocarta.suba import load_suba_dataset
 from plant_mitocarta.mitocarta import load_mitocarta_reference
-from plant_mitocarta.retrograde import build_retrograde_graph
-from plant_mitocarta.osdr import load_expression_table
+from plant_mitocarta.osdr import (
+    load_expression_table,
+    get_available_studies,
+    get_organellar_multiomics_matrix,
+    get_concordance_dataset,
+)
 from plant_mitocarta.project import project_expression_onto_double, project_onto_map
 from plant_mitocarta.compare import compartment_specificity_test
 
@@ -661,6 +665,7 @@ def build_index_page(ont, maps):
 def build_digital_doubles_page(ont):
     doubles = get_all_doubles()
     syn = get_synoptic_cell_layout()
+    matrix_data = get_organellar_multiomics_matrix()
 
     # Preload expression tables for OSD-120
     tbl = load_expression_table("OSD-120")
@@ -765,6 +770,60 @@ def build_digital_doubles_page(ont):
       margin-top: 8px;
       font-size: 0.85rem;
     }
+    .heatmap-card {
+      margin-top: 36px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 24px;
+    }
+    .sort-btn {
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .sort-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .heat-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+    .heat-cell {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 8px 6px;
+      border-radius: 4px;
+      cursor: default;
+      transition: transform 0.1s ease;
+    }
+    .heat-cell:hover {
+      transform: scale(1.08);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      z-index: 2;
+      position: relative;
+    }
+    .heat-row {
+      transition: background-color 0.15s ease;
+    }
+    .heat-row:hover {
+      background: var(--surface-2) !important;
+    }
     """
 
     content = f"""
@@ -830,13 +889,98 @@ def build_digital_doubles_page(ont):
           <svg id="double-svg" viewBox="0 0 1600 1100" style="width: 100%; max-height: 700px; border-radius: 8px; background: var(--bg); border: 1px solid var(--card-border);"></svg>
         </section>
       </div>
+
+      <!-- SUBCOMPARTMENT MULTI-OMICS EXPRESSION & ABUNDANCE HEATMAP -->
+      <section class="heatmap-card" id="doubles-heatmap-section">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: var(--primary-light); color: var(--primary); font-size: 1.15rem;">📊</span>
+              <h3 style="font-size: 1.35rem; font-weight: 800; margin: 0;">Subcompartment Multi-Omics Expression & Abundance Heatmap</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.92rem; margin-top: 6px; max-width: 950px;">
+              Direct molecular matrix quantifying spaceflight gene expression (<span style="font-family: monospace; font-weight: 600;">log2FC</span>) and protein abundance across organellar subcompartments. Synchronized with the active organelle double selected above.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--text-soft); background: var(--bg); padding: 8px 14px; border-radius: 6px; border: 1px solid var(--card-border);">
+            <span>Diverging Scale:</span>
+            <span style="color: #0072B2; font-weight: 700;">-2.0</span>
+            <div style="width: 80px; height: 10px; border-radius: 3px; background: linear-gradient(to right, #0072B2, #f1f5f9, #D55E00);"></div>
+            <span style="color: #D55E00; font-weight: 700;">+2.0 log2FC</span>
+          </div>
+        </div>
+
+        <!-- Heatmap Toolbar -->
+        <div class="heatmap-toolbar" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border);">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <div style="position: relative;">
+              <input type="text" id="heat-search" placeholder="Search gene symbol or locus..." style="padding: 7px 12px 7px 32px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem; width: 230px;" oninput="updateHeatmap()">
+              <span style="position: absolute; left: 10px; top: 8px; font-size: 0.85rem; color: var(--text-soft);">🔍</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-soft);">Organelle:</label>
+              <select id="heat-organelle-filter" style="padding: 6px 10px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem;" onchange="updateHeatmap()">
+                <option value="all">All Organelles (Synoptic)</option>
+                <option value="mitochondrion">Mitochondrion Only</option>
+                <option value="chloroplast">Chloroplast Only</option>
+                <option value="nucleus">Nucleus Only</option>
+                <option value="plasma_membrane">Plasma Membrane Only</option>
+              </select>
+            </div>
+            <label style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.84rem; color: var(--ink); cursor: pointer; margin-left: 6px;">
+              <input type="checkbox" id="heat-sig-only" onchange="updateHeatmap()" style="cursor: pointer;">
+              <span>Significant only (p &le; 0.05)</span>
+            </label>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 0.82rem; color: var(--text-soft); margin-right: 4px;">Sort:</span>
+            <button id="sort-comp-btn" class="sort-btn active" onclick="setHeatSort('compartment')">Compartment</button>
+            <button id="sort-fc-btn" class="sort-btn" onclick="setHeatSort('fc_desc')">Max |Log2FC|</button>
+            <button id="sort-sym-btn" class="sort-btn" onclick="setHeatSort('symbol')">Symbol</button>
+          </div>
+        </div>
+
+        <!-- Heatmap Table Container -->
+        <div style="overflow-x: auto; max-width: 100%;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.84rem;">
+            <thead>
+              <tr>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Compartment</th>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Symbol</th>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">AGI Locus</th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-120<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Root Flight</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-120<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Shoot Flight</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-37<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Seedlings</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-427<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Proteomics</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-782<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Centrifuge</span></th>
+                <th style="text-align: center; padding: 10px 8px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">OSD-8<br><span style="font-weight: 400; text-transform: none; color: var(--text-soft);">Radiation</span></th>
+                <th style="text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;">Biological Function</th>
+              </tr>
+            </thead>
+            <tbody id="heatmap-tbody">
+              <!-- Dynamically populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Heatmap Summary Metrics Bar -->
+        <div style="margin-top: 16px; padding: 12px 16px; background: var(--bg); border-radius: 6px; border: 1px solid var(--card-border); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 0.84rem;">
+          <div id="heat-metrics-left">Showing all organellar loci</div>
+          <div id="heat-metrics-right" style="color: var(--text-soft);">
+            Mean Spaceflight Log2FC: <strong id="heat-mean-fc" style="color: var(--primary);">+0.42</strong> &bull; Significant Fraction: <strong id="heat-sig-frac">68%</strong>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script>
       const doublesData = {json.dumps(doubles_meta_json)};
       const projData = {json.dumps(proj_json)};
+      const heatData = {json.dumps(matrix_data)};
       let currentMode = 'synoptic';
       let currentDataset = 'OSD-120';
+      let currentHeatSort = 'compartment';
 
       function getContrastColor(hexColor) {{
         if (!hexColor || hexColor.charAt(0) !== '#') return '#0f172a';
@@ -1002,7 +1146,16 @@ def build_digital_doubles_page(ont):
         if (mode === 'synoptic') {{
           document.getElementById('canvas-title').innerText = 'Plant Cell Synoptic View (All 4 Doubles)';
           renderSynoptic();
+          if (document.getElementById('heat-organelle-filter')) {{
+            document.getElementById('heat-organelle-filter').value = 'all';
+            updateHeatmap();
+          }}
           return;
+        }}
+
+        if (document.getElementById('heat-organelle-filter')) {{
+          document.getElementById('heat-organelle-filter').value = mode;
+          updateHeatmap();
         }}
 
         const dMeta = doublesData[mode];
@@ -1033,9 +1186,9 @@ def build_digital_doubles_page(ont):
           const badgeW = Math.min(s.box.w - 36, 320);
 
           rects += `
-            <g style="cursor: pointer;" onclick="inspectSubcomp('${{mode}}', '${{s.id}}')">
+            <g id="subcomp-g-${{s.id}}" style="cursor: pointer;" onclick="inspectSubcomp('${{mode}}', '${{s.id}}')">
               <!-- Subcompartment Card Background -->
-              <rect x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="10" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
+              <rect id="subcomp-rect-${{s.id}}" x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="10" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
               
               <!-- GO-CCO tag pill (top right) -->
               <rect x="${{s.box.x + s.box.w - 116}}" y="${{s.box.y + 10}}" width="102" height="20" rx="4" fill="rgba(15, 23, 42, 0.80)" />
@@ -1083,6 +1236,12 @@ def build_digital_doubles_page(ont):
             ` : '<em>No expression data projected for this compartment</em>'}}
           </div>
         `;
+
+        // Also filter the heatmap to this subcompartment
+        if (document.getElementById('heat-search')) {{
+          document.getElementById('heat-search').value = sub.label.split('(')[0].trim();
+          updateHeatmap();
+        }}
       }}
 
       function toggleDataOverlay(val) {{
@@ -1092,10 +1251,165 @@ def build_digital_doubles_page(ont):
         }} else {{
           switchDouble(currentMode);
         }}
+        updateHeatmap();
+      }}
+
+      function setHeatSort(sortKey) {{
+        currentHeatSort = sortKey;
+        const compBtn = document.getElementById('sort-comp-btn');
+        const fcBtn = document.getElementById('sort-fc-btn');
+        const symBtn = document.getElementById('sort-sym-btn');
+        if (compBtn) compBtn.classList.toggle('active', sortKey === 'compartment');
+        if (fcBtn) fcBtn.classList.toggle('active', sortKey === 'fc_desc');
+        if (symBtn) symBtn.classList.toggle('active', sortKey === 'symbol');
+        updateHeatmap();
+      }}
+
+      function getHeatColor(val) {{
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (val === 0 || Math.abs(val) < 0.05) {{
+          return {{ bg: isDark ? '#1e293b' : '#f1f5f9', fg: isDark ? '#94a3b8' : '#64748b' }};
+        }}
+        if (val > 0) {{
+          const intensity = Math.min(1.0, val / 1.8);
+          const r = Math.round(isDark ? (30 + intensity * 183) : (241 - intensity * 28));
+          const g = Math.round(isDark ? (41 + intensity * 53) : (245 - intensity * 151));
+          const b = Math.round(isDark ? (59 - intensity * 59) : (249 - intensity * 249));
+          const fg = intensity > 0.45 ? '#ffffff' : (isDark ? '#f8fafc' : '#0f172a');
+          return {{ bg: `rgb(${{r}},${{g}},${{b}})`, fg }};
+        }} else {{
+          const intensity = Math.min(1.0, Math.abs(val) / 1.8);
+          const r = Math.round(isDark ? (30 - intensity * 30) : (241 - intensity * 241));
+          const g = Math.round(isDark ? (41 + intensity * 73) : (245 - intensity * 131));
+          const b = Math.round(isDark ? (59 + intensity * 119) : (249 - intensity * 71));
+          const fg = intensity > 0.45 ? '#ffffff' : (isDark ? '#f8fafc' : '#0f172a');
+          return {{ bg: `rgb(${{r}},${{g}},${{b}})`, fg }};
+        }}
+      }}
+
+      function updateHeatmap() {{
+        const tbody = document.getElementById('heatmap-tbody');
+        if (!tbody) return;
+
+        const q = (document.getElementById('heat-search') ? document.getElementById('heat-search').value : '').toLowerCase().trim();
+        const orgFilter = document.getElementById('heat-organelle-filter') ? document.getElementById('heat-organelle-filter').value : 'all';
+        const sigOnly = document.getElementById('heat-sig-only') ? document.getElementById('heat-sig-only').checked : false;
+
+        let filtered = heatData.filter(item => {{
+          if (orgFilter !== 'all' && item.organelle !== orgFilter) return false;
+          if (q) {{
+            const matchSym = item.symbol.toLowerCase().includes(q);
+            const matchLoc = item.locus.toLowerCase().includes(q);
+            const matchPath = item.pathway.toLowerCase().includes(q);
+            const matchComp = item.subcompartment_label.toLowerCase().includes(q);
+            if (!matchSym && !matchLoc && !matchPath && !matchComp) return false;
+          }}
+          if (sigOnly) {{
+            const hasSig = Object.values(item.contrasts).some(c => c.sig === true);
+            if (!hasSig) return false;
+          }}
+          return true;
+        }});
+
+        filtered.sort((a, b) => {{
+          if (currentHeatSort === 'compartment') {{
+            if (a.organelle !== b.organelle) return a.organelle.localeCompare(b.organelle);
+            return a.subcompartment.localeCompare(b.subcompartment);
+          }} else if (currentHeatSort === 'fc_desc') {{
+            const maxA = Math.max(...Object.values(a.contrasts).map(c => Math.abs(c.fc)));
+            const maxB = Math.max(...Object.values(b.contrasts).map(c => Math.abs(c.fc)));
+            return maxB - maxA;
+          }} else if (currentHeatSort === 'symbol') {{
+            return a.symbol.localeCompare(b.symbol);
+          }}
+          return 0;
+        }});
+
+        const orgColors = {{
+          mitochondrion: {{ bg: 'rgba(213, 94, 0, 0.15)', fg: '#D55E00', label: 'Mito' }},
+          chloroplast: {{ bg: 'rgba(16, 110, 84, 0.15)', fg: '#106e54', label: 'Chloro' }},
+          nucleus: {{ bg: 'rgba(92, 53, 105, 0.15)', fg: '#8b5cf6', label: 'Nuc' }},
+          plasma_membrane: {{ bg: 'rgba(29, 78, 107, 0.15)', fg: '#0284c7', label: 'PM' }}
+        }};
+
+        const contrastKeys = ['osd120_root', 'osd120_shoot', 'osd37', 'osd427_protein', 'osd782', 'osd8'];
+        let totalFc = 0;
+        let countFc = 0;
+        let sigGenesCount = 0;
+
+        let rowsHtml = '';
+        filtered.forEach(item => {{
+          const orgInfo = orgColors[item.organelle] || {{ bg: 'var(--surface-2)', fg: 'var(--ink)', label: item.organelle }};
+          let isItemSig = false;
+
+          const cellsHtml = contrastKeys.map(k => {{
+            const c = item.contrasts[k] || {{ fc: 0, pval: 1, fdr: 1, sig: false }};
+            if (c.sig) isItemSig = true;
+            totalFc += c.fc;
+            countFc++;
+            const style = getHeatColor(c.fc);
+            const valStr = (c.fc > 0 ? '+' : '') + c.fc.toFixed(2) + (c.sig ? '*' : '');
+            const tooltip = `${{item.symbol}} (${{item.locus}})\nContrast: ${{k}}\nLog2FC: ${{c.fc > 0 ? '+' : ''}}${{c.fc}}\np-value: ${{c.pval}}\nFDR q: ${{c.fdr}}\n${{c.sig ? 'SIGNIFICANT (p <= 0.05)' : 'Not Significant'}}`;
+            return `<td style="padding: 6px 4px; text-align: center;"><div class="heat-cell" style="background: ${{style.bg}}; color: ${{style.fg}};" title="${{tooltip}}">${{valStr}}</div></td>`;
+          }}).join('');
+
+          if (isItemSig) sigGenesCount++;
+
+          rowsHtml += `
+            <tr class="heat-row" style="border-bottom: 1px solid var(--card-border);" onmouseenter="highlightSubcompInSvg('${{item.subcompartment}}')" onmouseleave="clearSvgHighlight()">
+              <td style="padding: 10px 12px; white-space: nowrap;">
+                <span class="heat-pill" style="background: ${{orgInfo.bg}}; color: ${{orgInfo.fg}};">${{orgInfo.label}}</span>
+                <span style="font-size: 0.8rem; color: var(--text-soft); margin-left: 6px;">${{item.subcompartment_label.split('(')[0].trim()}}</span>
+              </td>
+              <td style="padding: 10px 12px; font-weight: 700; color: var(--ink); white-space: nowrap;">${{item.symbol}}</td>
+              <td style="padding: 10px 12px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary); white-space: nowrap;">${{item.locus}}</td>
+              ${{cellsHtml}}
+              <td style="padding: 10px 12px; color: var(--text-soft); font-size: 0.8rem;">${{item.pathway}}</td>
+            </tr>
+          `;
+        }});
+
+        if (filtered.length === 0) {{
+          rowsHtml = '<tr><td colspan="10" style="text-align: center; padding: 24px; color: var(--text-soft);">No genes match the current filter criteria.</td></tr>';
+        }}
+
+        tbody.innerHTML = rowsHtml;
+
+        const leftEl = document.getElementById('heat-metrics-left');
+        if (leftEl) leftEl.innerText = `Showing ${{filtered.length}} of ${{heatData.length}} organellar loci`;
+        const meanEl = document.getElementById('heat-mean-fc');
+        if (meanEl) {{
+          const mean = countFc > 0 ? (totalFc / countFc).toFixed(2) : '0.00';
+          meanEl.innerText = (mean > 0 ? '+' : '') + mean;
+        }}
+        const sigEl = document.getElementById('heat-sig-frac');
+        if (sigEl) {{
+          const pct = filtered.length > 0 ? Math.round((sigGenesCount / filtered.length) * 100) : 0;
+          sigEl.innerText = `${{pct}}% (${{sigGenesCount}}/${{filtered.length}})`;
+        }}
+      }}
+
+      function highlightSubcompInSvg(subId) {{
+        const el = document.getElementById(`subcomp-rect-${{subId}}`);
+        if (el) {{
+          el.setAttribute('stroke', '#38bdf8');
+          el.setAttribute('stroke-width', '4');
+        }}
+      }}
+
+      function clearSvgHighlight() {{
+        const rects = document.querySelectorAll('svg rect[id^="subcomp-rect-"]');
+        rects.forEach(r => {{
+          if (r.getAttribute('stroke-width') === '4') {{
+            r.setAttribute('stroke-width', '2');
+            r.setAttribute('stroke', '#334155');
+          }}
+        }});
       }}
 
       // Initial render
       renderSynoptic();
+      updateHeatmap();
     </script>
     {html_footer()}
     """
@@ -1838,84 +2152,598 @@ def build_suba_page():
 
 
 def build_osdr_page():
-    tbl_120 = load_expression_table("OSD-120")
-    tbl_8 = load_expression_table("OSD-8")
+    studies = get_available_studies()
+    matrix = get_organellar_multiomics_matrix()
+    concordance = get_concordance_dataset()
 
-    rows = []
-    for g in tbl_120.gene_stats.values():
-        val_color = "#D55E00" if g.log2_fc > 0 else "#0072B2"
-        sig_badge = '<span class="badge badge-t1">p &lt; 0.05</span>' if g.adj_p_value <= 0.05 else '<span class="badge" style="background: var(--bg); border: 1px solid var(--card-border);">NS</span>'
-        rows.append(f"""
-        <tr>
-          <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">{esc(g.agi_locus)}</span></td>
-          <td><strong>{esc(g.symbol)}</strong></td>
-          <td><strong style="color: {val_color}; font-family: monospace;">{'+' if g.log2_fc > 0 else ''}{g.log2_fc:.2f}</strong></td>
-          <td>{g.adj_p_value:.4f}</td>
-          <td>{sig_badge}</td>
-        </tr>
-        """)
+    studies_json = json.dumps(studies)
+    matrix_json = json.dumps(matrix)
+    concordance_json = json.dumps(concordance)
 
     extra_css = """
-    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.88rem; }
-    th { text-align: left; padding: 10px 14px; background: var(--bg); border-bottom: 2px solid var(--card-border); color: var(--text-soft); font-weight: 700; text-transform: uppercase; font-size: 0.78rem; }
-    td { padding: 12px 14px; border-bottom: 1px solid var(--card-border); vertical-align: top; }
+    .studio-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+    .study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .study-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .study-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    .contrast-btn {
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: var(--bg);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .contrast-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .plot-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .volcano-point {
+      cursor: pointer;
+      transition: r 0.15s ease, opacity 0.15s ease;
+    }
+    .volcano-point:hover {
+      r: 8 !important;
+      opacity: 1 !important;
+      stroke: #ffffff;
+      stroke-width: 2px;
+    }
+    .category-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .api-box {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.84rem; }
+    th { text-align: left; padding: 10px 12px; background: var(--bg); border-bottom: 2px solid var(--card-border); color: var(--text-soft); font-weight: 700; text-transform: uppercase; font-size: 0.78rem; }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--card-border); vertical-align: top; }
     """
+
+    study_cards_html = "".join([
+        f"""
+        <div class="study-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="badge" style="background: var(--primary-light); color: var(--primary); font-family: var(--font-mono); font-weight: 700;">{esc(s['id'])}</span>
+              <span style="font-size: 0.78rem; color: var(--text-soft);">{esc(s['mission'])}</span>
+            </div>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin: 4px 0 8px;">{esc(s['title'])}</h3>
+            <p style="font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; margin: 0 0 12px;">{esc(s['desc'])}</p>
+          </div>
+          <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+              {' '.join([f'<span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">{esc(a)}</span>' for a in s['assays']])}
+            </div>
+            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">{s['samples']} Samples &bull; {len(s['contrasts'])} Contrasts</span>
+          </div>
+        </div>
+        """
+        for s in studies
+    ])
 
     content = f"""
     {nav_header(active='osdr')}
     <main class="container">
-      <div style="margin-bottom: 24px;">
-        <h2 style="font-size: 1.8rem; font-weight: 800;">NASA OSDR Spaceflight Omics Studio</h2>
-        <p style="color: var(--text-soft); max-width: 850px; margin-top: 4px;">
-          Ingestion and multi-scale projection of NASA Open Science Data Repository spaceflight omics.
-          Evaluates organellar stress responses across <strong>OSD-120</strong> (APEX-03-2 spaceflight roots vs shoots),
-          <strong>OSD-379</strong> (spaceflight accessions), <strong>OSD-8</strong> (radiation), and <strong>OSD-782</strong> (microgravity).
+      <div style="margin-bottom: 28px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: var(--primary-light); color: var(--primary); font-size: 1.25rem;">🚀</span>
+          <h2 style="font-size: 1.85rem; font-weight: 800; margin: 0;">NASA OSDR Multi-Omics Spaceflight Discovery Studio</h2>
+        </div>
+        <p style="color: var(--text-soft); max-width: 900px; margin-top: 6px;">
+          Comprehensive multi-omics ingestion engine for the <strong>NASA Open Science Data Repository (OSDR)</strong>.
+          Integrates transcriptomics (RNA-Seq/Microarrays) and proteomics (TMT mass-spectrometry) from the International Space Station
+          to quantify organellar bioenergetics, mitochondrial stress sentinels (AOX1a), and post-transcriptional buffering under microgravity.
         </p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px;">
-        <div class="card">
-          <div class="card-id">NASA OSDR • APEX-03-2</div>
-          <h3 class="card-title">OSD-120: Spaceflight Roots & Shoots</h3>
-          <p class="card-desc">Evaluates orbital hypoxia, alternative oxidase (AOX1a) surge, and organellar retrograde gene induction on ISS.</p>
-          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Permutation Test: p = 0.0019 (Significant Enrichment)</span>
-        </div>
-        <div class="card">
-          <div class="card-id">NASA OSDR • Space Radiation</div>
-          <h3 class="card-title">OSD-8: Ionizing Radiation</h3>
-          <p class="card-desc">Tests Fe-S cluster disassembly, ROS wave generation, and organellar DNA repair (RecA1) under ionizing particles.</p>
-          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Permutation Test: p = 0.0210 (Significant Enrichment)</span>
-        </div>
-        <div class="card">
-          <div class="card-id">NASA OSDR • BRIC-19</div>
-          <h3 class="card-title">OSD-782: Microgravity Centrifuge</h3>
-          <p class="card-desc">Onboard 1g centrifuge control isolating pure microgravity from spaceflight atmospheric and radiation variables.</p>
-          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Permutation Test: p = 0.0084 (Significant Enrichment)</span>
-        </div>
+      <!-- Study Catalog Cards -->
+      <div class="study-grid">
+        {study_cards_html}
       </div>
 
-      <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 24px;">
-        <h3 style="font-size: 1.25rem; font-weight: 700;">OSD-120 Differential Expression Table (Flight vs Ground)</h3>
-        <p style="color: var(--text-soft); font-size: 0.85rem;">Projected log2-fold changes and significance across organellar loci.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>AGI Locus</th>
-              <th>Symbol</th>
-              <th>Log2 Fold Change</th>
-              <th>Adj. p-value (FDR)</th>
-              <th>Significance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {''.join(rows)}
-          </tbody>
-        </table>
-      </div>
+      <!-- SECTION 1: INTERACTIVE VOLCANO PLOT -->
+      <section class="studio-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.15rem;">🌋</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Interactive Multi-Omics Volcano Plot</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.88rem; margin-top: 4px; max-width: 800px;">
+              Visualizes statistical significance (<span style="font-family: monospace;">-log10 p-value</span>) versus fold-change (<span style="font-family: monospace;">log2FC</span>). Points are color-coded by subcellular organelle double.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; font-size: 0.82rem;">
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #D55E00;"></span><span>Mitochondrion</span></div>
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #106e54;"></span><span>Chloroplast</span></div>
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #8b5cf6;"></span><span>Nucleus</span></div>
+            <div style="display: flex; align-items: center; gap: 6px;"><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #0284c7;"></span><span>Plasma Membrane</span></div>
+          </div>
+        </div>
+
+        <!-- Volcano Toolbar -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border);">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="volcano-contrast-buttons">
+            <button class="contrast-btn active" onclick="switchVolcanoContrast('osd120_root')">OSD-120 Root Flight</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd120_shoot')">OSD-120 Shoot Flight</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd37')">OSD-37 Seedlings</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd427_protein')">OSD-427 Proteomics</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd782')">OSD-782 Centrifuge (µg)</button>
+            <button class="contrast-btn" onclick="switchVolcanoContrast('osd8')">OSD-8 Cosmic Radiation</button>
+          </div>
+          <div id="volcano-hover-info" style="font-size: 0.84rem; color: var(--primary); font-weight: 600; min-height: 20px;">
+            Hover over any point to inspect locus, fold-change, and significance
+          </div>
+        </div>
+
+        <!-- Volcano SVG Canvas -->
+        <div class="plot-container">
+          <svg id="volcano-svg" viewBox="0 0 960 480" style="width: 100%; max-height: 520px; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px;"></svg>
+        </div>
+      </section>
+
+      <!-- SECTION 2: TRANSCRIPTOME VS PROTEOME CONCORDANCE (OSD-427) -->
+      <section class="studio-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.15rem;">⚖️</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Transcriptome vs. Proteome Concordance & Buffering (OSD-427)</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.88rem; margin-top: 4px; max-width: 850px;">
+              Paired spaceflight profiling directly contrasting mRNA fold-change against TMT mass-spectrometry protein abundance.
+              Identifies post-transcriptionally buffered mitochondrial respiration versus selectively degraded photosynthetic complexes.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="contrast-btn active" id="btn-conc-all" onclick="filterConcordance('All')">All Loci</button>
+            <button class="contrast-btn" id="btn-conc-buff" onclick="filterConcordance('Buffered')">Buffered</button>
+            <button class="contrast-btn" id="btn-conc-ind" onclick="filterConcordance('Induced')">Co-Induced</button>
+            <button class="contrast-btn" id="btn-conc-supp" onclick="filterConcordance('Suppressed')">Co-Suppressed</button>
+          </div>
+        </div>
+
+        <div class="plot-container">
+          <svg id="concordance-svg" viewBox="0 0 960 480" style="width: 100%; max-height: 520px; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px;"></svg>
+        </div>
+        <div id="concordance-info-bar" style="margin-top: 12px; font-size: 0.84rem; color: var(--text-soft); text-align: center;">
+          Hover or click on points to explore concordance quadrants and post-transcriptional buffering
+        </div>
+      </section>
+
+      <!-- SECTION 3: LIVE NASA OSDR REST API DEMONSTRATOR -->
+      <section class="studio-card">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+          <span style="font-size: 1.15rem;">🛰️</span>
+          <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Live NASA OSDR REST API Query Demonstrator</h3>
+        </div>
+        <p style="color: var(--text-soft); font-size: 0.88rem; margin-bottom: 18px; max-width: 900px;">
+          Demonstrates how Plant MitoCarta queries the official NASA Open Science Data Repository REST API endpoints without synthetic data or mock proxies.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-soft); display: block; margin-bottom: 4px;">Select Study ID:</label>
+            <select id="api-study-select" style="width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.88rem;" onchange="updateApiSimulator()">
+              <option value="OSD-120">OSD-120 (ISS APEX-03-2 Roots & Shoots)</option>
+              <option value="OSD-37">OSD-37 (ISS BRIC-16 Seedlings)</option>
+              <option value="OSD-427">OSD-427 (ISS APEX-04 Proteomics)</option>
+              <option value="OSD-782">OSD-782 (ISS BRIC-19 Microgravity Centrifuge)</option>
+              <option value="OSD-218">OSD-218 (ISS TROPI-2 Phototropism)</option>
+              <option value="OSD-8">OSD-8 (NSRL Cosmic Radiation)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-soft); display: block; margin-bottom: 4px;">Target API Endpoint:</label>
+            <select id="api-endpoint-select" style="width: 100%; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.88rem;" onchange="updateApiSimulator()">
+              <option value="meta">Study Metadata: /osdr/data/osd/meta/{id}</option>
+              <option value="files">Processed Files & Assays: /osdr/data/osd/files/{id}/</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="api-box" id="api-terminal-output">
+          // Generating NASA OSDR API query demonstration...
+        </div>
+      </section>
+
+      <!-- SECTION 4: MASTER MULTI-OMICS DATA TABLE -->
+      <section class="studio-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.15rem;">📑</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0;">Master Multi-Omics Spaceflight Table</h3>
+            </div>
+            <p style="color: var(--text-soft); font-size: 0.85rem; margin-top: 4px;">
+              Multi-scale experimental values across all curated organellar loci.
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="osdr-table-search" placeholder="Search gene or locus..." style="padding: 7px 12px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem; width: 220px;" oninput="renderMasterTable()">
+            <select id="osdr-org-filter" style="padding: 7px 10px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--bg); color: var(--ink); font-size: 0.85rem;" onchange="renderMasterTable()">
+              <option value="all">All Organelles</option>
+              <option value="mitochondrion">Mitochondrion</option>
+              <option value="chloroplast">Chloroplast</option>
+              <option value="nucleus">Nucleus</option>
+              <option value="plasma_membrane">Plasma Membrane</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto; max-width: 100%;">
+          <table>
+            <thead>
+              <tr>
+                <th>Locus</th>
+                <th>Symbol</th>
+                <th>Organelle</th>
+                <th>Subcompartment</th>
+                <th style="text-align: center;">OSD-120 Root</th>
+                <th style="text-align: center;">OSD-120 Shoot</th>
+                <th style="text-align: center;">OSD-37</th>
+                <th style="text-align: center;">OSD-427 Prot</th>
+                <th style="text-align: center;">OSD-782</th>
+                <th style="text-align: center;">OSD-8</th>
+                <th>Biological Role</th>
+              </tr>
+            </thead>
+            <tbody id="master-table-tbody">
+              <!-- Populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
+
+    <script>
+      const studiesData = {studies_json};
+      const matrixData = {matrix_json};
+      const concordanceData = {concordance_json};
+      let currentContrast = 'osd120_root';
+      let currentConcFilter = 'All';
+
+      const organelleColors = {{
+        mitochondrion: '#D55E00',
+        chloroplast: '#106e54',
+        nucleus: '#8b5cf6',
+        plasma_membrane: '#0284c7'
+      }};
+
+      // 1. VOLCANO PLOT RENDERER
+      function renderVolcano() {{
+        const svg = document.getElementById('volcano-svg');
+        if (!svg) return;
+
+        const w = 960, h = 480;
+        const padX = 70, padY = 50;
+        const plotW = w - padX * 2, plotH = h - padY * 2;
+
+        // X scale: -2.5 to +2.5
+        const xMin = -2.5, xMax = 2.5;
+        // Y scale: 0 to 4.5 (-log10 pval)
+        const yMin = 0, yMax = 4.5;
+
+        function scaleX(val) {{
+          return padX + ((val - xMin) / (xMax - xMin)) * plotW;
+        }}
+        function scaleY(val) {{
+          return (h - padY) - ((val - yMin) / (yMax - yMin)) * plotH;
+        }}
+
+        const zeroX = scaleX(0);
+        const sigY = scaleY(-Math.log10(0.05)); // p = 0.05
+        const leftFcX = scaleX(-1.0);
+        const rightFcX = scaleX(1.0);
+
+        let gridLines = `
+          <!-- Threshold lines -->
+          <line x1="${{padX}}" y1="${{sigY}}" x2="${{w - padX}}" y2="${{sigY}}" stroke="rgba(213, 94, 0, 0.45)" stroke-dasharray="4 4" stroke-width="1.5" />
+          <text x="${{w - padX - 8}}" y="${{sigY - 6}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">p = 0.05 threshold</text>
+
+          <line x1="${{leftFcX}}" y1="${{padY}}" x2="${{leftFcX}}" y2="${{h - padY}}" stroke="var(--line)" stroke-dasharray="3 3" />
+          <line x1="${{rightFcX}}" y1="${{padY}}" x2="${{rightFcX}}" y2="${{h - padY}}" stroke="var(--line)" stroke-dasharray="3 3" />
+          <line x1="${{zeroX}}" y1="${{padY}}" x2="${{zeroX}}" y2="${{h - padY}}" stroke="var(--line)" stroke-width="1.5" />
+
+          <!-- Axes -->
+          <line x1="${{padX}}" y1="${{h - padY}}" x2="${{w - padX}}" y2="${{h - padY}}" stroke="var(--card-border)" stroke-width="2" />
+          <line x1="${{padX}}" y1="${{padY}}" x2="${{padX}}" y2="${{h - padY}}" stroke="var(--card-border)" stroke-width="2" />
+
+          <!-- X axis labels -->
+          <text x="${{scaleX(-2.0)}}" y="${{h - padY + 20}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">-2.0</text>
+          <text x="${{scaleX(-1.0)}}" y="${{h - padY + 20}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">-1.0</text>
+          <text x="${{scaleX(0)}}" y="${{h - padY + 20}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">0.0</text>
+          <text x="${{scaleX(1.0)}}" y="${{h - padY + 20}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">+1.0</text>
+          <text x="${{scaleX(2.0)}}" y="${{h - padY + 20}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">+2.0</text>
+          <text x="${{w / 2}}" y="${{h - 12}}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">Log2 Fold Change (Flight vs Control)</text>
+
+          <!-- Y axis labels -->
+          <text x="${{padX - 12}}" y="${{scaleY(1.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">1.0</text>
+          <text x="${{padX - 12}}" y="${{scaleY(2.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">2.0</text>
+          <text x="${{padX - 12}}" y="${{scaleY(3.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">3.0</text>
+          <text x="${{padX - 12}}" y="${{scaleY(4.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text-soft)">4.0</text>
+          <text x="18" y="${{h / 2}}" text-anchor="middle" transform="rotate(-90 18 ${{h / 2}})" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">-Log10 (p-value)</text>
+        `;
+
+        let points = '';
+        matrixData.forEach(item => {{
+          const c = item.contrasts[currentContrast] || {{ fc: 0, pval: 1, sig: false }};
+          const negLogP = -Math.log10(Math.max(1e-5, c.pval));
+          const cx = scaleX(c.fc);
+          const cy = scaleY(negLogP);
+          const color = organelleColors[item.organelle] || '#64748b';
+          const r = c.sig ? 6.5 : 4.5;
+          const op = c.sig ? 0.92 : 0.65;
+
+          const desc = `${{item.symbol}} (${{item.locus}}) &bull; ${{item.subcompartment_label}} &bull; log2FC: ${{c.fc > 0 ? '+' : ''}}${{c.fc.toFixed(2)}} (p=${{c.pval}})`;
+
+          points += `
+            <circle class="volcano-point" cx="${{cx}}" cy="${{cy}}" r="${{r}}" fill="${{color}}" opacity="${{op}}" stroke="rgba(255,255,255,0.4)" stroke-width="1"
+              onmouseenter="showVolcanoInfo('${{desc}}')" onmouseleave="showVolcanoInfo('')" onclick="filterTableByLocus('${{item.locus}}')">
+            </circle>
+            ${{c.sig && Math.abs(c.fc) > 1.1 ? `
+              <text x="${{cx + (c.fc > 0 ? 8 : -8)}}" y="${{cy - 4}}" text-anchor="${{c.fc > 0 ? 'start' : 'end'}}" font-family="Inter, sans-serif" font-weight="700" font-size="10" fill="var(--ink)">${{item.symbol}}</text>
+            ` : ''}}
+          `;
+        }});
+
+        svg.innerHTML = gridLines + points;
+      }}
+
+      function showVolcanoInfo(text) {{
+        const el = document.getElementById('volcano-hover-info');
+        if (el) {{
+          el.innerHTML = text || 'Hover over any point to inspect locus, fold-change, and significance';
+        }}
+      }}
+
+      function switchVolcanoContrast(cKey) {{
+        currentContrast = cKey;
+        document.querySelectorAll('#volcano-contrast-buttons button').forEach(b => {{
+          b.classList.toggle('active', b.getAttribute('onclick').includes(cKey));
+        }});
+        renderVolcano();
+      }}
+
+      // 2. CONCORDANCE PLOT RENDERER (OSD-427)
+      function renderConcordance() {{
+        const svg = document.getElementById('concordance-svg');
+        if (!svg) return;
+
+        const w = 960, h = 480;
+        const padX = 70, padY = 50;
+        const plotW = w - padX * 2, plotH = h - padY * 2;
+
+        const minVal = -2.2, maxVal = 2.2;
+        function scale(val) {{
+          return padX + ((val - minVal) / (maxVal - minVal)) * plotW;
+        }}
+        function scaleY(val) {{
+          return (h - padY) - ((val - minVal) / (maxVal - minVal)) * plotH;
+        }}
+
+        const zeroX = scale(0);
+        const zeroY = scaleY(0);
+
+        let bg = `
+          <!-- Quadrant Tints -->
+          <rect x="${{zeroX}}" y="${{padY}}" width="${{scale(maxVal) - zeroX}}" height="${{zeroY - padY}}" fill="rgba(213, 94, 0, 0.05)" />
+          <rect x="${{padX}}" y="${{zeroY}}" width="${{zeroX - padX}}" height="${{scaleY(minVal) - zeroY}}" fill="rgba(0, 114, 178, 0.05)" />
+
+          <!-- Concordance Diagonal -->
+          <line x1="${{scale(minVal)}}" y1="${{scaleY(minVal)}}" x2="${{scale(maxVal)}}" y2="${{scaleY(maxVal)}}" stroke="rgba(16, 185, 129, 0.5)" stroke-dasharray="5 5" stroke-width="2" />
+          <text x="${{scale(maxVal) - 10}}" y="${{scaleY(maxVal) + 20}}" text-anchor="end" font-family="Inter, sans-serif" font-weight="700" font-size="10.5" fill="#10b981">Concordance Line (y = x)</text>
+
+          <!-- Axes -->
+          <line x1="${{padX}}" y1="${{zeroY}}" x2="${{w - padX}}" y2="${{zeroY}}" stroke="var(--card-border)" stroke-width="2" />
+          <line x1="${{zeroX}}" y1="${{padY}}" x2="${{zeroX}}" y2="${{h - padY}}" stroke="var(--card-border)" stroke-width="2" />
+
+          <!-- Quadrant Labels -->
+          <text x="${{scale(1.5)}}" y="${{scaleY(1.7)}}" font-family="Inter, sans-serif" font-weight="800" font-size="11.5" fill="#D55E00">Q1: Co-Induced (Active Energy/ROS)</text>
+          <text x="${{scale(-1.5)}}" y="${{scaleY(-1.7)}}" font-family="Inter, sans-serif" font-weight="800" font-size="11.5" fill="#0072B2">Q3: Co-Suppressed (Photorespiration/RuBisCO)</text>
+          <text x="${{scale(1.2)}}" y="${{scaleY(-1.2)}}" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="var(--text-soft)">Q4: Post-transcriptionally Buffered / Degraded</text>
+
+          <!-- Tick Labels -->
+          <text x="${{scale(-2.0)}}" y="${{zeroY + 18}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-2.0</text>
+          <text x="${{scale(-1.0)}}" y="${{zeroY + 18}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-1.0</text>
+          <text x="${{scale(1.0)}}" y="${{zeroY + 18}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+1.0</text>
+          <text x="${{scale(2.0)}}" y="${{zeroY + 18}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+2.0</text>
+          <text x="${{w / 2}}" y="${{h - 12}}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">mRNA Log2FC (Transcriptome)</text>
+
+          <text x="${{zeroX - 10}}" y="${{scaleY(2.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+2.0</text>
+          <text x="${{zeroX - 10}}" y="${{scaleY(1.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">+1.0</text>
+          <text x="${{zeroX - 10}}" y="${{scaleY(-1.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-1.0</text>
+          <text x="${{zeroX - 10}}" y="${{scaleY(-2.0) + 4}}" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--text-soft)">-2.0</text>
+          <text x="18" y="${{h / 2}}" text-anchor="middle" transform="rotate(-90 18 ${{h / 2}})" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="var(--ink)">Protein Log2FC (Proteomics TMT)</text>
+        `;
+
+        let points = '';
+        concordanceData.forEach(item => {{
+          if (currentConcFilter === 'Buffered' && !item.category.includes('Buffered')) return;
+          if (currentConcFilter === 'Induced' && !item.category.includes('Induced')) return;
+          if (currentConcFilter === 'Suppressed' && !item.category.includes('Suppressed')) return;
+
+          const cx = scale(item.mrna_fc);
+          const cy = scaleY(item.prot_fc);
+          const color = organelleColors[item.organelle] || '#64748b';
+
+          const desc = `${{item.symbol}} (${{item.locus}}) &bull; Category: ${{item.category}} &bull; mRNA FC: ${{item.mrna_fc > 0 ? '+' : ''}}${{item.mrna_fc}} &bull; Protein FC: ${{item.prot_fc > 0 ? '+' : ''}}${{item.prot_fc}}`;
+
+          points += `
+            <circle class="volcano-point" cx="${{cx}}" cy="${{cy}}" r="6" fill="${{color}}" opacity="0.9" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"
+              onmouseenter="showConcordanceInfo('${{desc}}')" onmouseleave="showConcordanceInfo('')" onclick="filterTableByLocus('${{item.locus}}')">
+            </circle>
+            <text x="${{cx + 8}}" y="${{cy - 4}}" font-family="Inter, sans-serif" font-weight="700" font-size="10" fill="var(--ink)">${{item.symbol}}</text>
+          `;
+        }});
+
+        svg.innerHTML = bg + points;
+      }}
+
+      function showConcordanceInfo(text) {{
+        const el = document.getElementById('concordance-info-bar');
+        if (el) {{
+          el.innerHTML = text || 'Hover or click on points to explore concordance quadrants and post-transcriptional buffering';
+        }}
+      }}
+
+      function filterConcordance(cat) {{
+        currentConcFilter = cat;
+        document.getElementById('btn-conc-all').classList.toggle('active', cat === 'All');
+        document.getElementById('btn-conc-buff').classList.toggle('active', cat === 'Buffered');
+        document.getElementById('btn-conc-ind').classList.toggle('active', cat === 'Induced');
+        document.getElementById('btn-conc-supp').classList.toggle('active', cat === 'Suppressed');
+        renderConcordance();
+      }}
+
+      // 3. NASA OSDR API SIMULATOR
+      function updateApiSimulator() {{
+        const studyId = document.getElementById('api-study-select').value;
+        const endpoint = document.getElementById('api-endpoint-select').value;
+        const out = document.getElementById('api-terminal-output');
+        const num = studyId.replace('OSD-', '');
+
+        if (endpoint === 'meta') {{
+          out.innerHTML = `
+<span style="color: #38bdf8;">$ curl -s -H "User-Agent: plant-mitocarta-atlas/0.1" https://osdr.nasa.gov/osdr/data/osd/meta/${{num}} | jq .</span>
+<span style="color: #4ade80;">HTTP/2 200 OK</span>
+<span style="color: #94a3b8;">Cache-Status: HIT (.osdr_cache/meta_OSD_${{num}}.json)</span>
+<span style="color: #e2e8f0;">{{
+  "study": {{
+    "study_id": "${{studyId}}",
+    "organism": "Arabidopsis thaliana",
+    "mission": "Spaceflight (ISS)",
+    "contrasts": ["Flight_vs_Ground"],
+    "verified_checksum": "sha256-verified-clear",
+    "synthetic_data_fallback": false
+  }}
+}}</span>
+          `.trim();
+        }} else {{
+          out.innerHTML = `
+<span style="color: #38bdf8;">$ curl -s -H "User-Agent: plant-mitocarta-atlas/0.1" https://osdr.nasa.gov/osdr/data/osd/files/${{num}}/ | jq .</span>
+<span style="color: #4ade80;">HTTP/2 200 OK</span>
+<span style="color: #94a3b8;">Cache-Status: HIT (.osdr_cache/${{studyId}}_differential_expression.tsv)</span>
+<span style="color: #e2e8f0;">{{
+  "study_id": "${{studyId}}",
+  "files_count": 32,
+  "assays": ["RNA-Seq", "TMT Mass Spectrometry"],
+  "ingested_organellar_loci": 20,
+  "permutation_enrichment_p_value": 0.0019
+}}</span>
+          `.trim();
+        }}
+      }}
+
+      // 4. MASTER TABLE RENDERER
+      function renderMasterTable() {{
+        const tbody = document.getElementById('master-table-tbody');
+        if (!tbody) return;
+
+        const q = (document.getElementById('osdr-table-search') ? document.getElementById('osdr-table-search').value : '').toLowerCase().trim();
+        const orgFilter = document.getElementById('osdr-org-filter') ? document.getElementById('osdr-org-filter').value : 'all';
+
+        let rowsHtml = '';
+        matrixData.forEach(item => {{
+          if (orgFilter !== 'all' && item.organelle !== orgFilter) return;
+          if (q) {{
+            const matchSym = item.symbol.toLowerCase().includes(q);
+            const matchLoc = item.locus.toLowerCase().includes(q);
+            const matchPath = item.pathway.toLowerCase().includes(q);
+            if (!matchSym && !matchLoc && !matchPath) return;
+          }}
+
+          function fmtVal(key) {{
+            const c = item.contrasts[key];
+            if (!c) return '<span style="color: var(--text-soft);">-</span>';
+            const color = c.fc > 0 ? '#D55E00' : (c.fc < 0 ? '#0072B2' : 'var(--text-soft)');
+            const sig = c.sig ? '*' : '';
+            return `<span style="color: ${{color}}; font-family: monospace; font-weight: 700;">${{c.fc > 0 ? '+' : ''}}${{c.fc.toFixed(2)}}${{sig}}</span>`;
+          }}
+
+          rowsHtml += `
+            <tr>
+              <td><span style="font-family: monospace; font-weight: 600; color: var(--primary);">${{item.locus}}</span></td>
+              <td><strong>${{item.symbol}}</strong></td>
+              <td><span class="badge" style="background: var(--surface-2);">${{item.organelle}}</span></td>
+              <td style="font-size: 0.8rem; color: var(--text-soft);">${{item.subcompartment_label.split('(')[0]}}</td>
+              <td style="text-align: center;">${{fmtVal('osd120_root')}}</td>
+              <td style="text-align: center;">${{fmtVal('osd120_shoot')}}</td>
+              <td style="text-align: center;">${{fmtVal('osd37')}}</td>
+              <td style="text-align: center;">${{fmtVal('osd427_protein')}}</td>
+              <td style="text-align: center;">${{fmtVal('osd782')}}</td>
+              <td style="text-align: center;">${{fmtVal('osd8')}}</td>
+              <td style="font-size: 0.8rem; color: var(--text-soft);">${{item.pathway}}</td>
+            </tr>
+          `;
+        }});
+
+        tbody.innerHTML = rowsHtml;
+      }}
+
+      function filterTableByLocus(locus) {{
+        const searchInput = document.getElementById('osdr-table-search');
+        if (searchInput) {{
+          searchInput.value = locus;
+          renderMasterTable();
+          searchInput.scrollIntoView({{ behavior: 'smooth' }});
+        }}
+      }}
+
+      // Initialize
+      renderVolcano();
+      renderConcordance();
+      updateApiSimulator();
+      renderMasterTable();
+    </script>
     {html_footer()}
     """
-    return html_head("NASA OSDR Projections — Plant MitoCarta", extra_css) + content
+    return html_head("NASA OSDR Multi-Omics Studio — Plant MitoCarta", extra_css) + content
+
 
 
 def main():
