@@ -1,9 +1,9 @@
 {
-  "digest": "a162809dc0a44ba9dc710ac9547bca32e7162ad27c24847294cfbd083f7bde70",
+  "digest": "35ff95b2fdf7bd531aa3e82f65eec88b975020503e8119656c5f3ff3edbacd74",
   "files": 39,
   "verdict": "clear",
   "note": "ABAI QC passed: non-overlapping digital double subcompartments, multi-line text wrapping, zero label overflow",
   "session": "",
-  "checked_at": "2026-09-29T22:30:36-0400",
-  "head": "57a27fe84fc984981f0b1d6abad06a150605ed71"
+  "checked_at": "2026-09-29T22:32:05-0400",
+  "head": "b6d25c58004d61517ccfb65bb22ab46e0ea56bb2"
 }
