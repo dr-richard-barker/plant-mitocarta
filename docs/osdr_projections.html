@@ -496,7 +496,7 @@
 
     <nav class="cose-tab-bar" aria-label="Sections">
       <span class="tab-label">Views</span>
-      <a href="index.html" class="btn">Atlas & Maps</a><a href="digital_doubles.html" class="btn">Digital Doubles</a><a href="retrograde.html" class="btn">Retrograde Signaling</a><a href="comparative.html" class="btn">MitoCarta 3.0 Synteny</a><a href="suba_localization.html" class="btn">SUBA5 Proteomics</a><a href="osdr_projections.html" class="btn active" aria-current="page">NASA OSDR Studio</a>
+      <a href="index.html" class="btn">Atlas & Maps</a><a href="digital_doubles.html" class="btn">Digital Doubles</a><a href="retrograde.html" class="btn">Retrograde Signaling</a><a href="comparative.html" class="btn">MitoCarta 3.0 Synteny</a><a href="suba_localization.html" class="btn">SUBA5 Proteomics</a><a href="osdr_projections.html" class="btn active" aria-current="page">NASA OSDR Studio</a><a href="custom_projection.html" class="btn">Project Your Data</a>
     </nav>
     
     <main class="container">
@@ -510,6 +510,20 @@
           Integrates transcriptomics (RNA-Seq/Microarrays) and proteomics (TMT mass-spectrometry) from the International Space Station
           to quantify organellar bioenergetics, mitochondrial stress sentinels (AOX1a), and post-transcriptional buffering under microgravity.
         </p>
+      </div>
+
+      <!-- Custom Omics Projection Studio Callout Banner -->
+      <div style="background: linear-gradient(135deg, rgba(59,110,165,0.08), rgba(63,182,168,0.08)); border: 1px solid var(--card-border); border-left: 4px solid var(--accent); border-radius: var(--border-radius); padding: 18px 24px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div style="max-width: 800px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="font-size: 1.15rem;">🧪</span>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0;">Have Your Own Spaceflight or Terrestrial Omics Data?</h3>
+          </div>
+          <p style="margin: 0; font-size: 0.88rem; color: var(--text-soft); line-height: 1.5;">
+            Paste or upload your CSV/TSV/JSON differential expression tables into the new <strong>Project Your Data Studio</strong>. Map your log2 fold-changes and p-values directly onto all 10 plant organellar pathway maps with automatic WCAG AAA contrast and export publication-ready vector SVGs.
+          </p>
+        </div>
+        <a href="custom_projection.html" class="btn primary" style="padding: 9px 18px; font-weight: 700; white-space: nowrap;">Open Custom Omics Studio &rarr;</a>
       </div>
 
       <!-- Study Catalog Cards -->
@@ -528,7 +542,10 @@
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
               <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span> <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Microarray</span>
             </div>
-            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">32 Samples &bull; 2 Contrasts</span>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">32 Samples &bull; 2 Contrasts</span>
+              <a href="studies/osd-120.html" class="btn btn-sm primary" style="font-size: 0.76rem; padding: 4px 10px;">Explore Study Showcase &rarr;</a>
+            </div>
           </div>
         </div>
         
@@ -545,7 +562,10 @@
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
               <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Microarray</span>
             </div>
-            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">24 Samples &bull; 1 Contrasts</span>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">24 Samples &bull; 1 Contrasts</span>
+              <a href="studies/osd-37.html" class="btn btn-sm primary" style="font-size: 0.76rem; padding: 4px 10px;">Explore Study Showcase &rarr;</a>
+            </div>
           </div>
         </div>
         
@@ -562,7 +582,10 @@
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
               <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Proteomics (TMT LC-MS/MS)</span> <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span>
             </div>
-            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">18 Samples &bull; 2 Contrasts</span>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">18 Samples &bull; 2 Contrasts</span>
+              <a href="studies/osd-427.html" class="btn btn-sm primary" style="font-size: 0.76rem; padding: 4px 10px;">Explore Study Showcase &rarr;</a>
+            </div>
           </div>
         </div>
         
@@ -579,7 +602,10 @@
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
               <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span>
             </div>
-            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">16 Samples &bull; 1 Contrasts</span>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">16 Samples &bull; 1 Contrasts</span>
+              <a href="studies/osd-782.html" class="btn btn-sm primary" style="font-size: 0.76rem; padding: 4px 10px;">Explore Study Showcase &rarr;</a>
+            </div>
           </div>
         </div>
         
@@ -596,7 +622,10 @@
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
               <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">RNA-Seq</span>
             </div>
-            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">20 Samples &bull; 1 Contrasts</span>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">20 Samples &bull; 1 Contrasts</span>
+              <a href="studies/osd-218.html" class="btn btn-sm primary" style="font-size: 0.76rem; padding: 4px 10px;">Explore Study Showcase &rarr;</a>
+            </div>
           </div>
         </div>
         
@@ -613,7 +642,10 @@
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
               <span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">Microarray</span>
             </div>
-            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">18 Samples &bull; 1 Contrasts</span>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">18 Samples &bull; 1 Contrasts</span>
+              <a href="studies/osd-8.html" class="btn btn-sm primary" style="font-size: 0.76rem; padding: 4px 10px;">Explore Study Showcase &rarr;</a>
+            </div>
           </div>
         </div>
         

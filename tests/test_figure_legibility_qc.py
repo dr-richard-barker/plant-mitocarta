@@ -10,10 +10,18 @@ Asserts across all 10 declarative maps and all 4 digital doubles:
 """
 from __future__ import annotations
 
+import html
+import pathlib
 import pytest
 from plant_mitocarta.maps import compile_all_maps, load_map
 from plant_mitocarta.doubles import get_all_doubles
 from plant_mitocarta.layout import measure, PAD_X, PAD_Y
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+DOCS_DIR = ROOT / "docs"
+
+def esc(s):
+    return html.escape(str(s), quote=True)
 
 
 def test_maps_zero_node_box_overlaps():
@@ -514,6 +522,163 @@ def test_comparative_synteny_studio_qc():
     assert "selectEpoch" in comp_html, "Missing selectEpoch function"
     assert "setQuadrantFilter" in comp_html, "Missing setQuadrantFilter function"
     assert "filterSyntenyTable" in comp_html, "Missing filterSyntenyTable function"
+
+
+def test_custom_projection_studio_qc():
+    """Check 19: Custom Multi-Omics Data Projection Studio ABAI QC Verification.
+    Verifies that docs/custom_projection.html exists, has complete CoSE navigation,
+    ingestion presets (6 OSDR spaceflight presets + synthetic), NASA OSDR API query interface,
+    drag-and-drop file upload, data input textarea, telemetry HUD with 6 metric counters,
+    dynamic fold-change slider, significance filter, palette selectors, map switcher across all 10 maps,
+    SVG canvas with luminance-adaptive contrast, node hover inspector drawer, matched loci inspection table,
+    and SVG/PNG/CSV export capabilities.
+    """
+    studio_path = DOCS_DIR / "custom_projection.html"
+    assert studio_path.exists(), "Missing docs/custom_projection.html"
+    content = studio_path.read_text(encoding="utf-8")
+    assert len(content) > 30000, f"docs/custom_projection.html too small ({len(content)} bytes)"
+
+    # Assert Navigation & CoSE Theme
+    assert 'class="btn active"' in content, "Missing active nav link in custom_projection.html"
+    assert "Project Your Data" in content, "Missing 'Project Your Data' tab in nav"
+    assert 'id="cose-theme-toggle"' in content, "Missing theme toggle in custom_projection.html"
+
+    # Assert Ingestion Controls & Presets
+    assert 'id="custom-data-input"' in content, "Missing custom-data-input textarea"
+    assert 'id="file-drop-zone"' in content, "Missing file-drop-zone dropzone"
+    assert 'id="file-upload-input"' in content, "Missing file-upload-input file input"
+    assert 'id="btn-project-data"' in content, "Missing btn-project-data button"
+    for preset in ["osd120_root", "osd120_shoot", "osd427_protein", "osd37", "osd782", "osd8"]:
+        assert preset in content, f"Missing preset '{preset}' in custom_projection.html"
+
+    # Assert NASA OSDR API Bar
+    assert 'id="osdr-api-input"' in content, "Missing osdr-api-input input"
+    assert 'id="btn-query-osdr"' in content, "Missing btn-query-osdr button"
+    assert 'id="osdr-api-status"' in content, "Missing osdr-api-status badge"
+
+    # Assert Telemetry HUD
+    assert 'id="hud-total-rows"' in content, "Missing hud-total-rows"
+    assert 'id="hud-matched-loci"' in content, "Missing hud-matched-loci"
+    assert 'id="hud-active-nodes"' in content, "Missing hud-active-nodes"
+    assert 'id="hud-up-count"' in content, "Missing hud-up-count"
+    assert 'id="hud-down-count"' in content, "Missing hud-down-count"
+    assert 'id="hud-sig-count"' in content, "Missing hud-sig-count"
+
+    # Assert Visualization Controls
+    assert 'id="slider-fc-range"' in content, "Missing slider-fc-range slider"
+    assert 'id="val-fc-range"' in content, "Missing val-fc-range label"
+    assert 'id="select-sig-filter"' in content, "Missing select-sig-filter select"
+    assert 'id="select-palette"' in content, "Missing select-palette select"
+    assert 'id="select-contrast-mode"' in content, "Missing select-contrast-mode select"
+
+    # Assert Map Selector with all 10 maps
+    assert 'id="select-active-map"' in content, "Missing select-active-map select"
+    for i in range(1, 11):
+        map_id = f"PMM-{i:02d}"
+        assert map_id in content, f"Missing {map_id} in select-active-map options"
+
+    # Assert Canvas & Export Tools
+    assert 'id="studio-canvas-container"' in content, "Missing studio-canvas-container"
+    assert 'id="node-inspector-drawer"' in content, "Missing node-inspector-drawer"
+    assert 'id="btn-export-svg"' in content, "Missing btn-export-svg button"
+    assert 'id="btn-export-png"' in content, "Missing btn-export-png button"
+    assert 'id="btn-export-csv"' in content, "Missing btn-export-csv button"
+
+    # Assert Matched Loci Table
+    assert 'id="table-search-input"' in content, "Missing table-search-input"
+    assert 'id="table-row-count"' in content, "Missing table-row-count"
+    assert 'id="matched-loci-tbody"' in content, "Missing matched-loci-tbody"
+
+    # Assert Client-Side JavaScript Functions
+    for fn in [
+        "initStudio",
+        "switchStudioMap",
+        "loadPreset",
+        "loadSyntheticData",
+        "queryOsdrApi",
+        "parseData",
+        "projectData",
+        "applyProjection",
+        "exportStudioSvg",
+        "exportStudioPng",
+        "exportStudioCsv",
+    ]:
+        assert fn in content, f"Missing client-side function '{fn}' in custom_projection.html"
+
+
+def test_osdr_individual_study_pages_qc():
+    """Check 20: Dedicated NASA OSDR Study Showcase Pages ABAI QC Verification.
+    Verifies that all 5 study showcase pages exist under docs/studies/ (OSD-120, OSD-427, OSD-37, OSD-782, OSD-8),
+    are non-empty (>30 KB), feature proper depth-1 CoSE navigation, mission metadata badges, external NASA OSDR repository links,
+    prominent CTA buttons hand-off to custom projection studio, biological synopses, key discovery cards, literature citations with DOIs,
+    pre-projected interactive pathway maps with contrast/map switcher, node inspector, SVG export,
+    and a ranked organellar responders table with search and subcellular compartment filtering.
+    Also verifies docs/osdr_projections.html links to each study showcase page.
+    """
+    from plant_mitocarta.studio import STUDY_PROFILES
+
+    studies_dir = DOCS_DIR / "studies"
+    assert studies_dir.is_dir(), "Missing docs/studies/ directory"
+
+    # Verify link from OSDR Studio page
+    osdr_page = (DOCS_DIR / "osdr_projections.html").read_text(encoding="utf-8")
+
+    for study_id, profile in STUDY_PROFILES.items():
+        fname = f"{study_id.lower()}.html"
+        study_path = studies_dir / fname
+        assert study_path.exists(), f"Missing {study_path}"
+        s_html = study_path.read_text(encoding="utf-8")
+        assert len(s_html) > 30000, f"Study page {fname} too small ({len(s_html)} bytes)"
+
+        # Check in osdr_projections.html
+        assert f"studies/{fname}" in osdr_page, f"Missing link to studies/{fname} in osdr_projections.html"
+
+        # Check Depth-1 Navigation
+        assert "../index.html" in s_html, f"Missing depth-1 link ../index.html in {fname}"
+        assert "../custom_projection.html" in s_html, f"Missing depth-1 link ../custom_projection.html in {fname}"
+
+        # Check Metadata Badges
+        assert study_id in s_html, f"Missing study ID {study_id} in {fname}"
+        assert profile["mission"] in s_html, f"Missing mission '{profile['mission']}' in {fname}"
+        assert profile["hardware"] in s_html, f"Missing hardware '{profile['hardware']}' in {fname}"
+        assert profile["duration"] in s_html, f"Missing duration '{profile['duration']}' in {fname}"
+        assert profile["organism"] in s_html, f"Missing organism '{profile['organism']}' in {fname}"
+
+        # Check External OSDR link and Custom Studio CTA
+        assert profile["osdr_url"] in s_html, f"Missing OSDR URL in {fname}"
+        assert f"custom_projection.html?study={study_id}" in s_html, f"Missing custom studio CTA in {fname}"
+
+        # Check Biological Discoveries & Citations
+        for finding in profile.get("key_findings", []):
+            assert esc(finding) in s_html or finding[:30] in s_html, f"Missing finding in {fname}"
+        for title, url in profile.get("citations", []):
+            assert url in s_html, f"Missing citation URL {url} in {fname}"
+
+        # Check Interactive Pathway Maps Gallery
+        assert 'id="study-svg-container"' in s_html, f"Missing study-svg-container in {fname}"
+        assert 'id="study-node-inspector"' in s_html, f"Missing study-node-inspector in {fname}"
+        for mid in profile["relevant_maps"]:
+            assert mid in s_html, f"Missing relevant map {mid} in {fname}"
+
+        # Check Contrasts
+        for c in profile["contrasts"]:
+            assert c["id"] in s_html, f"Missing contrast {c['id']} in {fname}"
+
+        # Check Ranked Table
+        assert 'id="study-table-body"' in s_html, f"Missing study-table-body in {fname}"
+        assert 'id="study-table-search"' in s_html, f"Missing study-table-search in {fname}"
+
+        # Check Client-Side JS Functions
+        for fn in [
+            "switchStudyMap",
+            "switchStudyContrast",
+            "applyStudyProjection",
+            "attachStudyNodeEvents",
+            "inspectStudyNode",
+            "renderStudyTable",
+            "exportStudySvg",
+        ]:
+            assert fn in s_html, f"Missing function '{fn}' in {fname}"
 
 
 

@@ -17,6 +17,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "scripts"))
 
 from plant_mitocarta.maps import compile_all_maps
 from plant_mitocarta.ontology import load_ontology
@@ -32,8 +33,13 @@ from plant_mitocarta.osdr import (
     get_concordance_dataset,
     CURATED_MULTIOMICS_ENTRIES,
 )
+from plant_mitocarta.studio import STUDY_PROFILES
 from plant_mitocarta.project import project_expression_onto_double, project_onto_map
 from plant_mitocarta.compare import compartment_specificity_test
+from build_custom_studio import (
+    build_custom_projection_page,
+    build_study_showcase_page,
+)
 
 DOCS_DIR = ROOT / "docs"
 MAPS_DIR = DOCS_DIR / "maps"
@@ -44,14 +50,16 @@ def esc(s):
     return html.escape(str(s), quote=True)
 
 
-def nav_header(active="home"):
+def nav_header(active="home", depth=0):
+    prefix = "../" if depth == 1 else ""
     links = [
-        ("index.html", "Atlas & Maps", active == "home"),
-        ("digital_doubles.html", "Digital Doubles", active == "doubles"),
-        ("retrograde.html", "Retrograde Signaling", active == "retrograde"),
-        ("comparative.html", "MitoCarta 3.0 Synteny", active == "comparative"),
-        ("suba_localization.html", "SUBA5 Proteomics", active == "suba"),
-        ("osdr_projections.html", "NASA OSDR Studio", active == "osdr"),
+        (f"{prefix}index.html", "Atlas & Maps", active == "home"),
+        (f"{prefix}digital_doubles.html", "Digital Doubles", active == "doubles"),
+        (f"{prefix}retrograde.html", "Retrograde Signaling", active == "retrograde"),
+        (f"{prefix}comparative.html", "MitoCarta 3.0 Synteny", active == "comparative"),
+        (f"{prefix}suba_localization.html", "SUBA5 Proteomics", active == "suba"),
+        (f"{prefix}osdr_projections.html", "NASA OSDR Studio", active == "osdr"),
+        (f"{prefix}custom_projection.html", "Project Your Data", active == "custom"),
     ]
     link_items = []
     for url, label, is_act in links:
@@ -62,7 +70,7 @@ def nav_header(active="home"):
     return f"""
   <div class="wrap">
     <div class="cose-topbar">
-      <a href="index.html" class="cose-brand">
+      <a href="{prefix}index.html" class="cose-brand">
         <img src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png" alt="CoSE logo">
         <span>Plant MitoCarta</span>
       </a>
@@ -4395,7 +4403,10 @@ def build_osdr_page():
             <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
               {' '.join([f'<span class="badge" style="background: var(--surface-2); font-size: 0.72rem;">{esc(a)}</span>' for a in s['assays']])}
             </div>
-            <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">{s['samples']} Samples &bull; {len(s['contrasts'])} Contrasts</span>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.76rem; color: var(--primary); font-weight: 600;">{s['samples']} Samples &bull; {len(s['contrasts'])} Contrasts</span>
+              <a href="studies/{s['id'].lower()}.html" class="btn btn-sm primary" style="font-size: 0.76rem; padding: 4px 10px;">Explore Study Showcase &rarr;</a>
+            </div>
           </div>
         </div>
         """
@@ -4415,6 +4426,20 @@ def build_osdr_page():
           Integrates transcriptomics (RNA-Seq/Microarrays) and proteomics (TMT mass-spectrometry) from the International Space Station
           to quantify organellar bioenergetics, mitochondrial stress sentinels (AOX1a), and post-transcriptional buffering under microgravity.
         </p>
+      </div>
+
+      <!-- Custom Omics Projection Studio Callout Banner -->
+      <div style="background: linear-gradient(135deg, rgba(59,110,165,0.08), rgba(63,182,168,0.08)); border: 1px solid var(--card-border); border-left: 4px solid var(--accent); border-radius: var(--border-radius); padding: 18px 24px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div style="max-width: 800px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="font-size: 1.15rem;">🧪</span>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0;">Have Your Own Spaceflight or Terrestrial Omics Data?</h3>
+          </div>
+          <p style="margin: 0; font-size: 0.88rem; color: var(--text-soft); line-height: 1.5;">
+            Paste or upload your CSV/TSV/JSON differential expression tables into the new <strong>Project Your Data Studio</strong>. Map your log2 fold-changes and p-values directly onto all 10 plant organellar pathway maps with automatic WCAG AAA contrast and export publication-ready vector SVGs.
+          </p>
+        </div>
+        <a href="custom_projection.html" class="btn primary" style="padding: 9px 18px; font-weight: 700; white-space: nowrap;">Open Custom Omics Studio &rarr;</a>
       </div>
 
       <!-- Study Catalog Cards -->
@@ -4887,6 +4912,7 @@ def main():
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     MAPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    (DOCS_DIR / "studies").mkdir(parents=True, exist_ok=True)
 
     ont = load_ontology()
     maps = compile_all_maps()
@@ -4914,7 +4940,14 @@ def main():
         ("comparative.html", build_comparative_page()),
         ("suba_localization.html", build_suba_page()),
         ("osdr_projections.html", build_osdr_page()),
+        ("custom_projection.html", build_custom_projection_page(ont, maps, html_head, nav_header, html_footer, build_map_omics_dataset)),
     ]
+
+    for s_id, profile in STUDY_PROFILES.items():
+        pages.append((
+            f"studies/{s_id.lower()}.html",
+            build_study_showcase_page(s_id, profile, ont, maps, html_head, nav_header, html_footer, build_map_omics_dataset),
+        ))
 
     for fname, html_content in pages:
         with open(DOCS_DIR / fname, "w", encoding="utf-8") as f:

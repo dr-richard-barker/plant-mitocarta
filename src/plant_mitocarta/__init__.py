@@ -17,3 +17,4 @@ from .osdr import OsdrStudy, fetch_study_metadata, load_expression_table
 from .project import project_expression_onto_double, project_onto_map
 from .render import render_map_svg
 from .sbgn import map_to_sbgn
+from .studio import STUDY_PROFILES
