@@ -364,6 +364,50 @@ def test_pmm01_holo_complex_i_superassembly():
     assert "PLANT HOLO-COMPLEX I (L-SHAPED SUPER-ASSEMBLY)" in svg, "PMM-01 missing super-assembly header title"
 
 
+def test_digital_doubles_3column_architecture_and_pins():
+    """ABAI QC Check 15: Digital doubles strip subcompartments use 3-column non-overlapping architecture and landmark pins."""
+    from pathlib import Path
+    doubles_html = Path("docs/digital_doubles.html").read_text(encoding="utf-8")
+
+    assert "double-bilayer-pattern" in doubles_html, "Missing double-bilayer-pattern in digital doubles"
+    assert "3-Column horizontal architecture" in doubles_html, "Missing 3-column architecture comment or logic"
+    assert "TOM40 Complex" in doubles_html, "Missing TOM40 landmark mapping"
+    assert "ANAC017 Tether" in doubles_html, "Missing ANAC017 Tether landmark mapping"
+    assert "RuBisCO" in doubles_html, "Missing RuBisCO landmark mapping"
+    assert "EXECUTER 1" in doubles_html, "Missing EXECUTER 1 landmark mapping"
+    assert "LIPID BILAYER" in doubles_html, "Missing LIPID BILAYER tag in digital doubles"
+    assert "Anchor Pins" in doubles_html or "Landmark Anchors" in doubles_html, "Missing anchor pins badge"
+
+
+def test_retrograde_signaling_mechanism_hud_and_glyphs():
+    """ABAI QC Check 16: Retrograde signaling circuits feature live mechanism HUD, biochemical glyphs, and dynamic conduit flow."""
+    from pathlib import Path
+    retro_html = Path("docs/retrograde.html").read_text(encoding="utf-8")
+
+    # Verify live mechanism HUD elements
+    assert 'id="mechanism-hud"' in retro_html, "Missing mechanism HUD element in retrograde.html"
+    assert 'id="hud-glyph-icon"' in retro_html, "Missing HUD glyph icon"
+    assert 'id="hud-category"' in retro_html, "Missing HUD category badge"
+    assert 'id="hud-locus"' in retro_html, "Missing HUD locus display"
+    assert 'id="hud-title"' in retro_html, "Missing HUD step title"
+    assert 'id="hud-spaceflight"' in retro_html, "Missing HUD spaceflight telemetry"
+
+    # Verify biochemical glyphs in SVG defs
+    assert 'id="glyph-scissors"' in retro_html, "Missing glyph-scissors in retrograde.html"
+    assert 'id="glyph-ros"' in retro_html, "Missing glyph-ros in retrograde.html"
+    assert 'id="glyph-phospho"' in retro_html, "Missing glyph-phospho in retrograde.html"
+    assert 'id="glyph-gate"' in retro_html, "Missing glyph-gate in retrograde.html"
+    assert 'id="glyph-metabolite"' in retro_html, "Missing glyph-metabolite in retrograde.html"
+    assert 'id="glyph-transport"' in retro_html, "Missing glyph-transport in retrograde.html"
+    assert 'id="glyph-transcription"' in retro_html, "Missing glyph-transcription in retrograde.html"
+
+    # Verify dynamic conduit flow animation and autoplay
+    assert "conduit-flow-anim" in retro_html, "Missing conduit flow animation class"
+    assert "conduitFlow" in retro_html, "Missing @keyframes conduitFlow"
+    assert "startAnimation();" in retro_html, "Missing automatic startAnimation call"
+
+
+
 
 
 

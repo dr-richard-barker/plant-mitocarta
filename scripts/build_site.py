@@ -700,6 +700,7 @@ def build_digital_doubles_page(ont):
                     "desc": s.description,
                     "color": s.color_hex,
                     "box": {"x": s.box.x, "y": s.box.y, "w": s.box.w, "h": s.box.h},
+                    "anchor_ports": s.anchor_ports,
                 }
                 for s in d.subcompartments
             ],
@@ -1163,6 +1164,24 @@ def build_digital_doubles_page(ont):
         const svg = document.getElementById('double-svg');
         svg.setAttribute('viewBox', '0 0 960 600');
 
+        const landmarkNames = {{
+          tom: "TOM40 Complex", anac_tether: "ANAC017 Tether", vdac: "VDAC Porin",
+          cyt_c: "Cytochrome c", ndb_ext: "Ext NDB Dehyd",
+          complex_I: "Complex I", aox: "AOX Bypass", dtc: "DTC Carrier",
+          ca_domain: "CA Domain", atp_synthase: "ATP Synthase",
+          gdc: "GDC Photoresp", tca: "TCA Cycle", nucleoid: "mtDNA Nucleoid",
+          toc: "TOC Complex", stromule_root: "Stromule Root",
+          tic: "TIC Complex", papst1: "PAPST1 Carrier", dit1: "DiT1 Carrier",
+          rubisco: "RuBisCO", gun1: "GUN1 PPR Hub", sal1: "SAL1 Phos",
+          psii: "Photosystem II", b6f: "Cyt b6f", psi: "Photosystem I", ex1: "EXECUTER 1",
+          npc_import: "NPC Import", npc_mrna: "NPC mRNA", stromule_dock: "Stromule Dock",
+          mdre: "MDRE Promoters", anac_target: "ANAC Target", xrn_target: "XRN2/3",
+          rrna: "rRNA Biogenesis",
+          wall_strain: "Pectin Strain", apoplast_ros: "Apoplast ROS",
+          fer: "FERONIA", wak1: "WAK1 Sensor", rbohd: "RBOHD NADPH", glr: "GLR3.3/3.6", pip: "PIP2;1 Aquaporin",
+          ca_spike: "Ca2+ Spike", ros_wave: "Systemic ROS Wave"
+        }};
+
         let rects = '';
         dMeta.subcomps.forEach((s, idx) => {{
           const fill = getColor(mode, s.id);
@@ -1173,43 +1192,148 @@ def build_digital_doubles_page(ont):
           const strokeColor = textColor === '#0f172a' ? '#334155' : 'rgba(255,255,255,0.7)';
           const badgeBg = 'rgba(15, 23, 42, 0.88)';
           const badgeText = p ? (p.val > 0 ? '#fb923c' : '#38bdf8') : '#94a3b8';
+          const isMembrane = s.id.includes('membrane') || s.id.includes('envelope') || s.label.toLowerCase().includes('membrane') || s.label.toLowerCase().includes('envelope');
+          const ports = s.anchor_ports || {{}};
+          const portKeys = Object.keys(ports);
 
-          // Word-wrap description so text NEVER runs out the side of the box
-          const maxChars = Math.max(25, Math.floor((s.box.w - 40) / 7.2));
-          const descLines = wrapTextLines(s.desc, maxChars);
-          const descTspans = descLines.slice(0, 3).map((line, lIdx) =>
-            `<tspan x="${{s.box.x + 18}}" dy="${{lIdx === 0 ? 0 : 16}}">${{line}}</tspan>`
-          ).join('');
+          if (s.box.w >= 650 && s.box.h < 130) {{
+            // 3-Column horizontal architecture for wide strips (OMM, IMS, IMM, OEM, IEM, Nuclear envelope)
+            // Column 1: Title + GO-CCO + Bilayer chip (x+18 to x+290)
+            // Column 2: Word-wrapped description (x+310 to x+670)
+            // Column 3: Padded stat scrim chip (x+s.box.w-235 to x+s.box.w-15)
+            const descLines = wrapTextLines(s.desc, 44);
+            const descTspans = descLines.slice(0, 3).map((line, lIdx) =>
+              `<tspan x="${{s.box.x + 310}}" dy="${{lIdx === 0 ? 0 : 15}}">${{line}}</tspan>`
+            ).join('');
 
-          const badgeH = 24;
-          const badgeY = s.box.y + s.box.h - badgeH - 12;
-          const badgeW = Math.min(s.box.w - 36, 320);
+            rects += `
+              <g id="subcomp-g-${{s.id}}" style="cursor: pointer;" onclick="inspectSubcomp('${{mode}}', '${{s.id}}')">
+                <rect id="subcomp-rect-${{s.id}}" x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="10" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
+                ${{isMembrane ? `<rect x="${{s.box.x + 2}}" y="${{s.box.y + 2}}" width="${{s.box.w - 4}}" height="5" fill="url(#double-bilayer-pattern)" rx="3" opacity="0.85" />` : ''}}
 
-          rects += `
-            <g id="subcomp-g-${{s.id}}" style="cursor: pointer;" onclick="inspectSubcomp('${{mode}}', '${{s.id}}')">
-              <!-- Subcompartment Card Background -->
-              <rect id="subcomp-rect-${{s.id}}" x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="10" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
-              
-              <!-- GO-CCO tag pill (top right) -->
-              <rect x="${{s.box.x + s.box.w - 116}}" y="${{s.box.y + 10}}" width="102" height="20" rx="4" fill="rgba(15, 23, 42, 0.80)" />
-              <text x="${{s.box.x + s.box.w - 65}}" y="${{s.box.y + 24}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#38bdf8">${{s.go_cc}}</text>
+                <!-- Column 1: Title and Badges -->
+                <text x="${{s.box.x + 18}}" y="${{s.box.y + 26}}" font-family="Inter, sans-serif" font-weight="800" font-size="14.5" fill="${{textColor}}">${{s.label}}</text>
+                <rect x="${{s.box.x + 18}}" y="${{s.box.y + 38}}" width="96" height="20" rx="4" fill="rgba(15, 23, 42, 0.88)" />
+                <text x="${{s.box.x + 66}}" y="${{s.box.y + 52}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#38bdf8">${{s.go_cc}}</text>
+                ${{isMembrane ? `
+                  <rect x="${{s.box.x + 120}}" y="${{s.box.y + 38}}" width="98" height="20" rx="4" fill="rgba(2, 132, 199, 0.25)" stroke="#0284c7" stroke-width="1" />
+                  <text x="${{s.box.x + 169}}" y="${{s.box.y + 52}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#7dd3fc">LIPID BILAYER</text>
+                ` : (portKeys.length > 0 ? `
+                  <rect x="${{s.box.x + 120}}" y="${{s.box.y + 38}}" width="84" height="20" rx="4" fill="rgba(217, 119, 6, 0.2)" stroke="#d97706" stroke-width="1" />
+                  <text x="${{s.box.x + 162}}" y="${{s.box.y + 52}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#fcd34d">${{portKeys.length}} Anchor Pins</text>
+                ` : '')}}
 
-              <!-- Label / Subcompartment Title -->
-              <text x="${{s.box.x + 18}}" y="${{s.box.y + 26}}" font-family="Inter, sans-serif" font-weight="800" font-size="15" fill="${{textColor}}">${{s.label}}</text>
-              
-              <!-- Wrapped Description Lines -->
-              <text x="${{s.box.x + 18}}" y="${{s.box.y + 48}}" font-family="Inter, sans-serif" font-size="11.5" fill="${{subColor}}">
-                ${{descTspans}}
-              </text>
-              
-              <!-- Padded Stat Badge Scrim -->
-              <rect x="${{s.box.x + 18}}" y="${{badgeY}}" width="${{badgeW}}" height="${{badgeH}}" rx="4" fill="${{badgeBg}}" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-              <text x="${{s.box.x + 28}}" y="${{badgeY + 16}}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="${{badgeText}}">${{statText}} • Click to Inspect</text>
-            </g>
-          `;
+                <!-- Column 2: Cleanly wrapped description lines -->
+                <text x="${{s.box.x + 310}}" y="${{s.box.y + 24}}" font-family="Inter, sans-serif" font-size="11" fill="${{subColor}}">
+                  ${{descTspans}}
+                </text>
+
+                <!-- Column 3: Padded Stat Scrim Card -->
+                <rect x="${{s.box.x + s.box.w - 235}}" y="${{s.box.y + 14}}" width="220" height="52" rx="6" fill="${{badgeBg}}" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                <text x="${{s.box.x + s.box.w - 125}}" y="${{s.box.y + 33}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="${{badgeText}}">${{statText}}</text>
+                <text x="${{s.box.x + s.box.w - 125}}" y="${{s.box.y + 51}}" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" fill="#94a3b8">Click to Inspect • Landmarks</text>
+              </g>
+            `;
+          }} else if (s.box.w >= 650) {{
+            // Tall wide boxes (Stroma, Thylakoid, Apoplast, PM, Cytosol)
+            const descLines = wrapTextLines(s.desc, 80);
+            const descTspans = descLines.slice(0, 2).map((line, lIdx) =>
+              `<tspan x="${{s.box.x + 18}}" dy="${{lIdx === 0 ? 0 : 16}}">${{line}}</tspan>`
+            ).join('');
+
+            let pinsHtml = '';
+            portKeys.forEach((k, pIdx) => {{
+              const pinX = s.box.x + 36 + pIdx * Math.min(170, Math.floor((s.box.w - 80) / Math.max(1, portKeys.length)));
+              const pinY = s.box.y + 88;
+              const name = landmarkNames[k] || k;
+              pinsHtml += `
+                <circle cx="${{pinX}}" cy="${{pinY}}" r="4" fill="#38bdf8" />
+                <rect x="${{pinX + 8}}" y="${{pinY - 9}}" width="${{name.length * 6.8 + 14}}" height="18" rx="3" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.8" />
+                <text x="${{pinX + 15}}" y="${{pinY + 4}}" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#f8fafc">${{name}}</text>
+              `;
+            }});
+
+            rects += `
+              <g id="subcomp-g-${{s.id}}" style="cursor: pointer;" onclick="inspectSubcomp('${{mode}}', '${{s.id}}')">
+                <rect id="subcomp-rect-${{s.id}}" x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="10" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
+                ${{isMembrane ? `<rect x="${{s.box.x + 2}}" y="${{s.box.y + 2}}" width="${{s.box.w - 4}}" height="5" fill="url(#double-bilayer-pattern)" rx="3" opacity="0.85" />` : ''}}
+
+                <text x="${{s.box.x + 18}}" y="${{s.box.y + 26}}" font-family="Inter, sans-serif" font-weight="800" font-size="15" fill="${{textColor}}">${{s.label}}</text>
+                <rect x="${{s.box.x + s.box.w - 110}}" y="${{s.box.y + 10}}" width="96" height="20" rx="4" fill="rgba(15, 23, 42, 0.88)" />
+                <text x="${{s.box.x + s.box.w - 62}}" y="${{s.box.y + 24}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#38bdf8">${{s.go_cc}}</text>
+                ${{isMembrane ? `
+                  <rect x="${{s.box.x + s.box.w - 220}}" y="${{s.box.y + 10}}" width="102" height="20" rx="4" fill="rgba(2, 132, 199, 0.25)" stroke="#0284c7" stroke-width="1" />
+                  <text x="${{s.box.x + s.box.w - 169}}" y="${{s.box.y + 24}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#7dd3fc">LIPID BILAYER</text>
+                ` : ''}}
+
+                <text x="${{s.box.x + 18}}" y="${{s.box.y + 48}}" font-family="Inter, sans-serif" font-size="11.5" fill="${{subColor}}">
+                  ${{descTspans}}
+                </text>
+
+                ${{pinsHtml}}
+
+                <rect x="${{s.box.x + 18}}" y="${{s.box.y + s.box.h - 36}}" width="340" height="24" rx="4" fill="${{badgeBg}}" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                <text x="${{s.box.x + 28}}" y="${{s.box.y + s.box.h - 20}}" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="${{badgeText}}">${{statText}} • Click to Inspect</text>
+              </g>
+            `;
+          }} else {{
+            // Column / Side-by-side boxes (Cristae, Matrix, Nucleoplasm, Nucleolus)
+            const isNarrow = s.box.w < 350;
+            const descStartY = isNarrow ? (s.box.y + 68) : (s.box.y + 54);
+            const maxChars = Math.max(20, Math.floor((s.box.w - 36) / 7.2));
+            const descLines = wrapTextLines(s.desc, maxChars);
+            const descTspans = descLines.slice(0, 3).map((line, lIdx) =>
+              `<tspan x="${{s.box.x + 18}}" dy="${{lIdx === 0 ? 0 : 16}}">${{line}}</tspan>`
+            ).join('');
+
+            let colPinsHtml = '';
+            portKeys.forEach((k, pIdx) => {{
+              const pinX = s.box.x + 24;
+              const pinY = descStartY + 46 + pIdx * 24;
+              const name = landmarkNames[k] || k;
+              colPinsHtml += `
+                <circle cx="${{pinX}}" cy="${{pinY}}" r="4" fill="#38bdf8" />
+                <rect x="${{pinX + 8}}" y="${{pinY - 9}}" width="${{name.length * 6.8 + 14}}" height="18" rx="3" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(56, 189, 248, 0.4)" stroke-width="0.8" />
+                <text x="${{pinX + 15}}" y="${{pinY + 4}}" font-family="Inter, sans-serif" font-size="9" font-weight="700" fill="#f8fafc">${{name}}</text>
+              `;
+            }});
+
+            rects += `
+              <g id="subcomp-g-${{s.id}}" style="cursor: pointer;" onclick="inspectSubcomp('${{mode}}', '${{s.id}}')">
+                <rect id="subcomp-rect-${{s.id}}" x="${{s.box.x}}" y="${{s.box.y}}" width="${{s.box.w}}" height="${{s.box.h}}" rx="10" fill="${{fill}}" stroke="${{strokeColor}}" stroke-width="2" />
+                
+                ${{!isNarrow ? `
+                  <text x="${{s.box.x + 18}}" y="${{s.box.y + 26}}" font-family="Inter, sans-serif" font-weight="800" font-size="15" fill="${{textColor}}">${{s.label}}</text>
+                  <rect x="${{s.box.x + s.box.w - 105}}" y="${{s.box.y + 10}}" width="92" height="20" rx="4" fill="rgba(15, 23, 42, 0.88)" />
+                  <text x="${{s.box.x + s.box.w - 59}}" y="${{s.box.y + 24}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#38bdf8">${{s.go_cc}}</text>
+                ` : `
+                  <text x="${{s.box.x + 16}}" y="${{s.box.y + 24}}" font-family="Inter, sans-serif" font-weight="800" font-size="13.5" fill="${{textColor}}">${{s.label}}</text>
+                  <rect x="${{s.box.x + 16}}" y="${{s.box.y + 34}}" width="88" height="18" rx="4" fill="rgba(15, 23, 42, 0.88)" />
+                  <text x="${{s.box.x + 60}}" y="${{s.box.y + 47}}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" fill="#38bdf8">${{s.go_cc}}</text>
+                `}}
+
+                <text x="${{s.box.x + 18}}" y="${{descStartY}}" font-family="Inter, sans-serif" font-size="11.5" fill="${{subColor}}">
+                  ${{descTspans}}
+                </text>
+
+                ${{colPinsHtml}}
+
+                <rect x="${{s.box.x + 18}}" y="${{s.box.y + s.box.h - 36}}" width="${{Math.min(s.box.w - 36, 260)}}" height="24" rx="4" fill="${{badgeBg}}" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                <text x="${{s.box.x + 26}}" y="${{s.box.y + s.box.h - 20}}" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="${{badgeText}}">${{statText}} • Inspect</text>
+              </g>
+            `;
+          }}
         }});
 
         svg.innerHTML = `
+          <defs>
+            <pattern id="double-bilayer-pattern" width="12" height="6" patternUnits="userSpaceOnUse">
+              <circle cx="3" cy="2" r="1.5" fill="#38bdf8" opacity="0.8" />
+              <circle cx="9" cy="2" r="1.5" fill="#38bdf8" opacity="0.8" />
+              <line x1="3" y1="3.5" x2="3" y2="5.5" stroke="#38bdf8" stroke-width="0.8" opacity="0.6" />
+              <line x1="9" y1="3.5" x2="9" y2="5.5" stroke="#38bdf8" stroke-width="0.8" opacity="0.6" />
+            </pattern>
+          </defs>
           <rect x="0" y="0" width="960" height="600" fill="var(--bg)" rx="10" />
           ${{rects}}
         `;
@@ -1220,12 +1344,43 @@ def build_digital_doubles_page(ont):
         const sub = meta.subcomps.find(s => s.id === subId);
         const p = projData[dId] ? projData[dId][subId] : null;
 
+        const landmarkNames = {{
+          tom: "TOM40 Complex", anac_tether: "ANAC017 Tether", vdac: "VDAC Porin",
+          cyt_c: "Cytochrome c", ndb_ext: "Ext NDB Dehyd",
+          complex_I: "Complex I", aox: "AOX Bypass", dtc: "DTC Carrier",
+          ca_domain: "CA Domain", atp_synthase: "ATP Synthase",
+          gdc: "GDC Photoresp", tca: "TCA Cycle", nucleoid: "mtDNA Nucleoid",
+          toc: "TOC Complex", stromule_root: "Stromule Root",
+          tic: "TIC Complex", papst1: "PAPST1 Carrier", dit1: "DiT1 Carrier",
+          rubisco: "RuBisCO", gun1: "GUN1 PPR Hub", sal1: "SAL1 Phos",
+          psii: "Photosystem II", b6f: "Cyt b6f", psi: "Photosystem I", ex1: "EXECUTER 1",
+          npc_import: "NPC Import", npc_mrna: "NPC mRNA", stromule_dock: "Stromule Dock",
+          mdre: "MDRE Promoters", anac_target: "ANAC Target", xrn_target: "XRN2/3",
+          rrna: "rRNA Biogenesis",
+          wall_strain: "Pectin Strain", apoplast_ros: "Apoplast ROS",
+          fer: "FERONIA", wak1: "WAK1 Sensor", rbohd: "RBOHD NADPH", glr: "GLR3.3/3.6", pip: "PIP2;1 Aquaporin",
+          ca_spike: "Ca2+ Spike", ros_wave: "Systemic ROS Wave"
+        }};
+
+        const ports = sub.anchor_ports || {{}};
+        const portChips = Object.keys(ports).map(k => `
+          <span style="display: inline-block; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 4px; padding: 2px 6px; margin: 2px 4px 2px 0; font-size: 0.75rem; font-weight: 600; color: var(--text);">
+            📍 ${{landmarkNames[k] || k}}
+          </span>
+        `).join('');
+
         const body = document.getElementById('inspector-body');
         body.innerHTML = `
           <div class="subcomp-card">
             <strong style="color: var(--primary); font-size: 0.95rem;">${{sub.label}}</strong><br>
             <span style="font-family: monospace; font-size: 0.78rem;">${{sub.go_cc}}</span>
             <p style="margin: 6px 0; color: var(--text);">${{sub.desc}}</p>
+            ${{portChips ? `
+              <div style="margin: 8px 0;">
+                <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-soft); text-transform: uppercase;">Landmark Anchors:</span><br>
+                <div style="margin-top: 4px;">${{portChips}}</div>
+              </div>
+            ` : ''}}
             ${{p ? `
               <div style="background: var(--card-bg); padding: 8px; border-radius: 4px; border: 1px solid var(--card-border); margin-top: 8px;">
                 <strong>OSD-120 Response:</strong><br>
@@ -1430,12 +1585,12 @@ def build_retrograde_page():
             ],
             "path": "M 150 130 L 210 270 L 400 270 L 590 200 L 730 140 L 850 270",
             "steps": [
-                {"id": "s1", "x": 150, "y": 130, "label": "Complex I/III ROS Leak", "sublabel": "Matrix & IMS H2O2 surge", "title": "Respiratory Chain Stress & ROS Surge", "text": "Complex I/III inhibition or microgravity hypoxia causes electron leakage to oxygen, elevating matrix and IMS superoxide, which dismutates to hydrogen peroxide (H2O2)."},
-                {"id": "s2", "x": 210, "y": 270, "label": "IMS H2O2 Diffusion", "sublabel": "Permeant H2O2 crosses cristae", "title": "Diffusion to Outer Mitochondrial Membrane", "text": "Membrane-permeant H2O2 diffuses across the intermembrane space (IMS) to oxidatively prime intramembrane proteases at the outer mitochondrial membrane (OMM)."},
-                {"id": "s3", "x": 400, "y": 270, "label": "Rhomboid Protease Cleavage", "sublabel": "C-anchor cut releases ANAC017", "title": "Proteolytic Cleavage of ANAC017 & ANAC013", "text": "Rhomboid-like proteases at the OMM/ER interface cleave the C-terminal transmembrane anchors of ANAC017 (AT1G34190) and ANAC013, releasing active N-terminal NAC transcription factors."},
-                {"id": "s4", "x": 590, "y": 200, "label": "Importin-α/β Binding", "sublabel": "Soluble NAC domain chaperone", "title": "Cytosolic Chaperoning & Transit", "text": "The liberated soluble NAC domains bind karyopherin importin-α/β adapters, translocating rapidly across the cytosol towards the nuclear envelope."},
-                {"id": "s5", "x": 730, "y": 140, "label": "Nuclear Pore Entry", "sublabel": "Active NPC basket transport", "title": "Nuclear Import via Pore Complexes", "text": "The ANAC017-importin complex passes through the FG-repeat permeability barrier of the nuclear pore complex into the nucleoplasm."},
-                {"id": "s6", "x": 850, "y": 270, "label": "MDRE Binding & AOX1a", "sublabel": "CTTGN5CAG -> +1.84 log2FC", "title": "Palindromic MDRE Motif Binding & AOX1a Induction", "text": "ANAC017 homodimers bind palindromic MDRE motifs (CTTGNNNNNCAG), driving massive transcriptional induction of AOX1a (+1.84 log2FC in OSD-120), UPM1, and mitochondrial chaperones."}
+                {"id": "s1", "x": 150, "y": 130, "label": "Complex I/III ROS Leak", "sublabel": "Matrix & IMS H2O2 surge", "title": "Respiratory Chain Stress & ROS Surge", "text": "Complex I/III inhibition or microgravity hypoxia causes electron leakage to oxygen, elevating matrix and IMS superoxide, which dismutates to hydrogen peroxide (H2O2).", "glyph": "ros", "icon": "✨", "category": "Redox / ROS Surge", "locus": "ATMG00640", "spaceflight": "OSD-120: +1.42 log2FC (p=0.004)"},
+                {"id": "s2", "x": 210, "y": 270, "label": "IMS H2O2 Diffusion", "sublabel": "Permeant H2O2 crosses cristae", "title": "Diffusion to Outer Mitochondrial Membrane", "text": "Membrane-permeant H2O2 diffuses across the intermembrane space (IMS) to oxidatively prime intramembrane proteases at the outer mitochondrial membrane (OMM).", "glyph": "transport", "icon": "🌊", "category": "Metabolite Diffusion", "locus": "AT3G22370", "spaceflight": "OSD-120: H2O2 prime signal"},
+                {"id": "s3", "x": 400, "y": 270, "label": "Rhomboid Protease Cleavage", "sublabel": "C-anchor cut releases ANAC017", "title": "Proteolytic Cleavage of ANAC017 & ANAC013", "text": "Rhomboid-like proteases at the OMM/ER interface cleave the C-terminal transmembrane anchors of ANAC017 (AT1G34190) and ANAC013, releasing active N-terminal NAC transcription factors.", "glyph": "scissors", "icon": "✂️", "category": "Proteolytic Cleavage", "locus": "AT1G34190", "spaceflight": "ANAC017 transmembrane cut"},
+                {"id": "s4", "x": 590, "y": 200, "label": "Importin-α/β Binding", "sublabel": "Soluble NAC domain chaperone", "title": "Cytosolic Chaperoning & Transit", "text": "The liberated soluble NAC domains bind karyopherin importin-α/β adapters, translocating rapidly across the cytosol towards the nuclear envelope.", "glyph": "transport", "icon": "🚚", "category": "Karyopherin Chaperone", "locus": "AT3G05720", "spaceflight": "Cytosolic nuclear transit"},
+                {"id": "s5", "x": 730, "y": 140, "label": "Nuclear Pore Entry", "sublabel": "Active NPC basket transport", "title": "Nuclear Import via Pore Complexes", "text": "The ANAC017-importin complex passes through the FG-repeat permeability barrier of the nuclear pore complex into the nucleoplasm.", "glyph": "gate", "icon": "🚪", "category": "Nuclear Pore Transport", "locus": "AT5G42940", "spaceflight": "NUP complex translocation"},
+                {"id": "s6", "x": 850, "y": 270, "label": "MDRE Binding & AOX1a", "sublabel": "CTTGN5CAG -> +1.84 log2FC", "title": "Palindromic MDRE Motif Binding & AOX1a Induction", "text": "ANAC017 homodimers bind palindromic MDRE motifs (CTTGNNNNNCAG), driving massive transcriptional induction of AOX1a (+1.84 log2FC in OSD-120), UPM1, and mitochondrial chaperones.", "glyph": "transcription", "icon": "🧬", "category": "Transcriptional Surge", "locus": "AT3G22370", "spaceflight": "OSD-120: +1.84 log2FC Surge (p=0.002)"}
             ]
         },
         "prr": {
@@ -1450,12 +1605,12 @@ def build_retrograde_page():
             ],
             "path": "M 160 120 L 210 260 L 415 260 L 595 200 L 770 140 L 850 280",
             "steps": [
-                {"id": "s1", "x": 160, "y": 120, "label": "PSII 1O2 & EX1 Sensor", "sublabel": "Singlet oxygen sensing at grana", "title": "Light Excess & Singlet Oxygen Generation", "text": "Excess excitation at Photosystem II reaction centers generates singlet oxygen (1O2), sensed in grana margins by EXECUTER 1 (EX1)."},
-                {"id": "s2", "x": 210, "y": 260, "label": "Stromal SAL1 Inactivation", "sublabel": "Disulfide bridge oxidation", "title": "Stromal SAL1 Inactivation", "text": "Oxidative stress induces disulfide bridges that inactivate stromal SAL1 nucleotidase (AT5G63980)."},
-                {"id": "s3", "x": 415, "y": 260, "label": "PAPST1 Plastid Export", "sublabel": "PAP retrograde metabolite surge", "title": "PAP Retrograde Metabolite Accumulation", "text": "3'-phosphoadenosine 5'-phosphate (PAP) catabolism ceases; PAP accumulates and is exported via PAPST1 into the cytosol."},
-                {"id": "s4", "x": 595, "y": 200, "label": "Cytosolic PAP Diffusion", "sublabel": "Free diffusion to envelope", "title": "Cytosolic Transit to Nuclear Envelope", "text": "PAP diffuses through the cytosol and crosses the nuclear envelope pore complexes into the nucleoplasm."},
-                {"id": "s5", "x": 770, "y": 140, "label": "Nuclear XRN2/3 Inhibition", "sublabel": "Stabilizes stress transcripts", "title": "Nuclear XRN2/3 Inhibition", "text": "PAP enters the nucleus and directly inhibits 5'-to-3' exoribonucleases (XRN2 and XRN3), stabilizing drought and stress transcripts."},
-                {"id": "s6", "x": 850, "y": 280, "label": "GUN1 & ABI4 Hub", "sublabel": "PhANG transcription repression", "title": "GUN1 PPR Hub & ABI4 Activation", "text": "Unimported plastid precursor proteins bind stromal GUN1, signaling to nuclear ABI4 to repress Photosynthesis-Associated Nuclear Genes (PhANGs)."}
+                {"id": "s1", "x": 160, "y": 120, "label": "PSII 1O2 & EX1 Sensor", "sublabel": "Singlet oxygen sensing at grana", "title": "Light Excess & Singlet Oxygen Generation", "text": "Excess excitation at Photosystem II reaction centers generates singlet oxygen (1O2), sensed in grana margins by EXECUTER 1 (EX1).", "glyph": "ros", "icon": "✨", "category": "Singlet Oxygen Sensing", "locus": "AT4G33010", "spaceflight": "OSD-120: +1.12 log2FC (EX1)"},
+                {"id": "s2", "x": 210, "y": 260, "label": "Stromal SAL1 Inactivation", "sublabel": "Disulfide bridge oxidation", "title": "Stromal SAL1 Inactivation", "text": "Oxidative stress induces disulfide bridges that inactivate stromal SAL1 nucleotidase (AT5G63980).", "glyph": "phospho", "icon": "🔒", "category": "Disulfide Inactivation", "locus": "AT5G63980", "spaceflight": "SAL1 nucleotidase blocked"},
+                {"id": "s3", "x": 415, "y": 260, "label": "PAPST1 Plastid Export", "sublabel": "PAP retrograde metabolite surge", "title": "PAP Retrograde Metabolite Accumulation", "text": "3'-phosphoadenosine 5'-phosphate (PAP) catabolism ceases; PAP accumulates and is exported via PAPST1 into the cytosol.", "glyph": "transport", "icon": "🚚", "category": "Envelope Transport", "locus": "AT5G20150", "spaceflight": "PAP retrograde export"},
+                {"id": "s4", "x": 595, "y": 200, "label": "Cytosolic PAP Diffusion", "sublabel": "Free diffusion to envelope", "title": "Cytosolic Transit to Nuclear Envelope", "text": "PAP diffuses through the cytosol and crosses the nuclear envelope pore complexes into the nucleoplasm.", "glyph": "metabolite", "icon": "🌊", "category": "Metabolite Diffusion", "locus": "PAP Metabolite", "spaceflight": "3'-phosphoadenosine 5'-phosphate"},
+                {"id": "s5", "x": 770, "y": 140, "label": "Nuclear XRN2/3 Inhibition", "sublabel": "Stabilizes stress transcripts", "title": "Nuclear XRN2/3 Inhibition", "text": "PAP enters the nucleus and directly inhibits 5'-to-3' exoribonucleases (XRN2 and XRN3), stabilizing drought and stress transcripts.", "glyph": "scissors", "icon": "🛑", "category": "Exoribonuclease Inhibition", "locus": "AT5G42540", "spaceflight": "XRN2/3 ribonuclease arrest"},
+                {"id": "s6", "x": 850, "y": 280, "label": "GUN1 & ABI4 Hub", "sublabel": "PhANG transcription repression", "title": "GUN1 PPR Hub & ABI4 Activation", "text": "Unimported plastid precursor proteins bind stromal GUN1, signaling to nuclear ABI4 to repress Photosynthesis-Associated Nuclear Genes (PhANGs).", "glyph": "transcription", "icon": "🧬", "category": "Nuclear Repression", "locus": "AT2G40220", "spaceflight": "ABI4-mediated PhANG repression"}
             ]
         },
         "photo": {
@@ -1469,12 +1624,12 @@ def build_retrograde_page():
             ],
             "path": "M 160 130 L 480 130 L 810 150 L 820 280 L 500 280 L 180 280",
             "steps": [
-                {"id": "s1", "x": 160, "y": 130, "label": "RuBisCO Oxygenation", "sublabel": "2-PG -> Glycolate via PLGG1", "title": "Chloroplast RuBisCO Oxygenation", "text": "RuBisCO oxygenase reaction yields 2-phosphoglycolate, which is dephosphorylated to glycolate and exported via PLGG1."},
-                {"id": "s2", "x": 480, "y": 130, "label": "Peroxisome GOX & GGT", "sublabel": "Glyoxylate + H2O2 -> Glycine", "title": "Peroxisomal Oxidation to Glyoxylate & Glycine", "text": "Glycolate oxidase (GOX) produces glyoxylate and H2O2 (scavenged by CAT2); GGT transaminates it to glycine."},
-                {"id": "s3", "x": 810, "y": 150, "label": "Matrix GDC / SHMT1", "sublabel": "2 Glycine -> Serine + CO2 + NH3", "title": "Mitochondrial GDC / SHMT Serine Synthesis", "text": "Matrix Glycine Decarboxylase (GDC P/T/H/L proteins) and SHMT1 convert 2 glycine into serine + NADH + CO2 + NH3."},
-                {"id": "s4", "x": 820, "y": 280, "label": "Complex I CA Domain", "sublabel": "CO2 recycling & hydration", "title": "Complex I CA Domain Recirculation", "text": "The plant-specific Carbonic Anhydrase domain of Complex I re-traps released photorespiratory CO2."},
-                {"id": "s5", "x": 500, "y": 280, "label": "Peroxisomal HPR", "sublabel": "Hydroxypyruvate -> Glycerate", "title": "Peroxisomal Reduction & Return", "text": "Serine is transaminated to hydroxypyruvate in peroxisomes, then reduced to glycerate by hydroxypyruvate reductase (HPR)."},
-                {"id": "s6", "x": 180, "y": 280, "label": "DiT1 & Glycerate Kinase", "sublabel": "Glycerate -> 3-PGA return", "title": "Chloroplast Return & Phosphorylation", "text": "Glycerate returns to chloroplasts via DiT1 and is phosphorylated by GLYK to 3-PGA, re-entering the Calvin-Benson cycle."}
+                {"id": "s1", "x": 160, "y": 130, "label": "RuBisCO Oxygenation", "sublabel": "2-PG -> Glycolate via PLGG1", "title": "Chloroplast RuBisCO Oxygenation", "text": "RuBisCO oxygenase reaction yields 2-phosphoglycolate, which is dephosphorylated to glycolate and exported via PLGG1.", "glyph": "metabolite", "icon": "🌿", "category": "Oxygenase Reaction", "locus": "ATCG00490", "spaceflight": "RuBisCO 2-PG generation"},
+                {"id": "s2", "x": 480, "y": 130, "label": "Peroxisome GOX & GGT", "sublabel": "Glyoxylate + H2O2 -> Glycine", "title": "Peroxisomal Oxidation to Glyoxylate & Glycine", "text": "Glycolate oxidase (GOX) produces glyoxylate and H2O2 (scavenged by CAT2); GGT transaminates it to glycine.", "glyph": "ros", "icon": "✨", "category": "Peroxisomal Oxidation", "locus": "AT3G14415", "spaceflight": "GOX produces H2O2 + Glycine"},
+                {"id": "s3", "x": 810, "y": 150, "label": "Matrix GDC / SHMT1", "sublabel": "2 Glycine -> Serine + CO2 + NH3", "title": "Mitochondrial GDC / SHMT Serine Synthesis", "text": "Matrix Glycine Decarboxylase (GDC P/T/H/L proteins) and SHMT1 convert 2 glycine into serine + NADH + CO2 + NH3.", "glyph": "metabolite", "icon": "⚡", "category": "Matrix Decarboxylation", "locus": "AT2G35370", "spaceflight": "OSD-120: GDC -1.15 log2FC"},
+                {"id": "s4", "x": 820, "y": 280, "label": "Complex I CA Domain", "sublabel": "CO2 recycling & hydration", "title": "Complex I CA Domain Recirculation", "text": "The plant-specific Carbonic Anhydrase domain of Complex I re-traps released photorespiratory CO2.", "glyph": "transport", "icon": "🔄", "category": "CO2 Recirculation", "locus": "AT1G19580", "spaceflight": "CA Domain re-traps CO2"},
+                {"id": "s5", "x": 500, "y": 280, "label": "Peroxisomal HPR", "sublabel": "Hydroxypyruvate -> Glycerate", "title": "Peroxisomal Reduction & Return", "text": "Serine is transaminated to hydroxypyruvate in peroxisomes, then reduced to glycerate by hydroxypyruvate reductase (HPR).", "glyph": "metabolite", "icon": "🧪", "category": "Peroxisomal Return", "locus": "AT1G68010", "spaceflight": "HPR reduces hydroxypyruvate"},
+                {"id": "s6", "x": 180, "y": 280, "label": "DiT1 & Glycerate Kinase", "sublabel": "Glycerate -> 3-PGA return", "title": "Chloroplast Return & Phosphorylation", "text": "Glycerate returns to chloroplasts via DiT1 and is phosphorylated by GLYK to 3-PGA, re-entering the Calvin-Benson cycle.", "glyph": "phospho", "icon": "🔁", "category": "Calvin Re-entry", "locus": "AT5G04140", "spaceflight": "GLYK yields 3-PGA"}
             ]
         },
         "pm": {
@@ -1489,12 +1644,12 @@ def build_retrograde_page():
             ],
             "path": "M 130 120 L 370 120 L 370 250 L 590 210 L 140 280 L 860 200",
             "steps": [
-                {"id": "s1", "x": 130, "y": 120, "label": "Cell Wall Tension / Strain", "sublabel": "WAK1 & FERONIA activation", "title": "Cell Wall & Gravity Vector Strain", "text": "Mechanical touch, turgor changes, or microgravity alterations stretch pectin, activating WAK1 and FERONIA receptor kinases."},
-                {"id": "s2", "x": 370, "y": 120, "label": "MSL10 & MCA Gating", "sublabel": "Stretch-activated depolarization", "title": "Mechanosensitive Channel Activation", "text": "Membrane tension gates MSL10 and MCA channels, initiating local plasma membrane depolarization."},
-                {"id": "s3", "x": 370, "y": 250, "label": "GLR3.3/3.6 Ca2+ Influx", "sublabel": "Rapid apoplastic Ca2+ entry", "title": "Systemic Calcium Influx via GLR3.3/3.6", "text": "Glutamate receptor-like channels open, driving rapid calcium influx from apoplast to cytosol."},
-                {"id": "s4", "x": 590, "y": 210, "label": "CPK & RBOHD Activation", "sublabel": "N-terminal phosphorylation", "title": "RBOHD Phosphorylation & Activation", "text": "Cytosolic Ca2+ spikes activate CPKs and BIK1, which phosphorylate RBOHD to generate an apoplastic ROS burst."},
-                {"id": "s5", "x": 140, "y": 280, "label": "Apoplastic ROS Wave", "sublabel": "O2.- -> H2O2 dismutation", "title": "Apoplastic Superoxide Burst & Wave", "text": "RBOHD pumps electrons outside to create O2.-, which dismutates to H2O2, launching a systemic cell-to-cell wave."},
-                {"id": "s6", "x": 860, "y": 200, "label": "PIP2;1 Inward H2O2 Conduit", "sublabel": "Organellar redox reprogramming", "title": "Inward Channeling via PIP2;1 Aquaporin", "text": "H2O2 re-enters the cytosol and organelles through PIP2;1 channels, tuning mitochondrial AOX and chloroplast redox balance."}
+                {"id": "s1", "x": 130, "y": 120, "label": "Cell Wall Tension / Strain", "sublabel": "WAK1 & FERONIA activation", "title": "Cell Wall & Gravity Vector Strain", "text": "Mechanical touch, turgor changes, or microgravity alterations stretch pectin, activating WAK1 and FERONIA receptor kinases.", "glyph": "gate", "icon": "🧱", "category": "Wall Strain Perception", "locus": "AT2G37170", "spaceflight": "OSD-120: WAK1 +1.38 log2FC"},
+                {"id": "s2", "x": 370, "y": 120, "label": "MSL10 & MCA Gating", "sublabel": "Stretch-activated depolarization", "title": "Mechanosensitive Channel Activation", "text": "Membrane tension gates MSL10 and MCA channels, initiating local plasma membrane depolarization.", "glyph": "gate", "icon": "⚡", "category": "Stretch Channel Gating", "locus": "AT5G12080", "spaceflight": "OSD-120: MSL10 +1.45 log2FC"},
+                {"id": "s3", "x": 370, "y": 250, "label": "GLR3.3/3.6 Ca2+ Influx", "sublabel": "Rapid apoplastic Ca2+ entry", "title": "Systemic Calcium Influx via GLR3.3/3.6", "text": "Glutamate receptor-like channels open, driving rapid calcium influx from apoplast to cytosol.", "glyph": "gate", "icon": "🌊", "category": "Calcium Wave Entry", "locus": "AT2G29110", "spaceflight": "GLR3.3/3.6 Ca2+ influx"},
+                {"id": "s4", "x": 590, "y": 210, "label": "CPK & RBOHD Activation", "sublabel": "N-terminal phosphorylation", "title": "RBOHD Phosphorylation & Activation", "text": "Cytosolic Ca2+ spikes activate CPKs and BIK1, which phosphorylate RBOHD to generate an apoplastic ROS burst.", "glyph": "phospho", "icon": "⚡", "category": "Kinase Activation", "locus": "AT5G42590", "spaceflight": "CPK phosphorylates RBOHD"},
+                {"id": "s5", "x": 140, "y": 280, "label": "Apoplastic ROS Wave", "sublabel": "O2.- -> H2O2 dismutation", "title": "Apoplastic Superoxide Burst & Wave", "text": "RBOHD pumps electrons outside to create O2.-, which dismutates to H2O2, launching a systemic cell-to-cell wave.", "glyph": "ros", "icon": "✨", "category": "Apoplastic ROS Burst", "locus": "AT5G47910", "spaceflight": "OSD-120: RBOHD +1.62 log2FC"},
+                {"id": "s6", "x": 860, "y": 200, "label": "PIP2;1 Inward H2O2 Conduit", "sublabel": "Organellar redox reprogramming", "title": "Inward Channeling via PIP2;1 Aquaporin", "text": "H2O2 re-enters the cytosol and organelles through PIP2;1 channels, tuning mitochondrial AOX and chloroplast redox balance.", "glyph": "transport", "icon": "🚪", "category": "Aquaporin H2O2 Influx", "locus": "AT3G53420", "spaceflight": "Inward H2O2 channel PIP2;1"}
             ]
         },
         "stromule": {
@@ -1509,11 +1664,11 @@ def build_retrograde_page():
             ],
             "path": "M 150 150 L 230 270 L 450 230 L 680 190 L 870 190",
             "steps": [
-                {"id": "s1", "x": 150, "y": 150, "label": "Plastidial Redox Shift", "sublabel": "Stromal oxidative stress trigger", "title": "Stress-Induced Tubule Elongation", "text": "Oxidative stress induces chloroplasts to initiate stroma-filled tubules (stromules) at envelope microdomains."},
-                {"id": "s2", "x": 230, "y": 270, "label": "Stromule Extension", "sublabel": "Tubule outgrowth with stroma cargo", "title": "Tubule Outgrowth & Stromule Formation", "text": "Dynamic narrow tubules extend outward from the chloroplast body, containing stromal proteins and metabolites."},
-                {"id": "s3", "x": 450, "y": 230, "label": "Myosin XI & Actin Motors", "sublabel": "Tracking microfilament tracks", "title": "Actin Microfilament Guidance", "text": "Stromules track actively along actin microfilaments powered by plant myosin XI class molecular motors."},
-                {"id": "s4", "x": 680, "y": 190, "label": "Perinuclear Envelope Docking", "sublabel": "Physical anchor to outer membrane", "title": "Direct Perinuclear Docking", "text": "Stromules physically wrap around and dock directly to outer nuclear membrane receptor complexes."},
-                {"id": "s5", "x": 870, "y": 190, "label": "Privileged H2O2 Injection", "sublabel": "Bypasses cytosolic scavenging", "title": "Privileged H2O2 Channeling", "text": "High concentrations of stromal H2O2 are transferred directly into the nucleoplasm, completely avoiding cytosolic peroxiredoxins."}
+                {"id": "s1", "x": 150, "y": 150, "label": "Plastidial Redox Shift", "sublabel": "Stromal oxidative stress trigger", "title": "Stress-Induced Tubule Elongation", "text": "Oxidative stress induces chloroplasts to initiate stroma-filled tubules (stromules) at envelope microdomains.", "glyph": "ros", "icon": "✨", "category": "Plastid Redox Threshold", "locus": "AT4G33010", "spaceflight": "Stromal ROS triggers outgrowth"},
+                {"id": "s2", "x": 230, "y": 270, "label": "Stromule Extension", "sublabel": "Tubule outgrowth with stroma cargo", "title": "Tubule Outgrowth & Stromule Formation", "text": "Dynamic narrow tubules extend outward from the chloroplast body, containing stromal proteins and metabolites.", "glyph": "transport", "icon": "🌱", "category": "Tubule Morphogenesis", "locus": "Plastid Envelope", "spaceflight": "Narrow stroma protrusion"},
+                {"id": "s3", "x": 450, "y": 230, "label": "Myosin XI & Actin Motors", "sublabel": "Tracking microfilament tracks", "title": "Actin Microfilament Guidance", "text": "Stromules track actively along actin microfilaments powered by plant myosin XI class molecular motors.", "glyph": "transport", "icon": "🚚", "category": "Myosin Motility", "locus": "AT1G17580", "spaceflight": "Actin microfilament tracking"},
+                {"id": "s4", "x": 680, "y": 190, "label": "Perinuclear Envelope Docking", "sublabel": "Physical anchor to outer membrane", "title": "Direct Perinuclear Docking", "text": "Stromules physically wrap around and dock directly to outer nuclear membrane receptor complexes.", "glyph": "gate", "icon": "⚓", "category": "Perinuclear Anchoring", "locus": "AT5G42940", "spaceflight": "Direct outer membrane docking"},
+                {"id": "s5", "x": 870, "y": 190, "label": "Privileged H2O2 Injection", "sublabel": "Bypasses cytosolic scavenging", "title": "Privileged H2O2 Channeling", "text": "High concentrations of stromal H2O2 are transferred directly into the nucleoplasm, completely avoiding cytosolic peroxiredoxins.", "glyph": "ros", "icon": "🎯", "category": "Privileged Injection", "locus": "AT3G22370", "spaceflight": "Direct H2O2 delivery to nucleus"}
             ]
         }
     }
@@ -1659,6 +1814,26 @@ def build_retrograde_page():
     .pulse-halo-anim {
       animation: halo-anim 1.6s infinite ease-in-out;
     }
+    @keyframes conduitFlow {
+      from { stroke-dashoffset: 28; }
+      to { stroke-dashoffset: 0; }
+    }
+    .conduit-flow-anim {
+      animation: conduitFlow 1.4s linear infinite;
+    }
+    .mechanism-hud-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
     """
 
     content = f"""
@@ -1707,6 +1882,25 @@ def build_retrograde_page():
           </div>
         </div>
 
+        <!-- Live Molecular Mechanism & Translocation HUD -->
+        <div id="mechanism-hud" class="mechanism-hud-panel">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div id="hud-glyph-icon" style="width: 44px; height: 44px; border-radius: 8px; background: rgba(213, 94, 0, 0.15); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+              ✨
+            </div>
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+                <span id="hud-category" class="badge" style="background: var(--surface-2); color: var(--primary); font-size: 0.75rem; font-weight: 700;">Redox / ROS Surge</span>
+                <span id="hud-locus" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-soft);">ATMG00640</span>
+              </div>
+              <h4 id="hud-title" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: var(--text);">Complex I/III Respiratory Stress</h4>
+            </div>
+          </div>
+          <div id="hud-spaceflight" style="background: rgba(15, 23, 42, 0.88); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 6px 14px; font-family: var(--font-mono); font-size: 0.82rem; color: #38bdf8;">
+            OSD-120: +1.42 log2FC (p=0.004)
+          </div>
+        </div>
+
         <!-- Architectural SVG Canvas -->
         <div style="margin-bottom: 24px;">
           <svg id="circuit-svg" viewBox="0 0 1000 420" style="width: 100%; height: auto; max-height: 480px; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px;"></svg>
@@ -1739,6 +1933,7 @@ def build_retrograde_page():
 
         renderCircuit(key);
         goToStep(0);
+        startAnimation();
       }}
 
       function renderCircuit(key) {{
@@ -1766,9 +1961,9 @@ def build_retrograde_page():
           `;
         }});
 
-        // Connecting conduit path
+        // Connecting conduit path with animated marching dash flow
         const pathHtml = `
-          <path id="conduit-path" d="${{c.path}}" fill="none" stroke="${{c.theme_color}}" stroke-width="3" stroke-dasharray="6 4" opacity="0.65" />
+          <path id="conduit-path" class="conduit-flow-anim" d="${{c.path}}" fill="none" stroke="${{c.theme_color}}" stroke-width="3.5" stroke-dasharray="8 6" opacity="0.8" />
         `;
 
         // Nodes
@@ -1785,13 +1980,19 @@ def build_retrograde_page():
                 ${{idx + 1}}
               </text>
               <!-- Label -->
-              <text x="${{s.x - 34}}" y="${{s.y - 4}}" font-family="Inter, sans-serif" font-weight="700" font-size="10.5" fill="var(--text)" class="node-title">
+              <text x="${{s.x - 34}}" y="${{s.y - 4}}" font-family="Inter, sans-serif" font-weight="700" font-size="10" fill="var(--text)" class="node-title">
                 ${{s.label}}
               </text>
               <!-- Sublabel -->
-              <text x="${{s.x - 34}}" y="${{s.y + 10}}" font-family="Inter, sans-serif" font-size="8.5" fill="var(--text-soft)" class="node-sub">
+              <text x="${{s.x - 34}}" y="${{s.y + 10}}" font-family="Inter, sans-serif" font-size="8.2" fill="var(--text-soft)" class="node-sub">
                 ${{s.sublabel}}
               </text>
+              <!-- Mechanism Glyph Chip -->
+              ${{s.glyph ? `
+                <g transform="translate(${{s.x + 50}}, ${{s.y - 10}})">
+                  <use href="#glyph-${{s.glyph}}" />
+                </g>
+              ` : ''}}
             </g>
           `;
         }});
@@ -1811,6 +2012,43 @@ def build_retrograde_page():
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
+            <!-- Scissor glyph: AT1G34190 Proteolysis -->
+            <g id="glyph-scissors">
+              <circle cx="0" cy="0" r="9" fill="#dc2626" />
+              <path d="M -3.5 -3.5 L 3.5 3.5 M -3.5 3.5 L 3.5 -3.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
+              <circle cx="-3.5" cy="-3.5" r="1.2" fill="#ffffff" />
+              <circle cx="-3.5" cy="3.5" r="1.2" fill="#ffffff" />
+            </g>
+            <!-- ROS glyph: H2O2 / 1O2 Sparkle -->
+            <g id="glyph-ros">
+              <circle cx="0" cy="0" r="9" fill="#f59e0b" />
+              <path d="M 0 -5 L 0 5 M -5 0 L 5 0 M -3 -3 L 3 3 M -3 3 L 3 -3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" />
+            </g>
+            <!-- Phosphorylation glyph: Kinase -->
+            <g id="glyph-phospho">
+              <circle cx="0" cy="0" r="9" fill="#8b5cf6" />
+              <text x="0" y="3.5" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="9" fill="#ffffff">P</text>
+            </g>
+            <!-- Gate glyph: MSL10 / GLR Channel -->
+            <g id="glyph-gate">
+              <circle cx="0" cy="0" r="9" fill="#0284c7" />
+              <path d="M -4.5 -3.5 L -4.5 3.5 M 4.5 -3.5 L 4.5 3.5 M -2.5 0 L 2.5 0" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
+            </g>
+            <!-- Metabolite glyph: PAP / Glycolate -->
+            <g id="glyph-metabolite">
+              <circle cx="0" cy="0" r="9" fill="#10b981" />
+              <polygon points="0,-4 3.5,-2 3.5,2 0,4 -3.5,2 -3.5,-2" fill="none" stroke="#ffffff" stroke-width="1.3" />
+            </g>
+            <!-- Transport glyph: Translocation / Motor -->
+            <g id="glyph-transport">
+              <circle cx="0" cy="0" r="9" fill="#0d9488" />
+              <path d="M -3.5 0 L 2 0 M 0 -2.5 L 2.5 0 L 0 2.5" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <!-- Transcription glyph: MDRE Promoters -->
+            <g id="glyph-transcription">
+              <circle cx="0" cy="0" r="9" fill="#9333ea" />
+              <path d="M -3.5 -2.5 Q 0 -4.5 3.5 -2.5 Q 0 0 -3.5 2.5 Q 0 4.5 3.5 2.5" fill="none" stroke="#ffffff" stroke-width="1.3" />
+            </g>
           </defs>
           ${{compsHtml}}
           ${{pathHtml}}
@@ -1825,8 +2063,13 @@ def build_retrograde_page():
             <div id="step-card-${{idx}}" class="step-card" onclick="goToStep(${{idx}})">
               <div class="step-num">${{idx + 1}}</div>
               <div style="flex-grow: 1;">
-                <strong style="color: var(--text); font-size: 0.95rem;">${{s.title}}</strong>
-                <p style="color: var(--text-soft); font-size: 0.88rem; margin-top: 4px;">${{s.text}}</p>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
+                  <strong style="color: var(--text); font-size: 0.95rem;">${{s.title}}</strong>
+                  ${{s.category ? `<span class="badge" style="background: var(--surface-2); color: var(--primary); font-size: 0.72rem; font-weight: 700;">${{s.category}}</span>` : ''}}
+                  ${{s.locus ? `<span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-soft);">${{s.locus}}</span>` : ''}}
+                  ${{s.spaceflight ? `<span style="font-family: var(--font-mono); font-size: 0.75rem; color: #38bdf8; background: rgba(15,23,42,0.85); padding: 1px 6px; border-radius: 4px;">${{s.spaceflight}}</span>` : ''}}
+                </div>
+                <p style="color: var(--text-soft); font-size: 0.88rem; margin: 0;">${{s.text}}</p>
               </div>
             </div>
           `;
@@ -1854,6 +2097,18 @@ def build_retrograde_page():
           halo.setAttribute('cy', step.y);
           halo.setAttribute('stroke', c.theme_color);
         }}
+
+        // Update Live Molecular Mechanism HUD
+        const hudGlyph = document.getElementById('hud-glyph-icon');
+        const hudCategory = document.getElementById('hud-category');
+        const hudLocus = document.getElementById('hud-locus');
+        const hudTitle = document.getElementById('hud-title');
+        const hudSpace = document.getElementById('hud-spaceflight');
+        if (hudGlyph && step.icon) hudGlyph.innerText = step.icon;
+        if (hudCategory && step.category) hudCategory.innerText = step.category;
+        if (hudLocus && step.locus) hudLocus.innerText = step.locus;
+        if (hudTitle && step.title) hudTitle.innerText = step.title;
+        if (hudSpace && step.spaceflight) hudSpace.innerText = step.spaceflight;
 
         // Highlight Active SVG Node
         document.querySelectorAll('.circuit-node').forEach((node, i) => {{
