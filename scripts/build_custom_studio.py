@@ -600,7 +600,7 @@ def build_study_showcase_page(study_id, profile, ont, maps, html_head_fn, nav_he
 
     content = (
         template.replace("__NAV_HEADER__", nav_header_fn(active="osdr", depth=1))
-        .replace("__HTML_FOOTER__", html_footer_fn())
+        .replace("__HTML_FOOTER__", html_footer_fn(depth=1))
         .replace("__STUDY_ID__", esc(study_id))
         .replace("__TITLE__", esc(profile["title"]))
         .replace("__MISSION__", esc(profile.get("mission", "")))

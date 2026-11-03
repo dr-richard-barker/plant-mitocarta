@@ -681,6 +681,169 @@ def test_osdr_individual_study_pages_qc():
             assert fn in s_html, f"Missing function '{fn}' in {fname}"
 
 
+def test_global_gene_omnibox_qc():
+    """ABAI QC Check 21 (Decision 1.1): Verify Cross-Portal Global Gene Omnibox & Search Assets."""
+    import json
+
+    all_pages = [
+        "index.html",
+        "digital_doubles.html",
+        "retrograde.html",
+        "comparative.html",
+        "suba_localization.html",
+        "osdr_projections.html",
+        "custom_projection.html",
+        "studies/osd-120.html",
+        "studies/osd-427.html",
+        "studies/osd-37.html",
+        "studies/osd-782.html",
+        "studies/osd-8.html",
+    ]
+
+    # Verify modal trigger and elements across all 12 pages
+    for page in all_pages:
+        p_path = DOCS_DIR / page
+        assert p_path.exists(), f"Page {page} missing"
+        html_text = p_path.read_text(encoding="utf-8")
+
+        # Topbar search button and keyboard badge
+        assert 'id="cose-omnibox-btn"' in html_text, f"Missing #cose-omnibox-btn in {page}"
+        assert "⌘K" in html_text, f"Missing ⌘K badge in {page}"
+
+        # Omnibox modal dialog elements
+        assert 'id="cose-omnibox-backdrop"' in html_text, f"Missing #cose-omnibox-backdrop in {page}"
+        assert 'id="cose-omnibox-input"' in html_text, f"Missing #cose-omnibox-input in {page}"
+        assert 'id="cose-omnibox-list"' in html_text, f"Missing #cose-omnibox-list in {page}"
+        assert 'id="cose-omnibox-detail"' in html_text, f"Missing #cose-omnibox-detail in {page}"
+        assert "omnibox_index.js" in html_text, f"Missing omnibox_index.js script tag in {page}"
+
+    # Verify omnibox search indices
+    index_json_path = DOCS_DIR / "assets" / "omnibox_index.json"
+    index_js_path = DOCS_DIR / "assets" / "omnibox_index.js"
+    assert index_json_path.exists(), "omnibox_index.json missing"
+    assert index_js_path.exists(), "omnibox_index.js missing"
+
+    with open(index_json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    assert isinstance(data, list), "omnibox_index.json must be a JSON array"
+    assert len(data) >= 90, f"Expected >= 90 indexed loci, found {len(data)}"
+
+    # Check entity properties
+    for item in data:
+        assert "locus" in item and item["locus"].startswith("AT"), f"Invalid locus in {item}"
+        assert "symbol" in item and item["symbol"], f"Invalid symbol in {item}"
+        assert "name" in item, f"Missing name in {item}"
+        assert "compartment" in item, f"Missing compartment in {item}"
+        assert "categories" in item and isinstance(item["categories"], list), f"Missing categories list in {item}"
+        assert "maps" in item and isinstance(item["maps"], list), f"Missing maps list in {item}"
+
+
+def test_canvas_pan_zoom_fullscreen_qc():
+    """ABAI QC Check 22 (Decision 1.2): Verify Interactive SVG Canvas Pan, Zoom, and Fullscreen Controls."""
+    index_html = (DOCS_DIR / "index.html").read_text(encoding="utf-8")
+    doubles_html = (DOCS_DIR / "digital_doubles.html").read_text(encoding="utf-8")
+    retro_html = (DOCS_DIR / "retrograde.html").read_text(encoding="utf-8")
+
+    # CSS styles for pan/zoom toolbar and fullscreen wrapper
+    assert ".canvas-pan-zoom-toolbar" in index_html, "Missing .canvas-pan-zoom-toolbar CSS in index.html"
+    assert ".canvas-toolbar-btn" in index_html, "Missing .canvas-toolbar-btn CSS in index.html"
+    assert ".canvas-viewport-wrapper:fullscreen" in index_html, "Missing fullscreen pseudo-class CSS in index.html"
+
+    # JS pan/zoom/fullscreen controller logic
+    assert "initCanvasControls" in index_html, "Missing initCanvasControls in index.html"
+    assert "data-action=\"zoom-in\"" in index_html, "Missing zoom-in button in index.html"
+    assert "data-action=\"zoom-out\"" in index_html, "Missing zoom-out button in index.html"
+    assert "data-action=\"reset\"" in index_html, "Missing reset button in index.html"
+    assert "data-action=\"fullscreen\"" in index_html, "Missing fullscreen button in index.html"
+
+    # Deep linking URL parameter handlers
+    assert "urlParams.get('map')" in index_html, "Missing ?map= URL parameter handler in index.html"
+    assert "urlParams.get('locus')" in index_html, "Missing ?locus= URL parameter handler in index.html"
+    assert "highlightLocusOnMap" in index_html, "Missing highlightLocusOnMap in index.html"
+
+    assert "urlParams.get('double')" in doubles_html, "Missing ?double= URL parameter handler in digital_doubles.html"
+    assert "urlParams.get('locus')" in doubles_html, "Missing ?locus= URL parameter handler in digital_doubles.html"
+
+    assert "urlParams.get('circuit')" in retro_html, "Missing ?circuit= URL parameter handler in retrograde.html"
+    assert "urlParams.get('step')" in retro_html, "Missing ?step= URL parameter handler in retrograde.html"
+
+
+def test_research_data_export_suite_qc():
+    """ABAI QC Check 23 (Decision 3.1): Verify Bioinformatics & Research Data Export Suite."""
+    import csv
+    import json
+
+    downloads_dir = DOCS_DIR / "downloads"
+    assert downloads_dir.exists(), "downloads/ directory missing"
+
+    tsv_path = downloads_dir / "plant_mitocarta_all_loci.tsv"
+    gmt_path = downloads_dir / "plant_mitocarta_pathways.gmt"
+    cyjs_path = downloads_dir / "plant_mitocarta_network.cyjs"
+
+    # 1. TSV Export Verification
+    assert tsv_path.exists(), "plant_mitocarta_all_loci.tsv missing"
+    with open(tsv_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f, delimiter="\t")
+        rows = list(reader)
+
+    assert len(rows) >= 90, f"Expected >= 90 rows in TSV, got {len(rows)}"
+    expected_cols = [
+        "agi_locus",
+        "symbol",
+        "name",
+        "subcellular_compartment",
+        "go_cc",
+        "suba5_consensus",
+        "suba5_score",
+        "mitocarta3_ortholog_category",
+        "human_homolog_symbol",
+        "osd120_root_fc",
+        "osd427_protein_fc",
+        "pathway_maps",
+    ]
+    for col in expected_cols:
+        assert col in reader.fieldnames, f"Column '{col}' missing from TSV header: {reader.fieldnames}"
+
+    # 2. GMT Export Verification (Gene Matrix Transposed)
+    assert gmt_path.exists(), "plant_mitocarta_pathways.gmt missing"
+    with open(gmt_path, "r", encoding="utf-8") as f:
+        gmt_lines = [line.strip().split("\t") for line in f if line.strip()]
+
+    assert len(gmt_lines) >= 20, f"Expected >= 20 gene sets in GMT, got {len(gmt_lines)}"
+    for parts in gmt_lines:
+        assert len(parts) >= 3, f"GMT line must have set_name, desc, and at least 1 gene: {parts[:2]}"
+        assert parts[0].startswith("PLANT_MITOCARTA_"), f"GMT set name must start with prefix: {parts[0]}"
+        genes = parts[2:]
+        for g in genes:
+            assert g.startswith("AT"), f"Gene in GMT must be AGI locus identifier: {g}"
+
+    # 3. Cytoscape CYJS Export Verification
+    assert cyjs_path.exists(), "plant_mitocarta_network.cyjs missing"
+    with open(cyjs_path, "r", encoding="utf-8") as f:
+        cyjs_data = json.load(f)
+
+    assert "elements" in cyjs_data, "Cytoscape JSON must have 'elements'"
+    nodes = cyjs_data["elements"].get("nodes", [])
+    edges = cyjs_data["elements"].get("edges", [])
+
+    assert len(nodes) >= 100, f"Expected >= 100 nodes in Cytoscape graph, got {len(nodes)}"
+    assert len(edges) >= 100, f"Expected >= 100 edges in Cytoscape graph, got {len(edges)}"
+
+    for n in nodes[:10]:
+        assert "data" in n and "id" in n["data"], f"Invalid node in CYJS: {n}"
+    for e in edges[:10]:
+        assert "data" in e and "source" in e["data"] and "target" in e["data"], f"Invalid edge in CYJS: {e}"
+
+    # 4. Verify Index Page Export Suite Banner
+    index_html = (DOCS_DIR / "index.html").read_text(encoding="utf-8")
+    assert "plant_mitocarta_all_loci.tsv" in index_html, "Missing link to all_loci.tsv in index.html"
+    assert "plant_mitocarta_pathways.gmt" in index_html, "Missing link to pathways.gmt in index.html"
+    assert "plant_mitocarta_network.cyjs" in index_html, "Missing link to network.cyjs in index.html"
+    assert "Bioinformatics &amp; Systems Biology Bulk Data Exports" in index_html, "Missing export suite header in index.html"
+
+
+
 
 
 

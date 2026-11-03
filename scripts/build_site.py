@@ -44,6 +44,14 @@ from build_custom_studio import (
 DOCS_DIR = ROOT / "docs"
 MAPS_DIR = DOCS_DIR / "maps"
 ASSETS_DIR = DOCS_DIR / "assets"
+DOWNLOADS_DIR = DOCS_DIR / "downloads"
+
+from build_exports import build_all_exports
+from build_omnibox_ui import (
+    OMNIBOX_AND_CANVAS_CSS,
+    get_omnibox_modal_html,
+    get_omnibox_and_canvas_js,
+)
 
 
 def esc(s):
@@ -74,12 +82,21 @@ def nav_header(active="home", depth=0):
         <img src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png" alt="CoSE logo">
         <span>Plant MitoCarta</span>
       </a>
-      <button type="button" id="cose-theme-toggle" class="cose-theme-btn" aria-label="Toggle theme">
-        <span class="theme-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        </span>
-        <span class="theme-label">Theme</span>
-      </button>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" id="cose-omnibox-btn" class="cose-theme-btn" aria-label="Search Plant MitoCarta (Cmd+K)">
+          <span class="theme-icon" aria-hidden="true" style="display: flex; align-items: center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <span class="search-label" style="font-weight: 600;">Search</span>
+          <kbd style="font-size: 0.68rem; padding: 1px 5px; border-radius: 4px; background: var(--surface-2); border: 1px solid var(--line); font-family: var(--font-mono); color: var(--muted); margin-left: 2px;">⌘K</kbd>
+        </button>
+        <button type="button" id="cose-theme-toggle" class="cose-theme-btn" aria-label="Toggle theme">
+          <span class="theme-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+          <span class="theme-label">Theme</span>
+        </button>
+      </div>
     </div>
 
     <nav class="cose-tab-bar" aria-label="Sections">
@@ -485,6 +502,8 @@ def html_head(title, extra_css=""):
       gap: 8px;
     }}
 
+    {OMNIBOX_AND_CANVAS_CSS}
+
     {extra_css}
   </style>
 </head>
@@ -492,48 +511,55 @@ def html_head(title, extra_css=""):
 """
 
 
-def html_footer():
-    return """
+def html_footer(depth=0):
+    prefix = "../" if depth == 1 else ""
+    return f"""
     <footer class="cose-foot">
+      <p><strong>Bulk Research Data Exports.</strong> <a href="{prefix}downloads/plant_mitocarta_all_loci.tsv" download style="color: var(--accent); font-weight: 600;">All 96 Loci (TSV)</a> &bull; <a href="{prefix}downloads/plant_mitocarta_pathways.gmt" download style="color: var(--accent); font-weight: 600;">21 Curated Gene Sets (GMT)</a> &bull; <a href="{prefix}downloads/plant_mitocarta_network.cyjs" download style="color: var(--accent); font-weight: 600;">Cytoscape Network (CYJS)</a></p>
       <p><strong>Licence.</strong> Ontology, maps and evidence base CC-BY-4.0; code MIT.</p>
       <p><strong>Citing.</strong> Plant MitoCarta: Subcellular Digital Doubles, Inter-Organellar Signaling &amp; Cross-Kingdom Synteny. Plant MitoCarta v0.1.0.</p>
-      <p><strong>Semantics.</strong> Identifier-bound • GO-CCO &amp; SAO Relational Semantics (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3852282/" target="_blank">PMC3852282</a>) • NASA OSDR Ingestion • SUBA5 Proteomics.</p>
-      <p><strong>Status.</strong> CoSE Theme Active (Header &amp; Tab Bar Navigation, no side panel) · <a href="https://github.com/dr-richard-barker/plant-mitocarta">source on GitHub</a>.</p>
+      <p><strong>Semantics.</strong> Identifier-bound &bull; GO-CCO &amp; SAO Relational Semantics (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3852282/" target="_blank">PMC3852282</a>) &bull; NASA OSDR Ingestion &bull; SUBA5 Proteomics.</p>
+      <p><strong>Status.</strong> CoSE Theme Active (Header &amp; Tab Bar Navigation, no side panel) &bull; <a href="https://github.com/dr-richard-barker/plant-mitocarta">source on GitHub</a>.</p>
     </footer>
   </div>
+  {get_omnibox_modal_html()}
+  <script src="{prefix}assets/omnibox_index.js"></script>
   <script>
-  (function() {
+  (function() {{
     var path = (window.location.pathname.split('/').pop() || 'index.html');
     var links = document.querySelectorAll('.cose-tab-bar a.btn');
-    for (var i = 0; i < links.length; i++) {
+    for (var i = 0; i < links.length; i++) {{
       var href = links[i].getAttribute('href');
-      if (href === path) {
+      if (href === path) {{
         links[i].classList.add('active');
         links[i].setAttribute('aria-current', 'page');
-      }
-    }
+      }}
+    }}
     var btn = document.getElementById('cose-theme-toggle');
     if (!btn) return;
-    function update(theme) {
+    function update(theme) {{
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('cose-theme', theme);
       btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
       var label = btn.querySelector('.theme-label');
       if (label) label.textContent = theme === 'dark' ? 'Light' : 'Dark';
       var icon = btn.querySelector('.theme-icon');
-      if (icon) {
+      if (icon) {{
         icon.innerHTML = theme === 'dark'
           ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;display:block;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
           : '<svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;display:block;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-      }
-    }
+      }}
+    }}
     var curr = document.documentElement.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     update(curr);
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function() {{
       var now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       update(now);
-    });
-  })();
+    }});
+  }})();
+  </script>
+  <script>
+  {get_omnibox_and_canvas_js(prefix)}
   </script>
   <script defer src="https://visitor-analytics.astrobotany.workers.dev/a.js"></script>
 </body>
@@ -1140,6 +1166,34 @@ def build_index_page(ont, maps):
         </div>
       </section>
 
+      <!-- BIOINFORMATICS & RESEARCH DATA EXPORT SUITE (Decision 3.1) -->
+      <section class="export-suite-banner" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--border-radius); padding: 22px 26px; margin-bottom: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+        <div style="flex: 1 1 540px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="tag-accent" style="margin: 0; font-size: 0.72rem;">RESEARCH INTEROPERABILITY SUITE</span>
+            <span style="font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono);">Decision 3.1 &bull; Zenodo Release Ready</span>
+          </div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px 0; color: var(--text);">Bioinformatics &amp; Systems Biology Bulk Data Exports</h3>
+          <p style="font-size: 0.88rem; color: var(--text-soft); margin: 0; line-height: 1.5;">
+            Directly export computational files for GSEA/clusterProfiler enrichment analysis, Cytoscape network biology workflows, and complete multi-omics locus tables including NASA OSDR spaceflight log2FC and SUBA5 localization metrics.
+          </p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+          <a href="downloads/plant_mitocarta_all_loci.tsv" download class="btn primary" style="font-size: 0.84rem; padding: 8px 14px;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>All 96 Loci (TSV)</span>
+          </a>
+          <a href="downloads/plant_mitocarta_pathways.gmt" download class="btn" style="font-size: 0.84rem; padding: 8px 14px;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>21 Gene Sets (GMT)</span>
+          </a>
+          <a href="downloads/plant_mitocarta_network.cyjs" download class="btn" style="font-size: 0.84rem; padding: 8px 14px;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><line x1="8.59" y1="7.41" x2="15.42" y2="16.59"/><line x1="8.59" y1="6" x2="15.42" y2="6"/></svg>
+            <span>Cytoscape (CYJS)</span>
+          </a>
+        </div>
+      </section>
+
       <div class="tier-legend">
         <span class="tier-legend-title">Evidence Tier Border Key:</span>
         <div class="tier-legend-item"><div class="legend-box legend-t1"></div><span><strong>T1</strong> Demonstrated Empirical (Plant)</span></div>
@@ -1331,6 +1385,7 @@ def build_index_page(ont, maps):
         container.innerHTML = mapSvgs[mapId];
         attachNodeClickListeners();
         applyOmicsOverlay();
+        if (window.initCanvasControls) window.initCanvasControls(container);
         if (activeInspectorNode) {{
           if (mapOmicsData[currentMapId] && mapOmicsData[currentMapId][activeInspectorNode]) {{
             inspectStudioNode(activeInspectorNode);
@@ -1701,6 +1756,47 @@ def build_index_page(ont, maps):
       // Initialize default map
       attachNodeClickListeners();
       applyOmicsOverlay();
+
+      function highlightLocusOnMap(target) {{
+        if (!target) return;
+        const upper = target.toUpperCase();
+        const mapData = mapOmicsData[currentMapId] || {{}};
+        let matchedNodeId = null;
+        for (const [nId, nInfo] of Object.entries(mapData)) {{
+          if (nId.toUpperCase() === upper || (nInfo.locus && nInfo.locus.toUpperCase() === upper) || (nInfo.symbol && nInfo.symbol.toUpperCase() === upper)) {{
+            matchedNodeId = nId;
+            break;
+          }}
+        }}
+        if (matchedNodeId) {{
+          inspectStudioNode(matchedNodeId);
+          const container = document.getElementById('studio-svg-container');
+          if (container) {{
+            const activeGroup = container.querySelector(`[data-node-id="${{matchedNodeId}}"]`) || container.querySelector(`#node-${{matchedNodeId}}`);
+            if (activeGroup) {{
+              activeGroup.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+              const rect = activeGroup.querySelector('.pmc-node');
+              if (rect) {{
+                rect.style.transition = 'outline 0.3s ease';
+                rect.style.outline = '4px solid var(--accent)';
+              }}
+            }}
+          }}
+        }}
+      }}
+
+      // Deep linking via URL params (Decision 1.1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetMap = urlParams.get('map');
+      const targetLocus = urlParams.get('locus');
+      if (targetMap && mapSvgs[targetMap]) {{
+        switchStudioMap(targetMap);
+      }}
+      if (targetLocus) {{
+        setTimeout(function() {{
+          highlightLocusOnMap(targetLocus);
+        }}, 120);
+      }}
     }})();
     </script>
     {html_footer()}
@@ -1933,7 +2029,9 @@ def build_digital_doubles_page(ont):
               <span>Up (+2.0 log2FC)</span>
             </div>
           </div>
-          <svg id="double-svg" viewBox="0 0 1600 1100" style="width: 100%; max-height: 700px; border-radius: 8px; background: var(--bg); border: 1px solid var(--card-border);"></svg>
+          <div class="map-svg-viewport" style="position: relative; overflow: hidden; border-radius: 8px;">
+            <svg id="double-svg" viewBox="0 0 1600 1100" style="width: 100%; max-height: 700px; border-radius: 8px; background: var(--bg); border: 1px solid var(--card-border);"></svg>
+          </div>
         </section>
       </div>
 
@@ -2611,6 +2709,30 @@ def build_digital_doubles_page(ont):
       // Initial render
       renderSynoptic();
       updateHeatmap();
+
+      // Deep linking via URL params (Decision 1.1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetDouble = urlParams.get('double');
+      const targetLocus = urlParams.get('locus');
+      if (targetDouble && (doublesData[targetDouble] || targetDouble === 'synoptic')) {{
+        switchDouble(targetDouble);
+      }}
+      if (targetLocus) {{
+        const searchInput = document.getElementById('heat-search');
+        if (searchInput) {{
+          searchInput.value = targetLocus;
+          updateHeatmap();
+        }}
+        if (targetDouble && doublesData[targetDouble]) {{
+          const meta = doublesData[targetDouble];
+          for (const s of meta.subcomps) {{
+            if (s.anchor_ports && Object.keys(s.anchor_ports).some(k => k.toUpperCase().includes(targetLocus.toUpperCase()))) {{
+              inspectSubcomp(targetDouble, s.id);
+              break;
+            }}
+          }}
+        }}
+      }}
     </script>
     {html_footer()}
     """
@@ -2948,7 +3070,7 @@ def build_retrograde_page():
         </div>
 
         <!-- Architectural SVG Canvas -->
-        <div style="margin-bottom: 24px;">
+        <div class="map-svg-viewport" style="position: relative; overflow: hidden; border-radius: 8px; margin-bottom: 24px;">
           <svg id="circuit-svg" viewBox="0 0 1000 420" style="width: 100%; height: auto; max-height: 480px; background: var(--bg); border: 1px solid var(--card-border); border-radius: 8px;"></svg>
         </div>
 
@@ -3253,7 +3375,24 @@ def build_retrograde_page():
       }}
 
       // Init on load
-      selectCircuit('mrr');
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetCircuit = urlParams.get('circuit');
+      const targetStep = urlParams.get('step');
+      if (targetCircuit && circuits[targetCircuit]) {{
+        selectCircuit(targetCircuit);
+      }} else {{
+        selectCircuit('mrr');
+      }}
+      if (targetStep !== null) {{
+        const stepNum = parseInt(targetStep, 10);
+        if (!isNaN(stepNum)) {{
+          const c = circuits[currentCircuitKey];
+          const stepIdx = (stepNum >= 1 && stepNum <= c.steps.length) ? (stepNum - 1) : Math.max(0, Math.min(stepNum, c.steps.length - 1));
+          setTimeout(function() {{
+            goToStep(stepIdx);
+          }}, 80);
+        }}
+      }}
     </script>
     {html_footer()}
     """
@@ -4912,7 +5051,11 @@ def main():
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     MAPS_DIR.mkdir(parents=True, exist_ok=True)
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
     (DOCS_DIR / "studies").mkdir(parents=True, exist_ok=True)
+
+    # 0. Build bulk research data exports and omnibox search indices (Decision 1.1 & 3.1)
+    build_all_exports()
 
     ont = load_ontology()
     maps = compile_all_maps()

@@ -1,0 +1,5432 @@
+[
+  {
+    "locus": "AT1G03130",
+    "symbol": "PSBA",
+    "name": "PSII D1 reaction center protein subject to photoinhibition and spaceflight turnover",
+    "compartment": "Thylakoid Membrane & Grana",
+    "comp": "Thylakoid Membrane & Grana",
+    "comp_label": "Thylakoid Membrane & Grana",
+    "categories": [
+      "chloro",
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.7,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -1.35,
+        "pval": 0.0002,
+        "sig": true
+      },
+      "osd37": {
+        "fc": -1.15,
+        "pval": 0.0006,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": -0.92,
+        "pval": 0.004,
+        "sig": true
+      },
+      "osd782": {
+        "fc": -1.05,
+        "pval": 0.001,
+        "sig": true
+      },
+      "osd8": {
+        "fc": -1.6,
+        "pval": 8e-05,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT1G05210",
+    "symbol": "FIB1",
+    "name": "Fibrillarin 1 methyltransferase governing pre-rRNA processing and nucleolar integrity",
+    "compartment": "Nucleolus Subnuclear Domain",
+    "comp": "Nucleolus Subnuclear Domain",
+    "comp_label": "Nucleolus Subnuclear Domain",
+    "categories": [
+      "nuc",
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.48,
+        "pval": 0.045,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.35,
+        "pval": 0.1,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.42,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.22,
+        "pval": 0.2,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.38,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.65,
+        "pval": 0.02,
+        "sig": false
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT1G06680",
+    "symbol": "Photosystem II (PSII Core & Oxygen-Evolving Complex)",
+    "name": "Multisubunit pigment-protein complex driven by light to split water, generating oxygen, protons, and plastoquinol. Site of singlet oxygen production under excess light.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009523",
+    "pmco_id": "PMCO:PHOTOSYSTEM_II",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSII_OEC",
+        "node_label": "Photosystem II (PSII)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_PHOTOSYSTEMS",
+        "node_label": "Chloroplast Light Reactions"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G07180",
+    "symbol": "NDA1",
+    "name": "Rotenone-insensitive, non-proton-pumping NADH dehydrogenases facing the mitochondrial matrix. Allows NADH oxidation without ATP production. Absent in mammalian MitoCarta.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Inner Mitochondrial Membrane (IMM)",
+    "categories": [
+      "mito",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:ALT_NADH_DH_INT",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "ALT_NDH_INTERNAL",
+        "node_label": "Internal Type II NDH"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_NDH_BYPASSES",
+        "node_label": "Type II NDH Bypasses (Q2)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.96,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.78,
+        "pval": 0.012,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.42,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.65,
+        "pval": 0.02,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.35,
+        "pval": 0.1,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.58,
+        "pval": 0.035,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.9,
+        "pval": 0.008,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 0.78,
+      "prot_fc": 0.35,
+      "delta": -0.43
+    }
+  },
+  {
+    "locus": "AT1G10960",
+    "symbol": "Photosystem I (PSI Complex & Ferredoxin)",
+    "name": "Light-driven plastocyanin-ferredoxin oxidoreductase producing NADPH.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009522",
+    "pmco_id": "PMCO:PHOTOSYSTEM_I",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSI_COMPLEX",
+        "node_label": "Photosystem I (PSI)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G11860",
+    "symbol": "Glycine Decarboxylase Complex (GDC P-, T-, H-, L-proteins)",
+    "name": "Massive multi-enzyme complex (~half of soluble matrix protein in photosynthetic leaves) catalyzing glycine decarboxylation in photorespiration. Tightly linked to chloroplast RuBisCO flux.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005960",
+    "pmco_id": "PMCO:GDC_COMPLEX",
+    "maps": [
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "GDC_P_T_H_L_COMPLEX",
+        "node_label": "Glycine Decarboxylase (GDC)"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_GDC_PHOTORESP",
+        "node_label": "Photorespiratory GDC (Q2)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_GDC_ENGINE",
+        "node_label": "Matrix GDC Complex"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G16700",
+    "symbol": "Mitochondrial Complex I (NADH:ubiquinone oxidoreductase)",
+    "name": "L-shaped multisubunit respiratory complex (~40 subunits) pumping protons across the inner membrane. Contains 14 conserved central subunits homologous to human MitoCarta Complex I.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CORE",
+        "node_label": "Complex I (Catalytic Core)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_RESPIRATORY_CHAIN",
+        "node_label": "Plant MitoCarta OXPHOS"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G19580",
+    "symbol": "Complex I Carbonic Anhydrase Domain",
+    "name": "Plant-specific heterotrimeric spherical domain (CAL1, CAL2, CA1, CA2, CA3) attached to the matrix side of the membrane arm of Complex I. Crucial for complex assembly, stability, and photorespiration. Completely absent from mammalian MitoCarta.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito",
+      "retro"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I_CA",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CA_DOMAIN",
+        "node_label": "Complex I CA Domain"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "COMPLEX_I_CA_INTERACTION",
+        "node_label": "Complex I CA Domain Nexus"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_CA_DOMAIN_COMPLEX_I",
+        "node_label": "Complex I CA Domain (Q2)"
+      }
+    ],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "photo",
+        "circuit_title": "3-Organelle Photorespiratory Loop",
+        "step_idx": 4,
+        "step_label": "Complex I CA Domain",
+        "glyph": "transport",
+        "category": "CO2 Recirculation"
+      }
+    ],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.98,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G21250",
+    "symbol": "WAK1",
+    "name": "Receptor kinase spanning the plasma membrane with an extracellular domain physically bound to pectin in the cell wall, monitoring wall strain and microgravity-induced stresses.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Plasma Membrane Lipid Bilayer",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:WAK1_RECEPTOR",
+    "maps": [
+      {
+        "map_id": "PMM-04",
+        "map_title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+        "node_id": "WAK1_PECTIN_KINASE",
+        "node_label": "WAK1 Kinase"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.98,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.38,
+        "pval": 0.0003,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.9,
+        "pval": 0.005,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 1.15,
+        "pval": 0.001,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.7,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd782": {
+        "fc": 1.22,
+        "pval": 0.0008,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.48,
+        "pval": 0.0002,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Induced",
+      "mrna_fc": 1.38,
+      "prot_fc": 0.7,
+      "delta": -0.68
+    }
+  },
+  {
+    "locus": "AT1G23310",
+    "symbol": "GGT1",
+    "name": "Enzyme cluster converting chloroplast-derived glycolate into glyoxylate (producing H2O2 scavenged by CAT2), transaminating it to glycine for mitochondrial GDC, and receiving mitochondrial serine to produce glycerate.",
+    "compartment": "peroxisome",
+    "comp": "peroxisome",
+    "comp_label": "Peroxisomal Photorespiration",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005777",
+    "pmco_id": "PMCO:PEROXISOME_PHOTORESP",
+    "maps": [
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "PEROXISOMAL_SHUTTLE",
+        "node_label": "Peroxisomal Photorespiration"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "peroxisome",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.68,
+        "pval": 0.012,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -0.45,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.4,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.28,
+        "pval": 0.14,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.44,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.8,
+        "pval": 0.004,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": -0.68,
+      "prot_fc": -0.28,
+      "delta": 0.4
+    }
+  },
+  {
+    "locus": "AT1G30510",
+    "symbol": "Photosystem I (PSI Complex & Ferredoxin)",
+    "name": "Light-driven plastocyanin-ferredoxin oxidoreductase producing NADPH.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009522",
+    "pmco_id": "PMCO:PHOTOSYSTEM_I",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSI_COMPLEX",
+        "node_label": "Photosystem I (PSI)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G32080",
+    "symbol": "PLGG1",
+    "name": "Chloroplast envelope transporter exporting glycolate into the cytosol for peroxisomal uptake, and importing returned glycerate back into the stroma for Calvin cycle re-entry.",
+    "compartment": "chloroplast_inner_envelope",
+    "comp": "chloroplast_inner_envelope",
+    "comp_label": "Inner Envelope Membrane (IEM)",
+    "categories": [
+      "chloro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0009706",
+    "pmco_id": "PMCO:PLGG1_TRANSLOCATOR",
+    "maps": [
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "PLGG1_GLYCOLATE_EXPORT",
+        "node_label": "PLGG1 Translocator"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.48,
+        "pval": 0.045,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.35,
+        "pval": 0.1,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.28,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.18,
+        "pval": 0.25,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.32,
+        "pval": 0.12,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.65,
+        "pval": 0.015,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": -0.48,
+      "prot_fc": -0.18,
+      "delta": 0.3
+    }
+  },
+  {
+    "locus": "AT1G32870",
+    "symbol": "ANAC013",
+    "name": "ER/OMM-tethered NAC transcription factor co-regulated with ANAC017. Binds MDRE motifs to amplify mitochondrial retrograde signaling.",
+    "compartment": "nucleoplasm",
+    "comp": "nucleoplasm",
+    "comp_label": "Nucleoplasm & Chromatin",
+    "categories": [
+      "nuc",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005654",
+    "pmco_id": "PMCO:ANAC013_NUCLEAR",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "ANAC013_ACTIVE",
+        "node_label": "ANAC013 (NAC Domain)"
+      },
+      {
+        "map_id": "PMM-05",
+        "map_title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+        "node_id": "ANAC013_TETHERED",
+        "node_label": "Membrane-Bound ANAC013"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.94,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.45,
+        "pval": 0.0004,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.8,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 1.2,
+        "pval": 0.001,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.55,
+        "pval": 0.03,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 1.15,
+        "pval": 0.0012,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.65,
+        "pval": 0.0001,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 1.45,
+      "prot_fc": 0.55,
+      "delta": -0.9
+    }
+  },
+  {
+    "locus": "AT1G34190",
+    "symbol": "ANAC017",
+    "name": "Master transcription factor of the mitochondrial retrograde response (MRR). Following proteolytic cleavage from its ER/OMM transmembrane anchor, the soluble N-terminal NAC domain translocates through nuclear pores to bind MDRE motifs.",
+    "compartment": "nucleoplasm",
+    "comp": "nucleoplasm",
+    "comp_label": "Outer Mitochondrial Membrane (OMM)",
+    "categories": [
+      "mito",
+      "nuc",
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005654",
+    "pmco_id": "PMCO:ANAC017_NUCLEAR",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "ANAC017_ACTIVE",
+        "node_label": "ANAC017 (NAC Domain)"
+      },
+      {
+        "map_id": "PMM-05",
+        "map_title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+        "node_id": "ANAC017_TETHERED",
+        "node_label": "Membrane-Bound ANAC017"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_MRR_ANAC017",
+        "node_label": "Mitochondrial Retrograde MRR"
+      }
+    ],
+    "anchor": {
+      "double_id": "nucleus",
+      "double_name": "Plant Nucleus",
+      "subcomp": "nuclear_inner_membrane",
+      "anchor": "ANAC017",
+      "title": "Retrograde Transcription Factor"
+    },
+    "retro": [
+      {
+        "circuit_id": "mrr",
+        "circuit_title": "Mito-Nuclear MRR (ANAC017/013)",
+        "step_idx": 3,
+        "step_label": "Rhomboid Protease Cleavage",
+        "glyph": "scissors",
+        "category": "Proteolytic Cleavage"
+      }
+    ],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.95,
+      "ms": true,
+      "gfp": true,
+      "dual": true,
+      "dual_classes": [
+        "DUAL_MITO_NUCLEUS"
+      ]
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.92,
+        "pval": 0.002,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.65,
+        "pval": 0.018,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 0.78,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.32,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.85,
+        "pval": 0.004,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.15,
+        "pval": 0.0008,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 0.92,
+      "prot_fc": 0.32,
+      "delta": -0.6
+    }
+  },
+  {
+    "locus": "AT1G38040",
+    "symbol": "Glycine Decarboxylase Complex (GDC P-, T-, H-, L-proteins)",
+    "name": "Massive multi-enzyme complex (~half of soluble matrix protein in photosynthetic leaves) catalyzing glycine decarboxylation in photorespiration. Tightly linked to chloroplast RuBisCO flux.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005960",
+    "pmco_id": "PMCO:GDC_COMPLEX",
+    "maps": [
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "GDC_P_T_H_L_COMPLEX",
+        "node_label": "Glycine Decarboxylase (GDC)"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_GDC_PHOTORESP",
+        "node_label": "Photorespiratory GDC (Q2)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_GDC_ENGINE",
+        "node_label": "Matrix GDC Complex"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G47260",
+    "symbol": "CAL1",
+    "name": "Plant-specific heterotrimeric spherical domain (CAL1, CAL2, CA1, CA2, CA3) attached to the matrix side of the membrane arm of Complex I. Crucial for complex assembly, stability, and photorespiration. Completely absent from mammalian MitoCarta.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae Lumen & Invaginations",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I_CA",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CA_DOMAIN",
+        "node_label": "Complex I CA Domain"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "COMPLEX_I_CA_INTERACTION",
+        "node_label": "Complex I CA Domain Nexus"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_CA_DOMAIN_COMPLEX_I",
+        "node_label": "Complex I CA Domain (Q2)"
+      }
+    ],
+    "anchor": {
+      "double_id": "mitochondria",
+      "double_name": "Plant Mitochondrion",
+      "subcomp": "mitochondrial_matrix",
+      "anchor": "CA Domain",
+      "title": "Complex I Carbonic Anhydrase Wedge"
+    },
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.98,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "plant_specific_innovation",
+      "human_symbol": "NONE",
+      "mitopathway": "OXPHOS > Complex I CA Domain",
+      "clin": "Completely absent in mammals. Required for plant holo-Complex I super-assembly stability.",
+      "ident": 0.0
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.42,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.28,
+        "pval": 0.16,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.35,
+        "pval": 0.1,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.18,
+        "pval": 0.25,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.3,
+        "pval": 0.14,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.55,
+        "pval": 0.035,
+        "sig": false
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": 0.42,
+      "prot_fc": 0.18,
+      "delta": -0.24
+    }
+  },
+  {
+    "locus": "AT1G50840",
+    "symbol": "POLIA",
+    "name": "Family A DNA polymerase responsible for organellar genome replication. Dual-targeted to both mitochondria and chloroplasts via an ambiguous N-terminal transit peptide. Contrast with human POLG, which is strictly mitochondrial.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix & Plastid Stroma",
+    "categories": [
+      "mito",
+      "chloro",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005739; GO:0009507",
+    "pmco_id": "PMCO:POLIA_POLYMERASE",
+    "maps": [
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "DUAL_TARGETED_POLIA_B",
+        "node_label": "Dual-Targeted PolIA/B (Q3)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.85,
+      "ms": true,
+      "gfp": true,
+      "dual": true,
+      "dual_classes": [
+        "DUAL_MITO_CHLORO"
+      ]
+    },
+    "ortho": {
+      "cat": "dual_targeted_divergence",
+      "human_symbol": "POLG",
+      "mitopathway": "Mitochondrial Central Dogma > mtDNA Replication",
+      "clin": "Human mutations cause Alpers-Huttenlocher syndrome, PEO, sensory ataxic neuropathy.",
+      "ident": 34.2
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.42,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.28,
+        "pval": 0.18,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.35,
+        "pval": 0.1,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.15,
+        "pval": 0.3,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.3,
+        "pval": 0.14,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 1.25,
+        "pval": 0.0006,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": 0.42,
+      "prot_fc": 0.15,
+      "delta": -0.27
+    }
+  },
+  {
+    "locus": "AT1G67090",
+    "symbol": "RBCL",
+    "name": "Ribulose-1,5-bisphosphate carboxylase-oxygenase. Carboxylase activity drives the Calvin-Benson cycle; oxygenase activity initiates photorespiration, producing 2-phosphoglycolate which feeds into the 3-organelle photorespiratory conduit.",
+    "compartment": "chloroplast_stroma",
+    "comp": "chloroplast_stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0016272",
+    "pmco_id": "PMCO:RUBISCO_HOLOENZYME",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "RUBISCO_ENZYME",
+        "node_label": "RuBisCO Holoenzyme"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "RUBISCO_O2_REACTION",
+        "node_label": "RuBisCO Oxygenation"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_RUBISCO",
+        "node_label": "RuBisCO Carbon & Oxygen Fixation"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.85,
+        "pval": 0.004,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -1.25,
+        "pval": 0.0003,
+        "sig": true
+      },
+      "osd37": {
+        "fc": -1.1,
+        "pval": 0.0008,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": -0.8,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd782": {
+        "fc": -0.95,
+        "pval": 0.002,
+        "sig": true
+      },
+      "osd8": {
+        "fc": -1.45,
+        "pval": 0.0001,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Suppressed",
+      "mrna_fc": -0.85,
+      "prot_fc": -0.8,
+      "delta": 0.05
+    }
+  },
+  {
+    "locus": "AT1G68010",
+    "symbol": "HPR1",
+    "name": "Enzyme cluster converting chloroplast-derived glycolate into glyoxylate (producing H2O2 scavenged by CAT2), transaminating it to glycine for mitochondrial GDC, and receiving mitochondrial serine to produce glycerate.",
+    "compartment": "peroxisome",
+    "comp": "peroxisome",
+    "comp_label": "Peroxisomal Photorespiration",
+    "categories": [
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005777",
+    "pmco_id": "PMCO:PEROXISOME_PHOTORESP",
+    "maps": [
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "PEROXISOMAL_SHUTTLE",
+        "node_label": "Peroxisomal Photorespiration"
+      }
+    ],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "photo",
+        "circuit_title": "3-Organelle Photorespiratory Loop",
+        "step_idx": 5,
+        "step_label": "Peroxisomal HPR",
+        "glyph": "metabolite",
+        "category": "Peroxisomal Return"
+      }
+    ],
+    "suba": {
+      "comp": "peroxisome",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.85,
+        "pval": 0.003,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -0.62,
+        "pval": 0.02,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.5,
+        "pval": 0.035,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.38,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.55,
+        "pval": 0.025,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -1.02,
+        "pval": 0.0008,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": -0.85,
+      "prot_fc": -0.38,
+      "delta": 0.47
+    }
+  },
+  {
+    "locus": "AT1G79010",
+    "symbol": "Mitochondrial Complex I (NADH:ubiquinone oxidoreductase)",
+    "name": "L-shaped multisubunit respiratory complex (~40 subunits) pumping protons across the inner membrane. Contains 14 conserved central subunits homologous to human MitoCarta Complex I.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CORE",
+        "node_label": "Complex I (Catalytic Core)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_RESPIRATORY_CHAIN",
+        "node_label": "Plant MitoCarta OXPHOS"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G79050",
+    "symbol": "RECA1",
+    "name": "Recombinase involved in homologous recombination and repair of organellar DNA, dual-targeted to mitochondria and plastids.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005739; GO:0009507",
+    "pmco_id": "PMCO:RECA1_HOMOLOG",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.89,
+      "ms": true,
+      "gfp": true,
+      "dual": true,
+      "dual_classes": [
+        "DUAL_MITO_CHLORO"
+      ]
+    },
+    "ortho": {
+      "cat": "dual_targeted_divergence",
+      "human_symbol": "RAD51C",
+      "mitopathway": "Mitochondrial Central Dogma > Genome Maintenance",
+      "clin": "Human RAD51 defects cause Fanconi anemia and severe genomic instability.",
+      "ident": 41.5
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.68,
+        "pval": 0.025,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.45,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.52,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.25,
+        "pval": 0.18,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.48,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 1.75,
+        "pval": 0.0001,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": 0.68,
+      "prot_fc": 0.25,
+      "delta": -0.43
+    }
+  },
+  {
+    "locus": "AT1G80080",
+    "symbol": "Nuclear Pore Complex (NPC & Transportins)",
+    "name": "Macromolecular basket spanning the nuclear envelope, regulating the import of cleaved ANAC017/ANAC013 and export/import of retrograde metabolites.",
+    "compartment": "nuclear_pore_complex",
+    "comp": "nuclear_pore_complex",
+    "comp_label": "Nuclear Pore Complex",
+    "categories": [
+      "nuc"
+    ],
+    "go_cc": "GO:0005643",
+    "pmco_id": "PMCO:NPC_COMPLEX",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "NPC_GATE",
+        "node_label": "Nuclear Pore Complex"
+      },
+      {
+        "map_id": "PMM-05",
+        "map_title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+        "node_id": "NPC_TRANSLOCATION_GATE",
+        "node_label": "Nuclear Pore Complex"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT1G80380",
+    "symbol": "GLYK",
+    "name": "Glycerate kinase phosphorylating D-glycerate to 3-PGA for Calvin cycle reintegration",
+    "compartment": "Chloroplast Stroma",
+    "comp": "Chloroplast Stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro",
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.52,
+        "pval": 0.035,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.4,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.32,
+        "pval": 0.12,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.22,
+        "pval": 0.2,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.38,
+        "pval": 0.09,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.75,
+        "pval": 0.008,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT2G07698",
+    "symbol": "Complex V (ATP Synthase / F1Fo-ATPase)",
+    "name": "Rotary motor utilizing proton motive force to synthesize ATP from ADP and Pi.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005753",
+    "pmco_id": "PMCO:COMPLEX_V",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_V_ATPASE",
+        "node_label": "ATP Synthase (F1Fo)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT2G18960",
+    "symbol": "Plasma Membrane H+-ATPase 1 (AHA1)",
+    "name": "Primary electrogenic proton pump establishing the membrane potential and driving apoplast acidification. Crucial for cellular bioenergetics and secondary transport.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Plasma Membrane",
+    "categories": [],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:AHA1_H_ATPASE",
+    "maps": [
+      {
+        "map_id": "PMM-04",
+        "map_title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+        "node_id": "AHA1_PROTON_PUMP",
+        "node_label": "AHA1 H+-ATPase"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT2G20570",
+    "symbol": "GLK1",
+    "name": "GARP family transcription factor essential for chloroplast biogenesis, activating nuclear genes encoding light-harvesting proteins and chlorophyll biosynthesis. Repressed during severe plastid stress.",
+    "compartment": "nucleoplasm",
+    "comp": "nucleoplasm",
+    "comp_label": "Nucleoplasm & Chromatin",
+    "categories": [
+      "nuc",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005654",
+    "pmco_id": "PMCO:GLK1_TF",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "GLK1_ACTIVATOR_TF",
+        "node_label": "GLK1/GLK2 Activators"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.99,
+      "ms": false,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -1.42,
+        "pval": 0.0001,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -1.65,
+        "pval": 5e-05,
+        "sig": true
+      },
+      "osd37": {
+        "fc": -1.35,
+        "pval": 0.0002,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": -0.85,
+        "pval": 0.006,
+        "sig": true
+      },
+      "osd782": {
+        "fc": -1.25,
+        "pval": 0.0004,
+        "sig": true
+      },
+      "osd8": {
+        "fc": -1.8,
+        "pval": 2e-05,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Suppressed",
+      "mrna_fc": -1.42,
+      "prot_fc": -0.85,
+      "delta": 0.57
+    }
+  },
+  {
+    "locus": "AT2G20800",
+    "symbol": "External Type II NAD(P)H Dehydrogenases (NDB1, NDB2, NDB4)",
+    "name": "Rotenone-insensitive dehydrogenases facing the intermembrane space, directly oxidizing cytosolic NADH/NADPH. Absent in mammals.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:ALT_NADH_DH_EXT",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "ALT_NDH_EXTERNAL",
+        "node_label": "External Type II NDH"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.97,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT2G24730",
+    "symbol": "GLR3.3",
+    "name": "Non-selective cation channel mediating rapid calcium influx from the apoplast, propagating long-distance electrical and calcium signals to internal organelles.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Plasma Membrane Lipid Bilayer",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:GLR3_3_CHANNEL",
+    "maps": [
+      {
+        "map_id": "PMM-04",
+        "map_title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+        "node_id": "GLR_CALCIUM_CHANNELS",
+        "node_label": "GLR3.3 / GLR3.6 Channels"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "PM_CALCIUM_GATE",
+        "node_label": "Calcium Influx Gates (GLR3.3/3.6)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.75,
+        "pval": 0.01,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.48,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.6,
+        "pval": 0.025,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.28,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.55,
+        "pval": 0.035,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.95,
+        "pval": 0.002,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 0.75,
+      "prot_fc": 0.28,
+      "delta": -0.47
+    }
+  },
+  {
+    "locus": "AT2G29990",
+    "symbol": "Internal Type II NAD(P)H Dehydrogenases (NDA1, NDA2, NDC1)",
+    "name": "Rotenone-insensitive, non-proton-pumping NADH dehydrogenases facing the mitochondrial matrix. Allows NADH oxidation without ATP production. Absent in mammalian MitoCarta.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:ALT_NADH_DH_INT",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "ALT_NDH_INTERNAL",
+        "node_label": "Internal Type II NDH"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_NDH_BYPASSES",
+        "node_label": "Type II NDH Bypasses (Q2)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.96,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT2G31490",
+    "symbol": "GUN1",
+    "name": "Plastid-localized pentatricopeptide repeat (PPR) protein acting as the central integrator of plastid retrograde signals. Interacts with cpHSP70, tetrapyrroles, and chloroplast translation to communicate plastid state to the nucleus.",
+    "compartment": "chloroplast_stroma",
+    "comp": "chloroplast_stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0009570",
+    "pmco_id": "PMCO:GUN1_HUB",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "GUN1_INTEGRATOR",
+        "node_label": "GUN1 PPR Hub"
+      },
+      {
+        "map_id": "PMM-06",
+        "map_title": "The Plastid-to-Nucleus Retrograde Response (PRR) Circuits",
+        "node_id": "GUN1_INTEGRATION_HUB",
+        "node_label": "GUN1 PPR Hub"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.95,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "expanded_plant_family",
+      "human_symbol": "LRPPRC",
+      "mitopathway": "Mitochondrial Central Dogma > RNA Processing",
+      "clin": "Human mutations cause French-Canadian type Leigh syndrome with severe COX deficiency.",
+      "ident": 28.6
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.76,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.48,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.65,
+        "pval": 0.022,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.2,
+        "pval": 0.32,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.58,
+        "pval": 0.035,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.88,
+        "pval": 0.008,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 0.76,
+      "prot_fc": 0.2,
+      "delta": -0.56
+    }
+  },
+  {
+    "locus": "AT2G35370",
+    "symbol": "Glycine Decarboxylase Complex (GDC P-, T-, H-, L-proteins)",
+    "name": "Massive multi-enzyme complex (~half of soluble matrix protein in photosynthetic leaves) catalyzing glycine decarboxylation in photorespiration. Tightly linked to chloroplast RuBisCO flux.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix",
+    "categories": [
+      "mito",
+      "retro"
+    ],
+    "go_cc": "GO:0005960",
+    "pmco_id": "PMCO:GDC_COMPLEX",
+    "maps": [
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "GDC_P_T_H_L_COMPLEX",
+        "node_label": "Glycine Decarboxylase (GDC)"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_GDC_PHOTORESP",
+        "node_label": "Photorespiratory GDC (Q2)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_GDC_ENGINE",
+        "node_label": "Matrix GDC Complex"
+      }
+    ],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "photo",
+        "circuit_title": "3-Organelle Photorespiratory Loop",
+        "step_idx": 3,
+        "step_label": "Matrix GDC / SHMT1",
+        "glyph": "metabolite",
+        "category": "Matrix Decarboxylation"
+      }
+    ],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT2G40220",
+    "symbol": "ABI4",
+    "name": "AP2/ERF-domain transcription factor acting downstream of plastid GUN1. Binds CCAC core motifs to repress Photosynthesis-Associated Nuclear Genes (PhANGs) when plastids are dysfunctional.",
+    "compartment": "nucleoplasm",
+    "comp": "nucleoplasm",
+    "comp_label": "Nucleoplasm & Chromatin",
+    "categories": [
+      "nuc",
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005654",
+    "pmco_id": "PMCO:ABI4_TF",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "ABI4_REPRESSOR_TF",
+        "node_label": "ABI4 Repressor"
+      },
+      {
+        "map_id": "PMM-06",
+        "map_title": "The Plastid-to-Nucleus Retrograde Response (PRR) Circuits",
+        "node_id": "ABI4_REPRESSION_TF",
+        "node_label": "ABI4 Transcription Factor"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "NUCLEAR_PHANGS_TARGETS",
+        "node_label": "PhANGs Coordinate Control"
+      }
+    ],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "prr",
+        "circuit_title": "Plasto-Nuclear PRR (SAL1-PAP & GUN1)",
+        "step_idx": 6,
+        "step_label": "GUN1 & ABI4 Hub",
+        "glyph": "transcription",
+        "category": "Nuclear Repression"
+      }
+    ],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.99,
+      "ms": false,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.88,
+        "pval": 0.007,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.74,
+        "pval": 0.012,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 0.81,
+        "pval": 0.009,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.3,
+        "pval": 0.12,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.76,
+        "pval": 0.014,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 0.95,
+        "pval": 0.005,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 0.88,
+      "prot_fc": 0.3,
+      "delta": -0.58
+    }
+  },
+  {
+    "locus": "AT3G01280",
+    "symbol": "VDAC1",
+    "name": "Voltage-dependent anion channel mediating ATP/ADP and metabolite transport",
+    "compartment": "Outer Mitochondrial Membrane (OMM)",
+    "comp": "Outer Mitochondrial Membrane (OMM)",
+    "comp_label": "Outer Mitochondrial Membrane (OMM)",
+    "categories": [
+      "mito",
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": {
+      "double_id": "mitochondria",
+      "double_name": "Plant Mitochondrion",
+      "subcomp": "mitochondrial_outer_membrane",
+      "anchor": "VDAC",
+      "title": "Voltage-Dependent Anion Channel"
+    },
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.52,
+        "pval": 0.03,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.31,
+        "pval": 0.12,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.45,
+        "pval": 0.04,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.28,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.38,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.72,
+        "pval": 0.015,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT3G05720",
+    "symbol": "IMPA1",
+    "name": "Nuclear import adapter translocating NLS-bearing transcription factors across the NPC",
+    "compartment": "Nucleoplasm",
+    "comp": "Nucleoplasm",
+    "comp_label": "Nucleoplasm",
+    "categories": [
+      "nuc",
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "mrr",
+        "circuit_title": "Mito-Nuclear MRR (ANAC017/013)",
+        "step_idx": 4,
+        "step_label": "Importin-\u03b1/\u03b2 Binding",
+        "glyph": "transport",
+        "category": "Karyopherin Chaperone"
+      }
+    ],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.22,
+        "pval": 0.25,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.15,
+        "pval": 0.35,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.18,
+        "pval": 0.3,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.1,
+        "pval": 0.45,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.15,
+        "pval": 0.32,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.45,
+        "pval": 0.06,
+        "sig": false
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT3G14420",
+    "symbol": "GOX1",
+    "name": "Enzyme cluster converting chloroplast-derived glycolate into glyoxylate (producing H2O2 scavenged by CAT2), transaminating it to glycine for mitochondrial GDC, and receiving mitochondrial serine to produce glycerate.",
+    "compartment": "peroxisome",
+    "comp": "peroxisome",
+    "comp_label": "Peroxisomal Photorespiration",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005777",
+    "pmco_id": "PMCO:PEROXISOME_PHOTORESP",
+    "maps": [
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "PEROXISOMAL_SHUTTLE",
+        "node_label": "Peroxisomal Photorespiration"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "peroxisome",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.72,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -0.58,
+        "pval": 0.022,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.48,
+        "pval": 0.04,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.35,
+        "pval": 0.09,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.52,
+        "pval": 0.03,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.95,
+        "pval": 0.001,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": -0.72,
+      "prot_fc": -0.35,
+      "delta": 0.37
+    }
+  },
+  {
+    "locus": "AT3G15640",
+    "symbol": "COX5b",
+    "name": "Cytochrome c oxidase regulatory subunit in the terminal respiratory complex",
+    "compartment": "Inner Mitochondrial Membrane (IMM)",
+    "comp": "Inner Mitochondrial Membrane (IMM)",
+    "comp_label": "Inner Mitochondrial Membrane (IMM)",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": {
+      "cat": "strict_ortholog",
+      "human_symbol": "COX4I1",
+      "mitopathway": "OXPHOS > Complex IV",
+      "clin": "Human mutations cause mitochondrial complex IV deficiency, Leigh syndrome, and lactic acidosis.",
+      "ident": 61.2
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.38,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.22,
+        "pval": 0.22,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.28,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.1,
+        "pval": 0.45,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.24,
+        "pval": 0.18,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.65,
+        "pval": 0.018,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT3G20540",
+    "symbol": "Organellar DNA Polymerase 1B (PolIB)",
+    "name": "Second organellar DNA polymerase paralog, similarly dual-targeted to both mitochondria and chloroplasts.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005739; GO:0009507",
+    "pmco_id": "PMCO:POLIB_POLYMERASE",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.84,
+      "ms": true,
+      "gfp": true,
+      "dual": true,
+      "dual_classes": [
+        "DUAL_MITO_CHLORO"
+      ]
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT3G22370",
+    "symbol": "AOX1a",
+    "name": "Cyanide-resistant, non-proton-pumping terminal quinol oxidase. Directly transfers electrons from ubiquinol to oxygen. Acts as a key bioenergetic relief valve and hallmark target of mitochondrial retrograde signaling (MRR). Absent in mammals.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Inner Mitochondrial Membrane (IMM)",
+    "categories": [
+      "mito",
+      "retro",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:AOX1A",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "AOX_BYPASS",
+        "node_label": "Alternative Oxidase (AOX1a)"
+      },
+      {
+        "map_id": "PMM-05",
+        "map_title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+        "node_id": "AOX1A_INDUCTION",
+        "node_label": "AOX1a Transcriptional Surge"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_AOX_INNOVATION",
+        "node_label": "Alternative Oxidase (Q2)"
+      }
+    ],
+    "anchor": {
+      "double_id": "mitochondria",
+      "double_name": "Plant Mitochondrion",
+      "subcomp": "cristae",
+      "anchor": "AOX",
+      "title": "Alternative Oxidase Sentinel"
+    },
+    "retro": [
+      {
+        "circuit_id": "mrr",
+        "circuit_title": "Mito-Nuclear MRR (ANAC017/013)",
+        "step_idx": 6,
+        "step_label": "MDRE Binding & AOX1a Induction",
+        "glyph": "transcription",
+        "category": "Transcriptional Surge"
+      },
+      {
+        "circuit_id": "stromule",
+        "circuit_title": "Stromule Nuclear Docking",
+        "step_idx": 5,
+        "step_label": "Privileged H2O2 Injection",
+        "glyph": "ros",
+        "category": "Privileged Injection"
+      }
+    ],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "plant_specific_innovation",
+      "human_symbol": "NONE",
+      "mitopathway": "OXPHOS > Alternative Oxidase Bypass",
+      "clin": "Absent in mammals. Expression of plant AOX in human cybrids or mice rescues Complex I and III deficiencies!",
+      "ident": 0.0
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.84,
+        "pval": 0.0001,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.95,
+        "pval": 0.003,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 1.12,
+        "pval": 0.001,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.45,
+        "pval": 0.04,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 1.25,
+        "pval": 0.0006,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 2.1,
+        "pval": 5e-05,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 1.84,
+      "prot_fc": 0.45,
+      "delta": -1.39
+    }
+  },
+  {
+    "locus": "AT3G24090",
+    "symbol": "Nuclear Pore Complex (NPC & Transportins)",
+    "name": "Macromolecular basket spanning the nuclear envelope, regulating the import of cleaved ANAC017/ANAC013 and export/import of retrograde metabolites.",
+    "compartment": "nuclear_pore_complex",
+    "comp": "nuclear_pore_complex",
+    "comp_label": "Nuclear Pore Complex",
+    "categories": [
+      "nuc"
+    ],
+    "go_cc": "GO:0005643",
+    "pmco_id": "PMCO:NPC_COMPLEX",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "NPC_GATE",
+        "node_label": "Nuclear Pore Complex"
+      },
+      {
+        "map_id": "PMM-05",
+        "map_title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+        "node_id": "NPC_TRANSLOCATION_GATE",
+        "node_label": "Nuclear Pore Complex"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT3G27240",
+    "symbol": "Complex III (Cytochrome bc1 Complex / Ubiquinol-Cytochrome c Reductase)",
+    "name": "Dimeric complex containing cytochrome b, cytochrome c1, and the Rieske [2Fe-2S] protein, mediating Q-cycle proton translocation.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005750",
+    "pmco_id": "PMCO:COMPLEX_III",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_III_BC1",
+        "node_label": "Complex III (bc1 Complex)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT3G27380",
+    "symbol": "Complex II (Succinate Dehydrogenase / SDH)",
+    "name": "Heterotetrameric complex (SDH1-4) coupling succinate oxidation to ubiquinone reduction without proton translocation. Highly conserved with human SDHA/B/C/D.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005749",
+    "pmco_id": "PMCO:COMPLEX_II",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_II_SDH",
+        "node_label": "Complex II (SDH)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT3G46620",
+    "symbol": "Complex II (Succinate Dehydrogenase / SDH)",
+    "name": "Heterotetrameric complex (SDH1-4) coupling succinate oxidation to ubiquinone reduction without proton translocation. Highly conserved with human SDHA/B/C/D.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005749",
+    "pmco_id": "PMCO:COMPLEX_II",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_II_SDH",
+        "node_label": "Complex II (SDH)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT3G46740",
+    "symbol": "TOC159",
+    "name": "Primary GTPase receptor for photosynthetic preprotein targeting across OEM",
+    "compartment": "Outer Envelope Membrane (OEM)",
+    "comp": "Outer Envelope Membrane (OEM)",
+    "comp_label": "Outer Envelope Membrane (OEM)",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.42,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.65,
+        "pval": 0.018,
+        "sig": true
+      },
+      "osd37": {
+        "fc": -0.58,
+        "pval": 0.025,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.3,
+        "pval": 0.12,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.5,
+        "pval": 0.04,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.72,
+        "pval": 0.015,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT3G48680",
+    "symbol": "Complex I Carbonic Anhydrase Domain",
+    "name": "Plant-specific heterotrimeric spherical domain (CAL1, CAL2, CA1, CA2, CA3) attached to the matrix side of the membrane arm of Complex I. Crucial for complex assembly, stability, and photorespiration. Completely absent from mammalian MitoCarta.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I_CA",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CA_DOMAIN",
+        "node_label": "Complex I CA Domain"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "COMPLEX_I_CA_INTERACTION",
+        "node_label": "Complex I CA Domain Nexus"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_CA_DOMAIN_COMPLEX_I",
+        "node_label": "Complex I CA Domain (Q2)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.98,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT3G51480",
+    "symbol": "Glutamate Receptor-Like Channel 3.6 (GLR3.6)",
+    "name": "Co-operates with GLR3.3 to propagate systemic calcium waves upon wound, touch, or gravity stimuli.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Plasma Membrane",
+    "categories": [],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:GLR3_6_CHANNEL",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT3G51550",
+    "symbol": "FERONIA",
+    "name": "Catharanthus roseus RLK1-like (CrRLK1L) family receptor kinase sensing cell wall integrity, mechanical deformation, and peptide ligands (RALF). Triggers rapid calcium influx and activates RBOHD.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Plasma Membrane Lipid Bilayer",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:FERONIA_RLK",
+    "maps": [
+      {
+        "map_id": "PMM-04",
+        "map_title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+        "node_id": "FERONIA_RECEPTOR",
+        "node_label": "FERONIA Receptor Kinase"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "PM_SENSORY_INPUT",
+        "node_label": "PM Mechanical/Gravity Sensors"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.25,
+        "pval": 0.0005,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.82,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 1.08,
+        "pval": 0.0015,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.65,
+        "pval": 0.018,
+        "sig": true
+      },
+      "osd782": {
+        "fc": 1.15,
+        "pval": 0.001,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.35,
+        "pval": 0.0004,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Induced",
+      "mrna_fc": 1.25,
+      "prot_fc": 0.65,
+      "delta": -0.6
+    }
+  },
+  {
+    "locus": "AT3G53420",
+    "symbol": "PIP2;1",
+    "name": "Aquaporin channel facilitating the transport of both water and hydrogen peroxide (H2O2) across the plasma membrane, allowing apoplastic ROS generated by RBOHD to enter the cytosol.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Plasma Membrane Lipid Bilayer",
+    "categories": [
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:PIP2_1_AQUAPORIN",
+    "maps": [
+      {
+        "map_id": "PMM-04",
+        "map_title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+        "node_id": "PIP2_1_AQUAPORIN",
+        "node_label": "PIP2;1 Aquaporin"
+      }
+    ],
+    "anchor": {
+      "double_id": "plasma_membrane",
+      "double_name": "Plasma Membrane",
+      "subcomp": "plasma_membrane",
+      "anchor": "PIP2;1",
+      "title": "Aquaporin H2O2 Conduit"
+    },
+    "retro": [
+      {
+        "circuit_id": "pm",
+        "circuit_title": "PM Mechanical & Gravity Sensing Waves",
+        "step_idx": 6,
+        "step_label": "PIP2;1 Inward H2O2 Conduit",
+        "glyph": "transport",
+        "category": "Aquaporin H2O2 Influx"
+      }
+    ],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.05,
+        "pval": 0.0012,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.65,
+        "pval": 0.018,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 0.85,
+        "pval": 0.006,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.6,
+        "pval": 0.022,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.92,
+        "pval": 0.004,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.18,
+        "pval": 0.0008,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 1.05,
+      "prot_fc": 0.6,
+      "delta": -0.45
+    }
+  },
+  {
+    "locus": "AT3G54110",
+    "symbol": "PUMP1",
+    "name": "Mitochondrial carrier that dissipates the proton gradient as heat, uncoupling electron transport from ATP synthesis.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Inner Mitochondrial Membrane (IMM)",
+    "categories": [
+      "mito",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:PUMP1",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "PUMP_UNCOUPLING",
+        "node_label": "Plant UCP1 (PUMP1)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.85,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.5,
+        "pval": 0.045,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.72,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.4,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.68,
+        "pval": 0.022,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 1.05,
+        "pval": 0.003,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 0.85,
+      "prot_fc": 0.4,
+      "delta": -0.45
+    }
+  },
+  {
+    "locus": "AT3G57120",
+    "symbol": "NUP155",
+    "name": "Inner ring nucleoporin gating bidirectional nucleocytoplasmic macromolecular transport",
+    "compartment": "Nuclear Envelope & NPCs",
+    "comp": "Nuclear Envelope & NPCs",
+    "comp_label": "Nuclear Envelope & NPCs",
+    "categories": [
+      "nuc",
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.28,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.18,
+        "pval": 0.32,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.22,
+        "pval": 0.24,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.1,
+        "pval": 0.45,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.2,
+        "pval": 0.28,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.4,
+        "pval": 0.07,
+        "sig": false
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT3G60600",
+    "symbol": "VAP27-1",
+    "name": "Anchors contact sites between ER and chloroplast/mitochondria for lipid transport",
+    "compartment": "Membrane Contact Sites (MCS)",
+    "comp": "Membrane Contact Sites (MCS)",
+    "comp_label": "Membrane Contact Sites (MCS)",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.38,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.25,
+        "pval": 0.2,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.3,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.18,
+        "pval": 0.25,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.22,
+        "pval": 0.22,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.62,
+        "pval": 0.022,
+        "sig": false
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT3G63160",
+    "symbol": "TOM40",
+    "name": "Central preprotein translocation channel across the outer membrane",
+    "compartment": "Outer Mitochondrial Membrane (OMM)",
+    "comp": "Outer Mitochondrial Membrane (OMM)",
+    "comp_label": "Outer Mitochondrial Membrane (OMM)",
+    "categories": [
+      "mito",
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": {
+      "double_id": "mitochondria",
+      "double_name": "Plant Mitochondrion",
+      "subcomp": "mitochondrial_outer_membrane",
+      "anchor": "TOM40",
+      "title": "Outer Membrane Translocase"
+    },
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.35,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": 0.22,
+        "pval": 0.21,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.18,
+        "pval": 0.3,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.15,
+        "pval": 0.25,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.12,
+        "pval": 0.45,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.48,
+        "pval": 0.04,
+        "sig": false
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT4G03280",
+    "symbol": "Cytochrome b6f Complex",
+    "name": "Dimeric complex bridging PSII and PSI through the Q cycle, translocating protons into the thylakoid lumen.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009524",
+    "pmco_id": "PMCO:CYTOCHROME_B6F",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "CYT_B6F",
+        "node_label": "Cytochrome b6f"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT4G05020",
+    "symbol": "NDB2",
+    "name": "Rotenone-insensitive dehydrogenases facing the intermembrane space, directly oxidizing cytosolic NADH/NADPH. Absent in mammals.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Intermembrane Space (IMS)",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:ALT_NADH_DH_EXT",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "ALT_NDH_EXTERNAL",
+        "node_label": "External Type II NDH"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.97,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "plant_specific_innovation",
+      "human_symbol": "NONE",
+      "mitopathway": "OXPHOS > External NADH Dehydrogenase",
+      "clin": "Absent in mammals. Xenotopic expression in human cybrids bypasses rotenone Complex I blockade.",
+      "ident": 0.0
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.32,
+        "pval": 0.0008,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.88,
+        "pval": 0.005,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 1.05,
+        "pval": 0.002,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.95,
+        "pval": 0.004,
+        "sig": true
+      },
+      "osd782": {
+        "fc": 1.1,
+        "pval": 0.0015,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.4,
+        "pval": 0.0004,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Induced",
+      "mrna_fc": 1.32,
+      "prot_fc": 0.95,
+      "delta": -0.37
+    }
+  },
+  {
+    "locus": "AT4G11100",
+    "symbol": "CYTC-1",
+    "name": "Soluble hemoprotein shuttling electrons between Complex III and IV",
+    "compartment": "Intermembrane Space (IMS)",
+    "comp": "Intermembrane Space (IMS)",
+    "comp_label": "Intermembrane Space (IMS)",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.28,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.15,
+        "pval": 0.4,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.22,
+        "pval": 0.24,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.08,
+        "pval": 0.65,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.18,
+        "pval": 0.32,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.55,
+        "pval": 0.035,
+        "sig": false
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT4G28220",
+    "symbol": "External Type II NAD(P)H Dehydrogenases (NDB1, NDB2, NDB4)",
+    "name": "Rotenone-insensitive dehydrogenases facing the intermembrane space, directly oxidizing cytosolic NADH/NADPH. Absent in mammals.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:ALT_NADH_DH_EXT",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "ALT_NDH_EXTERNAL",
+        "node_label": "External Type II NDH"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.97,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT4G30190",
+    "symbol": "AHA2",
+    "name": "Major root H+-ATPase generating membrane potential and fueling secondary transport",
+    "compartment": "Plasma Membrane Lipid Bilayer",
+    "comp": "Plasma Membrane Lipid Bilayer",
+    "comp_label": "Plasma Membrane Lipid Bilayer",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.82,
+        "pval": 0.009,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.4,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.68,
+        "pval": 0.02,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.45,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.75,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 0.92,
+        "pval": 0.006,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT4G32470",
+    "symbol": "Complex III (Cytochrome bc1 Complex / Ubiquinol-Cytochrome c Reductase)",
+    "name": "Dimeric complex containing cytochrome b, cytochrome c1, and the Rieske [2Fe-2S] protein, mediating Q-cycle proton translocation.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005750",
+    "pmco_id": "PMCO:COMPLEX_III",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_III_BC1",
+        "node_label": "Complex III (bc1 Complex)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT4G33010",
+    "symbol": "GDCP",
+    "name": "Massive multi-enzyme complex (~half of soluble matrix protein in photosynthetic leaves) catalyzing glycine decarboxylation in photorespiration. Tightly linked to chloroplast RuBisCO flux.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix",
+    "categories": [
+      "mito",
+      "retro",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005960",
+    "pmco_id": "PMCO:GDC_COMPLEX",
+    "maps": [
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "GDC_P_T_H_L_COMPLEX",
+        "node_label": "Glycine Decarboxylase (GDC)"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_GDC_PHOTORESP",
+        "node_label": "Photorespiratory GDC (Q2)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_GDC_ENGINE",
+        "node_label": "Matrix GDC Complex"
+      }
+    ],
+    "anchor": {
+      "double_id": "mitochondria",
+      "double_name": "Plant Mitochondrion",
+      "subcomp": "mitochondrial_matrix",
+      "anchor": "GDC",
+      "title": "Glycine Decarboxylase P-Protein"
+    },
+    "retro": [
+      {
+        "circuit_id": "prr",
+        "circuit_title": "Plasto-Nuclear PRR (SAL1-PAP & GUN1)",
+        "step_idx": 1,
+        "step_label": "PSII 1O2 & EX1 Sensor",
+        "glyph": "ros",
+        "category": "Singlet Oxygen Sensing"
+      },
+      {
+        "circuit_id": "stromule",
+        "circuit_title": "Stromule Nuclear Docking",
+        "step_idx": 1,
+        "step_label": "Plastidial Redox Shift",
+        "glyph": "ros",
+        "category": "Plastid Redox Threshold"
+      }
+    ],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "strict_ortholog",
+      "human_symbol": "GLDC",
+      "mitopathway": "Metabolism > Glycine Cleavage",
+      "clin": "Human mutations cause nonketotic hyperglycinemia with severe neurological impairment.",
+      "ident": 62.8
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": -1.15,
+        "pval": 0.0002,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -0.82,
+        "pval": 0.004,
+        "sig": true
+      },
+      "osd37": {
+        "fc": -0.9,
+        "pval": 0.002,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": -0.65,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd782": {
+        "fc": -0.85,
+        "pval": 0.003,
+        "sig": true
+      },
+      "osd8": {
+        "fc": -1.3,
+        "pval": 0.0001,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Suppressed",
+      "mrna_fc": -1.15,
+      "prot_fc": -0.65,
+      "delta": 0.5
+    }
+  },
+  {
+    "locus": "AT4G33630",
+    "symbol": "EX1",
+    "name": "Thylakoid grana margin protein that senses singlet oxygen produced by Photosystem II, initiating a signaling cascade leading to nuclear acclimation or programmed cell death.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane & Grana",
+    "categories": [
+      "chloro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0042651",
+    "pmco_id": "PMCO:EXECUTER_1",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "EX1_SENSOR",
+        "node_label": "EXECUTER 1 (EX1)"
+      },
+      {
+        "map_id": "PMM-06",
+        "map_title": "The Plastid-to-Nucleus Retrograde Response (PRR) Circuits",
+        "node_id": "EX1_GRANA_SENSOR",
+        "node_label": "EXECUTER 1 (EX1)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.98,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.12,
+        "pval": 0.0006,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.78,
+        "pval": 0.01,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 0.95,
+        "pval": 0.003,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.55,
+        "pval": 0.03,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.88,
+        "pval": 0.005,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.5,
+        "pval": 0.0002,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 1.12,
+      "prot_fc": 0.55,
+      "delta": -0.57
+    }
+  },
+  {
+    "locus": "AT4G35090",
+    "symbol": "CAT2",
+    "name": "Enzyme cluster converting chloroplast-derived glycolate into glyoxylate (producing H2O2 scavenged by CAT2), transaminating it to glycine for mitochondrial GDC, and receiving mitochondrial serine to produce glycerate.",
+    "compartment": "peroxisome",
+    "comp": "peroxisome",
+    "comp_label": "Peroxisomal Photorespiration",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005777",
+    "pmco_id": "PMCO:PEROXISOME_PHOTORESP",
+    "maps": [
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "PEROXISOMAL_SHUTTLE",
+        "node_label": "Peroxisomal Photorespiration"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "peroxisome",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.88,
+        "pval": 0.002,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -0.65,
+        "pval": 0.018,
+        "sig": true
+      },
+      "osd37": {
+        "fc": -0.55,
+        "pval": 0.025,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.42,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.6,
+        "pval": 0.02,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -1.1,
+        "pval": 0.0005,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": -0.88,
+      "prot_fc": -0.42,
+      "delta": 0.46
+    }
+  },
+  {
+    "locus": "AT4G37930",
+    "symbol": "SHMT1",
+    "name": "Coupled with GDC to convert 5,10-methylene-THF and glycine into serine and THF in photorespiration.",
+    "compartment": "mitochondrial_matrix",
+    "comp": "mitochondrial_matrix",
+    "comp_label": "Mitochondrial Matrix",
+    "categories": [
+      "mito",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005759",
+    "pmco_id": "PMCO:SHMT1",
+    "maps": [
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "SHMT1_SERINE_SYNTH",
+        "node_label": "SHMT1"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.94,
+        "pval": 0.0015,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -0.68,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd37": {
+        "fc": -0.75,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": -0.5,
+        "pval": 0.035,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.7,
+        "pval": 0.012,
+        "sig": true
+      },
+      "osd8": {
+        "fc": -1.05,
+        "pval": 0.0008,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": -0.94,
+      "prot_fc": -0.5,
+      "delta": 0.44
+    }
+  },
+  {
+    "locus": "AT5G01500",
+    "symbol": "PAPST1",
+    "name": "Mitochondrial/plastid carrier family transporter facilitating the export of PAP from chloroplast stroma into the cytosol.",
+    "compartment": "chloroplast_inner_envelope",
+    "comp": "chloroplast_inner_envelope",
+    "comp_label": "Inner Envelope Membrane (IEM)",
+    "categories": [
+      "chloro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0009706",
+    "pmco_id": "PMCO:PAPST1_TRANSPORTER",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PAPST1_CHANNEL",
+        "node_label": "PAPST1 Transporter"
+      },
+      {
+        "map_id": "PMM-06",
+        "map_title": "The Plastid-to-Nucleus Retrograde Response (PRR) Circuits",
+        "node_id": "PAPST1_TRANSLOCATOR",
+        "node_label": "PAPST1 Transporter"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.96,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.82,
+        "pval": 0.009,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.55,
+        "pval": 0.035,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.68,
+        "pval": 0.02,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": 0.4,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.62,
+        "pval": 0.028,
+        "sig": false
+      },
+      "osd8": {
+        "fc": 0.95,
+        "pval": 0.005,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Post-transcriptionally Buffered",
+      "mrna_fc": 0.82,
+      "prot_fc": 0.4,
+      "delta": -0.42
+    }
+  },
+  {
+    "locus": "AT5G08530",
+    "symbol": "NDUFA9",
+    "name": "L-shaped multisubunit respiratory complex (~40 subunits) pumping protons across the inner membrane. Contains 14 conserved central subunits homologous to human MitoCarta Complex I.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Inner Mitochondrial Membrane (IMM)",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CORE",
+        "node_label": "Complex I (Catalytic Core)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_RESPIRATORY_CHAIN",
+        "node_label": "Plant MitoCarta OXPHOS"
+      }
+    ],
+    "anchor": {
+      "double_id": "mitochondria",
+      "double_name": "Plant Mitochondrion",
+      "subcomp": "mitochondrial_inner_membrane",
+      "anchor": "Complex I",
+      "title": "NADH Dehydrogenase Core"
+    },
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "strict_ortholog",
+      "human_symbol": "NDUFA9",
+      "mitopathway": "OXPHOS > Complex I",
+      "clin": "Human mutations cause Leigh syndrome and fatal infantile lactic acidosis.",
+      "ident": 58.4
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.35,
+        "pval": 0.08,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.18,
+        "pval": 0.28,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.3,
+        "pval": 0.12,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.05,
+        "pval": 0.75,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.25,
+        "pval": 0.18,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.62,
+        "pval": 0.025,
+        "sig": false
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": -0.35,
+      "prot_fc": -0.05,
+      "delta": 0.3
+    }
+  },
+  {
+    "locus": "AT5G08680",
+    "symbol": "Complex V (ATP Synthase / F1Fo-ATPase)",
+    "name": "Rotary motor utilizing proton motive force to synthesize ATP from ADP and Pi.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005753",
+    "pmco_id": "PMCO:COMPLEX_V",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_V_ATPASE",
+        "node_label": "ATP Synthase (F1Fo)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G08740",
+    "symbol": "Internal Type II NAD(P)H Dehydrogenases (NDA1, NDA2, NDC1)",
+    "name": "Rotenone-insensitive, non-proton-pumping NADH dehydrogenases facing the mitochondrial matrix. Allows NADH oxidation without ATP production. Absent in mammalian MitoCarta.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:ALT_NADH_DH_INT",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "ALT_NDH_INTERNAL",
+        "node_label": "Internal Type II NDH"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_NDH_BYPASSES",
+        "node_label": "Type II NDH Bypasses (Q2)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.96,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G12080",
+    "symbol": "MSL10",
+    "name": "Tension-sensitive ion channel activated by membrane stretch, osmotic swelling, and mechanical touch. Triggers localized calcium entry and membrane depolarization.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Plasma Membrane Lipid Bilayer",
+    "categories": [
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:MSL10_CHANNEL",
+    "maps": [
+      {
+        "map_id": "PMM-04",
+        "map_title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+        "node_id": "MSL10_STRETCH_GATE",
+        "node_label": "MSL10 Mechanosensitive Channel"
+      }
+    ],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "pm",
+        "circuit_title": "PM Mechanical & Gravity Sensing Waves",
+        "step_idx": 2,
+        "step_label": "MSL10 & MCA Gating",
+        "glyph": "gate",
+        "category": "Stretch Channel Gating"
+      }
+    ],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.45,
+        "pval": 0.0004,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.85,
+        "pval": 0.007,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 1.2,
+        "pval": 0.0012,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.75,
+        "pval": 0.012,
+        "sig": true
+      },
+      "osd782": {
+        "fc": 1.3,
+        "pval": 0.0007,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.55,
+        "pval": 0.0001,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Induced",
+      "mrna_fc": 1.45,
+      "prot_fc": 0.75,
+      "delta": -0.7
+    }
+  },
+  {
+    "locus": "AT5G12860",
+    "symbol": "DiT1",
+    "name": "2-Oxoglutarate/malate translocator in the chloroplast inner envelope. Essential for the photorespiratory nitrogen cycle, transporting 2-OG into the stroma and malate out.",
+    "compartment": "chloroplast_inner_envelope",
+    "comp": "chloroplast_inner_envelope",
+    "comp_label": "Inner Envelope Membrane (IEM)",
+    "categories": [
+      "chloro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0009706",
+    "pmco_id": "PMCO:DIT1_TRANSPORTER",
+    "maps": [
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "DIT1_GLYCERATE_IMPORT",
+        "node_label": "DiT1 / PLGG1 Translocator"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.6,
+        "pval": 0.02,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.42,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.38,
+        "pval": 0.09,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.25,
+        "pval": 0.16,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.4,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.78,
+        "pval": 0.006,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": -0.6,
+      "prot_fc": -0.25,
+      "delta": 0.35
+    }
+  },
+  {
+    "locus": "AT5G13440",
+    "symbol": "RIESKE",
+    "name": "Dimeric complex containing cytochrome b, cytochrome c1, and the Rieske [2Fe-2S] protein, mediating Q-cycle proton translocation.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae Lumen & Invaginations",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005750",
+    "pmco_id": "PMCO:COMPLEX_III",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_III_BC1",
+        "node_label": "Complex III (bc1 Complex)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "strict_ortholog",
+      "human_symbol": "UQCRFS1",
+      "mitopathway": "OXPHOS > Complex III",
+      "clin": "Human mutations cause Complex III deficiency with exercise intolerance.",
+      "ident": 64.3
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.41,
+        "pval": 0.06,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.25,
+        "pval": 0.2,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.35,
+        "pval": 0.09,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.1,
+        "pval": 0.55,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.28,
+        "pval": 0.16,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.8,
+        "pval": 0.012,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": -0.41,
+      "prot_fc": -0.1,
+      "delta": 0.31
+    }
+  },
+  {
+    "locus": "AT5G13450",
+    "symbol": "ATP5",
+    "name": "ATP synthase subunit d forming peripheral stator stalk of mitochondrial FoF1",
+    "compartment": "Inner Mitochondrial Membrane (IMM)",
+    "comp": "Inner Mitochondrial Membrane (IMM)",
+    "comp_label": "Inner Mitochondrial Membrane (IMM)",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": {
+      "cat": "strict_ortholog",
+      "human_symbol": "ATP5F1B",
+      "mitopathway": "OXPHOS > Complex V",
+      "clin": "Human mutations cause mitochondrial encephalopathy and episodic metabolic decompensation.",
+      "ident": 68.5
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.32,
+        "pval": 0.1,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.15,
+        "pval": 0.32,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.2,
+        "pval": 0.25,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.06,
+        "pval": 0.6,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.18,
+        "pval": 0.28,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.58,
+        "pval": 0.028,
+        "sig": false
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT5G19450",
+    "symbol": "CPK5",
+    "name": "Phosphorylates and activates RBOHD to propagate the systemic ROS wave",
+    "compartment": "Cortical Cytoplasm",
+    "comp": "Cortical Cytoplasm",
+    "comp_label": "Cortical Cytoplasm",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 0.95,
+        "pval": 0.003,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 0.62,
+        "pval": 0.025,
+        "sig": false
+      },
+      "osd37": {
+        "fc": 0.78,
+        "pval": 0.01,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.5,
+        "pval": 0.04,
+        "sig": false
+      },
+      "osd782": {
+        "fc": 0.85,
+        "pval": 0.006,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.1,
+        "pval": 0.0012,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT5G19760",
+    "symbol": "Dicarboxylate / Tricarboxylate Carrier (DTC)",
+    "name": "Mitochondrial carrier family translocator transporting citrate, isocitrate, 2-oxoglutarate, and malate across the inner membrane. Exports citrate for retrograde signaling.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito",
+      "ortho"
+    ],
+    "go_cc": "GO:0005743",
+    "pmco_id": "PMCO:DTC_CARRIER",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "DTC_CITRATE_CARRIER",
+        "node_label": "DTC Translocator"
+      },
+      {
+        "map_id": "PMM-05",
+        "map_title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+        "node_id": "CITRATE_2OG_EXPORT",
+        "node_label": "Citrate / 2-OG Efflux"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.98,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "expanded_plant_family",
+      "human_symbol": "SLC25A10",
+      "mitopathway": "Transporters > Solute Carriers",
+      "clin": "Human mutations impair dicarboxylate transport, fatty acid synthesis, and gluconeogenesis.",
+      "ident": 54.2
+    },
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G37510",
+    "symbol": "Mitochondrial Complex I (NADH:ubiquinone oxidoreductase)",
+    "name": "L-shaped multisubunit respiratory complex (~40 subunits) pumping protons across the inner membrane. Contains 14 conserved central subunits homologous to human MitoCarta Complex I.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CORE",
+        "node_label": "Complex I (Catalytic Core)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "MITO_RESPIRATORY_CHAIN",
+        "node_label": "Plant MitoCarta OXPHOS"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G38410",
+    "symbol": "RuBisCO Holoenzyme (RbcL8 + RbcS8)",
+    "name": "Ribulose-1,5-bisphosphate carboxylase-oxygenase. Carboxylase activity drives the Calvin-Benson cycle; oxygenase activity initiates photorespiration, producing 2-phosphoglycolate which feeds into the 3-organelle photorespiratory conduit.",
+    "compartment": "chloroplast_stroma",
+    "comp": "chloroplast_stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0016272",
+    "pmco_id": "PMCO:RUBISCO_HOLOENZYME",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "RUBISCO_ENZYME",
+        "node_label": "RuBisCO Holoenzyme"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "RUBISCO_O2_REACTION",
+        "node_label": "RuBisCO Oxygenation"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_RUBISCO",
+        "node_label": "RuBisCO Carbon & Oxygen Fixation"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G38420",
+    "symbol": "RuBisCO Holoenzyme (RbcL8 + RbcS8)",
+    "name": "Ribulose-1,5-bisphosphate carboxylase-oxygenase. Carboxylase activity drives the Calvin-Benson cycle; oxygenase activity initiates photorespiration, producing 2-phosphoglycolate which feeds into the 3-organelle photorespiratory conduit.",
+    "compartment": "chloroplast_stroma",
+    "comp": "chloroplast_stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0016272",
+    "pmco_id": "PMCO:RUBISCO_HOLOENZYME",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "RUBISCO_ENZYME",
+        "node_label": "RuBisCO Holoenzyme"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "RUBISCO_O2_REACTION",
+        "node_label": "RuBisCO Oxygenation"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_RUBISCO",
+        "node_label": "RuBisCO Carbon & Oxygen Fixation"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G38430",
+    "symbol": "RuBisCO Holoenzyme (RbcL8 + RbcS8)",
+    "name": "Ribulose-1,5-bisphosphate carboxylase-oxygenase. Carboxylase activity drives the Calvin-Benson cycle; oxygenase activity initiates photorespiration, producing 2-phosphoglycolate which feeds into the 3-organelle photorespiratory conduit.",
+    "compartment": "chloroplast_stroma",
+    "comp": "chloroplast_stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0016272",
+    "pmco_id": "PMCO:RUBISCO_HOLOENZYME",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "RUBISCO_ENZYME",
+        "node_label": "RuBisCO Holoenzyme"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "RUBISCO_O2_REACTION",
+        "node_label": "RuBisCO Oxygenation"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_RUBISCO",
+        "node_label": "RuBisCO Carbon & Oxygen Fixation"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G40650",
+    "symbol": "Complex II (Succinate Dehydrogenase / SDH)",
+    "name": "Heterotetrameric complex (SDH1-4) coupling succinate oxidation to ubiquinone reduction without proton translocation. Highly conserved with human SDHA/B/C/D.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Mitochondrial Inner Membrane",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005749",
+    "pmco_id": "PMCO:COMPLEX_II",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_II_SDH",
+        "node_label": "Complex II (SDH)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G42540",
+    "symbol": "XRN2",
+    "name": "Nuclear exoribonuclease involved in RNA turnover and transcriptional termination. Directly inhibited by translocated PAP from chloroplasts, stabilizing stress transcripts.",
+    "compartment": "nucleoplasm",
+    "comp": "nucleoplasm",
+    "comp_label": "Nucleoplasm & Chromatin",
+    "categories": [
+      "nuc",
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005654",
+    "pmco_id": "PMCO:XRN2_EXORIBONUCLEASE",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "XRN2_TARGET",
+        "node_label": "XRN2/XRN3 Exoribonucleases"
+      },
+      {
+        "map_id": "PMM-06",
+        "map_title": "The Plastid-to-Nucleus Retrograde Response (PRR) Circuits",
+        "node_id": "XRN2_3_EXORIBONUCLEASES",
+        "node_label": "XRN2 / XRN3 Exoribonucleases"
+      }
+    ],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "prr",
+        "circuit_title": "Plasto-Nuclear PRR (SAL1-PAP & GUN1)",
+        "step_idx": 5,
+        "step_label": "Nuclear XRN2/3 Inhibition",
+        "glyph": "scissors",
+        "category": "Exoribonuclease Inhibition"
+      }
+    ],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.98,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.15,
+        "pval": 0.45,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.1,
+        "pval": 0.58,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.12,
+        "pval": 0.52,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.05,
+        "pval": 0.8,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.08,
+        "pval": 0.65,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.22,
+        "pval": 0.28,
+        "sig": false
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": -0.15,
+      "prot_fc": -0.05,
+      "delta": 0.1
+    }
+  },
+  {
+    "locus": "AT5G44300",
+    "symbol": "Complex IV (Cytochrome c Oxidase / COX)",
+    "name": "Terminal oxidase of the cytochrome pathway reducing O2 to 2 H2O and pumping protons into the IMS.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005751",
+    "pmco_id": "PMCO:COMPLEX_IV",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_IV_COX",
+        "node_label": "Complex IV (COX)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G46110",
+    "symbol": "TPT",
+    "name": "Exchanges stromal triose phosphate for cytosolic inorganic phosphate (Pi)",
+    "compartment": "Inner Envelope Membrane (IEM)",
+    "comp": "Inner Envelope Membrane (IEM)",
+    "comp_label": "Inner Envelope Membrane (IEM)",
+    "categories": [
+      "spaceflight"
+    ],
+    "go_cc": "",
+    "pmco_id": "",
+    "maps": [],
+    "anchor": null,
+    "retro": [],
+    "suba": null,
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.65,
+        "pval": 0.015,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": -0.45,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.42,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.25,
+        "pval": 0.18,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.38,
+        "pval": 0.09,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.85,
+        "pval": 0.003,
+        "sig": true
+      }
+    },
+    "concordance": null
+  },
+  {
+    "locus": "AT5G47910",
+    "symbol": "RBOHD",
+    "name": "Plasma membrane NADPH oxidase generating apoplastic superoxide. Activated by cytosolic calcium binding to EF-hands and phosphorylation by CPKs/BIK1, driving rapid systemic ROS waves that connect to intracellular organelles.",
+    "compartment": "plasma_membrane",
+    "comp": "plasma_membrane",
+    "comp_label": "Apoplast & Cell Wall Matrix",
+    "categories": [
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0005886",
+    "pmco_id": "PMCO:RBOHD_NADPH_OXIDASE",
+    "maps": [
+      {
+        "map_id": "PMM-04",
+        "map_title": "Plasma Membrane Perception, Gravity Sensing, and Systemic Waves",
+        "node_id": "RBOHD_OXIDASE",
+        "node_label": "RBOHD NADPH Oxidase"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "PM_RBOHD_BURST",
+        "node_label": "Apoplastic ROS Wave (RBOHD)"
+      }
+    ],
+    "anchor": {
+      "double_id": "plasma_membrane",
+      "double_name": "Plasma Membrane",
+      "subcomp": "plasma_membrane",
+      "anchor": "RBOHD",
+      "title": "Respiratory Burst Oxidase Homolog D"
+    },
+    "retro": [
+      {
+        "circuit_id": "pm",
+        "circuit_title": "PM Mechanical & Gravity Sensing Waves",
+        "step_idx": 5,
+        "step_label": "Apoplastic ROS Wave (RBOHD)",
+        "glyph": "ros",
+        "category": "Apoplastic ROS Burst"
+      }
+    ],
+    "suba": {
+      "comp": "plasma_membrane",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": 1.62,
+        "pval": 0.0002,
+        "sig": true
+      },
+      "osd120_shoot": {
+        "fc": 1.2,
+        "pval": 0.001,
+        "sig": true
+      },
+      "osd37": {
+        "fc": 1.45,
+        "pval": 0.0004,
+        "sig": true
+      },
+      "osd427_protein": {
+        "fc": 0.85,
+        "pval": 0.008,
+        "sig": true
+      },
+      "osd782": {
+        "fc": 1.35,
+        "pval": 0.0006,
+        "sig": true
+      },
+      "osd8": {
+        "fc": 1.95,
+        "pval": 5e-05,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Concordantly Induced",
+      "mrna_fc": 1.62,
+      "prot_fc": 0.85,
+      "delta": -0.77
+    }
+  },
+  {
+    "locus": "AT5G61790",
+    "symbol": "Nuclear Pore Complex (NPC & Transportins)",
+    "name": "Macromolecular basket spanning the nuclear envelope, regulating the import of cleaved ANAC017/ANAC013 and export/import of retrograde metabolites.",
+    "compartment": "nuclear_pore_complex",
+    "comp": "nuclear_pore_complex",
+    "comp_label": "Nuclear Pore Complex",
+    "categories": [
+      "nuc"
+    ],
+    "go_cc": "GO:0005643",
+    "pmco_id": "PMCO:NPC_COMPLEX",
+    "maps": [
+      {
+        "map_id": "PMM-03",
+        "map_title": "Nuclear Transcriptional Command and Organelle Reprogramming",
+        "node_id": "NPC_GATE",
+        "node_label": "Nuclear Pore Complex"
+      },
+      {
+        "map_id": "PMM-05",
+        "map_title": "The Mitochondrial Retrograde Response (MRR) Cascade",
+        "node_id": "NPC_TRANSLOCATION_GATE",
+        "node_label": "Nuclear Pore Complex"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "nucleus",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G63510",
+    "symbol": "Complex I Carbonic Anhydrase Domain",
+    "name": "Plant-specific heterotrimeric spherical domain (CAL1, CAL2, CA1, CA2, CA3) attached to the matrix side of the membrane arm of Complex I. Crucial for complex assembly, stability, and photorespiration. Completely absent from mammalian MitoCarta.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I_CA",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CA_DOMAIN",
+        "node_label": "Complex I CA Domain"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "COMPLEX_I_CA_INTERACTION",
+        "node_label": "Complex I CA Domain Nexus"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_CA_DOMAIN_COMPLEX_I",
+        "node_label": "Complex I CA Domain (Q2)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.98,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G63980",
+    "symbol": "SAL1",
+    "name": "Bifunctional enzyme (3'(2'),5'-bisphosphate nucleotidase and inositol polyphosphate 1-phosphatase) that catabolizes PAP to AMP. Readily inactivated by oxidation during stress, allowing PAP accumulation and retrograde signaling. Dual-targeted to mitochondria.",
+    "compartment": "chloroplast_stroma",
+    "comp": "chloroplast_stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro",
+      "retro",
+      "spaceflight"
+    ],
+    "go_cc": "GO:0009570; GO:0005739",
+    "pmco_id": "PMCO:SAL1_PHOSPHATASE",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "SAL1_NUCLEOTIDASE",
+        "node_label": "SAL1 Phosphatase"
+      },
+      {
+        "map_id": "PMM-06",
+        "map_title": "The Plastid-to-Nucleus Retrograde Response (PRR) Circuits",
+        "node_id": "SAL1_OXIDATIVE_INACTIVATION",
+        "node_label": "SAL1 Phosphatase Inactivation"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_PRR_HUB",
+        "node_label": "Plastid Retrograde Signals"
+      }
+    ],
+    "anchor": null,
+    "retro": [
+      {
+        "circuit_id": "prr",
+        "circuit_title": "Plasto-Nuclear PRR (SAL1-PAP & GUN1)",
+        "step_idx": 2,
+        "step_label": "Stromal SAL1 Inactivation",
+        "glyph": "phospho",
+        "category": "Disulfide Inactivation"
+      }
+    ],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.88,
+      "ms": true,
+      "gfp": true,
+      "dual": true,
+      "dual_classes": [
+        "DUAL_MITO_CHLORO"
+      ]
+    },
+    "ortho": null,
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.65,
+        "pval": 0.02,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.45,
+        "pval": 0.065,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.52,
+        "pval": 0.04,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.4,
+        "pval": 0.07,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.48,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.92,
+        "pval": 0.006,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": -0.65,
+      "prot_fc": -0.4,
+      "delta": 0.25
+    }
+  },
+  {
+    "locus": "AT5G66510",
+    "symbol": "Complex I Carbonic Anhydrase Domain",
+    "name": "Plant-specific heterotrimeric spherical domain (CAL1, CAL2, CA1, CA2, CA3) attached to the matrix side of the membrane arm of Complex I. Crucial for complex assembly, stability, and photorespiration. Completely absent from mammalian MitoCarta.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005747",
+    "pmco_id": "PMCO:COMPLEX_I_CA",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_I_CA_DOMAIN",
+        "node_label": "Complex I CA Domain"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "COMPLEX_I_CA_INTERACTION",
+        "node_label": "Complex I CA Domain Nexus"
+      },
+      {
+        "map_id": "PMM-09",
+        "map_title": "Cross-Kingdom Synteny: Broad MitoCarta 3.0 vs Plant Mitochondrial Proteome",
+        "node_id": "PLANT_CA_DOMAIN_COMPLEX_I",
+        "node_label": "Complex I CA Domain (Q2)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.98,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "AT5G66760",
+    "symbol": "SDH1-1",
+    "name": "Heterotetrameric complex (SDH1-4) coupling succinate oxidation to ubiquinone reduction without proton translocation. Highly conserved with human SDHA/B/C/D.",
+    "compartment": "mitochondrial_inner_membrane",
+    "comp": "mitochondrial_inner_membrane",
+    "comp_label": "Inner Mitochondrial Membrane (IMM)",
+    "categories": [
+      "mito",
+      "spaceflight",
+      "ortho"
+    ],
+    "go_cc": "GO:0005749",
+    "pmco_id": "PMCO:COMPLEX_II",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_II_SDH",
+        "node_label": "Complex II (SDH)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": {
+      "cat": "strict_ortholog",
+      "human_symbol": "SDHA",
+      "mitopathway": "OXPHOS > Complex II",
+      "clin": "Human mutations cause Leigh syndrome, cardiomyopathy, paraganglioma.",
+      "ident": 72.1
+    },
+    "contrasts": {
+      "osd120_root": {
+        "fc": -0.45,
+        "pval": 0.05,
+        "sig": false
+      },
+      "osd120_shoot": {
+        "fc": -0.25,
+        "pval": 0.18,
+        "sig": false
+      },
+      "osd37": {
+        "fc": -0.32,
+        "pval": 0.12,
+        "sig": false
+      },
+      "osd427_protein": {
+        "fc": -0.12,
+        "pval": 0.35,
+        "sig": false
+      },
+      "osd782": {
+        "fc": -0.28,
+        "pval": 0.15,
+        "sig": false
+      },
+      "osd8": {
+        "fc": -0.7,
+        "pval": 0.012,
+        "sig": true
+      }
+    },
+    "concordance": {
+      "category": "Unaltered / Steady",
+      "mrna_fc": -0.45,
+      "prot_fc": -0.12,
+      "delta": 0.33
+    }
+  },
+  {
+    "locus": "ATCG00020",
+    "symbol": "Photosystem II (PSII Core & Oxygen-Evolving Complex)",
+    "name": "Multisubunit pigment-protein complex driven by light to split water, generating oxygen, protons, and plastoquinol. Site of singlet oxygen production under excess light.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009523",
+    "pmco_id": "PMCO:PHOTOSYSTEM_II",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSII_OEC",
+        "node_label": "Photosystem II (PSII)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_PHOTOSYSTEMS",
+        "node_label": "Chloroplast Light Reactions"
+      }
+    ],
+    "anchor": {
+      "double_id": "chloroplast",
+      "double_name": "Plant Chloroplast",
+      "subcomp": "thylakoid_membrane",
+      "anchor": "PSII",
+      "title": "Photosystem II Reaction Center"
+    },
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATCG00030",
+    "symbol": "Photosystem I (PSI Complex & Ferredoxin)",
+    "name": "Light-driven plastocyanin-ferredoxin oxidoreductase producing NADPH.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009522",
+    "pmco_id": "PMCO:PHOTOSYSTEM_I",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSI_COMPLEX",
+        "node_label": "Photosystem I (PSI)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATCG00040",
+    "symbol": "Photosystem I (PSI Complex & Ferredoxin)",
+    "name": "Light-driven plastocyanin-ferredoxin oxidoreductase producing NADPH.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009522",
+    "pmco_id": "PMCO:PHOTOSYSTEM_I",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSI_COMPLEX",
+        "node_label": "Photosystem I (PSI)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATCG00180",
+    "symbol": "Cytochrome b6f Complex",
+    "name": "Dimeric complex bridging PSII and PSI through the Q cycle, translocating protons into the thylakoid lumen.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009524",
+    "pmco_id": "PMCO:CYTOCHROME_B6F",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "CYT_B6F",
+        "node_label": "Cytochrome b6f"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATCG00190",
+    "symbol": "Cytochrome b6f Complex",
+    "name": "Dimeric complex bridging PSII and PSI through the Q cycle, translocating protons into the thylakoid lumen.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009524",
+    "pmco_id": "PMCO:CYTOCHROME_B6F",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "CYT_B6F",
+        "node_label": "Cytochrome b6f"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATCG00270",
+    "symbol": "Photosystem II (PSII Core & Oxygen-Evolving Complex)",
+    "name": "Multisubunit pigment-protein complex driven by light to split water, generating oxygen, protons, and plastoquinol. Site of singlet oxygen production under excess light.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009523",
+    "pmco_id": "PMCO:PHOTOSYSTEM_II",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSII_OEC",
+        "node_label": "Photosystem II (PSII)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_PHOTOSYSTEMS",
+        "node_label": "Chloroplast Light Reactions"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATCG00280",
+    "symbol": "Photosystem II (PSII Core & Oxygen-Evolving Complex)",
+    "name": "Multisubunit pigment-protein complex driven by light to split water, generating oxygen, protons, and plastoquinol. Site of singlet oxygen production under excess light.",
+    "compartment": "thylakoid_membrane",
+    "comp": "thylakoid_membrane",
+    "comp_label": "Thylakoid Membrane",
+    "categories": [
+      "chloro"
+    ],
+    "go_cc": "GO:0009523",
+    "pmco_id": "PMCO:PHOTOSYSTEM_II",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "PSII_OEC",
+        "node_label": "Photosystem II (PSII)"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_PHOTOSYSTEMS",
+        "node_label": "Chloroplast Light Reactions"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATCG00490",
+    "symbol": "RuBisCO Holoenzyme (RbcL8 + RbcS8)",
+    "name": "Ribulose-1,5-bisphosphate carboxylase-oxygenase. Carboxylase activity drives the Calvin-Benson cycle; oxygenase activity initiates photorespiration, producing 2-phosphoglycolate which feeds into the 3-organelle photorespiratory conduit.",
+    "compartment": "chloroplast_stroma",
+    "comp": "chloroplast_stroma",
+    "comp_label": "Chloroplast Stroma",
+    "categories": [
+      "chloro",
+      "retro"
+    ],
+    "go_cc": "GO:0016272",
+    "pmco_id": "PMCO:RUBISCO_HOLOENZYME",
+    "maps": [
+      {
+        "map_id": "PMM-02",
+        "map_title": "Chloroplast Light Reactions, Carbon Fixation, and Retrograde Origins",
+        "node_id": "RUBISCO_ENZYME",
+        "node_label": "RuBisCO Holoenzyme"
+      },
+      {
+        "map_id": "PMM-07",
+        "map_title": "The 3-Organelle Photorespiratory Metabolic Loop",
+        "node_id": "RUBISCO_O2_REACTION",
+        "node_label": "RuBisCO Oxygenation"
+      },
+      {
+        "map_id": "PMM-10",
+        "map_title": "Integrated Multi-Organelle Digital Double Atlas",
+        "node_id": "CHLORO_RUBISCO",
+        "node_label": "RuBisCO Carbon & Oxygen Fixation"
+      }
+    ],
+    "anchor": {
+      "double_id": "chloroplast",
+      "double_name": "Plant Chloroplast",
+      "subcomp": "chloroplast_stroma",
+      "anchor": "RuBisCO",
+      "title": "RuBisCO Large Subunit Core"
+    },
+    "retro": [
+      {
+        "circuit_id": "photo",
+        "circuit_title": "3-Organelle Photorespiratory Loop",
+        "step_idx": 1,
+        "step_label": "RuBisCO Oxygenation",
+        "glyph": "metabolite",
+        "category": "Oxygenase Reaction"
+      }
+    ],
+    "suba": {
+      "comp": "chloroplast",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATMG00160",
+    "symbol": "Complex IV (Cytochrome c Oxidase / COX)",
+    "name": "Terminal oxidase of the cytochrome pathway reducing O2 to 2 H2O and pumping protons into the IMS.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005751",
+    "pmco_id": "PMCO:COMPLEX_IV",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_IV_COX",
+        "node_label": "Complex IV (COX)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATMG00290",
+    "symbol": "Complex IV (Cytochrome c Oxidase / COX)",
+    "name": "Terminal oxidase of the cytochrome pathway reducing O2 to 2 H2O and pumping protons into the IMS.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005751",
+    "pmco_id": "PMCO:COMPLEX_IV",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_IV_COX",
+        "node_label": "Complex IV (COX)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": false,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  },
+  {
+    "locus": "ATMG01190",
+    "symbol": "Complex V (ATP Synthase / F1Fo-ATPase)",
+    "name": "Rotary motor utilizing proton motive force to synthesize ATP from ADP and Pi.",
+    "compartment": "cristae",
+    "comp": "cristae",
+    "comp_label": "Cristae",
+    "categories": [
+      "mito"
+    ],
+    "go_cc": "GO:0005753",
+    "pmco_id": "PMCO:COMPLEX_V",
+    "maps": [
+      {
+        "map_id": "PMM-01",
+        "map_title": "Plant Mitochondrial Electron Transport and Oxidative Phosphorylation",
+        "node_id": "COMPLEX_V_ATPASE",
+        "node_label": "ATP Synthase (F1Fo)"
+      }
+    ],
+    "anchor": null,
+    "retro": [],
+    "suba": {
+      "comp": "mitochondrion",
+      "score": 0.99,
+      "ms": true,
+      "gfp": true,
+      "dual": false,
+      "dual_classes": []
+    },
+    "ortho": null,
+    "contrasts": {},
+    "concordance": null
+  }
+]

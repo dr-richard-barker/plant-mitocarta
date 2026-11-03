@@ -1,0 +1,3789 @@
+{
+  "format_version": "1.0",
+  "generated_by": "Plant MitoCarta v0.1.0",
+  "target_organism": "Arabidopsis thaliana",
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "id": "PMM-01_MATRIX_NADH",
+          "map_id": "PMM-01",
+          "node_id": "MATRIX_NADH",
+          "name": "Matrix NADH Pool",
+          "symbol": "Matrix NADH Pool",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_SUCCINATE_POOL",
+          "map_id": "PMM-01",
+          "node_id": "SUCCINATE_POOL",
+          "name": "Succinate Pool",
+          "symbol": "Succinate Pool",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_O2_SUBSTRATE",
+          "map_id": "PMM-01",
+          "node_id": "O2_SUBSTRATE",
+          "name": "Molecular Oxygen (O2)",
+          "symbol": "Molecular Oxygen (O2)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_I_CORE",
+          "map_id": "PMM-01",
+          "node_id": "COMPLEX_I_CORE",
+          "name": "Complex I (Catalytic Core)",
+          "symbol": "NDUFA9",
+          "locus": "AT5G08530",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": -0.35,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "strict_ortholog"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_I_CA_DOMAIN",
+          "map_id": "PMM-01",
+          "node_id": "COMPLEX_I_CA_DOMAIN",
+          "name": "Complex I CA Domain",
+          "symbol": "CAL1",
+          "locus": "AT1G47260",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.42,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "plant_specific_innovation"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_II_SDH",
+          "map_id": "PMM-01",
+          "node_id": "COMPLEX_II_SDH",
+          "name": "Complex II (SDH)",
+          "symbol": "SDH1-1",
+          "locus": "AT5G66760",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": -0.45,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "strict_ortholog"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_ALT_NDH_INTERNAL",
+          "map_id": "PMM-01",
+          "node_id": "ALT_NDH_INTERNAL",
+          "name": "Internal Type II NDH",
+          "symbol": "NDA1",
+          "locus": "AT1G07180",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 0.78,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_ALT_NDH_EXTERNAL",
+          "map_id": "PMM-01",
+          "node_id": "ALT_NDH_EXTERNAL",
+          "name": "External Type II NDH",
+          "symbol": "NDB2",
+          "locus": "AT4G05020",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 1.32,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "plant_specific_innovation"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_UBIQUINONE_POOL",
+          "map_id": "PMM-01",
+          "node_id": "UBIQUINONE_POOL",
+          "name": "Ubiquinone Pool (Q/QH2)",
+          "symbol": "Ubiquinone Pool (Q/QH2)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_AOX_BYPASS",
+          "map_id": "PMM-01",
+          "node_id": "AOX_BYPASS",
+          "name": "Alternative Oxidase (AOX1a)",
+          "symbol": "AOX1a",
+          "locus": "AT3G22370",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 1.84,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "plant_specific_innovation"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_III_BC1",
+          "map_id": "PMM-01",
+          "node_id": "COMPLEX_III_BC1",
+          "name": "Complex III (bc1 Complex)",
+          "symbol": "RIESKE",
+          "locus": "AT5G13440",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": -0.41,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "strict_ortholog"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_CYTOCHROME_C",
+          "map_id": "PMM-01",
+          "node_id": "CYTOCHROME_C",
+          "name": "Cytochrome c",
+          "symbol": "Cytochrome c",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_IV_COX",
+          "map_id": "PMM-01",
+          "node_id": "COMPLEX_IV_COX",
+          "name": "Complex IV (COX)",
+          "symbol": "Complex IV (Cytochrome c Oxidase / COX)",
+          "locus": "ATMG00160",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_V_ATPASE",
+          "map_id": "PMM-01",
+          "node_id": "COMPLEX_V_ATPASE",
+          "name": "ATP Synthase (F1Fo)",
+          "symbol": "Complex V (ATP Synthase / F1Fo-ATPase)",
+          "locus": "ATMG01190",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_PUMP_UNCOUPLING",
+          "map_id": "PMM-01",
+          "node_id": "PUMP_UNCOUPLING",
+          "name": "Plant UCP1 (PUMP1)",
+          "symbol": "PUMP1",
+          "locus": "AT3G54110",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.85,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_MITO_ROS_BURST",
+          "map_id": "PMM-01",
+          "node_id": "MITO_ROS_BURST",
+          "name": "Mitochondrial Superoxide/H2O2",
+          "symbol": "Mitochondrial ROS Pool (Superoxide & H2O2)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_DTC_CITRATE_CARRIER",
+          "map_id": "PMM-01",
+          "node_id": "DTC_CITRATE_CARRIER",
+          "name": "DTC Translocator",
+          "symbol": "Dicarboxylate / Tricarboxylate Carrier (DTC)",
+          "locus": "AT5G19760",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "expanded_plant_family"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PHOTONS_H2O",
+          "map_id": "PMM-02",
+          "node_id": "PHOTONS_H2O",
+          "name": "Photons & H2O Substrate",
+          "symbol": "Photons & H2O",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_LUMEN_PROTONS",
+          "map_id": "PMM-02",
+          "node_id": "LUMEN_PROTONS",
+          "name": "Thylakoid Lumen H+",
+          "symbol": "Thylakoid Lumen H+",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PSII_OEC",
+          "map_id": "PMM-02",
+          "node_id": "PSII_OEC",
+          "name": "Photosystem II (PSII)",
+          "symbol": "Photosystem II (PSII Core & Oxygen-Evolving Complex)",
+          "locus": "ATCG00020",
+          "tier": "T1",
+          "compartment": "thylakoid_membrane",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_CYT_B6F",
+          "map_id": "PMM-02",
+          "node_id": "CYT_B6F",
+          "name": "Cytochrome b6f",
+          "symbol": "Cytochrome b6f Complex",
+          "locus": "ATCG00180",
+          "tier": "T1",
+          "compartment": "thylakoid_membrane",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PSI_COMPLEX",
+          "map_id": "PMM-02",
+          "node_id": "PSI_COMPLEX",
+          "name": "Photosystem I (PSI)",
+          "symbol": "Photosystem I (PSI Complex & Ferredoxin)",
+          "locus": "ATCG00030",
+          "tier": "T1",
+          "compartment": "thylakoid_membrane",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_THYL_ATP_SYNTHASE",
+          "map_id": "PMM-02",
+          "node_id": "THYL_ATP_SYNTHASE",
+          "name": "Thylakoid ATP Synthase",
+          "symbol": "Thylakoid ATP Synthase",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_EX1_SENSOR",
+          "map_id": "PMM-02",
+          "node_id": "EX1_SENSOR",
+          "name": "EXECUTER 1 (EX1)",
+          "symbol": "EX1",
+          "locus": "AT4G33630",
+          "tier": "T1",
+          "compartment": "thylakoid_membrane",
+          "fc_osd120_root": 1.12,
+          "sig_osd120_root": true,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PLASTID_NADPH",
+          "map_id": "PMM-02",
+          "node_id": "PLASTID_NADPH",
+          "name": "Stromal NADPH Pool",
+          "symbol": "Stromal NADPH Pool",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PLASTID_ATP",
+          "map_id": "PMM-02",
+          "node_id": "PLASTID_ATP",
+          "name": "Stromal ATP Pool",
+          "symbol": "Stromal ATP Pool",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_STROMAL_ROS",
+          "map_id": "PMM-02",
+          "node_id": "STROMAL_ROS",
+          "name": "Stromal H2O2 / 1O2",
+          "symbol": "Stromal H2O2 / 1O2",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_RUBISCO_ENZYME",
+          "map_id": "PMM-02",
+          "node_id": "RUBISCO_ENZYME",
+          "name": "RuBisCO Holoenzyme",
+          "symbol": "RuBisCO Holoenzyme (RbcL8 + RbcS8)",
+          "locus": "ATCG00490",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_CALVIN_BENSON_FLUX",
+          "map_id": "PMM-02",
+          "node_id": "CALVIN_BENSON_FLUX",
+          "name": "Calvin-Benson Cycle",
+          "symbol": "Calvin-Benson Cycle",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_TPT_TRANSLOCATOR",
+          "map_id": "PMM-02",
+          "node_id": "TPT_TRANSLOCATOR",
+          "name": "TPT Translocator",
+          "symbol": "TPT Translocator",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_SAL1_NUCLEOTIDASE",
+          "map_id": "PMM-02",
+          "node_id": "SAL1_NUCLEOTIDASE",
+          "name": "SAL1 Phosphatase",
+          "symbol": "SAL1",
+          "locus": "AT5G63980",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": -0.65,
+          "sig_osd120_root": false,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PAP_METABOLITE",
+          "map_id": "PMM-02",
+          "node_id": "PAP_METABOLITE",
+          "name": "PAP Retrograde Signal",
+          "symbol": "3'-Phosphoadenosine 5'-Phosphate (PAP)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PAPST1_CHANNEL",
+          "map_id": "PMM-02",
+          "node_id": "PAPST1_CHANNEL",
+          "name": "PAPST1 Transporter",
+          "symbol": "PAPST1",
+          "locus": "AT5G01500",
+          "tier": "T1",
+          "compartment": "chloroplast_inner_envelope",
+          "fc_osd120_root": 0.82,
+          "sig_osd120_root": true,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_GUN1_INTEGRATOR",
+          "map_id": "PMM-02",
+          "node_id": "GUN1_INTEGRATOR",
+          "name": "GUN1 PPR Hub",
+          "symbol": "GUN1",
+          "locus": "AT2G31490",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.76,
+          "sig_osd120_root": true,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": "expanded_plant_family"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_MECPP_INTERMEDIATE",
+          "map_id": "PMM-02",
+          "node_id": "MECPP_INTERMEDIATE",
+          "name": "MEcPP Metabolite",
+          "symbol": "2-C-Methyl-D-Erythritol 2,4-Cyclodiphosphate (MEcPP)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_NPC_GATE",
+          "map_id": "PMM-03",
+          "node_id": "NPC_GATE",
+          "name": "Nuclear Pore Complex",
+          "symbol": "Nuclear Pore Complex (NPC & Transportins)",
+          "locus": "AT1G80080",
+          "tier": "T1",
+          "compartment": "nuclear_pore_complex",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_IMPORTIN_ALPHA",
+          "map_id": "PMM-03",
+          "node_id": "IMPORTIN_ALPHA",
+          "name": "Importin-\u03b1 / \u03b2 Transportins",
+          "symbol": "Importin-\u03b1 / \u03b2",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_ANAC017_ACTIVE",
+          "map_id": "PMM-03",
+          "node_id": "ANAC017_ACTIVE",
+          "name": "ANAC017 (NAC Domain)",
+          "symbol": "ANAC017",
+          "locus": "AT1G34190",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.92,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_ANAC013_ACTIVE",
+          "map_id": "PMM-03",
+          "node_id": "ANAC013_ACTIVE",
+          "name": "ANAC013 (NAC Domain)",
+          "symbol": "ANAC013",
+          "locus": "AT1G32870",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 1.45,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_PAP_NUCLEAR_POOL",
+          "map_id": "PMM-03",
+          "node_id": "PAP_NUCLEAR_POOL",
+          "name": "Nuclear PAP Pool",
+          "symbol": "Nuclear PAP Pool",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_ABI4_REPRESSOR_TF",
+          "map_id": "PMM-03",
+          "node_id": "ABI4_REPRESSOR_TF",
+          "name": "ABI4 Repressor",
+          "symbol": "ABI4",
+          "locus": "AT2G40220",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.88,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_GLK1_ACTIVATOR_TF",
+          "map_id": "PMM-03",
+          "node_id": "GLK1_ACTIVATOR_TF",
+          "name": "GLK1/GLK2 Activators",
+          "symbol": "GLK1",
+          "locus": "AT2G20570",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": -1.42,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_XRN2_TARGET",
+          "map_id": "PMM-03",
+          "node_id": "XRN2_TARGET",
+          "name": "XRN2/XRN3 Exoribonucleases",
+          "symbol": "XRN2",
+          "locus": "AT5G42540",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": -0.15,
+          "sig_osd120_root": false,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_MDRE_PROMOTER_LOCUS",
+          "map_id": "PMM-03",
+          "node_id": "MDRE_PROMOTER_LOCUS",
+          "name": "MDRE Promoter Elements",
+          "symbol": "Mitochondrial Dysfunction Responsive Element (MDRE)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_PHANGS_PROMOTER_LOCUS",
+          "map_id": "PMM-03",
+          "node_id": "PHANGS_PROMOTER_LOCUS",
+          "name": "PhANGs Promoters",
+          "symbol": "PhANGs Promoters",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_AOX1A_MRNA",
+          "map_id": "PMM-03",
+          "node_id": "AOX1A_MRNA",
+          "name": "AOX1a mRNA Induction",
+          "symbol": "AOX1a mRNA Induction",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_MITO_CHAPERONES_MRNA",
+          "map_id": "PMM-03",
+          "node_id": "MITO_CHAPERONES_MRNA",
+          "name": "MSR Chaperones (HSP70/UPM1)",
+          "symbol": "MSR Chaperones (HSP70/UPM1)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_LHCB_RBCS_MRNA",
+          "map_id": "PMM-03",
+          "node_id": "LHCB_RBCS_MRNA",
+          "name": "PhANGs Transcripts (Lhcb/RbcS)",
+          "symbol": "PhANGs Transcripts",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_NUCLEOLUS_SURVEILLANCE",
+          "map_id": "PMM-03",
+          "node_id": "NUCLEOLUS_SURVEILLANCE",
+          "name": "Nucleolar Stress Checkpoint",
+          "symbol": "Nucleolar Stress Checkpoint",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_WALL_STRAIN",
+          "map_id": "PMM-04",
+          "node_id": "WALL_STRAIN",
+          "name": "Mechanical / Microgravity Strain",
+          "symbol": "Mechanical /",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_APOPLASTIC_PECTIN",
+          "map_id": "PMM-04",
+          "node_id": "APOPLASTIC_PECTIN",
+          "name": "Apoplastic Pectin Matrix",
+          "symbol": "Apoplastic Pectin Matrix",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_EXTRACELLULAR_O2",
+          "map_id": "PMM-04",
+          "node_id": "EXTRACELLULAR_O2",
+          "name": "Apoplastic Oxygen Pool",
+          "symbol": "Apoplastic Oxygen Pool",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_FERONIA_RECEPTOR",
+          "map_id": "PMM-04",
+          "node_id": "FERONIA_RECEPTOR",
+          "name": "FERONIA Receptor Kinase",
+          "symbol": "FERONIA",
+          "locus": "AT3G51550",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 1.25,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_WAK1_PECTIN_KINASE",
+          "map_id": "PMM-04",
+          "node_id": "WAK1_PECTIN_KINASE",
+          "name": "WAK1 Kinase",
+          "symbol": "WAK1",
+          "locus": "AT1G21250",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 1.38,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_MSL10_STRETCH_GATE",
+          "map_id": "PMM-04",
+          "node_id": "MSL10_STRETCH_GATE",
+          "name": "MSL10 Mechanosensitive Channel",
+          "symbol": "MSL10",
+          "locus": "AT5G12080",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 1.45,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_GLR_CALCIUM_CHANNELS",
+          "map_id": "PMM-04",
+          "node_id": "GLR_CALCIUM_CHANNELS",
+          "name": "GLR3.3 / GLR3.6 Channels",
+          "symbol": "GLR3.3",
+          "locus": "AT2G24730",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 0.75,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_RBOHD_OXIDASE",
+          "map_id": "PMM-04",
+          "node_id": "RBOHD_OXIDASE",
+          "name": "RBOHD NADPH Oxidase",
+          "symbol": "RBOHD",
+          "locus": "AT5G47910",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 1.62,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_PIP2_1_AQUAPORIN",
+          "map_id": "PMM-04",
+          "node_id": "PIP2_1_AQUAPORIN",
+          "name": "PIP2;1 Aquaporin",
+          "symbol": "PIP2;1",
+          "locus": "AT3G53420",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 1.05,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_AHA1_PROTON_PUMP",
+          "map_id": "PMM-04",
+          "node_id": "AHA1_PROTON_PUMP",
+          "name": "AHA1 H+-ATPase",
+          "symbol": "Plasma Membrane H+-ATPase 1 (AHA1)",
+          "locus": "AT2G18960",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_CYTOSOLIC_CA_SPIKE",
+          "map_id": "PMM-04",
+          "node_id": "CYTOSOLIC_CA_SPIKE",
+          "name": "Cytosolic [Ca2+] Wave",
+          "symbol": "Cytosolic [Ca2+] Wave",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_CPK_KINASES",
+          "map_id": "PMM-04",
+          "node_id": "CPK_KINASES",
+          "name": "CPKs / BIK1 Kinases",
+          "symbol": "CPKs / BIK1 Kinases",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_INWARD_H2O2_FLUX",
+          "map_id": "PMM-04",
+          "node_id": "INWARD_H2O2_FLUX",
+          "name": "Cytosolic H2O2 Wave",
+          "symbol": "Cytosolic H2O2 Wave",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_MITO_PERCEPTION",
+          "map_id": "PMM-04",
+          "node_id": "MITO_PERCEPTION",
+          "name": "Mitochondrial Bioenergetic Tuning",
+          "symbol": "Mitochondrial Bioenergetic",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_CHLORO_PERCEPTION",
+          "map_id": "PMM-04",
+          "node_id": "CHLORO_PERCEPTION",
+          "name": "Chloroplast Stroma Tuning",
+          "symbol": "Chloroplast Stroma Tuning",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_OXPHOS_LESION",
+          "map_id": "PMM-05",
+          "node_id": "OXPHOS_LESION",
+          "name": "OXPHOS Inhibition / Hypoxia",
+          "symbol": "OXPHOS Inhibition /",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_MITO_SUPEROXIDE_ACCUMULATION",
+          "map_id": "PMM-05",
+          "node_id": "MITO_SUPEROXIDE_ACCUMULATION",
+          "name": "Mitochondrial ROS (H2O2)",
+          "symbol": "Mitochondrial ROS Pool (Superoxide & H2O2)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_RHOMBOID_PROTEASE_ACT",
+          "map_id": "PMM-05",
+          "node_id": "RHOMBOID_PROTEASE_ACT",
+          "name": "Rhomboid-Like Proteases",
+          "symbol": "Rhomboid-Like Proteases",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC017_TETHERED",
+          "map_id": "PMM-05",
+          "node_id": "ANAC017_TETHERED",
+          "name": "Membrane-Bound ANAC017",
+          "symbol": "ANAC017",
+          "locus": "AT1G34190",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.92,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC013_TETHERED",
+          "map_id": "PMM-05",
+          "node_id": "ANAC013_TETHERED",
+          "name": "Membrane-Bound ANAC013",
+          "symbol": "ANAC013",
+          "locus": "AT1G32870",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 1.45,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC017_SOLUBLE_NAC",
+          "map_id": "PMM-05",
+          "node_id": "ANAC017_SOLUBLE_NAC",
+          "name": "Soluble ANAC017 (NAC Domain)",
+          "symbol": "Soluble ANAC017 (NAC",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC013_SOLUBLE_NAC",
+          "map_id": "PMM-05",
+          "node_id": "ANAC013_SOLUBLE_NAC",
+          "name": "Soluble ANAC013 (NAC Domain)",
+          "symbol": "Soluble ANAC013 (NAC",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_CITRATE_2OG_EXPORT",
+          "map_id": "PMM-05",
+          "node_id": "CITRATE_2OG_EXPORT",
+          "name": "Citrate / 2-OG Efflux",
+          "symbol": "Dicarboxylate / Tricarboxylate Carrier (DTC)",
+          "locus": "AT5G19760",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "expanded_plant_family"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_NPC_TRANSLOCATION_GATE",
+          "map_id": "PMM-05",
+          "node_id": "NPC_TRANSLOCATION_GATE",
+          "name": "Nuclear Pore Complex",
+          "symbol": "Nuclear Pore Complex (NPC & Transportins)",
+          "locus": "AT1G80080",
+          "tier": "T1",
+          "compartment": "nuclear_pore_complex",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_KARYOPHERIN_IMPORT",
+          "map_id": "PMM-05",
+          "node_id": "KARYOPHERIN_IMPORT",
+          "name": "Importin-\u03b1 / \u03b2 Machinery",
+          "symbol": "Importin-\u03b1 / \u03b2 Machinery",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_MDRE_BINDING_SITE",
+          "map_id": "PMM-05",
+          "node_id": "MDRE_BINDING_SITE",
+          "name": "MDRE Promoter Cis-Element",
+          "symbol": "Mitochondrial Dysfunction Responsive Element (MDRE)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_AOX1A_INDUCTION",
+          "map_id": "PMM-05",
+          "node_id": "AOX1A_INDUCTION",
+          "name": "AOX1a Transcriptional Surge",
+          "symbol": "AOX1a",
+          "locus": "AT3G22370",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 1.84,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "plant_specific_innovation"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_UPM1_HSP70_INDUCTION",
+          "map_id": "PMM-05",
+          "node_id": "UPM1_HSP70_INDUCTION",
+          "name": "Mitochondrial Chaperones (UPM1)",
+          "symbol": "Mitochondrial Chaperones",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_EXCESS_LIGHT_1O2",
+          "map_id": "PMM-06",
+          "node_id": "EXCESS_LIGHT_1O2",
+          "name": "Singlet Oxygen (1O2) Burst",
+          "symbol": "Plastidial Singlet Oxygen (1O2)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "thylakoid_lumen",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PLASTID_TRANSLATION_ARREST",
+          "map_id": "PMM-06",
+          "node_id": "PLASTID_TRANSLATION_ARREST",
+          "name": "Plastid Translation Defect",
+          "symbol": "Plastid Translation",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_MEP_PATHWAY_BOTTLENECK",
+          "map_id": "PMM-06",
+          "node_id": "MEP_PATHWAY_BOTTLENECK",
+          "name": "MEP Pathway Arrest",
+          "symbol": "MEP Pathway Arrest",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_STROMAL_OXIDATIVE_STRESS",
+          "map_id": "PMM-06",
+          "node_id": "STROMAL_OXIDATIVE_STRESS",
+          "name": "Stromal Redox Oxidation",
+          "symbol": "Stromal Redox Oxidation",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_EX1_GRANA_SENSOR",
+          "map_id": "PMM-06",
+          "node_id": "EX1_GRANA_SENSOR",
+          "name": "EXECUTER 1 (EX1)",
+          "symbol": "EX1",
+          "locus": "AT4G33630",
+          "tier": "T1",
+          "compartment": "thylakoid_membrane",
+          "fc_osd120_root": 1.12,
+          "sig_osd120_root": true,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_GUN1_INTEGRATION_HUB",
+          "map_id": "PMM-06",
+          "node_id": "GUN1_INTEGRATION_HUB",
+          "name": "GUN1 PPR Hub",
+          "symbol": "GUN1",
+          "locus": "AT2G31490",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.76,
+          "sig_osd120_root": true,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": "expanded_plant_family"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_MECPP_SIGNAL_POOL",
+          "map_id": "PMM-06",
+          "node_id": "MECPP_SIGNAL_POOL",
+          "name": "MEcPP Retrograde Messenger",
+          "symbol": "2-C-Methyl-D-Erythritol 2,4-Cyclodiphosphate (MEcPP)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_SAL1_OXIDATIVE_INACTIVATION",
+          "map_id": "PMM-06",
+          "node_id": "SAL1_OXIDATIVE_INACTIVATION",
+          "name": "SAL1 Phosphatase Inactivation",
+          "symbol": "SAL1",
+          "locus": "AT5G63980",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": -0.65,
+          "sig_osd120_root": false,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PAP_STROMAL_POOL",
+          "map_id": "PMM-06",
+          "node_id": "PAP_STROMAL_POOL",
+          "name": "PAP Accumulation",
+          "symbol": "3'-Phosphoadenosine 5'-Phosphate (PAP)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PAPST1_TRANSLOCATOR",
+          "map_id": "PMM-06",
+          "node_id": "PAPST1_TRANSLOCATOR",
+          "name": "PAPST1 Transporter",
+          "symbol": "PAPST1",
+          "locus": "AT5G01500",
+          "tier": "T1",
+          "compartment": "chloroplast_inner_envelope",
+          "fc_osd120_root": 0.82,
+          "sig_osd120_root": true,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_MECPP_EXPORT_GATE",
+          "map_id": "PMM-06",
+          "node_id": "MECPP_EXPORT_GATE",
+          "name": "MEcPP Envelope Export",
+          "symbol": "MEcPP Envelope Export",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_ABI4_REPRESSION_TF",
+          "map_id": "PMM-06",
+          "node_id": "ABI4_REPRESSION_TF",
+          "name": "ABI4 Transcription Factor",
+          "symbol": "ABI4",
+          "locus": "AT2G40220",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.88,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_XRN2_3_EXORIBONUCLEASES",
+          "map_id": "PMM-06",
+          "node_id": "XRN2_3_EXORIBONUCLEASES",
+          "name": "XRN2 / XRN3 Exoribonucleases",
+          "symbol": "XRN2",
+          "locus": "AT5G42540",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": -0.15,
+          "sig_osd120_root": false,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_ICS1_DEFENSE_PROMOTER",
+          "map_id": "PMM-06",
+          "node_id": "ICS1_DEFENSE_PROMOTER",
+          "name": "ICS1 Defense Promoter",
+          "symbol": "ICS1 Defense Promoter",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PHANGS_REPRESSED",
+          "map_id": "PMM-06",
+          "node_id": "PHANGS_REPRESSED",
+          "name": "Repression of PhANGs",
+          "symbol": "Repression of PhANGs",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_DROUGHT_STRESS_INDUCED",
+          "map_id": "PMM-06",
+          "node_id": "DROUGHT_STRESS_INDUCED",
+          "name": "Drought / Osmotic Gene Induction",
+          "symbol": "Drought / Osmotic Gene",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PCD_ACCLIMATION_SWITCH",
+          "map_id": "PMM-06",
+          "node_id": "PCD_ACCLIMATION_SWITCH",
+          "name": "Programmed Cell Death vs Acclimation",
+          "symbol": "Programmed Cell Death vs",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_RUBISCO_O2_REACTION",
+          "map_id": "PMM-07",
+          "node_id": "RUBISCO_O2_REACTION",
+          "name": "RuBisCO Oxygenation",
+          "symbol": "RuBisCO Holoenzyme (RbcL8 + RbcS8)",
+          "locus": "ATCG00490",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_CHLORO_2_PG_POOL",
+          "map_id": "PMM-07",
+          "node_id": "CHLORO_2_PG_POOL",
+          "name": "2-Phosphoglycolate (2-PG)",
+          "symbol": "2-Phosphoglycolate (2-PG)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_PLGG1_GLYCOLATE_EXPORT",
+          "map_id": "PMM-07",
+          "node_id": "PLGG1_GLYCOLATE_EXPORT",
+          "name": "PLGG1 Translocator",
+          "symbol": "PLGG1",
+          "locus": "AT1G32080",
+          "tier": "T1",
+          "compartment": "chloroplast_inner_envelope",
+          "fc_osd120_root": -0.48,
+          "sig_osd120_root": false,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GOX_OXIDASE",
+          "map_id": "PMM-07",
+          "node_id": "GOX_OXIDASE",
+          "name": "Glycolate Oxidase (GOX)",
+          "symbol": "Glycolate Oxidase (GOX)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_CATALASE_CAT2",
+          "map_id": "PMM-07",
+          "node_id": "CATALASE_CAT2",
+          "name": "Catalase 2 (CAT2)",
+          "symbol": "Catalase 2 (CAT2)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GGT_AMINOTRANSFERASE",
+          "map_id": "PMM-07",
+          "node_id": "GGT_AMINOTRANSFERASE",
+          "name": "Glutamate:Glyoxylate AT (GGT)",
+          "symbol": "Glutamate:Glyoxylate AT",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GDC_P_T_H_L_COMPLEX",
+          "map_id": "PMM-07",
+          "node_id": "GDC_P_T_H_L_COMPLEX",
+          "name": "Glycine Decarboxylase (GDC)",
+          "symbol": "GDCP",
+          "locus": "AT4G33010",
+          "tier": "T1",
+          "compartment": "mitochondrial_matrix",
+          "fc_osd120_root": -1.15,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "strict_ortholog"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_SHMT1_SERINE_SYNTH",
+          "map_id": "PMM-07",
+          "node_id": "SHMT1_SERINE_SYNTH",
+          "name": "SHMT1",
+          "symbol": "SHMT1",
+          "locus": "AT4G37930",
+          "tier": "T1",
+          "compartment": "mitochondrial_matrix",
+          "fc_osd120_root": -0.94,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_MATRIX_NADH_PRODUCTION",
+          "map_id": "PMM-07",
+          "node_id": "MATRIX_NADH_PRODUCTION",
+          "name": "Matrix NADH & CO2 / NH3 Release",
+          "symbol": "Matrix NADH & CO2 / NH3",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_COMPLEX_I_CA_INTERACTION",
+          "map_id": "PMM-07",
+          "node_id": "COMPLEX_I_CA_INTERACTION",
+          "name": "Complex I CA Domain Nexus",
+          "symbol": "CAL1",
+          "locus": "AT1G47260",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.42,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "plant_specific_innovation"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_PEROXISOMAL_SERINE_POOL",
+          "map_id": "PMM-07",
+          "node_id": "PEROXISOMAL_SERINE_POOL",
+          "name": "Serine Transport to Peroxisome",
+          "symbol": "Serine Transport to",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_HPR_GLYCERATE_REDUCTASE",
+          "map_id": "PMM-07",
+          "node_id": "HPR_GLYCERATE_REDUCTASE",
+          "name": "Hydroxypyruvate Reductase (HPR)",
+          "symbol": "Hydroxypyruvate Reductase",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_DIT1_GLYCERATE_IMPORT",
+          "map_id": "PMM-07",
+          "node_id": "DIT1_GLYCERATE_IMPORT",
+          "name": "DiT1 / PLGG1 Translocator",
+          "symbol": "DiT1",
+          "locus": "AT5G12860",
+          "tier": "T1",
+          "compartment": "chloroplast_inner_envelope",
+          "fc_osd120_root": -0.6,
+          "sig_osd120_root": false,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GLYCERATE_KINASE_GLYK",
+          "map_id": "PMM-07",
+          "node_id": "GLYCERATE_KINASE_GLYK",
+          "name": "Glycerate Kinase (GLYK)",
+          "symbol": "Glycerate Kinase (GLYK)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_THREE_PGA_CALVIN_RETURN",
+          "map_id": "PMM-07",
+          "node_id": "THREE_PGA_CALVIN_RETURN",
+          "name": "3-Phosphoglycerate (3-PGA)",
+          "symbol": "3-Phosphoglycerate",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_STROMA_H2O2_CORE",
+          "map_id": "PMM-08",
+          "node_id": "STROMA_H2O2_CORE",
+          "name": "Stromal H2O2 Generation",
+          "symbol": "Stromal H2O2 Generation",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_STROMULE_ELONGATION_ACTIN",
+          "map_id": "PMM-08",
+          "node_id": "STROMULE_ELONGATION_ACTIN",
+          "name": "Stromule Induction",
+          "symbol": "Stromule Induction",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_STROMULE_CHANNEL",
+          "map_id": "PMM-08",
+          "node_id": "STROMULE_CHANNEL",
+          "name": "Stromule Extension",
+          "symbol": "Stromule-to-Nuclear Envelope Docking Site",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "stromule",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_DIRECT_H2O2_CONDUIT",
+          "map_id": "PMM-08",
+          "node_id": "DIRECT_H2O2_CONDUIT",
+          "name": "Privileged H2O2 Flux",
+          "symbol": "Privileged H2O2 Flux",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_NUCLEAR_ENVELOPE_RECEPTOR",
+          "map_id": "PMM-08",
+          "node_id": "NUCLEAR_ENVELOPE_RECEPTOR",
+          "name": "Nuclear Envelope Contact Zone",
+          "symbol": "Nuclear Envelope Contact",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_LOCALIZED_NUCLEOPLASM_H2O2",
+          "map_id": "PMM-08",
+          "node_id": "LOCALIZED_NUCLEOPLASM_H2O2",
+          "name": "Nuclear Redox Reprogramming",
+          "symbol": "Nuclear Redox Reprogramming",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_VAP27_TETHER_COMPLEX",
+          "map_id": "PMM-08",
+          "node_id": "VAP27_TETHER_COMPLEX",
+          "name": "VAP27-anchored MCS Tethers",
+          "symbol": "VAP27-anchored MCS Tethers",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_MEAM_LIPID_TRANSFER",
+          "map_id": "PMM-08",
+          "node_id": "MEAM_LIPID_TRANSFER",
+          "name": "MEAM Phospholipid Transfer",
+          "symbol": "Mitochondria-ER Associated Membrane (MEAM)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "mitochondria_er_contact_site_MEAM",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_MEAM_CALCIUM_FLUX",
+          "map_id": "PMM-08",
+          "node_id": "MEAM_CALCIUM_FLUX",
+          "name": "MEAM Calcium Tunneling",
+          "symbol": "MEAM Calcium Tunneling",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_OMM_VDAC_JUNCTION",
+          "map_id": "PMM-08",
+          "node_id": "OMM_VDAC_JUNCTION",
+          "name": "OMM VDAC1-3 Channels",
+          "symbol": "OMM VDAC1-3 Channels",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_MITO_LOCALIZED_CA_MICRODOMAIN",
+          "map_id": "PMM-08",
+          "node_id": "MITO_LOCALIZED_CA_MICRODOMAIN",
+          "name": "Mitochondrial Ca2+ Microdomain",
+          "symbol": "Mitochondrial Ca2+",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_OXPHOS_CORE",
+          "map_id": "PMM-09",
+          "node_id": "HUMAN_OXPHOS_CORE",
+          "name": "Human MitoCarta OXPHOS",
+          "symbol": "Human MitoCarta OXPHOS",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_TCA_CYCLE",
+          "map_id": "PMM-09",
+          "node_id": "HUMAN_TCA_CYCLE",
+          "name": "Human MitoCarta TCA",
+          "symbol": "Human MitoCarta TCA",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_POLG_REPLICATION",
+          "map_id": "PMM-09",
+          "node_id": "HUMAN_POLG_REPLICATION",
+          "name": "Human POLG / TWNK",
+          "symbol": "Human POLG / TWNK",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_CONSERVED_OXPHOS",
+          "map_id": "PMM-09",
+          "node_id": "PLANT_CONSERVED_OXPHOS",
+          "name": "Plant Conserved Core (Q1)",
+          "symbol": "Plant Conserved Core (Q1)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_CONSERVED_TCA",
+          "map_id": "PMM-09",
+          "node_id": "PLANT_CONSERVED_TCA",
+          "name": "Plant Conserved TCA (Q1)",
+          "symbol": "Plant Conserved TCA (Q1)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_FE_S_ISC_CORE",
+          "map_id": "PMM-09",
+          "node_id": "PLANT_FE_S_ISC_CORE",
+          "name": "Plant ISC Machinery (Q1)",
+          "symbol": "Plant ISC Machinery (Q1)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_AOX_INNOVATION",
+          "map_id": "PMM-09",
+          "node_id": "PLANT_AOX_INNOVATION",
+          "name": "Alternative Oxidase (Q2)",
+          "symbol": "AOX1a",
+          "locus": "AT3G22370",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 1.84,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "plant_specific_innovation"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_NDH_BYPASSES",
+          "map_id": "PMM-09",
+          "node_id": "PLANT_NDH_BYPASSES",
+          "name": "Type II NDH Bypasses (Q2)",
+          "symbol": "NDA1",
+          "locus": "AT1G07180",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": 0.78,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_CA_DOMAIN_COMPLEX_I",
+          "map_id": "PMM-09",
+          "node_id": "PLANT_CA_DOMAIN_COMPLEX_I",
+          "name": "Complex I CA Domain (Q2)",
+          "symbol": "CAL1",
+          "locus": "AT1G47260",
+          "tier": "T1",
+          "compartment": "cristae",
+          "fc_osd120_root": 0.42,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "plant_specific_innovation"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_GDC_PHOTORESP",
+          "map_id": "PMM-09",
+          "node_id": "PLANT_GDC_PHOTORESP",
+          "name": "Photorespiratory GDC (Q2)",
+          "symbol": "GDCP",
+          "locus": "AT4G33010",
+          "tier": "T1",
+          "compartment": "mitochondrial_matrix",
+          "fc_osd120_root": -1.15,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "strict_ortholog"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_DUAL_TARGETED_POLIA_B",
+          "map_id": "PMM-09",
+          "node_id": "DUAL_TARGETED_POLIA_B",
+          "name": "Dual-Targeted PolIA/B (Q3)",
+          "symbol": "POLIA",
+          "locus": "AT1G50840",
+          "tier": "T1",
+          "compartment": "mitochondrial_matrix",
+          "fc_osd120_root": 0.42,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "dual_targeted_divergence"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_DUAL_TARGETED_AARS",
+          "map_id": "PMM-09",
+          "node_id": "DUAL_TARGETED_AARS",
+          "name": "Dual-Targeted AARSs (Q3)",
+          "symbol": "Dual-Targeted AARSs (Q3)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_EXPANDED_PPR_FAMILY",
+          "map_id": "PMM-09",
+          "node_id": "EXPANDED_PPR_FAMILY",
+          "name": "Expanded PPR Family (Q4)",
+          "symbol": "Expanded PPR Family (Q4)",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_DISEASE_INSIGHTS",
+          "map_id": "PMM-09",
+          "node_id": "HUMAN_DISEASE_INSIGHTS",
+          "name": "Human Mitochondrial Medicine",
+          "symbol": "Human Mitochondrial Medicine",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_AOX_HUMAN_RESCUE_POTENTIAL",
+          "map_id": "PMM-09",
+          "node_id": "AOX_HUMAN_RESCUE_POTENTIAL",
+          "name": "Plant AOX Rescues Human Disease",
+          "symbol": "Plant AOX Rescues Human",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_SENSORY_INPUT",
+          "map_id": "PMM-10",
+          "node_id": "PM_SENSORY_INPUT",
+          "name": "PM Mechanical/Gravity Sensors",
+          "symbol": "FERONIA",
+          "locus": "AT3G51550",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 1.25,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_CALCIUM_GATE",
+          "map_id": "PMM-10",
+          "node_id": "PM_CALCIUM_GATE",
+          "name": "Calcium Influx Gates (GLR3.3/3.6)",
+          "symbol": "GLR3.3",
+          "locus": "AT2G24730",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 0.75,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_RBOHD_BURST",
+          "map_id": "PMM-10",
+          "node_id": "PM_RBOHD_BURST",
+          "name": "Apoplastic ROS Wave (RBOHD)",
+          "symbol": "RBOHD",
+          "locus": "AT5G47910",
+          "tier": "T1",
+          "compartment": "plasma_membrane",
+          "fc_osd120_root": 1.62,
+          "sig_osd120_root": true,
+          "suba_consensus": "plasma_membrane",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_CHLORO_PHOTOSYSTEMS",
+          "map_id": "PMM-10",
+          "node_id": "CHLORO_PHOTOSYSTEMS",
+          "name": "Chloroplast Light Reactions",
+          "symbol": "Photosystem II (PSII Core & Oxygen-Evolving Complex)",
+          "locus": "ATCG00020",
+          "tier": "T1",
+          "compartment": "thylakoid_membrane",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_CHLORO_RUBISCO",
+          "map_id": "PMM-10",
+          "node_id": "CHLORO_RUBISCO",
+          "name": "RuBisCO Carbon & Oxygen Fixation",
+          "symbol": "RuBisCO Holoenzyme (RbcL8 + RbcS8)",
+          "locus": "ATCG00490",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_CHLORO_PRR_HUB",
+          "map_id": "PMM-10",
+          "node_id": "CHLORO_PRR_HUB",
+          "name": "Plastid Retrograde Signals",
+          "symbol": "SAL1",
+          "locus": "AT5G63980",
+          "tier": "T1",
+          "compartment": "chloroplast_stroma",
+          "fc_osd120_root": -0.65,
+          "sig_osd120_root": false,
+          "suba_consensus": "chloroplast",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PEROXISOMAL_SHUTTLE",
+          "map_id": "PMM-10",
+          "node_id": "PEROXISOMAL_SHUTTLE",
+          "name": "Peroxisomal Photorespiration",
+          "symbol": "GOX1",
+          "locus": "AT3G14420",
+          "tier": "T1",
+          "compartment": "peroxisome",
+          "fc_osd120_root": -0.72,
+          "sig_osd120_root": true,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_MITO_RESPIRATORY_CHAIN",
+          "map_id": "PMM-10",
+          "node_id": "MITO_RESPIRATORY_CHAIN",
+          "name": "Plant MitoCarta OXPHOS",
+          "symbol": "NDUFA9",
+          "locus": "AT5G08530",
+          "tier": "T1",
+          "compartment": "mitochondrial_inner_membrane",
+          "fc_osd120_root": -0.35,
+          "sig_osd120_root": false,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "strict_ortholog"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_MITO_GDC_ENGINE",
+          "map_id": "PMM-10",
+          "node_id": "MITO_GDC_ENGINE",
+          "name": "Matrix GDC Complex",
+          "symbol": "GDCP",
+          "locus": "AT4G33010",
+          "tier": "T1",
+          "compartment": "mitochondrial_matrix",
+          "fc_osd120_root": -1.15,
+          "sig_osd120_root": true,
+          "suba_consensus": "mitochondrion",
+          "mitocarta_category": "strict_ortholog"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_MITO_MRR_ANAC017",
+          "map_id": "PMM-10",
+          "node_id": "MITO_MRR_ANAC017",
+          "name": "Mitochondrial Retrograde MRR",
+          "symbol": "ANAC017",
+          "locus": "AT1G34190",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.92,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_NUCLEAR_MDRE_TARGETS",
+          "map_id": "PMM-10",
+          "node_id": "NUCLEAR_MDRE_TARGETS",
+          "name": "MDRE Promoter Induction",
+          "symbol": "Mitochondrial Dysfunction Responsive Element (MDRE)",
+          "locus": "",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_NUCLEAR_PHANGS_TARGETS",
+          "map_id": "PMM-10",
+          "node_id": "NUCLEAR_PHANGS_TARGETS",
+          "name": "PhANGs Coordinate Control",
+          "symbol": "ABI4",
+          "locus": "AT2G40220",
+          "tier": "T1",
+          "compartment": "nucleoplasm",
+          "fc_osd120_root": 0.88,
+          "sig_osd120_root": true,
+          "suba_consensus": "nucleus",
+          "mitocarta_category": ""
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_GENOME_REPROGRAMMING",
+          "map_id": "PMM-10",
+          "node_id": "GENOME_REPROGRAMMING",
+          "name": "Whole-Cell Acclimation",
+          "symbol": "Whole-Cell Acclimation",
+          "locus": "",
+          "tier": "T4",
+          "compartment": "",
+          "fc_osd120_root": 0.0,
+          "sig_osd120_root": false,
+          "suba_consensus": "",
+          "mitocarta_category": ""
+        }
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "id": "PMM-01_MATRIX_NADH_COMPLEX_I_CORE_electron_transfer",
+          "source": "PMM-01_MATRIX_NADH",
+          "target": "PMM-01_COMPLEX_I_CORE",
+          "interaction": "electron_transfer",
+          "label": "2e\u2212",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_MATRIX_NADH_ALT_NDH_INTERNAL_electron_transfer",
+          "source": "PMM-01_MATRIX_NADH",
+          "target": "PMM-01_ALT_NDH_INTERNAL",
+          "interaction": "electron_transfer",
+          "label": "bypass",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_I_CORE_COMPLEX_I_CA_DOMAIN_activates",
+          "source": "PMM-01_COMPLEX_I_CORE",
+          "target": "PMM-01_COMPLEX_I_CA_DOMAIN",
+          "interaction": "activates",
+          "label": "structural assembly",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_SUCCINATE_POOL_COMPLEX_II_SDH_electron_transfer",
+          "source": "PMM-01_SUCCINATE_POOL",
+          "target": "PMM-01_COMPLEX_II_SDH",
+          "interaction": "electron_transfer",
+          "label": "2e\u2212",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_I_CORE_UBIQUINONE_POOL_electron_transfer",
+          "source": "PMM-01_COMPLEX_I_CORE",
+          "target": "PMM-01_UBIQUINONE_POOL",
+          "interaction": "electron_transfer",
+          "label": "QH2",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_II_SDH_UBIQUINONE_POOL_electron_transfer",
+          "source": "PMM-01_COMPLEX_II_SDH",
+          "target": "PMM-01_UBIQUINONE_POOL",
+          "interaction": "electron_transfer",
+          "label": "QH2",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_ALT_NDH_INTERNAL_UBIQUINONE_POOL_electron_transfer",
+          "source": "PMM-01_ALT_NDH_INTERNAL",
+          "target": "PMM-01_UBIQUINONE_POOL",
+          "interaction": "electron_transfer",
+          "label": "QH2",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_ALT_NDH_EXTERNAL_UBIQUINONE_POOL_electron_transfer",
+          "source": "PMM-01_ALT_NDH_EXTERNAL",
+          "target": "PMM-01_UBIQUINONE_POOL",
+          "interaction": "electron_transfer",
+          "label": "QH2",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_UBIQUINONE_POOL_AOX_BYPASS_electron_transfer",
+          "source": "PMM-01_UBIQUINONE_POOL",
+          "target": "PMM-01_AOX_BYPASS",
+          "interaction": "electron_transfer",
+          "label": "relief valve",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_AOX_BYPASS_O2_SUBSTRATE_electron_transfer",
+          "source": "PMM-01_AOX_BYPASS",
+          "target": "PMM-01_O2_SUBSTRATE",
+          "interaction": "electron_transfer",
+          "label": "4e\u2212 -> 2 H2O",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_UBIQUINONE_POOL_COMPLEX_III_BC1_electron_transfer",
+          "source": "PMM-01_UBIQUINONE_POOL",
+          "target": "PMM-01_COMPLEX_III_BC1",
+          "interaction": "electron_transfer",
+          "label": "Q cycle",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_III_BC1_CYTOCHROME_C_electron_transfer",
+          "source": "PMM-01_COMPLEX_III_BC1",
+          "target": "PMM-01_CYTOCHROME_C",
+          "interaction": "electron_transfer",
+          "label": "1e\u2212",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_CYTOCHROME_C_COMPLEX_IV_COX_electron_transfer",
+          "source": "PMM-01_CYTOCHROME_C",
+          "target": "PMM-01_COMPLEX_IV_COX",
+          "interaction": "electron_transfer",
+          "label": "1e\u2212",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_IV_COX_O2_SUBSTRATE_electron_transfer",
+          "source": "PMM-01_COMPLEX_IV_COX",
+          "target": "PMM-01_O2_SUBSTRATE",
+          "interaction": "electron_transfer",
+          "label": "4e\u2212 -> 2 H2O",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_I_CORE_COMPLEX_V_ATPASE_activates",
+          "source": "PMM-01_COMPLEX_I_CORE",
+          "target": "PMM-01_COMPLEX_V_ATPASE",
+          "interaction": "activates",
+          "label": "H+ gradient",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_III_BC1_COMPLEX_V_ATPASE_activates",
+          "source": "PMM-01_COMPLEX_III_BC1",
+          "target": "PMM-01_COMPLEX_V_ATPASE",
+          "interaction": "activates",
+          "label": "H+ gradient",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_IV_COX_COMPLEX_V_ATPASE_activates",
+          "source": "PMM-01_COMPLEX_IV_COX",
+          "target": "PMM-01_COMPLEX_V_ATPASE",
+          "interaction": "activates",
+          "label": "H+ gradient",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_V_ATPASE_PUMP_UNCOUPLING_inhibits",
+          "source": "PMM-01_COMPLEX_V_ATPASE",
+          "target": "PMM-01_PUMP_UNCOUPLING",
+          "interaction": "inhibits",
+          "label": "proton uncoupling",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_I_CORE_MITO_ROS_BURST_activates",
+          "source": "PMM-01_COMPLEX_I_CORE",
+          "target": "PMM-01_MITO_ROS_BURST",
+          "interaction": "activates",
+          "label": "electron leak",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_COMPLEX_III_BC1_MITO_ROS_BURST_activates",
+          "source": "PMM-01_COMPLEX_III_BC1",
+          "target": "PMM-01_MITO_ROS_BURST",
+          "interaction": "activates",
+          "label": "electron leak",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-01_MITO_ROS_BURST_DTC_CITRATE_CARRIER_activates",
+          "source": "PMM-01_MITO_ROS_BURST",
+          "target": "PMM-01_DTC_CITRATE_CARRIER",
+          "interaction": "activates",
+          "label": "stress signaling",
+          "map_id": "PMM-01"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PHOTONS_H2O_PSII_OEC_electron_transfer",
+          "source": "PMM-02_PHOTONS_H2O",
+          "target": "PMM-02_PSII_OEC",
+          "interaction": "electron_transfer",
+          "label": "h\u03bd -> 2 H2O split",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PSII_OEC_CYT_B6F_electron_transfer",
+          "source": "PMM-02_PSII_OEC",
+          "target": "PMM-02_CYT_B6F",
+          "interaction": "electron_transfer",
+          "label": "PQH2",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_CYT_B6F_PSI_COMPLEX_electron_transfer",
+          "source": "PMM-02_CYT_B6F",
+          "target": "PMM-02_PSI_COMPLEX",
+          "interaction": "electron_transfer",
+          "label": "plastocyanin",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PSI_COMPLEX_PLASTID_NADPH_electron_transfer",
+          "source": "PMM-02_PSI_COMPLEX",
+          "target": "PMM-02_PLASTID_NADPH",
+          "interaction": "electron_transfer",
+          "label": "Fd -> FNR",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PSII_OEC_LUMEN_PROTONS_activates",
+          "source": "PMM-02_PSII_OEC",
+          "target": "PMM-02_LUMEN_PROTONS",
+          "interaction": "activates",
+          "label": "H+ pump",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_CYT_B6F_LUMEN_PROTONS_activates",
+          "source": "PMM-02_CYT_B6F",
+          "target": "PMM-02_LUMEN_PROTONS",
+          "interaction": "activates",
+          "label": "H+ pump",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_LUMEN_PROTONS_THYL_ATP_SYNTHASE_activates",
+          "source": "PMM-02_LUMEN_PROTONS",
+          "target": "PMM-02_THYL_ATP_SYNTHASE",
+          "interaction": "activates",
+          "label": "H+ motor",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_THYL_ATP_SYNTHASE_PLASTID_ATP_activates",
+          "source": "PMM-02_THYL_ATP_SYNTHASE",
+          "target": "PMM-02_PLASTID_ATP",
+          "interaction": "activates",
+          "label": "ATP yield",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PLASTID_NADPH_CALVIN_BENSON_FLUX_metabolite_flux",
+          "source": "PMM-02_PLASTID_NADPH",
+          "target": "PMM-02_CALVIN_BENSON_FLUX",
+          "interaction": "metabolite_flux",
+          "label": "reductive phase",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PLASTID_ATP_CALVIN_BENSON_FLUX_metabolite_flux",
+          "source": "PMM-02_PLASTID_ATP",
+          "target": "PMM-02_CALVIN_BENSON_FLUX",
+          "interaction": "metabolite_flux",
+          "label": "ATP synthesis",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_CALVIN_BENSON_FLUX_RUBISCO_ENZYME_activates",
+          "source": "PMM-02_CALVIN_BENSON_FLUX",
+          "target": "PMM-02_RUBISCO_ENZYME",
+          "interaction": "activates",
+          "label": "CO2 fixation",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_CALVIN_BENSON_FLUX_TPT_TRANSLOCATOR_metabolite_flux",
+          "source": "PMM-02_CALVIN_BENSON_FLUX",
+          "target": "PMM-02_TPT_TRANSLOCATOR",
+          "interaction": "metabolite_flux",
+          "label": "triose-P export",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PSII_OEC_EX1_SENSOR_activates",
+          "source": "PMM-02_PSII_OEC",
+          "target": "PMM-02_EX1_SENSOR",
+          "interaction": "activates",
+          "label": "1O2 damage",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PSII_OEC_STROMAL_ROS_activates",
+          "source": "PMM-02_PSII_OEC",
+          "target": "PMM-02_STROMAL_ROS",
+          "interaction": "activates",
+          "label": "ROS leakage",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_STROMAL_ROS_SAL1_NUCLEOTIDASE_inhibits",
+          "source": "PMM-02_STROMAL_ROS",
+          "target": "PMM-02_SAL1_NUCLEOTIDASE",
+          "interaction": "inhibits",
+          "label": "oxidation",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_SAL1_NUCLEOTIDASE_PAP_METABOLITE_inhibits",
+          "source": "PMM-02_SAL1_NUCLEOTIDASE",
+          "target": "PMM-02_PAP_METABOLITE",
+          "interaction": "inhibits",
+          "label": "degradation",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_PAP_METABOLITE_PAPST1_CHANNEL_metabolite_flux",
+          "source": "PMM-02_PAP_METABOLITE",
+          "target": "PMM-02_PAPST1_CHANNEL",
+          "interaction": "metabolite_flux",
+          "label": "envelope export",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_STROMAL_ROS_GUN1_INTEGRATOR_activates",
+          "source": "PMM-02_STROMAL_ROS",
+          "target": "PMM-02_GUN1_INTEGRATOR",
+          "interaction": "activates",
+          "label": "protein stress",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-02_STROMAL_ROS_MECPP_INTERMEDIATE_activates",
+          "source": "PMM-02_STROMAL_ROS",
+          "target": "PMM-02_MECPP_INTERMEDIATE",
+          "interaction": "activates",
+          "label": "MEP stress",
+          "map_id": "PMM-02"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_NPC_GATE_ANAC017_ACTIVE_activates",
+          "source": "PMM-03_NPC_GATE",
+          "target": "PMM-03_ANAC017_ACTIVE",
+          "interaction": "activates",
+          "label": "nuclear entry",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_NPC_GATE_ANAC013_ACTIVE_activates",
+          "source": "PMM-03_NPC_GATE",
+          "target": "PMM-03_ANAC013_ACTIVE",
+          "interaction": "activates",
+          "label": "nuclear entry",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_NPC_GATE_PAP_NUCLEAR_POOL_metabolite_flux",
+          "source": "PMM-03_NPC_GATE",
+          "target": "PMM-03_PAP_NUCLEAR_POOL",
+          "interaction": "metabolite_flux",
+          "label": "nuclear entry",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_ANAC017_ACTIVE_MDRE_PROMOTER_LOCUS_activates",
+          "source": "PMM-03_ANAC017_ACTIVE",
+          "target": "PMM-03_MDRE_PROMOTER_LOCUS",
+          "interaction": "activates",
+          "label": "MDRE binding",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_ANAC013_ACTIVE_MDRE_PROMOTER_LOCUS_activates",
+          "source": "PMM-03_ANAC013_ACTIVE",
+          "target": "PMM-03_MDRE_PROMOTER_LOCUS",
+          "interaction": "activates",
+          "label": "MDRE binding",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_MDRE_PROMOTER_LOCUS_AOX1A_MRNA_activates",
+          "source": "PMM-03_MDRE_PROMOTER_LOCUS",
+          "target": "PMM-03_AOX1A_MRNA",
+          "interaction": "activates",
+          "label": "transcription",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_MDRE_PROMOTER_LOCUS_MITO_CHAPERONES_MRNA_activates",
+          "source": "PMM-03_MDRE_PROMOTER_LOCUS",
+          "target": "PMM-03_MITO_CHAPERONES_MRNA",
+          "interaction": "activates",
+          "label": "transcription",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_PAP_NUCLEAR_POOL_XRN2_TARGET_inhibits",
+          "source": "PMM-03_PAP_NUCLEAR_POOL",
+          "target": "PMM-03_XRN2_TARGET",
+          "interaction": "inhibits",
+          "label": "XRN inhibition",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_XRN2_TARGET_AOX1A_MRNA_activates",
+          "source": "PMM-03_XRN2_TARGET",
+          "target": "PMM-03_AOX1A_MRNA",
+          "interaction": "activates",
+          "label": "mRNA stability",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_ABI4_REPRESSOR_TF_PHANGS_PROMOTER_LOCUS_inhibits",
+          "source": "PMM-03_ABI4_REPRESSOR_TF",
+          "target": "PMM-03_PHANGS_PROMOTER_LOCUS",
+          "interaction": "inhibits",
+          "label": "PhANGs repression",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_GLK1_ACTIVATOR_TF_PHANGS_PROMOTER_LOCUS_activates",
+          "source": "PMM-03_GLK1_ACTIVATOR_TF",
+          "target": "PMM-03_PHANGS_PROMOTER_LOCUS",
+          "interaction": "activates",
+          "label": "PhANGs activation",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_PHANGS_PROMOTER_LOCUS_LHCB_RBCS_MRNA_activates",
+          "source": "PMM-03_PHANGS_PROMOTER_LOCUS",
+          "target": "PMM-03_LHCB_RBCS_MRNA",
+          "interaction": "activates",
+          "label": "transcription",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-03_AOX1A_MRNA_NUCLEOLUS_SURVEILLANCE_activates",
+          "source": "PMM-03_AOX1A_MRNA",
+          "target": "PMM-03_NUCLEOLUS_SURVEILLANCE",
+          "interaction": "activates",
+          "label": "surveillance",
+          "map_id": "PMM-03"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_WALL_STRAIN_FERONIA_RECEPTOR_activates",
+          "source": "PMM-04_WALL_STRAIN",
+          "target": "PMM-04_FERONIA_RECEPTOR",
+          "interaction": "activates",
+          "label": "membrane stretch",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_APOPLASTIC_PECTIN_WAK1_PECTIN_KINASE_activates",
+          "source": "PMM-04_APOPLASTIC_PECTIN",
+          "target": "PMM-04_WAK1_PECTIN_KINASE",
+          "interaction": "activates",
+          "label": "OG binding",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_WALL_STRAIN_MSL10_STRETCH_GATE_activates",
+          "source": "PMM-04_WALL_STRAIN",
+          "target": "PMM-04_MSL10_STRETCH_GATE",
+          "interaction": "activates",
+          "label": "stretch gating",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_FERONIA_RECEPTOR_GLR_CALCIUM_CHANNELS_activates",
+          "source": "PMM-04_FERONIA_RECEPTOR",
+          "target": "PMM-04_GLR_CALCIUM_CHANNELS",
+          "interaction": "activates",
+          "label": "Ca2+ gating",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_MSL10_STRETCH_GATE_CYTOSOLIC_CA_SPIKE_activates",
+          "source": "PMM-04_MSL10_STRETCH_GATE",
+          "target": "PMM-04_CYTOSOLIC_CA_SPIKE",
+          "interaction": "activates",
+          "label": "cation influx",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_GLR_CALCIUM_CHANNELS_CYTOSOLIC_CA_SPIKE_activates",
+          "source": "PMM-04_GLR_CALCIUM_CHANNELS",
+          "target": "PMM-04_CYTOSOLIC_CA_SPIKE",
+          "interaction": "activates",
+          "label": "rapid Ca2+",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_CYTOSOLIC_CA_SPIKE_CPK_KINASES_activates",
+          "source": "PMM-04_CYTOSOLIC_CA_SPIKE",
+          "target": "PMM-04_CPK_KINASES",
+          "interaction": "activates",
+          "label": "EF-hand binding",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_CPK_KINASES_RBOHD_OXIDASE_activates",
+          "source": "PMM-04_CPK_KINASES",
+          "target": "PMM-04_RBOHD_OXIDASE",
+          "interaction": "activates",
+          "label": "Ser343/347-P",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_EXTRACELLULAR_O2_RBOHD_OXIDASE_electron_transfer",
+          "source": "PMM-04_EXTRACELLULAR_O2",
+          "target": "PMM-04_RBOHD_OXIDASE",
+          "interaction": "electron_transfer",
+          "label": "generates O2\u2022-",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_RBOHD_OXIDASE_PIP2_1_AQUAPORIN_metabolite_flux",
+          "source": "PMM-04_RBOHD_OXIDASE",
+          "target": "PMM-04_PIP2_1_AQUAPORIN",
+          "interaction": "metabolite_flux",
+          "label": "O2\u2022- -> H2O2",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_PIP2_1_AQUAPORIN_INWARD_H2O2_FLUX_metabolite_flux",
+          "source": "PMM-04_PIP2_1_AQUAPORIN",
+          "target": "PMM-04_INWARD_H2O2_FLUX",
+          "interaction": "metabolite_flux",
+          "label": "H2O2 channeling",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_CYTOSOLIC_CA_SPIKE_MITO_PERCEPTION_activates",
+          "source": "PMM-04_CYTOSOLIC_CA_SPIKE",
+          "target": "PMM-04_MITO_PERCEPTION",
+          "interaction": "activates",
+          "label": "MCU uptake",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_INWARD_H2O2_FLUX_MITO_PERCEPTION_activates",
+          "source": "PMM-04_INWARD_H2O2_FLUX",
+          "target": "PMM-04_MITO_PERCEPTION",
+          "interaction": "activates",
+          "label": "rhomboid / AOX1a",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_CYTOSOLIC_CA_SPIKE_CHLORO_PERCEPTION_activates",
+          "source": "PMM-04_CYTOSOLIC_CA_SPIKE",
+          "target": "PMM-04_CHLORO_PERCEPTION",
+          "interaction": "activates",
+          "label": "stromal Ca2+",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-04_INWARD_H2O2_FLUX_CHLORO_PERCEPTION_activates",
+          "source": "PMM-04_INWARD_H2O2_FLUX",
+          "target": "PMM-04_CHLORO_PERCEPTION",
+          "interaction": "activates",
+          "label": "SAL1 oxidation",
+          "map_id": "PMM-04"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_OXPHOS_LESION_MITO_SUPEROXIDE_ACCUMULATION_activates",
+          "source": "PMM-05_OXPHOS_LESION",
+          "target": "PMM-05_MITO_SUPEROXIDE_ACCUMULATION",
+          "interaction": "activates",
+          "label": "superoxide leak",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_MITO_SUPEROXIDE_ACCUMULATION_RHOMBOID_PROTEASE_ACT_activates",
+          "source": "PMM-05_MITO_SUPEROXIDE_ACCUMULATION",
+          "target": "PMM-05_RHOMBOID_PROTEASE_ACT",
+          "interaction": "activates",
+          "label": "ROS activation",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_RHOMBOID_PROTEASE_ACT_ANAC017_TETHERED_cleaved_by",
+          "source": "PMM-05_RHOMBOID_PROTEASE_ACT",
+          "target": "PMM-05_ANAC017_TETHERED",
+          "interaction": "cleaved_by",
+          "label": "rhomboid cut",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_RHOMBOID_PROTEASE_ACT_ANAC013_TETHERED_cleaved_by",
+          "source": "PMM-05_RHOMBOID_PROTEASE_ACT",
+          "target": "PMM-05_ANAC013_TETHERED",
+          "interaction": "cleaved_by",
+          "label": "rhomboid cut",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC017_TETHERED_ANAC017_SOLUBLE_NAC_activates",
+          "source": "PMM-05_ANAC017_TETHERED",
+          "target": "PMM-05_ANAC017_SOLUBLE_NAC",
+          "interaction": "activates",
+          "label": "cytosol release",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC013_TETHERED_ANAC013_SOLUBLE_NAC_activates",
+          "source": "PMM-05_ANAC013_TETHERED",
+          "target": "PMM-05_ANAC013_SOLUBLE_NAC",
+          "interaction": "activates",
+          "label": "cytosol release",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_OXPHOS_LESION_CITRATE_2OG_EXPORT_metabolite_flux",
+          "source": "PMM-05_OXPHOS_LESION",
+          "target": "PMM-05_CITRATE_2OG_EXPORT",
+          "interaction": "metabolite_flux",
+          "label": "TCA backlog",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC017_SOLUBLE_NAC_NPC_TRANSLOCATION_GATE_activates",
+          "source": "PMM-05_ANAC017_SOLUBLE_NAC",
+          "target": "PMM-05_NPC_TRANSLOCATION_GATE",
+          "interaction": "activates",
+          "label": "NPC interaction",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_ANAC013_SOLUBLE_NAC_NPC_TRANSLOCATION_GATE_activates",
+          "source": "PMM-05_ANAC013_SOLUBLE_NAC",
+          "target": "PMM-05_NPC_TRANSLOCATION_GATE",
+          "interaction": "activates",
+          "label": "NPC interaction",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_NPC_TRANSLOCATION_GATE_MDRE_BINDING_SITE_activates",
+          "source": "PMM-05_NPC_TRANSLOCATION_GATE",
+          "target": "PMM-05_MDRE_BINDING_SITE",
+          "interaction": "activates",
+          "label": "MDRE entry",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_CITRATE_2OG_EXPORT_MDRE_BINDING_SITE_activates",
+          "source": "PMM-05_CITRATE_2OG_EXPORT",
+          "target": "PMM-05_MDRE_BINDING_SITE",
+          "interaction": "activates",
+          "label": "chromatin opening",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_MDRE_BINDING_SITE_AOX1A_INDUCTION_activates",
+          "source": "PMM-05_MDRE_BINDING_SITE",
+          "target": "PMM-05_AOX1A_INDUCTION",
+          "interaction": "activates",
+          "label": "AOX1a induction",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-05_MDRE_BINDING_SITE_UPM1_HSP70_INDUCTION_activates",
+          "source": "PMM-05_MDRE_BINDING_SITE",
+          "target": "PMM-05_UPM1_HSP70_INDUCTION",
+          "interaction": "activates",
+          "label": "UPM1/Hsp70",
+          "map_id": "PMM-05"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_EXCESS_LIGHT_1O2_EX1_GRANA_SENSOR_activates",
+          "source": "PMM-06_EXCESS_LIGHT_1O2",
+          "target": "PMM-06_EX1_GRANA_SENSOR",
+          "interaction": "activates",
+          "label": "grana sensing",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_EX1_GRANA_SENSOR_PCD_ACCLIMATION_SWITCH_activates",
+          "source": "PMM-06_EX1_GRANA_SENSOR",
+          "target": "PMM-06_PCD_ACCLIMATION_SWITCH",
+          "interaction": "activates",
+          "label": "1O2 signal",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PLASTID_TRANSLATION_ARREST_GUN1_INTEGRATION_HUB_activates",
+          "source": "PMM-06_PLASTID_TRANSLATION_ARREST",
+          "target": "PMM-06_GUN1_INTEGRATION_HUB",
+          "interaction": "activates",
+          "label": "preprotein stall",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_GUN1_INTEGRATION_HUB_ABI4_REPRESSION_TF_activates",
+          "source": "PMM-06_GUN1_INTEGRATION_HUB",
+          "target": "PMM-06_ABI4_REPRESSION_TF",
+          "interaction": "activates",
+          "label": "ABI4 signal",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_ABI4_REPRESSION_TF_PHANGS_REPRESSED_activates",
+          "source": "PMM-06_ABI4_REPRESSION_TF",
+          "target": "PMM-06_PHANGS_REPRESSED",
+          "interaction": "activates",
+          "label": "PhANGs repression",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_MEP_PATHWAY_BOTTLENECK_MECPP_SIGNAL_POOL_activates",
+          "source": "PMM-06_MEP_PATHWAY_BOTTLENECK",
+          "target": "PMM-06_MECPP_SIGNAL_POOL",
+          "interaction": "activates",
+          "label": "MEcPP accumulation",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_MECPP_SIGNAL_POOL_MECPP_EXPORT_GATE_metabolite_flux",
+          "source": "PMM-06_MECPP_SIGNAL_POOL",
+          "target": "PMM-06_MECPP_EXPORT_GATE",
+          "interaction": "metabolite_flux",
+          "label": "cytosol export",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_MECPP_EXPORT_GATE_ICS1_DEFENSE_PROMOTER_activates",
+          "source": "PMM-06_MECPP_EXPORT_GATE",
+          "target": "PMM-06_ICS1_DEFENSE_PROMOTER",
+          "interaction": "activates",
+          "label": "ICS1 induction",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_STROMAL_OXIDATIVE_STRESS_SAL1_OXIDATIVE_INACTIVATION_inhibits",
+          "source": "PMM-06_STROMAL_OXIDATIVE_STRESS",
+          "target": "PMM-06_SAL1_OXIDATIVE_INACTIVATION",
+          "interaction": "inhibits",
+          "label": "cysteine oxidation",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_SAL1_OXIDATIVE_INACTIVATION_PAP_STROMAL_POOL_activates",
+          "source": "PMM-06_SAL1_OXIDATIVE_INACTIVATION",
+          "target": "PMM-06_PAP_STROMAL_POOL",
+          "interaction": "activates",
+          "label": "PAP accumulation",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PAP_STROMAL_POOL_PAPST1_TRANSLOCATOR_metabolite_flux",
+          "source": "PMM-06_PAP_STROMAL_POOL",
+          "target": "PMM-06_PAPST1_TRANSLOCATOR",
+          "interaction": "metabolite_flux",
+          "label": "PAPST1 transport",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_PAPST1_TRANSLOCATOR_XRN2_3_EXORIBONUCLEASES_inhibits",
+          "source": "PMM-06_PAPST1_TRANSLOCATOR",
+          "target": "PMM-06_XRN2_3_EXORIBONUCLEASES",
+          "interaction": "inhibits",
+          "label": "XRN inhibition",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-06_XRN2_3_EXORIBONUCLEASES_DROUGHT_STRESS_INDUCED_activates",
+          "source": "PMM-06_XRN2_3_EXORIBONUCLEASES",
+          "target": "PMM-06_DROUGHT_STRESS_INDUCED",
+          "interaction": "activates",
+          "label": "mRNA stability",
+          "map_id": "PMM-06"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_RUBISCO_O2_REACTION_CHLORO_2_PG_POOL_metabolite_flux",
+          "source": "PMM-07_RUBISCO_O2_REACTION",
+          "target": "PMM-07_CHLORO_2_PG_POOL",
+          "interaction": "metabolite_flux",
+          "label": "oxygenation",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_CHLORO_2_PG_POOL_PLGG1_GLYCOLATE_EXPORT_metabolite_flux",
+          "source": "PMM-07_CHLORO_2_PG_POOL",
+          "target": "PMM-07_PLGG1_GLYCOLATE_EXPORT",
+          "interaction": "metabolite_flux",
+          "label": "PGLP1 cut",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_PLGG1_GLYCOLATE_EXPORT_GOX_OXIDASE_metabolite_flux",
+          "source": "PMM-07_PLGG1_GLYCOLATE_EXPORT",
+          "target": "PMM-07_GOX_OXIDASE",
+          "interaction": "metabolite_flux",
+          "label": "glycolate import",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GOX_OXIDASE_CATALASE_CAT2_activates",
+          "source": "PMM-07_GOX_OXIDASE",
+          "target": "PMM-07_CATALASE_CAT2",
+          "interaction": "activates",
+          "label": "H2O2 generation",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GOX_OXIDASE_GGT_AMINOTRANSFERASE_metabolite_flux",
+          "source": "PMM-07_GOX_OXIDASE",
+          "target": "PMM-07_GGT_AMINOTRANSFERASE",
+          "interaction": "metabolite_flux",
+          "label": "transamination",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GGT_AMINOTRANSFERASE_GDC_P_T_H_L_COMPLEX_metabolite_flux",
+          "source": "PMM-07_GGT_AMINOTRANSFERASE",
+          "target": "PMM-07_GDC_P_T_H_L_COMPLEX",
+          "interaction": "metabolite_flux",
+          "label": "glycine import",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GDC_P_T_H_L_COMPLEX_SHMT1_SERINE_SYNTH_metabolite_flux",
+          "source": "PMM-07_GDC_P_T_H_L_COMPLEX",
+          "target": "PMM-07_SHMT1_SERINE_SYNTH",
+          "interaction": "metabolite_flux",
+          "label": "THF transfer",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GDC_P_T_H_L_COMPLEX_MATRIX_NADH_PRODUCTION_activates",
+          "source": "PMM-07_GDC_P_T_H_L_COMPLEX",
+          "target": "PMM-07_MATRIX_NADH_PRODUCTION",
+          "interaction": "activates",
+          "label": "NADH + CO2 + NH3",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_MATRIX_NADH_PRODUCTION_COMPLEX_I_CA_INTERACTION_activates",
+          "source": "PMM-07_MATRIX_NADH_PRODUCTION",
+          "target": "PMM-07_COMPLEX_I_CA_INTERACTION",
+          "interaction": "activates",
+          "label": "CO2 fix / ETC",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_SHMT1_SERINE_SYNTH_PEROXISOMAL_SERINE_POOL_metabolite_flux",
+          "source": "PMM-07_SHMT1_SERINE_SYNTH",
+          "target": "PMM-07_PEROXISOMAL_SERINE_POOL",
+          "interaction": "metabolite_flux",
+          "label": "serine export",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_PEROXISOMAL_SERINE_POOL_HPR_GLYCERATE_REDUCTASE_metabolite_flux",
+          "source": "PMM-07_PEROXISOMAL_SERINE_POOL",
+          "target": "PMM-07_HPR_GLYCERATE_REDUCTASE",
+          "interaction": "metabolite_flux",
+          "label": "reduction",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_HPR_GLYCERATE_REDUCTASE_DIT1_GLYCERATE_IMPORT_metabolite_flux",
+          "source": "PMM-07_HPR_GLYCERATE_REDUCTASE",
+          "target": "PMM-07_DIT1_GLYCERATE_IMPORT",
+          "interaction": "metabolite_flux",
+          "label": "glycerate export",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_DIT1_GLYCERATE_IMPORT_GLYCERATE_KINASE_GLYK_metabolite_flux",
+          "source": "PMM-07_DIT1_GLYCERATE_IMPORT",
+          "target": "PMM-07_GLYCERATE_KINASE_GLYK",
+          "interaction": "metabolite_flux",
+          "label": "glycerate import",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-07_GLYCERATE_KINASE_GLYK_THREE_PGA_CALVIN_RETURN_metabolite_flux",
+          "source": "PMM-07_GLYCERATE_KINASE_GLYK",
+          "target": "PMM-07_THREE_PGA_CALVIN_RETURN",
+          "interaction": "metabolite_flux",
+          "label": "3-PGA return",
+          "map_id": "PMM-07"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_STROMA_H2O2_CORE_STROMULE_ELONGATION_ACTIN_activates",
+          "source": "PMM-08_STROMA_H2O2_CORE",
+          "target": "PMM-08_STROMULE_ELONGATION_ACTIN",
+          "interaction": "activates",
+          "label": "ROS elongation",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_STROMULE_ELONGATION_ACTIN_STROMULE_CHANNEL_activates",
+          "source": "PMM-08_STROMULE_ELONGATION_ACTIN",
+          "target": "PMM-08_STROMULE_CHANNEL",
+          "interaction": "activates",
+          "label": "actin tracking",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_STROMULE_CHANNEL_DIRECT_H2O2_CONDUIT_activates",
+          "source": "PMM-08_STROMULE_CHANNEL",
+          "target": "PMM-08_DIRECT_H2O2_CONDUIT",
+          "interaction": "activates",
+          "label": "stromal conduit",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_DIRECT_H2O2_CONDUIT_NUCLEAR_ENVELOPE_RECEPTOR_activates",
+          "source": "PMM-08_DIRECT_H2O2_CONDUIT",
+          "target": "PMM-08_NUCLEAR_ENVELOPE_RECEPTOR",
+          "interaction": "activates",
+          "label": "nuclear docking",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_NUCLEAR_ENVELOPE_RECEPTOR_LOCALIZED_NUCLEOPLASM_H2O2_metabolite_flux",
+          "source": "PMM-08_NUCLEAR_ENVELOPE_RECEPTOR",
+          "target": "PMM-08_LOCALIZED_NUCLEOPLASM_H2O2",
+          "interaction": "metabolite_flux",
+          "label": "H2O2 delivery",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_VAP27_TETHER_COMPLEX_MEAM_LIPID_TRANSFER_activates",
+          "source": "PMM-08_VAP27_TETHER_COMPLEX",
+          "target": "PMM-08_MEAM_LIPID_TRANSFER",
+          "interaction": "activates",
+          "label": "15-30 nm tether",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_MEAM_LIPID_TRANSFER_OMM_VDAC_JUNCTION_metabolite_flux",
+          "source": "PMM-08_MEAM_LIPID_TRANSFER",
+          "target": "PMM-08_OMM_VDAC_JUNCTION",
+          "interaction": "metabolite_flux",
+          "label": "lipid transfer",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_VAP27_TETHER_COMPLEX_MEAM_CALCIUM_FLUX_activates",
+          "source": "PMM-08_VAP27_TETHER_COMPLEX",
+          "target": "PMM-08_MEAM_CALCIUM_FLUX",
+          "interaction": "activates",
+          "label": "Ca2+ microdomain",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_MEAM_CALCIUM_FLUX_OMM_VDAC_JUNCTION_metabolite_flux",
+          "source": "PMM-08_MEAM_CALCIUM_FLUX",
+          "target": "PMM-08_OMM_VDAC_JUNCTION",
+          "interaction": "metabolite_flux",
+          "label": "VDAC flux",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-08_OMM_VDAC_JUNCTION_MITO_LOCALIZED_CA_MICRODOMAIN_activates",
+          "source": "PMM-08_OMM_VDAC_JUNCTION",
+          "target": "PMM-08_MITO_LOCALIZED_CA_MICRODOMAIN",
+          "interaction": "activates",
+          "label": "MCU uptake",
+          "map_id": "PMM-08"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_OXPHOS_CORE_PLANT_CONSERVED_OXPHOS_activates",
+          "source": "PMM-09_HUMAN_OXPHOS_CORE",
+          "target": "PMM-09_PLANT_CONSERVED_OXPHOS",
+          "interaction": "activates",
+          "label": "orthology (58-85% id)",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_TCA_CYCLE_PLANT_CONSERVED_TCA_activates",
+          "source": "PMM-09_HUMAN_TCA_CYCLE",
+          "target": "PMM-09_PLANT_CONSERVED_TCA",
+          "interaction": "activates",
+          "label": "homology",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_POLG_REPLICATION_DUAL_TARGETED_POLIA_B_activates",
+          "source": "PMM-09_HUMAN_POLG_REPLICATION",
+          "target": "PMM-09_DUAL_TARGETED_POLIA_B",
+          "interaction": "activates",
+          "label": "dual-targeted",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_CONSERVED_OXPHOS_PLANT_AOX_INNOVATION_activates",
+          "source": "PMM-09_PLANT_CONSERVED_OXPHOS",
+          "target": "PMM-09_PLANT_AOX_INNOVATION",
+          "interaction": "activates",
+          "label": "AOX bypass",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_CONSERVED_OXPHOS_PLANT_NDH_BYPASSES_activates",
+          "source": "PMM-09_PLANT_CONSERVED_OXPHOS",
+          "target": "PMM-09_PLANT_NDH_BYPASSES",
+          "interaction": "activates",
+          "label": "NDH bypass",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_CONSERVED_OXPHOS_PLANT_CA_DOMAIN_COMPLEX_I_activates",
+          "source": "PMM-09_PLANT_CONSERVED_OXPHOS",
+          "target": "PMM-09_PLANT_CA_DOMAIN_COMPLEX_I",
+          "interaction": "activates",
+          "label": "CA assembly",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_CONSERVED_TCA_PLANT_GDC_PHOTORESP_activates",
+          "source": "PMM-09_PLANT_CONSERVED_TCA",
+          "target": "PMM-09_PLANT_GDC_PHOTORESP",
+          "interaction": "activates",
+          "label": "photorespiration",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_HUMAN_OXPHOS_CORE_HUMAN_DISEASE_INSIGHTS_activates",
+          "source": "PMM-09_HUMAN_OXPHOS_CORE",
+          "target": "PMM-09_HUMAN_DISEASE_INSIGHTS",
+          "interaction": "activates",
+          "label": "pathology",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-09_PLANT_AOX_INNOVATION_AOX_HUMAN_RESCUE_POTENTIAL_activates",
+          "source": "PMM-09_PLANT_AOX_INNOVATION",
+          "target": "PMM-09_AOX_HUMAN_RESCUE_POTENTIAL",
+          "interaction": "activates",
+          "label": "AOX rescue",
+          "map_id": "PMM-09"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_SENSORY_INPUT_PM_CALCIUM_GATE_activates",
+          "source": "PMM-10_PM_SENSORY_INPUT",
+          "target": "PMM-10_PM_CALCIUM_GATE",
+          "interaction": "activates",
+          "label": "stretch gating",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_CALCIUM_GATE_PM_RBOHD_BURST_activates",
+          "source": "PMM-10_PM_CALCIUM_GATE",
+          "target": "PMM-10_PM_RBOHD_BURST",
+          "interaction": "activates",
+          "label": "CPK activation",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_CALCIUM_GATE_CHLORO_PHOTOSYSTEMS_activates",
+          "source": "PMM-10_PM_CALCIUM_GATE",
+          "target": "PMM-10_CHLORO_PHOTOSYSTEMS",
+          "interaction": "activates",
+          "label": "Ca2+ wave",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_CALCIUM_GATE_MITO_RESPIRATORY_CHAIN_activates",
+          "source": "PMM-10_PM_CALCIUM_GATE",
+          "target": "PMM-10_MITO_RESPIRATORY_CHAIN",
+          "interaction": "activates",
+          "label": "MCU uptake",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_RBOHD_BURST_CHLORO_PRR_HUB_activates",
+          "source": "PMM-10_PM_RBOHD_BURST",
+          "target": "PMM-10_CHLORO_PRR_HUB",
+          "interaction": "activates",
+          "label": "H2O2 (PIP2;1)",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PM_RBOHD_BURST_MITO_MRR_ANAC017_activates",
+          "source": "PMM-10_PM_RBOHD_BURST",
+          "target": "PMM-10_MITO_MRR_ANAC017",
+          "interaction": "activates",
+          "label": "rhomboid cleavage",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_CHLORO_RUBISCO_PEROXISOMAL_SHUTTLE_metabolite_flux",
+          "source": "PMM-10_CHLORO_RUBISCO",
+          "target": "PMM-10_PEROXISOMAL_SHUTTLE",
+          "interaction": "metabolite_flux",
+          "label": "glycolate (PLGG1)",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PEROXISOMAL_SHUTTLE_MITO_GDC_ENGINE_metabolite_flux",
+          "source": "PMM-10_PEROXISOMAL_SHUTTLE",
+          "target": "PMM-10_MITO_GDC_ENGINE",
+          "interaction": "metabolite_flux",
+          "label": "glycine import",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_MITO_GDC_ENGINE_PEROXISOMAL_SHUTTLE_metabolite_flux",
+          "source": "PMM-10_MITO_GDC_ENGINE",
+          "target": "PMM-10_PEROXISOMAL_SHUTTLE",
+          "interaction": "metabolite_flux",
+          "label": "serine shuttle",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_PEROXISOMAL_SHUTTLE_CHLORO_RUBISCO_metabolite_flux",
+          "source": "PMM-10_PEROXISOMAL_SHUTTLE",
+          "target": "PMM-10_CHLORO_RUBISCO",
+          "interaction": "metabolite_flux",
+          "label": "glycerate return",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_CHLORO_PRR_HUB_NUCLEAR_PHANGS_TARGETS_activates",
+          "source": "PMM-10_CHLORO_PRR_HUB",
+          "target": "PMM-10_NUCLEAR_PHANGS_TARGETS",
+          "interaction": "activates",
+          "label": "PAP/GUN1 signal",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_MITO_MRR_ANAC017_NUCLEAR_MDRE_TARGETS_activates",
+          "source": "PMM-10_MITO_MRR_ANAC017",
+          "target": "PMM-10_NUCLEAR_MDRE_TARGETS",
+          "interaction": "activates",
+          "label": "MDRE binding",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_NUCLEAR_MDRE_TARGETS_GENOME_REPROGRAMMING_activates",
+          "source": "PMM-10_NUCLEAR_MDRE_TARGETS",
+          "target": "PMM-10_GENOME_REPROGRAMMING",
+          "interaction": "activates",
+          "label": "stress proteome",
+          "map_id": "PMM-10"
+        }
+      },
+      {
+        "data": {
+          "id": "PMM-10_NUCLEAR_PHANGS_TARGETS_GENOME_REPROGRAMMING_activates",
+          "source": "PMM-10_NUCLEAR_PHANGS_TARGETS",
+          "target": "PMM-10_GENOME_REPROGRAMMING",
+          "interaction": "activates",
+          "label": "PhANG tuning",
+          "map_id": "PMM-10"
+        }
+      }
+    ]
+  }
+}
