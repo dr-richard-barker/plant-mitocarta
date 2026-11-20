@@ -3135,29 +3135,54 @@ def build_retrograde_page():
         `;
 
         // Nodes
+        function wrapCircuitText(str, maxChars) {{
+          const words = String(str || '').split(/\\s+/);
+          const lines = [];
+          let cur = '';
+          for (const w of words) {{
+            if ((cur + ' ' + w).trim().length <= maxChars) {{
+              cur = (cur + ' ' + w).trim();
+            }} else {{
+              if (cur) lines.push(cur);
+              cur = w;
+            }}
+          }}
+          if (cur) lines.push(cur);
+          return lines;
+        }}
+
         let nodesHtml = '';
         c.steps.forEach((s, idx) => {{
+          const titleLines = wrapCircuitText(s.label, s.glyph ? 16 : 19).slice(0, 2);
+          const subLines = wrapCircuitText(s.sublabel, 22).slice(0, 2);
+          const totalH = titleLines.length * 11 + subLines.length * 9.5;
+          let curY = s.y - totalH / 2 + 8;
+          const titleSvg = titleLines.map(ln => {{
+            const el = `<text x="${{s.x - 42}}" y="${{curY.toFixed(1)}}" font-family="Inter, sans-serif" font-weight="700" font-size="9.5" fill="var(--text)" class="node-title">${{ln}}</text>`;
+            curY += 11;
+            return el;
+          }}).join('');
+          const subSvg = subLines.map(ln => {{
+            const el = `<text x="${{s.x - 42}}" y="${{curY.toFixed(1)}}" font-family="Inter, sans-serif" font-size="7.8" fill="var(--text-soft)" class="node-sub">${{ln}}</text>`;
+            curY += 9.5;
+            return el;
+          }}).join('');
+
           nodesHtml += `
             <g id="svg-node-${{idx}}" class="circuit-node" onclick="goToStep(${{idx}})" style="cursor: pointer;">
               <!-- Node pill container -->
-              <rect x="${{s.x - 70}}" y="${{s.y - 24}}" width="140" height="48" rx="8"
+              <rect x="${{s.x - 77}}" y="${{s.y - 30}}" width="154" height="60" rx="8"
                     fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5" class="node-box" />
               <!-- Step number badge -->
-              <circle cx="${{s.x - 52}}" cy="${{s.y}}" r="12" fill="${{c.theme_color}}" />
-              <text x="${{s.x - 52}}" y="${{s.y + 4}}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="11" fill="#ffffff">
+              <circle cx="${{s.x - 59}}" cy="${{s.y}}" r="11" fill="${{c.theme_color}}" />
+              <text x="${{s.x - 59}}" y="${{s.y + 4}}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="10.5" fill="#ffffff">
                 ${{idx + 1}}
               </text>
-              <!-- Label -->
-              <text x="${{s.x - 34}}" y="${{s.y - 4}}" font-family="Inter, sans-serif" font-weight="700" font-size="10" fill="var(--text)" class="node-title">
-                ${{s.label}}
-              </text>
-              <!-- Sublabel -->
-              <text x="${{s.x - 34}}" y="${{s.y + 10}}" font-family="Inter, sans-serif" font-size="8.2" fill="var(--text-soft)" class="node-sub">
-                ${{s.sublabel}}
-              </text>
+              ${{titleSvg}}
+              ${{subSvg}}
               <!-- Mechanism Glyph Chip -->
               ${{s.glyph ? `
-                <g transform="translate(${{s.x + 50}}, ${{s.y - 10}})">
+                <g transform="translate(${{s.x + 62}}, ${{s.y - 16}}) scale(0.85)">
                   <use href="#glyph-${{s.glyph}}" />
                 </g>
               ` : ''}}
@@ -3526,7 +3551,9 @@ def render_complex_i_synteny_svg():
     
     <!-- Inner Mitochondrial Membrane Strip -->
     <rect x="26" y="240" width="433" height="65" fill="url(#c1MemGrad)" stroke="var(--primary, #3b82f6)" stroke-width="1" stroke-dasharray="4,3"/>
-    <text x="36" y="276" font-size="10" font-weight="600" fill="var(--primary, #2563eb)">Inner Membrane (IMM)</text>
+    <text x="36" y="266" font-size="9.5" font-weight="600" fill="var(--primary, #2563eb)">Inner</text>
+    <text x="36" y="278" font-size="9.5" font-weight="600" fill="var(--primary, #2563eb)">Membrane</text>
+    <text x="36" y="290" font-size="9.5" font-weight="600" fill="var(--primary, #2563eb)">(IMM)</text>
 
     <text x="36" y="330" font-size="10" font-weight="700" fill="var(--text-soft, #64748b)" letter-spacing="0.05em">INTERMEMBRANE SPACE (P-SIDE)</text>
 
@@ -3579,9 +3606,11 @@ def render_complex_i_synteny_svg():
     
     <!-- Inner Mitochondrial Membrane Strip -->
     <rect x="501" y="240" width="433" height="65" fill="url(#c1MemGrad)" stroke="var(--primary, #3b82f6)" stroke-width="1" stroke-dasharray="4,3"/>
-    <text x="511" y="276" font-size="10" font-weight="600" fill="var(--primary, #2563eb)">Inner Membrane (IMM)</text>
+    <text x="511" y="266" font-size="9.5" font-weight="600" fill="var(--primary, #2563eb)">Inner</text>
+    <text x="511" y="278" font-size="9.5" font-weight="600" fill="var(--primary, #2563eb)">Membrane</text>
+    <text x="511" y="290" font-size="9.5" font-weight="600" fill="var(--primary, #2563eb)">(IMM)</text>
 
-    <text x="511" y="330" font-size="10" font-weight="700" fill="var(--text-soft, #64748b)" letter-spacing="0.05em">INTERMEMBRANE SPACE (P-SIDE)</text>
+    <text x="620" y="334" font-size="10" font-weight="700" fill="var(--text-soft, #64748b)" letter-spacing="0.05em">INTERMEMBRANE SPACE (P-SIDE)</text>
 
     <!-- N-Module -->
     <g class="c1-module c1-n-module" data-module="n-module" onclick="selectComplexIModule('n-module')">

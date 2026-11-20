@@ -19,9 +19,11 @@ SVG_FONT_STACK = "'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 
 PAD_X = 14.0
 PAD_Y = 10.0
+NODE_HEADER_H = 16.0
+NODE_BADGE_ROW_H = 20.0
 LINE_SPACING = 1.25
 MIN_GUTTER_X = 104.0
-MIN_GUTTER_Y = 48.0
+MIN_GUTTER_Y = 58.0
 COMPARTMENT_PAD = 24.0
 CANVAS_MARGIN = 44.0
 
@@ -154,7 +156,8 @@ def size_node(
         w = max(w, measure(token, font_size, weight)[0])
 
     w = max(w + 2 * PAD_X, min_width)
-    h = h + 2 * PAD_Y
+    # Reserve top header band for evidence tier badge so label text never overlaps it
+    h = h + 2 * PAD_Y + NODE_HEADER_H
     return Box(0, 0, w, h), lines, sublines
 
 
@@ -224,6 +227,15 @@ def rounded_path_d(pts: list[tuple[float, float]], r: float = 8.0) -> str:
     return " ".join(d)
 
 
+def _boxes_overlap(b1: Box, b2: Box, margin: float = 2.0) -> bool:
+    return not (
+        b1.x2 + margin <= b2.x
+        or b2.x2 + margin <= b1.x
+        or b1.y2 + margin <= b2.y
+        or b2.y2 + margin <= b1.y
+    )
+
+
 def route_edge(
     src_node: LaidOutNode,
     dst_node: LaidOutNode,
@@ -233,6 +245,9 @@ def route_edge(
     edge_label: str = "",
     edge_kind: str = "generic",
     highway_slot: int = 0,
+    port_offset_y: float = 0.0,
+    occupied_labels: list[Box] | None = None,
+    extra_obstacles: Sequence[Box] = (),
 ) -> EdgeRoute:
     """
     Route an edge between two nodes with guaranteed zero collisions against intermediate nodes.
@@ -243,36 +258,39 @@ def route_edge(
     s_col, s_row = src_node.col, src_node.row
     d_col, d_row = dst_node.col, dst_node.row
 
+    s_cy = s_box.cy + port_offset_y
+    d_cy = d_box.cy + port_offset_y
+
     # 1. Compute path waypoints and label anchor position
     if s_col == d_col:
         # Same lane connection
         if abs(d_row - s_row) == 1:
             # Immediately adjacent rows
             if d_row > s_row:
-                p1 = (s_box.cx, s_box.y2)
-                p2 = (d_box.cx, d_box.y)
+                p1 = (s_box.cx + port_offset_y, s_box.y2)
+                p2 = (d_box.cx + port_offset_y, d_box.y)
             else:
-                p1 = (s_box.cx, s_box.y)
-                p2 = (d_box.cx, d_box.y2)
+                p1 = (s_box.cx + port_offset_y, s_box.y)
+                p2 = (d_box.cx + port_offset_y, d_box.y2)
             pts = [p1, p2]
-            lx, ly = (s_box.cx, (p1[1] + p2[1]) / 2.0)
+            lx, ly = (p1[0], (p1[1] + p2[1]) / 2.0)
         else:
             # Skipping rows: arc through right gutter of lane
-            gx = s_box.x2 + (gutter_x / 2.0)
-            p1 = (s_box.x2, s_box.cy)
-            p2 = (d_box.x2, d_box.cy)
+            gx = s_box.x2 + (gutter_x / 2.0) + (port_offset_y * 0.5)
+            p1 = (s_box.x2, s_cy)
+            p2 = (d_box.x2, d_cy)
             pts = [p1, (gx, p1[1]), (gx, p2[1]), p2]
             lx, ly = (gx, (p1[1] + p2[1]) / 2.0)
     elif abs(d_col - s_col) == 1:
         # Adjacent lanes connection: transit inside the inter-lane gutter
         if d_col > s_col:
-            p1 = (s_box.x2, s_box.cy)
-            p2 = (d_box.x, d_box.cy)
-            gx = (s_box.x2 + d_box.x) / 2.0
+            p1 = (s_box.x2, s_cy)
+            p2 = (d_box.x, d_cy)
+            gx = (s_box.x2 + d_box.x) / 2.0 + (port_offset_y * 0.5)
         else:
-            p1 = (s_box.x, s_box.cy)
-            p2 = (d_box.x2, d_box.cy)
-            gx = (s_box.x + d_box.x2) / 2.0
+            p1 = (s_box.x, s_cy)
+            p2 = (d_box.x2, d_cy)
+            gx = (s_box.x + d_box.x2) / 2.0 + (port_offset_y * 0.5)
         pts = [p1, (gx, p1[1]), (gx, p2[1]), p2]
         lx, ly = (gx, (p1[1] + p2[1]) / 2.0)
     else:
@@ -281,22 +299,22 @@ def route_edge(
         all_max_y = max((n.box.y2 for n in all_nodes), default=s_box.y2)
 
         if d_col > s_col:
-            p1 = (s_box.x2, s_box.cy)
+            p1 = (s_box.x2, s_cy)
             g1_x = s_box.x2 + (gutter_x / 2.0)
-            p2 = (d_box.x, d_box.cy)
+            p2 = (d_box.x, d_cy)
             g2_x = d_box.x - (gutter_x / 2.0)
         else:
-            p1 = (s_box.x, s_box.cy)
+            p1 = (s_box.x, s_cy)
             g1_x = s_box.x - (gutter_x / 2.0)
-            p2 = (d_box.x2, d_box.cy)
+            p2 = (d_box.x2, d_cy)
             g2_x = d_box.x2 + (gutter_x / 2.0)
 
-        avg_y = (s_box.cy + d_box.cy) / 2.0
-        slot_offset = (highway_slot % 4) * 12.0
+        avg_y = (s_cy + d_cy) / 2.0
+        slot_offset = (highway_slot % 4) * 16.0
         if avg_y < (all_min_y + all_max_y) / 2.0:
-            y_hw = all_min_y - 28.0 - slot_offset
+            y_hw = all_min_y - 78.0 - slot_offset
         else:
-            y_hw = all_max_y + 28.0 + slot_offset
+            y_hw = all_max_y + 48.0 + slot_offset
 
         pts = [p1, (g1_x, p1[1]), (g1_x, y_hw), (g2_x, y_hw), (g2_x, p2[1]), p2]
         lx, ly = ((g1_x + g2_x) / 2.0, y_hw)
@@ -304,12 +322,44 @@ def route_edge(
     # 2. Build SVG path with rounded fillets
     path_d = rounded_path_d(pts, r=8.0)
 
-    # 3. Size and position label background scrim
+    # 3. Size and position label background scrim, resolving any vertical/horizontal collisions
     label_box = None
     lines: list[str] = []
     if edge_label:
         lines, w, h = text_block(edge_label, 9.5, max_width=80.0, weight="bold")
-        label_box = Box(lx - (w / 2.0) - 4.0, ly - (h / 2.0) - 3.0, w + 8.0, h + 6.0)
+        bw, bh = w + 8.0, h + 6.0
+        obstacles: list[Box] = [n.box for n in all_nodes]
+        obstacles.extend(extra_obstacles)
+        if occupied_labels:
+            obstacles.extend(occupied_labels)
+
+        best_lx, best_ly = lx, ly
+        candidate_offsets = [
+            (0.0, 0.0),
+            (0.0, -22.0),
+            (0.0, 22.0),
+            (0.0, -44.0),
+            (0.0, 44.0),
+            (0.0, -66.0),
+            (0.0, 66.0),
+            (-36.0, -22.0),
+            (36.0, 22.0),
+            (-36.0, 22.0),
+            (36.0, -22.0),
+        ]
+        for dx, dy in candidate_offsets:
+            cx, cy = lx + dx, ly + dy
+            if cy - bh / 2.0 < 76.0:
+                continue
+            cand = Box(cx - bw / 2.0, cy - bh / 2.0, bw, bh)
+            if not any(_boxes_overlap(cand, obs, margin=3.0) for obs in obstacles):
+                best_lx, best_ly = cx, cy
+                break
+
+        lx, ly = best_lx, best_ly
+        label_box = Box(lx - bw / 2.0, ly - bh / 2.0, bw, bh)
+        if occupied_labels is not None:
+            occupied_labels.append(label_box)
 
     return EdgeRoute(
         path_d=path_d,

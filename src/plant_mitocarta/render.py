@@ -283,6 +283,7 @@ def render_map_svg(
         )
 
     # Compartments with Authentic Bilayer Fills & Header Tags
+    comp_header_boxes: list[Box] = []
     for comp in map_model.compartments:
         border_color = COMPARTMENT_HEX.get(comp.id, "#666666")
         is_membrane = comp.id in MEMBRANE_COMPARTMENTS
@@ -299,11 +300,11 @@ def render_map_svg(
                 f'<rect class="pmc-bilayer-rail" x="{comp.box.x + 1.0:.1f}" y="{comp.box.y + 1.0:.1f}" '
                 f'width="{comp.box.w - 2.0:.1f}" height="{rail_h:.1f}" rx="6" />'
             )
-            # Membrane architecture badge
+            # Membrane architecture badge stacked below compartment label row
             tag_text = mem_meta["tag"]
             tag_w = len(tag_text) * 5.2 + 12.0
             tag_x = comp.box.x + comp.box.w - tag_w - 12.0
-            tag_y = comp.box.y + 18.0
+            tag_y = comp.box.y + 34.0
             out.append(
                 f'<g class="pmc-membrane-tag-group">'
                 f'<rect class="pmc-membrane-chip-bg" x="{tag_x:.1f}" y="{tag_y:.1f}" '
@@ -311,12 +312,14 @@ def render_map_svg(
                 f'<text class="pmc-membrane-badge" x="{tag_x + tag_w / 2.0:.1f}" y="{tag_y + 9.5:.1f}" text-anchor="middle">{esc(tag_text)}</text>'
                 f'</g>'
             )
+            comp_header_boxes.append(Box(tag_x, tag_y, tag_w, 13.0))
 
-        label_y = comp.box.y + (28.0 if is_membrane else 18.0)
+        label_y = comp.box.y + (28.0 if is_membrane else 22.0)
         out.append(
             f'<text class="pmc-compartment-label" x="{comp.box.x + 12:.1f}" y="{label_y:.1f}">'
             f"{esc(comp.label)}</text>"
         )
+        comp_header_boxes.append(Box(comp.box.x + 10.0, label_y - 12.0, min(comp.box.w - 20.0, len(comp.label) * 7.5 + 10.0), 16.0))
 
     # Holo-Complex I Super-Assembly grouping halo in PMM-01
     nodes_by_id = {n.id: n for n in map_model.nodes}
@@ -325,7 +328,7 @@ def render_map_svg(
         ca = nodes_by_id.get("COMPLEX_I_CA_DOMAIN")
         if core and ca:
             hx = min(core.box.x, ca.box.x) - 10.0
-            hy = min(core.box.y, ca.box.y) - 10.0
+            hy = min(core.box.y, ca.box.y) - 8.0
             hw = max(core.box.x2, ca.box.x2) - hx + 10.0
             hh = max(core.box.y2, ca.box.y2) - hy + 10.0
             out.append(
@@ -339,9 +342,22 @@ def render_map_svg(
 
     # Edges with Intelligent Collision-Free Routing & Scrim Chips
     highway_slot = 0
+    occupied_labels: list[Box] = []
+    pair_counts: dict[tuple[str, str], int] = {}
+    for edge in map_model.edges:
+        pair_key = (min(edge.src, edge.dst), max(edge.src, edge.dst))
+        pair_counts[pair_key] = pair_counts.get(pair_key, 0) + 1
+    pair_seen: dict[tuple[str, str], int] = {}
+
     for edge in map_model.edges:
         src_node = nodes_by_id[edge.src]
         dst_node = nodes_by_id[edge.dst]
+
+        pair_key = (min(edge.src, edge.dst), max(edge.src, edge.dst))
+        idx_in_pair = pair_seen.get(pair_key, 0)
+        pair_seen[pair_key] = idx_in_pair + 1
+        total_in_pair = pair_counts[pair_key]
+        port_offset_y = (idx_in_pair - (total_in_pair - 1) / 2.0) * 18.0 if total_in_pair > 1 else 0.0
 
         if abs(dst_node.col - src_node.col) >= 2:
             highway_slot += 1
@@ -354,6 +370,9 @@ def render_map_svg(
             edge_label=edge.label,
             edge_kind=edge.kind,
             highway_slot=highway_slot,
+            port_offset_y=port_offset_y,
+            occupied_labels=occupied_labels,
+            extra_obstacles=comp_header_boxes,
         )
 
         edge_class = f"pmc-edge pmc-edge-{edge.kind}"
@@ -438,11 +457,12 @@ def render_map_svg(
                 )
                 bx += bw + 5.0
 
-        # Label lines
-        center_y = b.cy - (9.0 if badges else 0.0)
-        text_y = center_y - (len(node.lines) - 1) * 7.5
-        if node.sublines:
-            text_y -= len(node.sublines) * 6.0
+        # Label lines vertically centered in the safe band between tier badge and bottom pills
+        top_y = b.y + 24.0
+        bot_y = b.y2 - (24.0 if badges else 10.0)
+        total_text_h = len(node.lines) * 15.0 + len(node.sublines) * 12.0
+        band_cy = (top_y + bot_y) / 2.0
+        text_y = band_cy - (total_text_h / 2.0) + 11.0
 
         for line in node.lines:
             out.append(

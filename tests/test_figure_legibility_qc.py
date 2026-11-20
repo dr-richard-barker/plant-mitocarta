@@ -168,7 +168,7 @@ def test_retrograde_circuit_architectures_and_legibility():
         assert len(c["steps"]) >= 5, f"Circuit {key} has fewer than 5 steps"
 
         steps = c["steps"]
-        w, h = 140, 48  # Node dimensions
+        w, h = 154, 60  # Node dimensions
 
         for i in range(len(steps)):
             s1 = steps[i]
@@ -841,6 +841,142 @@ def test_research_data_export_suite_qc():
     assert "plant_mitocarta_pathways.gmt" in index_html, "Missing link to pathways.gmt in index.html"
     assert "plant_mitocarta_network.cyjs" in index_html, "Missing link to network.cyjs in index.html"
     assert "Bioinformatics &amp; Systems Biology Bulk Data Exports" in index_html, "Missing export suite header in index.html"
+
+
+def _boxes_overlap(b1, b2) -> bool:
+    return not (b1.x2 <= b2.x or b2.x2 <= b1.x or b1.y2 <= b2.y or b2.y2 <= b1.y)
+
+
+def test_maps_zero_badge_or_header_overlaps():
+    """Ensure tier badges, bottom pills, compartment labels, and membrane tags never overlap text or nodes."""
+    from plant_mitocarta.layout import Box
+    from plant_mitocarta.render import MEMBRANE_COMPARTMENTS
+
+    maps = compile_all_maps()
+    issues = []
+
+    for m in maps:
+        for n in m.nodes:
+            b = n.box
+            tier_box = Box(b.x2 - 28.0, b.y + 6.0, 22.0, 13.0)
+            badges = getattr(n, "badges", [])
+            badges_box = Box(b.x, b.y2 - 19.0, b.w, 13.0) if badges else None
+
+            top_y = b.y + 24.0
+            bot_y = b.y2 - (24.0 if badges else 10.0)
+            total_text_h = len(n.lines) * 15.0 + len(n.sublines) * 12.0
+            band_cy = (top_y + bot_y) / 2.0
+            text_y = band_cy - (total_text_h / 2.0) + 11.0
+
+            if text_y - 10.0 < b.y + 2.0:
+                issues.append(f"{m.id} {n.id}: label overflows top edge")
+            if n.lines:
+                lw, _ = measure(n.lines[0], n.font_size, n.font_weight)
+                line_box = Box(b.cx - lw / 2.0, text_y - 10.0, lw, 12.5)
+                if _boxes_overlap(line_box, tier_box):
+                    issues.append(f"{m.id} {n.id}: first label line overlaps tier badge")
+
+            cur_y = text_y + len(n.lines) * 15.0
+            last_sub_bottom = (
+                cur_y + (len(n.sublines) - 1) * 12.0 + 2.5
+                if n.sublines
+                else text_y + (len(n.lines) - 1) * 15.0 + 3.0
+            )
+            if badges_box and last_sub_bottom > badges_box.y - 1.0:
+                issues.append(f"{m.id} {n.id}: text overlaps bottom badges")
+            if last_sub_bottom > b.y2 - 2.0:
+                issues.append(f"{m.id} {n.id}: text overflows bottom edge")
+
+        for comp in m.compartments:
+            is_mem = comp.id in MEMBRANE_COMPARTMENTS
+            label_y = comp.box.y + (28.0 if is_mem else 22.0)
+            lw, _ = measure(comp.label.upper(), 11.0, "bold")
+            c_lbl_box = Box(comp.box.x + 12.0, label_y - 10.0, lw, 13.0)
+            if is_mem:
+                tag_text = MEMBRANE_COMPARTMENTS[comp.id]["tag"]
+                tag_w = len(tag_text) * 5.2 + 12.0
+                tag_x = comp.box.x + comp.box.w - tag_w - 12.0
+                tag_y = comp.box.y + 34.0
+                tag_box = Box(tag_x, tag_y, tag_w, 13.0)
+                if _boxes_overlap(c_lbl_box, tag_box):
+                    issues.append(f"{m.id} {comp.id}: compartment label overlaps membrane tag")
+                for n in m.nodes:
+                    if _boxes_overlap(tag_box, n.box):
+                        issues.append(f"{m.id} {comp.id}: membrane tag overlaps node {n.id}")
+            for n in m.nodes:
+                if _boxes_overlap(c_lbl_box, n.box):
+                    issues.append(f"{m.id} {comp.id}: compartment label overlaps node {n.id}")
+
+    assert not issues, "Found badge/header overlaps:\n" + "\n".join(issues)
+
+
+def test_maps_zero_edge_label_overlaps():
+    """Ensure edge label chips never overlap nodes, compartment headers, map title/subtitle, or other edge labels."""
+    from plant_mitocarta.layout import Box, MIN_GUTTER_X, route_edge
+    from plant_mitocarta.render import MEMBRANE_COMPARTMENTS
+
+    maps = compile_all_maps()
+    issues = []
+
+    for m in maps:
+        comp_header_boxes = []
+        for comp in m.compartments:
+            is_mem = comp.id in MEMBRANE_COMPARTMENTS
+            label_y = comp.box.y + (28.0 if is_mem else 22.0)
+            lw, _ = measure(comp.label.upper(), 11.0, "bold")
+            comp_header_boxes.append(Box(comp.box.x + 12.0, label_y - 10.0, lw, 13.0))
+            if is_mem:
+                tag_text = MEMBRANE_COMPARTMENTS[comp.id]["tag"]
+                tag_w = len(tag_text) * 5.2 + 12.0
+                tag_x = comp.box.x + comp.box.w - tag_w - 12.0
+                comp_header_boxes.append(Box(tag_x, comp.box.y + 34.0, tag_w, 13.0))
+
+        occupied_labels = []
+        highway_slot = 0
+        nodes_by_id = {n.id: n for n in m.nodes}
+        pair_counts = {}
+        for e in m.edges:
+            k = (min(e.src, e.dst), max(e.src, e.dst))
+            pair_counts[k] = pair_counts.get(k, 0) + 1
+        pair_seen = {}
+
+        for e in m.edges:
+            sn, dn = nodes_by_id[e.src], nodes_by_id[e.dst]
+            k = (min(e.src, e.dst), max(e.src, e.dst))
+            idx = pair_seen.get(k, 0)
+            pair_seen[k] = idx + 1
+            tot = pair_counts[k]
+            poff = (idx - (tot - 1) / 2.0) * 18.0 if tot > 1 else 0.0
+            if abs(dn.col - sn.col) >= 2:
+                highway_slot += 1
+            r = route_edge(
+                sn,
+                dn,
+                m.nodes,
+                gutter_x=MIN_GUTTER_X,
+                edge_label=e.label,
+                edge_kind=e.kind,
+                highway_slot=highway_slot,
+                port_offset_y=poff,
+                occupied_labels=occupied_labels,
+                extra_obstacles=comp_header_boxes,
+            )
+            if r.label_box:
+                lb = r.label_box
+                if lb.y < 75.0:
+                    issues.append(f"{m.id} {e.src}->{e.dst}: edge label overlaps title/subtitle (y={lb.y:.1f})")
+                for n in m.nodes:
+                    if _boxes_overlap(lb, n.box):
+                        issues.append(f"{m.id} {e.src}->{e.dst}: edge label overlaps node {n.id}")
+                for chb in comp_header_boxes:
+                    if _boxes_overlap(lb, chb):
+                        issues.append(f"{m.id} {e.src}->{e.dst}: edge label overlaps compartment header")
+                for prev_lb in occupied_labels[:-1]:
+                    if _boxes_overlap(lb, prev_lb):
+                        issues.append(f"{m.id} {e.src}->{e.dst}: edge label overlaps another edge label")
+
+    assert not issues, "Found edge label overlaps:\n" + "\n".join(issues)
+
 
 
 

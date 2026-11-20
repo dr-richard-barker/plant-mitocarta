@@ -148,7 +148,7 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
     node_boxes: dict[str, Box] = {}
 
     start_x = CANVAS_MARGIN + 20.0
-    start_y = 110.0  # Room for title/subtitle and overhead highway
+    start_y = 160.0  # Room for title/subtitle and overhead highway corridors
 
     current_x = start_x
     max_h_overall = 0.0
@@ -209,14 +209,14 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
             if badges:
                 total_badges_w = sum(len(b[0]) * 5.6 + 12.0 for b in badges) + max(0, len(badges) - 1) * 6.0
                 box.w = max(box.w, total_badges_w + 2 * PAD_X)
-                box.h += 18.0
+                box.h += 20.0
 
             temp_sized.append((nid, box, lines, sublines, lane_id, row_idx, pmco_id, tier, desc, badges))
 
         lane_max_w = max([pref_w] + [item[1].w for item in temp_sized])
 
         # Pass 2: Place all nodes with uniform width in this lane
-        current_y = start_y + 36.0
+        current_y = start_y + 52.0
         for nid, box, lines, sublines, l_id, row_idx, pmco_id, tier, desc, badges in temp_sized:
             box.w = lane_max_w
             box.x = current_x
@@ -257,7 +257,7 @@ def compile_map(source: dict[str, Any], ontology: Ontology) -> Map:
         if not boxes:
             continue
         min_x = min(b.x for b in boxes) - COMPARTMENT_PAD
-        min_y = min(b.y for b in boxes) - COMPARTMENT_PAD - 12.0
+        min_y = min(b.y for b in boxes) - COMPARTMENT_PAD - 34.0
         max_x = max(b.x2 for b in boxes) + COMPARTMENT_PAD
         max_y = max(b.y2 for b in boxes) + COMPARTMENT_PAD
         comp_box = Box(min_x, min_y, max_x - min_x, max_y - min_y)
