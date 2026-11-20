@@ -978,6 +978,75 @@ def test_maps_zero_edge_label_overlaps():
     assert not issues, "Found edge label overlaps:\n" + "\n".join(issues)
 
 
+def test_zenodo_and_citation_release_readiness_qc():
+    """ABAI QC Check 24: Verify Zenodo metadata, CITATION.cff, dual licensing, and release assets."""
+    import json
+    import yaml
+
+    # 1. Verify .zenodo.json
+    zenodo_path = ROOT / ".zenodo.json"
+    assert zenodo_path.exists(), ".zenodo.json is missing in repository root"
+    with open(zenodo_path, "r", encoding="utf-8") as f:
+        zenodo_meta = json.load(f)
+
+    assert zenodo_meta.get("title"), "Missing title in .zenodo.json"
+    assert zenodo_meta.get("upload_type") == "dataset", "upload_type must be 'dataset'"
+    assert zenodo_meta.get("version") == "0.1.0", "version must match 0.1.0"
+    assert zenodo_meta.get("access_right") == "open", "access_right must be 'open'"
+    assert zenodo_meta.get("license") == "CC-BY-4.0", "license in .zenodo.json should be 'CC-BY-4.0'"
+
+    creators = zenodo_meta.get("creators", [])
+    assert len(creators) >= 1, "Must have at least 1 creator in .zenodo.json"
+    creator_names = [c.get("name", "") for c in creators]
+    assert any("Barker" in name for name in creator_names), "Richard Barker must be in creators"
+
+    related_ids = zenodo_meta.get("related_identifiers", [])
+    assert len(related_ids) >= 5, "Must list related identifiers (GitHub, OSDR studies, DOIs)"
+    rel_urls = [r.get("identifier", "") for r in related_ids]
+    assert any("github.com" in u for u in rel_urls), "Must include GitHub repo in related_identifiers"
+    assert any("OSD-120" in u for u in rel_urls), "Must include NASA OSDR studies in related_identifiers"
+
+    # 2. Verify CITATION.cff
+    cff_path = ROOT / "CITATION.cff"
+    assert cff_path.exists(), "CITATION.cff is missing in repository root"
+    with open(cff_path, "r", encoding="utf-8") as f:
+        cff_meta = yaml.safe_load(f)
+
+    assert cff_meta.get("cff-version") == "1.2.0", "CITATION.cff must declare cff-version 1.2.0"
+    assert cff_meta.get("version") == "0.1.0", "CITATION.cff version must match 0.1.0"
+    assert cff_meta.get("title"), "Missing title in CITATION.cff"
+    assert len(cff_meta.get("authors", [])) >= 1, "Must have authors in CITATION.cff"
+
+    # 3. Verify Licenses (MIT for software, CC-BY-4.0 for data & ontology)
+    license_code_path = ROOT / "LICENSE"
+    license_data_path = ROOT / "LICENSE-DATA"
+    assert license_code_path.exists() and len(license_code_path.read_text(encoding="utf-8")) > 100
+    assert license_data_path.exists() and len(license_data_path.read_text(encoding="utf-8")) > 100
+    assert "MIT" in license_code_path.read_text(encoding="utf-8")
+    assert "CC-BY-4.0" in license_data_path.read_text(encoding="utf-8")
+
+    # 4. Verify Catalog Manifest version sync
+    cat_path = ROOT / "catalog" / "manifest.json"
+    assert cat_path.exists()
+    with open(cat_path, "r", encoding="utf-8") as f:
+        cat_meta = json.load(f)
+    assert cat_meta.get("version") == "0.1.0"
+    assert cat_meta.get("totals", {}).get("maps") == 10
+    assert cat_meta.get("totals", {}).get("digital_doubles") == 4
+
+    # 5. Verify Bulk Data Downloads Suite
+    downloads_dir = ROOT / "docs" / "downloads"
+    for exp_file in [
+        "plant_mitocarta_all_loci.tsv",
+        "plant_mitocarta_pathways.gmt",
+        "plant_mitocarta_network.cyjs",
+    ]:
+        fp = downloads_dir / exp_file
+        assert fp.exists(), f"Download file {exp_file} missing in docs/downloads/"
+        assert fp.stat().st_size > 1000, f"Download file {exp_file} is suspiciously small"
+
+
+
 
 
 

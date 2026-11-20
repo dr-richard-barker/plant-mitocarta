@@ -7,6 +7,7 @@ Built to investigate organellar retrograde signaling, plant-specific bioenergeti
 Grounded in the formal spatial relational semantics of the **Gene Ontology Cellular Component Ontology (GO-CCO)** and **Subcellular Anatomy Ontology (SAO)** ([PMC3852282](https://pmc.ncbi.nlm.nih.gov/articles/PMC3852282/)), and benchmarked against Arabidopsis subcellular proteomics from [SUBA5](https://suba.live/).
 
 🌐 **Interactive CoSE Atlas & Digital Doubles**: [https://dr-richard-barker.github.io/plant-mitocarta/](https://dr-richard-barker.github.io/plant-mitocarta/)
+📦 **Zenodo Archive & Deposit**: [https://zenodo.org/communities/astrobotany](https://zenodo.org/communities/astrobotany) (Release v0.1.0)
 
 ---
 
@@ -115,7 +116,7 @@ Plant_Mitocarta/
 ### 1. Installation
 
 ```bash
-git clone https://github.com/Plant-MitoCarta/plant-mitocarta.git
+git clone https://github.com/dr-richard-barker/plant-mitocarta.git
 cd plant-mitocarta
 
 python3 -m venv .venv
@@ -152,6 +153,25 @@ Open `docs/index.html` in any modern web browser or host via GitHub Pages.
 * **Photorespiratory 3-Organelle Loop**: Bauwe et al., *Trends Plant Sci* 2010. [doi:10.1016/j.tplants.2010.05.006](https://doi.org/10.1016/j.tplants.2010.05.006)
 * **Stromule Nuclear Docking**: Caplan et al., *Dev Cell* 2015. [doi:10.1016/j.devcel.2015.05.011](https://doi.org/10.1016/j.devcel.2015.05.011)
 * **RBOHD Systemic ROS Wave**: Miller et al., *Sci Signal* 2009. [doi:10.1126/scisignal.2000448](https://doi.org/10.1126/scisignal.2000448)
+
+---
+
+## Citation & Zenodo Release
+
+If you use Plant MitoCarta in your research, please cite:
+
+```bibtex
+@software{barker2026plantmitocarta,
+  author       = {Barker, Richard and {Plant MitoCarta Consortium}},
+  title        = {{Plant MitoCarta & Inter-Organellar Bioenergetic Atlas: Subcellular Digital Doubles, Retrograde Signaling Circuits, and Multi-Omics Spaceflight Projections}},
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {v0.1.0},
+  url          = {https://github.com/dr-richard-barker/plant-mitocarta}
+}
+```
+
+See [CITATION.cff](file:///Users/drb_laptop/Documents/Plant_Mitocarta/CITATION.cff) and [.zenodo.json](file:///Users/drb_laptop/Documents/Plant_Mitocarta/.zenodo.json) for machine-readable metadata.
 
 ---
 

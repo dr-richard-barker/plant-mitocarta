@@ -1,0 +1,100 @@
+{
+  "title": "Plant MitoCarta & Inter-Organellar Bioenergetic Atlas: Subcellular Digital Doubles, Retrograde Signaling Circuits, and Multi-Omics Spaceflight Projections",
+  "description": "<p><strong>Plant MitoCarta</strong> is a computable, identifier-bound cross-compartment ontology, digital double suite, and multi-omics projection toolkit for plant mitochondria, chloroplasts, the nucleus, and the plasma membrane in <em>Arabidopsis thaliana</em>.</p>\n<p>It provides an open, reproducible framework for investigating organellar retrograde signaling, plant-specific bioenergetic innovations, and cross-species synteny with the mammalian <strong>Broad MitoCarta 3.0</strong>, with direct projection of microgravity multi-omics from the <strong>NASA Open Science Data Repository (OSDR)</strong>.</p>\n<h3>Key Components & Capabilities:</h3>\n<ul>\n  <li><strong>Four Subcellular Digital Doubles</strong>: Mitochondria (Complexes I&ndash;V, plant-specific bypasses AOX1a-d, type II NDA/NDB/NDC dehydrogenases, Complex I CA domain, UCP1, TCA cycle, and GDC photorespiratory complex), Chloroplast (PSI, PSII, Cyt b6f, RuBisCO, retrograde branches SAL1-PAP, GUN1-ABI4, MEcPP, EXECUTER 1/2), Nucleus (MDRE promoters, ANAC017/013, ABI4, GLK1/2, XRN2/3), and Plasma Membrane (mechanosensitive/gravity channels MSL10, MCA, PIEZO; wall receptor kinases FERONIA, WAK1; NADPH oxidases RBOHD/F; GLR3.3/3.6 Ca2+ channels; PIP2;1 aquaporins).</li>\n  <li><strong>Five Operational Signaling Circuits</strong>: Mito-to-Nucleus MRR (ANAC017/013 proteolytic cascade), Plasto-to-Nucleus PRR (SAL1-PAP & GUN1 retrograde axis), Plasma Membrane Perception &amp; Systemic Waves (GLR Ca2+ spikes and RBOHD apoplastic ROS bursts), Three-Organelle Photorespiratory Conduit (chloroplast&ndash;peroxisome&ndash;mitochondria flux), and Physical Inter-Organellar Contact Sites (MEAMs and nuclear-docked stromules).</li>\n  <li><strong>Broad MitoCarta 3.0 Cross-Kingdom Synthesis</strong>: Systematic synteny alignment across 149 human MitoPathways organized into 4 evolutionary quadrants (Conserved Catalytic Core, Plant-Specific Innovations, Dual-Targeted Divergence, and Expanded Plant Families).</li>\n  <li><strong>SUBA5 Subcellular Proteomics Consensus</strong>: Rigorous integration of SUBAcon consensus scores, mass spectrometry evidence, confocal GFP imaging, and dual-targeting classification.</li>\n  <li><strong>NASA OSDR Spaceflight Ingestion</strong>: Direct ingestion and projection of microgravity transcriptomics and proteomics from OSD-120 (ISS APEX-03-2 root vs. shoot), OSD-427, OSD-37, OSD-782, and OSD-8 without synthetic fallback.</li>\n  <li><strong>Standardized Interoperable Data Formats</strong>: Systems Biology Graphical Notation (SBGN-ML), vector SVG maps, GSEA-compatible GMT gene sets (21 sets), Cytoscape network graph (CYJS), and comprehensive multi-omics locus tables (TSV).</li>\n</ul>\n<p><strong>Licensing:</strong> Code is released under the MIT License; ontology, maps, and datasets are released under Creative Commons Attribution 4.0 International (CC-BY-4.0).</p>",
+  "upload_type": "dataset",
+  "publication_date": "2026-11-19",
+  "version": "0.1.0",
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "creators": [
+    {
+      "name": "Barker, Richard",
+      "affiliation": "University of Wisconsin-Madison / Plant MitoCarta Consortium",
+      "orcid": "0000-0002-4752-6071"
+    },
+    {
+      "name": "Plant MitoCarta Consortium",
+      "affiliation": "University of Wisconsin-Madison"
+    }
+  ],
+  "keywords": [
+    "plant mitochondria",
+    "MitoCarta 3.0",
+    "retrograde signaling",
+    "chloroplast",
+    "digital doubles",
+    "SUBA5",
+    "NASA OSDR",
+    "spaceflight omics",
+    "microgravity",
+    "Arabidopsis thaliana",
+    "systems biology",
+    "bioenergetics",
+    "photorespiration",
+    "alternative oxidase",
+    "SBGN"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/dr-richard-barker/plant-mitocarta",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://dr-richard-barker.github.io/plant-mitocarta/",
+      "relation": "isDocumentedBy",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3852282/",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://doi.org/10.1093/nar/gkaa1011",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://doi.org/10.1093/nar/gkac981",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-120",
+      "relation": "references",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-427",
+      "relation": "references",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-37",
+      "relation": "references",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-782",
+      "relation": "references",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-8",
+      "relation": "references",
+      "resource_type": "dataset"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "astrobotany"
+    },
+    {
+      "identifier": "nasa-osdr"
+    },
+    {
+      "identifier": "zenodo"
+    }
+  ]
+}

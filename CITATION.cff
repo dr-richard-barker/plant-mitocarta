@@ -2,8 +2,9 @@ cff-version: 1.2.0
 message: "If you use this atlas, digital doubles, or code in your research, please cite it as below."
 title: "Plant MitoCarta & Inter-Organellar Bioenergetic Atlas"
 version: 0.1.0
-date-released: 2026-09-29
-url: "https://github.com/Plant-MitoCarta/plant-mitocarta"
+date-released: 2026-11-19
+url: "https://github.com/dr-richard-barker/plant-mitocarta"
+repository-code: "https://github.com/dr-richard-barker/plant-mitocarta"
 authors:
   - family-names: "Barker"
     given-names: "Richard"
