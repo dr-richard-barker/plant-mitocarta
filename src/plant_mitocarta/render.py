@@ -116,7 +116,7 @@ def get_stylesheet() -> str:
         :root {{
           --pmc-bg: #ffffff;
           --pmc-ink: #111827;
-          --pmc-ink-soft: #4b5563;
+          --pmc-ink-soft: #374151;
           --pmc-node-fill: #f9fafb;
           --pmc-node-stroke: #111827;
           --pmc-hairline: #9ca3af;
@@ -129,7 +129,7 @@ def get_stylesheet() -> str:
         :root[data-theme="dark"], body.dark-mode {{
           --pmc-bg: #0b0f19;
           --pmc-ink: #f3f4f6;
-          --pmc-ink-soft: #9ca3af;
+          --pmc-ink-soft: #cbd5e1;
           --pmc-node-fill: #151d2e;
           --pmc-node-stroke: #f3f4f6;
           --pmc-hairline: #4b5563;
@@ -161,12 +161,13 @@ def get_stylesheet() -> str:
 
         /* Evidence Tier Badges */
         .tier-badge-bg {{ rx: 3px; ry: 3px; stroke-width: 0.5px; }}
-        .tier-badge-T1 {{ fill: #0072b2; stroke: #005a8e; }}
-        .tier-badge-T2 {{ fill: #009e73; stroke: #007a59; }}
+        .tier-badge-T1 {{ fill: #005a8e; stroke: #00446b; }}
+        .tier-badge-T2 {{ fill: #007a59; stroke: #005c43; }}
         .tier-badge-T3 {{ fill: #e69f00; stroke: #b87f00; }}
         .tier-badge-T4 {{ fill: #56b4e9; stroke: #3a97cc; }}
-        .tier-badge-T5 {{ fill: #9ca3af; stroke: #6b7280; }}
+        .tier-badge-T5 {{ fill: #e5e7eb; stroke: #9ca3af; }}
         .tier-badge-text {{ font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }}
+        .tier-badge-text-dark {{ fill: #111827; }}
 
         /* Bilayer Membrane Architectural Rails & Badges */
         .pmc-bilayer-rail {{ fill: url(#pmc-bilayer-pattern); opacity: 0.85; }}
@@ -177,8 +178,8 @@ def get_stylesheet() -> str:
         /* Holo-Complex I Super-Assembly Halo in PMM-01 */
         .pmc-superassembly-halo {{ fill: rgba(0, 114, 178, 0.035); stroke: #0072b2; stroke-width: 1.5px; stroke-dasharray: 5 4; rx: 10px; ry: 10px; }}
         :root[data-theme="dark"] .pmc-superassembly-halo, body.dark-mode .pmc-superassembly-halo {{ fill: rgba(86, 180, 233, 0.06); stroke: #56b4e9; }}
-        .pmc-superassembly-title {{ font-size: 9px; font-weight: 800; letter-spacing: 0.05em; fill: #0072b2; font-family: {SVG_FONT_STACK}; }}
-        :root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title {{ fill: #56b4e9; }}
+        .pmc-superassembly-title {{ font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; fill: #005a8e; font-family: {SVG_FONT_STACK}; }}
+        :root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title {{ fill: #7dd3fc; }}
 
         /* Catalytic Cofactor & Innovation Badges */
         .pmc-pill-bg {{ stroke-width: 0.8px; rx: 3px; ry: 3px; }}
@@ -341,6 +342,7 @@ def render_map_svg(
             )
 
     # Edges with Intelligent Collision-Free Routing & Scrim Chips
+    # Emit all edge paths first, then all scrim-shielded edge label chips on top
     highway_slot = 0
     occupied_labels: list[Box] = []
     pair_counts: dict[tuple[str, str], int] = {}
@@ -349,6 +351,7 @@ def render_map_svg(
         pair_counts[pair_key] = pair_counts.get(pair_key, 0) + 1
     pair_seen: dict[tuple[str, str], int] = {}
 
+    edge_label_elems: list[str] = []
     for edge in map_model.edges:
         src_node = nodes_by_id[edge.src]
         dst_node = nodes_by_id[edge.dst]
@@ -392,21 +395,23 @@ def render_map_svg(
             f'<path class="{edge_class}" d="{route.path_d}" marker-end="{marker}" />'
         )
 
-        # Scrim-shielded edge label chip
+        # Scrim-shielded edge label chip (deferred to render above all paths)
         if route.label_box and route.label_lines:
             lb = route.label_box
-            out.append('<g class="pmc-edge-label-group">')
-            out.append(
+            edge_label_elems.append('<g class="pmc-edge-label-group">')
+            edge_label_elems.append(
                 f'<rect class="pmc-edge-label-bg" x="{lb.x:.1f}" y="{lb.y:.1f}" '
                 f'width="{lb.w:.1f}" height="{lb.h:.1f}" rx="4" />'
             )
             txt_y = lb.cy - ((len(route.label_lines) - 1) * 5.0) + 3.0
             for line in route.label_lines:
-                out.append(
+                edge_label_elems.append(
                     f'<text class="pmc-edge-label" x="{route.label_pos[0]:.1f}" y="{txt_y:.1f}">{esc(line)}</text>'
                 )
                 txt_y += 10.5
-            out.append("</g>")
+            edge_label_elems.append("</g>")
+
+    out.extend(edge_label_elems)
 
     # Nodes with Evidence Tier Badge Pills & Catalytic Badges
     for node in map_model.nodes:
@@ -424,11 +429,12 @@ def render_map_svg(
         badge_w, badge_h = 22.0, 13.0
         badge_x = b.x2 - badge_w - 6.0
         badge_y = b.y + 6.0
+        tier_text_cls = "tier-badge-text tier-badge-text-dark" if node.evidence_tier in ("T3", "T4", "T5") else "tier-badge-text"
         out.append(
             f'<g class="pmc-tier-badge-group">'
             f'<rect class="tier-badge-bg {tier_badge_class}" x="{badge_x:.1f}" y="{badge_y:.1f}" '
             f'width="{badge_w:.1f}" height="{badge_h:.1f}" />'
-            f'<text class="tier-badge-text" x="{badge_x + badge_w / 2.0:.1f}" y="{badge_y + 9.5:.1f}">{esc(node.evidence_tier)}</text>'
+            f'<text class="{tier_text_cls}" x="{badge_x + badge_w / 2.0:.1f}" y="{badge_y + 9.5:.1f}">{esc(node.evidence_tier)}</text>'
             f'</g>'
         )
 

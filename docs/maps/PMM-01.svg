@@ -3,7 +3,7 @@
 :root {
   --pmc-bg: #ffffff;
   --pmc-ink: #111827;
-  --pmc-ink-soft: #4b5563;
+  --pmc-ink-soft: #374151;
   --pmc-node-fill: #f9fafb;
   --pmc-node-stroke: #111827;
   --pmc-hairline: #9ca3af;
@@ -16,7 +16,7 @@
 :root[data-theme="dark"], body.dark-mode {
   --pmc-bg: #0b0f19;
   --pmc-ink: #f3f4f6;
-  --pmc-ink-soft: #9ca3af;
+  --pmc-ink-soft: #cbd5e1;
   --pmc-node-fill: #151d2e;
   --pmc-node-stroke: #f3f4f6;
   --pmc-hairline: #4b5563;
@@ -48,12 +48,13 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 
 /* Evidence Tier Badges */
 .tier-badge-bg { rx: 3px; ry: 3px; stroke-width: 0.5px; }
-.tier-badge-T1 { fill: #0072b2; stroke: #005a8e; }
-.tier-badge-T2 { fill: #009e73; stroke: #007a59; }
+.tier-badge-T1 { fill: #005a8e; stroke: #00446b; }
+.tier-badge-T2 { fill: #007a59; stroke: #005c43; }
 .tier-badge-T3 { fill: #e69f00; stroke: #b87f00; }
 .tier-badge-T4 { fill: #56b4e9; stroke: #3a97cc; }
-.tier-badge-T5 { fill: #9ca3af; stroke: #6b7280; }
+.tier-badge-T5 { fill: #e5e7eb; stroke: #9ca3af; }
 .tier-badge-text { font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }
+.tier-badge-text-dark { fill: #111827; }
 
 /* Bilayer Membrane Architectural Rails & Badges */
 .pmc-bilayer-rail { fill: url(#pmc-bilayer-pattern); opacity: 0.85; }
@@ -64,8 +65,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 /* Holo-Complex I Super-Assembly Halo in PMM-01 */
 .pmc-superassembly-halo { fill: rgba(0, 114, 178, 0.035); stroke: #0072b2; stroke-width: 1.5px; stroke-dasharray: 5 4; rx: 10px; ry: 10px; }
 :root[data-theme="dark"] .pmc-superassembly-halo, body.dark-mode .pmc-superassembly-halo { fill: rgba(86, 180, 233, 0.06); stroke: #56b4e9; }
-.pmc-superassembly-title { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; fill: #0072b2; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #56b4e9; }
+.pmc-superassembly-title { font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; fill: #005a8e; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #7dd3fc; }
 
 /* Catalytic Cofactor & Innovation Badges */
 .pmc-pill-bg { stroke-width: 0.8px; rx: 3px; ry: 3px; }
@@ -135,125 +136,125 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-compartment-label" x="1057.8" y="182.0">Mitochondrial Cristae</text>
 <g class="pmc-superassembly-group" id="group-holo-complex-i"><rect class="pmc-superassembly-halo" x="348.8" y="204.0" width="251.0" height="244.2" /><text class="pmc-superassembly-title" x="356.8" y="201.0">PLANT HOLO-COMPLEX I (L-SHAPED SUPER-ASSEMBLY)</text></g>
 <path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 244.1 L 301.8 244.1 Q 306.8 244.1 306.8 249.1 L 306.8 249.1 Q 306.8 254.1 311.8 254.1 L 358.8 254.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 244.1 L 298.8 244.1 Q 306.8 244.1 306.8 252.1 L 306.8 672.4 Q 306.8 680.4 314.8 680.4 L 358.8 680.4" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-activates" d="M 474.2 296.1 L 474.2 354.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 366.2 L 298.8 366.2 Q 306.8 366.2 306.8 374.2 L 306.8 530.3 Q 306.8 538.3 314.8 538.3 L 358.8 538.3" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 254.1 L 636.8 254.1 Q 641.8 254.1 641.8 249.1 L 641.8 249.1 Q 641.8 244.1 646.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 538.3 L 633.8 538.3 Q 641.8 538.3 641.8 530.3 L 641.8 252.1 Q 641.8 244.1 649.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 680.4 L 633.8 680.4 Q 641.8 680.4 641.8 672.4 L 641.8 252.1 Q 641.8 244.1 649.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 822.6 L 633.8 822.6 Q 641.8 822.6 641.8 814.6 L 641.8 252.1 Q 641.8 244.1 649.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 829.8 276.1 L 829.8 334.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 693.8 377.8 L 649.8 377.8 Q 641.8 377.8 641.8 369.8 L 641.8 126.0 Q 641.8 118.0 633.8 118.0 L 314.8 118.0 Q 306.8 118.0 306.8 126.0 L 306.8 480.3 Q 306.8 488.3 298.8 488.3 L 254.8 488.3" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 965.8 244.1 L 1012.8 244.1 Q 1017.8 244.1 1017.8 249.1 L 1017.8 249.1 Q 1017.8 254.1 1022.8 254.1 L 1069.8 254.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 1180.6 296.1 L 1180.6 354.1" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 1180.6 418.2 L 1180.6 476.2" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-electron_transfer" d="M 1069.8 518.3 L 1025.8 518.3 Q 1017.8 518.3 1017.8 510.3 L 1017.8 110.0 Q 1017.8 102.0 1009.8 102.0 L 314.8 102.0 Q 306.8 102.0 306.8 110.0 L 306.8 480.3 Q 306.8 488.3 298.8 488.3 L 254.8 488.3" marker-end="url(#pmc-arrow-blue)" />
+<path class="pmc-edge pmc-edge-activates" d="M 589.8 254.1 L 633.8 254.1 Q 641.8 254.1 641.8 246.1 L 641.8 94.0 Q 641.8 86.0 649.8 86.0 L 1335.5 86.0 Q 1343.5 86.0 1343.5 94.0 L 1343.5 236.1 Q 1343.5 244.1 1351.5 244.1 L 1395.5 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 1291.5 254.1 L 1338.5 254.1 Q 1343.5 254.1 1343.5 249.1 L 1343.5 249.1 Q 1343.5 244.1 1348.5 244.1 L 1395.5 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 1291.5 518.3 L 1335.5 518.3 Q 1343.5 518.3 1343.5 510.3 L 1343.5 252.1 Q 1343.5 244.1 1351.5 244.1 L 1395.5 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-inhibits" d="M 1500.5 276.1 L 1500.5 334.1" marker-end="url(#pmc-inhibit)" />
+<path class="pmc-edge pmc-edge-activates" d="M 589.8 254.1 L 633.8 254.1 Q 641.8 254.1 641.8 246.1 L 641.8 142.0 Q 641.8 134.0 649.8 134.0 L 1335.5 134.0 Q 1343.5 134.0 1343.5 142.0 L 1343.5 494.4 Q 1343.5 502.4 1351.5 502.4 L 1395.5 502.4" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 1291.5 254.1 L 1335.5 254.1 Q 1343.5 254.1 1343.5 262.1 L 1343.5 494.4 Q 1343.5 502.4 1351.5 502.4 L 1395.5 502.4" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 1500.5 548.5 L 1500.5 606.5" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="293.9" y="240.1" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="306.8" y="252.1">2e−</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 244.1 L 298.8 244.1 Q 306.8 244.1 306.8 252.1 L 306.8 672.4 Q 306.8 680.4 314.8 680.4 L 358.8 680.4" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="285.1" y="453.3" width="43.3" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="306.8" y="465.2">bypass</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 474.2 296.1 L 474.2 354.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="440.8" y="310.2" width="66.9" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="474.2" y="323.1">structural</text>
 <text class="pmc-edge-label" x="474.2" y="333.6">assembly</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 254.8 366.2 L 298.8 366.2 Q 306.8 366.2 306.8 374.2 L 306.8 530.3 Q 306.8 538.3 314.8 538.3 L 358.8 538.3" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="293.9" y="421.3" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="306.8" y="433.2">2e−</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 254.1 L 636.8 254.1 Q 641.8 254.1 641.8 249.1 L 641.8 249.1 Q 641.8 244.1 646.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="628.9" y="240.1" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="641.8" y="252.1">QH2</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 538.3 L 633.8 538.3 Q 641.8 538.3 641.8 530.3 L 641.8 252.1 Q 641.8 244.1 649.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="628.9" y="382.2" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="641.8" y="394.2">QH2</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 680.4 L 633.8 680.4 Q 641.8 680.4 641.8 672.4 L 641.8 252.1 Q 641.8 244.1 649.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="628.9" y="453.3" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="641.8" y="465.2">QH2</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 589.8 822.6 L 633.8 822.6 Q 641.8 822.6 641.8 814.6 L 641.8 252.1 Q 641.8 244.1 649.8 244.1 L 693.8 244.1" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="628.9" y="524.4" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="641.8" y="536.3">QH2</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 829.8 276.1 L 829.8 334.1" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="790.4" y="296.2" width="78.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="829.8" y="308.1">relief valve</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 693.8 377.8 L 649.8 377.8 Q 641.8 377.8 641.8 369.8 L 641.8 126.0 Q 641.8 118.0 633.8 118.0 L 314.8 118.0 Q 306.8 118.0 306.8 126.0 L 306.8 480.3 Q 306.8 488.3 298.8 488.3 L 254.8 488.3" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="434.9" y="109.1" width="78.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="474.2" y="121.0">4e− -&gt; 2 H2O</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 965.8 244.1 L 1012.8 244.1 Q 1017.8 244.1 1017.8 249.1 L 1017.8 249.1 Q 1017.8 254.1 1022.8 254.1 L 1069.8 254.1" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="993.1" y="240.1" width="49.2" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1017.8" y="252.1">Q cycle</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 1180.6 296.1 L 1180.6 354.1" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1167.8" y="316.2" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1180.6" y="328.1">1e−</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 1180.6 418.2 L 1180.6 476.2" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1167.8" y="438.3" width="25.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1180.6" y="450.2">1e−</text>
 </g>
-<path class="pmc-edge pmc-edge-electron_transfer" d="M 1069.8 518.3 L 1025.8 518.3 Q 1017.8 518.3 1017.8 510.3 L 1017.8 110.0 Q 1017.8 102.0 1009.8 102.0 L 314.8 102.0 Q 306.8 102.0 306.8 110.0 L 306.8 480.3 Q 306.8 488.3 298.8 488.3 L 254.8 488.3" marker-end="url(#pmc-arrow-blue)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="622.9" y="93.1" width="78.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="662.2" y="105.0">4e− -&gt; 2 H2O</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 589.8 254.1 L 633.8 254.1 Q 641.8 254.1 641.8 246.1 L 641.8 94.0 Q 641.8 86.0 649.8 86.0 L 1335.5 86.0 Q 1343.5 86.0 1343.5 94.0 L 1343.5 236.1 Q 1343.5 244.1 1351.5 244.1 L 1395.5 244.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="956.2" y="77.1" width="72.8" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="992.6" y="89.0">H+ gradient</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 1291.5 254.1 L 1338.5 254.1 Q 1343.5 254.1 1343.5 249.1 L 1343.5 249.1 Q 1343.5 244.1 1348.5 244.1 L 1395.5 244.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1307.1" y="240.1" width="72.8" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1343.5" y="252.1">H+ gradient</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 1291.5 518.3 L 1335.5 518.3 Q 1343.5 518.3 1343.5 510.3 L 1343.5 252.1 Q 1343.5 244.1 1351.5 244.1 L 1395.5 244.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1307.1" y="372.2" width="72.8" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1343.5" y="384.2">H+ gradient</text>
 </g>
-<path class="pmc-edge pmc-edge-inhibits" d="M 1500.5 276.1 L 1500.5 334.1" marker-end="url(#pmc-inhibit)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1467.0" y="290.2" width="66.9" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="1500.5" y="303.1">proton</text>
 <text class="pmc-edge-label" x="1500.5" y="313.6">uncoupling</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 589.8 254.1 L 633.8 254.1 Q 641.8 254.1 641.8 246.1 L 641.8 142.0 Q 641.8 134.0 649.8 134.0 L 1335.5 134.0 Q 1343.5 134.0 1343.5 142.0 L 1343.5 494.4 Q 1343.5 502.4 1351.5 502.4 L 1395.5 502.4" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="950.3" y="125.1" width="84.6" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="992.6" y="137.0">electron leak</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 1291.5 254.1 L 1335.5 254.1 Q 1343.5 254.1 1343.5 262.1 L 1343.5 494.4 Q 1343.5 502.4 1351.5 502.4 L 1395.5 502.4" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1301.2" y="347.3" width="84.6" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1343.5" y="359.2">electron leak</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 1500.5 548.5 L 1500.5 606.5" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1470.0" y="562.6" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="1500.5" y="575.5">stress</text>
 <text class="pmc-edge-label" x="1500.5" y="586.0">signaling</text>
 </g>
 <g class="pmc-node-group" id="node-MATRIX_NADH" data-node-id="MATRIX_NADH" tabindex="0" role="button" aria-label="MATRIX_NADH"><rect class="pmc-node tier-T4" x="64.0" y="212.0" width="190.8" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.8" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="237.8" y="227.5">T4</text></g>
 <text class="pmc-label" x="159.4" y="248.6">Matrix NADH Pool</text>
 <text class="pmc-sub" x="159.4" y="263.6">matrix redox couple</text>
 </g>
 <g class="pmc-node-group" id="node-SUCCINATE_POOL" data-node-id="SUCCINATE_POOL" tabindex="0" role="button" aria-label="SUCCINATE_POOL"><rect class="pmc-node tier-T4" x="64.0" y="334.1" width="190.8" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.8" y="349.6">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="237.8" y="349.6">T4</text></g>
 <text class="pmc-label" x="159.4" y="370.7">Succinate Pool</text>
 <text class="pmc-sub" x="159.4" y="385.7">TCA cycle intermediate</text>
 </g>
 <g class="pmc-node-group" id="node-O2_SUBSTRATE" data-node-id="O2_SUBSTRATE" tabindex="0" role="button" aria-label="O2_SUBSTRATE"><rect class="pmc-node tier-T4" x="64.0" y="456.2" width="190.8" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="462.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="237.8" y="471.8">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="226.8" y="462.2" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="237.8" y="471.8">T4</text></g>
 <text class="pmc-label" x="159.4" y="492.8">Molecular Oxygen (O2)</text>
 <text class="pmc-sub" x="159.4" y="507.8">electron acceptor</text>
 </g>
@@ -290,7 +291,7 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="474.2" y="835.1">NDB1/NDB2/NDB4 • IMS-facing</text>
 </g>
 <g class="pmc-node-group" id="node-UBIQUINONE_POOL" data-node-id="UBIQUINONE_POOL" tabindex="0" role="button" aria-label="UBIQUINONE_POOL"><rect class="pmc-node tier-T4" x="693.8" y="212.0" width="272.0" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="937.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="948.8" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="937.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="948.8" y="227.5">T4</text></g>
 <text class="pmc-label" x="829.8" y="248.6">Ubiquinone Pool (Q/QH2)</text>
 <text class="pmc-sub" x="829.8" y="263.6">membrane quinone</text>
 </g>
@@ -311,7 +312,7 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="1180.6" y="266.6">Q cycle</text>
 </g>
 <g class="pmc-node-group" id="node-CYTOCHROME_C" data-node-id="CYTOCHROME_C" tabindex="0" role="button" aria-label="CYTOCHROME_C"><rect class="pmc-node tier-T4" x="1069.8" y="354.1" width="221.8" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1263.5" y="360.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1274.5" y="369.6">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1263.5" y="360.1" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1274.5" y="369.6">T4</text></g>
 <text class="pmc-label" x="1180.6" y="390.7">Cytochrome c</text>
 <text class="pmc-sub" x="1180.6" y="405.7">mobile IMS carrier</text>
 </g>

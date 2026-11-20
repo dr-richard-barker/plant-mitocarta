@@ -3,7 +3,7 @@
 :root {
   --pmc-bg: #ffffff;
   --pmc-ink: #111827;
-  --pmc-ink-soft: #4b5563;
+  --pmc-ink-soft: #374151;
   --pmc-node-fill: #f9fafb;
   --pmc-node-stroke: #111827;
   --pmc-hairline: #9ca3af;
@@ -16,7 +16,7 @@
 :root[data-theme="dark"], body.dark-mode {
   --pmc-bg: #0b0f19;
   --pmc-ink: #f3f4f6;
-  --pmc-ink-soft: #9ca3af;
+  --pmc-ink-soft: #cbd5e1;
   --pmc-node-fill: #151d2e;
   --pmc-node-stroke: #f3f4f6;
   --pmc-hairline: #4b5563;
@@ -48,12 +48,13 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 
 /* Evidence Tier Badges */
 .tier-badge-bg { rx: 3px; ry: 3px; stroke-width: 0.5px; }
-.tier-badge-T1 { fill: #0072b2; stroke: #005a8e; }
-.tier-badge-T2 { fill: #009e73; stroke: #007a59; }
+.tier-badge-T1 { fill: #005a8e; stroke: #00446b; }
+.tier-badge-T2 { fill: #007a59; stroke: #005c43; }
 .tier-badge-T3 { fill: #e69f00; stroke: #b87f00; }
 .tier-badge-T4 { fill: #56b4e9; stroke: #3a97cc; }
-.tier-badge-T5 { fill: #9ca3af; stroke: #6b7280; }
+.tier-badge-T5 { fill: #e5e7eb; stroke: #9ca3af; }
 .tier-badge-text { font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }
+.tier-badge-text-dark { fill: #111827; }
 
 /* Bilayer Membrane Architectural Rails & Badges */
 .pmc-bilayer-rail { fill: url(#pmc-bilayer-pattern); opacity: 0.85; }
@@ -64,8 +65,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 /* Holo-Complex I Super-Assembly Halo in PMM-01 */
 .pmc-superassembly-halo { fill: rgba(0, 114, 178, 0.035); stroke: #0072b2; stroke-width: 1.5px; stroke-dasharray: 5 4; rx: 10px; ry: 10px; }
 :root[data-theme="dark"] .pmc-superassembly-halo, body.dark-mode .pmc-superassembly-halo { fill: rgba(86, 180, 233, 0.06); stroke: #56b4e9; }
-.pmc-superassembly-title { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; fill: #0072b2; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #56b4e9; }
+.pmc-superassembly-title { font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; fill: #005a8e; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #7dd3fc; }
 
 /* Catalytic Cofactor & Innovation Badges */
 .pmc-pill-bg { stroke-width: 0.8px; rx: 3px; ry: 3px; }
@@ -132,77 +133,77 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <rect class="pmc-compartment" x="700.8" y="154.0" width="285.2" height="580.6" stroke="#5c3407" />
 <text class="pmc-compartment-label" x="712.8" y="176.0">Mitochondrial Matrix</text>
 <path class="pmc-edge pmc-edge-metabolite_flux" d="M 174.9 276.1 L 174.9 334.1" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 174.9 410.8 L 174.9 468.8" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 285.8 507.1 L 329.8 507.1 Q 337.8 507.1 337.8 499.1 L 337.8 258.3 Q 337.8 250.3 345.8 250.3 L 389.8 250.3" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-activates" d="M 505.2 288.6 L 505.2 346.6" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 620.8 250.3 L 664.8 250.3 Q 672.8 250.3 672.8 258.3 L 672.8 500.6 Q 672.8 508.6 664.8 508.6 L 620.8 508.6" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 620.8 508.6 L 664.8 508.6 Q 672.8 508.6 672.8 500.6 L 672.8 262.1 Q 672.8 254.1 680.8 254.1 L 724.8 254.1" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 843.4 296.1 L 843.4 354.1" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-activates" d="M 962.0 254.1 L 1006.0 254.1 Q 1014.0 254.1 1014.0 262.1 L 1014.0 514.4 Q 1014.0 522.4 1006.0 522.4 L 962.0 522.4" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 843.4 568.5 L 843.4 626.5" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 962.0 386.2 L 1006.0 386.2 Q 1014.0 386.2 1014.0 378.2 L 1014.0 259.9 Q 1014.0 251.9 1022.0 251.9 L 1066.0 251.9" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1176.9 291.8 L 1176.9 349.8" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1287.8 389.6 L 1331.8 389.6 Q 1339.8 389.6 1339.8 381.6 L 1339.8 252.1 Q 1339.8 244.1 1347.8 244.1 L 1391.8 244.1" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1502.6 276.1 L 1502.6 334.1" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1502.6 398.2 L 1502.6 456.2" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="138.5" y="296.2" width="72.8" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="174.9" y="308.1">oxygenation</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 174.9 410.8 L 174.9 468.8" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="144.4" y="430.8" width="61.0" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="174.9" y="442.8">PGLP1 cut</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 285.8 507.1 L 329.8 507.1 Q 337.8 507.1 337.8 499.1 L 337.8 258.3 Q 337.8 250.3 345.8 250.3 L 389.8 250.3" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="307.2" y="363.8" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="337.8" y="376.7">glycolate</text>
 <text class="pmc-edge-label" x="337.8" y="387.2">import</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 505.2 288.6 L 505.2 346.6" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="471.8" y="302.8" width="66.9" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="505.2" y="315.6">H2O2</text>
 <text class="pmc-edge-label" x="505.2" y="326.1">generation</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 620.8 250.3 L 664.8 250.3 Q 672.8 250.3 672.8 258.3 L 672.8 500.6 Q 672.8 508.6 664.8 508.6 L 620.8 508.6" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="627.5" y="370.5" width="90.5" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="672.8" y="382.5">transamination</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 620.8 508.6 L 664.8 508.6 Q 672.8 508.6 672.8 500.6 L 672.8 262.1 Q 672.8 254.1 680.8 254.1 L 724.8 254.1" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="648.1" y="322.5" width="49.2" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="672.8" y="335.3">glycine</text>
 <text class="pmc-edge-label" x="672.8" y="345.8">import</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 843.4 296.1 L 843.4 354.1" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="804.0" y="316.2" width="78.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="843.4" y="328.1">THF transfer</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 962.0 254.1 L 1006.0 254.1 Q 1014.0 254.1 1014.0 262.1 L 1014.0 514.4 Q 1014.0 522.4 1006.0 522.4 L 962.0 522.4" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="974.7" y="373.3" width="78.7" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="1014.0" y="386.2">NADH + CO2 +</text>
 <text class="pmc-edge-label" x="1014.0" y="396.7">NH3</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 843.4 568.5 L 843.4 626.5" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="801.1" y="588.6" width="84.6" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="843.4" y="600.5">CO2 fix / ETC</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 962.0 386.2 L 1006.0 386.2 Q 1014.0 386.2 1014.0 378.2 L 1014.0 259.9 Q 1014.0 251.9 1022.0 251.9 L 1066.0 251.9" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="971.7" y="310.1" width="84.6" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1014.0" y="322.0">serine export</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1176.9 291.8 L 1176.9 349.8" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1146.4" y="311.8" width="61.0" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1176.9" y="323.8">reduction</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1287.8 389.6 L 1331.8 389.6 Q 1339.8 389.6 1339.8 381.6 L 1339.8 252.1 Q 1339.8 244.1 1347.8 244.1 L 1391.8 244.1" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1309.2" y="302.0" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="1339.8" y="314.8">glycerate</text>
 <text class="pmc-edge-label" x="1339.8" y="325.3">export</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1502.6 276.1 L 1502.6 334.1" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1472.1" y="290.2" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="1502.6" y="303.1">glycerate</text>
 <text class="pmc-edge-label" x="1502.6" y="313.6">import</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 1502.6 398.2 L 1502.6 456.2" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1463.3" y="418.3" width="78.7" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1502.6" y="430.2">3-PGA return</text>
@@ -213,7 +214,7 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="174.9" y="263.6">RuBP + O2 • oxygenase reaction</text>
 </g>
 <g class="pmc-node-group" id="node-CHLORO_2_PG_POOL" data-node-id="CHLORO_2_PG_POOL" tabindex="0" role="button" aria-label="CHLORO_2_PG_POOL"><rect class="pmc-node tier-T4" x="64.0" y="334.1" width="221.8" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="257.8" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="268.8" y="349.6">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="257.8" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="268.8" y="349.6">T4</text></g>
 <text class="pmc-label" x="174.9" y="370.9">2-Phosphoglycolate (2-PG)</text>
 <text class="pmc-sub" x="174.9" y="385.9">toxic intermediate •</text>
 <text class="pmc-sub" x="174.9" y="397.9">dephosphorylated</text>
@@ -225,18 +226,18 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="174.9" y="532.6">translocator</text>
 </g>
 <g class="pmc-node-group" id="node-GOX_OXIDASE" data-node-id="GOX_OXIDASE" tabindex="0" role="button" aria-label="GOX_OXIDASE"><rect class="pmc-node tier-T4" x="389.8" y="212.0" width="231.0" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="592.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="603.8" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="592.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="603.8" y="227.5">T4</text></g>
 <text class="pmc-label" x="505.2" y="248.8">Glycolate Oxidase (GOX)</text>
 <text class="pmc-sub" x="505.2" y="263.8">glycolate -&gt; glyoxylate • generates</text>
 <text class="pmc-sub" x="505.2" y="275.8">H2O2</text>
 </g>
 <g class="pmc-node-group" id="node-CATALASE_CAT2" data-node-id="CATALASE_CAT2" tabindex="0" role="button" aria-label="CATALASE_CAT2"><rect class="pmc-node tier-T4" x="389.8" y="346.6" width="231.0" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="592.8" y="352.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="603.8" y="362.1">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="592.8" y="352.6" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="603.8" y="362.1">T4</text></g>
 <text class="pmc-label" x="505.2" y="383.2">Catalase 2 (CAT2)</text>
 <text class="pmc-sub" x="505.2" y="398.2">scavenges peroxisomal H2O2</text>
 </g>
 <g class="pmc-node-group" id="node-GGT_AMINOTRANSFERASE" data-node-id="GGT_AMINOTRANSFERASE" tabindex="0" role="button" aria-label="GGT_AMINOTRANSFERASE"><rect class="pmc-node tier-T4" x="389.8" y="468.8" width="231.0" height="79.8" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="592.8" y="474.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="603.8" y="484.2">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="592.8" y="474.8" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="603.8" y="484.2">T4</text></g>
 <text class="pmc-label" x="505.2" y="505.6">Glutamate:Glyoxylate AT</text>
 <text class="pmc-label" x="505.2" y="520.6">(GGT)</text>
 <text class="pmc-sub" x="505.2" y="535.6">yields glycine</text>
@@ -253,7 +254,7 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="843.4" y="405.7">converts glycine -&gt; serine</text>
 </g>
 <g class="pmc-node-group" id="node-MATRIX_NADH_PRODUCTION" data-node-id="MATRIX_NADH_PRODUCTION" tabindex="0" role="button" aria-label="MATRIX_NADH_PRODUCTION"><rect class="pmc-node tier-T4" x="724.8" y="476.2" width="237.2" height="92.2" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="934.0" y="482.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="945.0" y="491.8">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="934.0" y="482.2" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="945.0" y="491.8">T4</text></g>
 <text class="pmc-label" x="843.4" y="513.4">Matrix NADH &amp; CO2 / NH3</text>
 <text class="pmc-label" x="843.4" y="528.4">Release</text>
 <text class="pmc-sub" x="843.4" y="543.4">feeds Complex I / AOX •</text>
@@ -266,13 +267,13 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="843.4" y="681.1">re-circulates photorespiratory CO2</text>
 </g>
 <g class="pmc-node-group" id="node-PEROXISOMAL_SERINE_POOL" data-node-id="PEROXISOMAL_SERINE_POOL" tabindex="0" role="button" aria-label="PEROXISOMAL_SERINE_POOL"><rect class="pmc-node tier-T4" x="1066.0" y="212.0" width="221.8" height="79.8" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1259.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1270.8" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1259.8" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1270.8" y="227.5">T4</text></g>
 <text class="pmc-label" x="1176.9" y="248.9">Serine Transport to</text>
 <text class="pmc-label" x="1176.9" y="263.9">Peroxisome</text>
 <text class="pmc-sub" x="1176.9" y="278.9">serine:glyoxylate AT</text>
 </g>
 <g class="pmc-node-group" id="node-HPR_GLYCERATE_REDUCTASE" data-node-id="HPR_GLYCERATE_REDUCTASE" tabindex="0" role="button" aria-label="HPR_GLYCERATE_REDUCTASE"><rect class="pmc-node tier-T4" x="1066.0" y="349.8" width="221.8" height="79.8" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1259.8" y="355.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="1270.8" y="365.2">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1259.8" y="355.8" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1270.8" y="365.2">T4</text></g>
 <text class="pmc-label" x="1176.9" y="386.6">Hydroxypyruvate Reductase</text>
 <text class="pmc-label" x="1176.9" y="401.6">(HPR)</text>
 <text class="pmc-sub" x="1176.9" y="416.6">yields glycerate • consumes NADH</text>
@@ -283,12 +284,12 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="1502.6" y="263.6">imports glycerate into stroma</text>
 </g>
 <g class="pmc-node-group" id="node-GLYCERATE_KINASE_GLYK" data-node-id="GLYCERATE_KINASE_GLYK" tabindex="0" role="button" aria-label="GLYCERATE_KINASE_GLYK"><rect class="pmc-node tier-T4" x="1391.8" y="334.1" width="221.8" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1585.5" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1596.5" y="349.6">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1585.5" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1596.5" y="349.6">T4</text></g>
 <text class="pmc-label" x="1502.6" y="370.7">Glycerate Kinase (GLYK)</text>
 <text class="pmc-sub" x="1502.6" y="385.7">glycerate + ATP -&gt; 3-PGA</text>
 </g>
 <g class="pmc-node-group" id="node-THREE_PGA_CALVIN_RETURN" data-node-id="THREE_PGA_CALVIN_RETURN" tabindex="0" role="button" aria-label="THREE_PGA_CALVIN_RETURN"><rect class="pmc-node tier-T4" x="1391.8" y="456.2" width="221.8" height="79.8" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1585.5" y="462.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="1596.5" y="471.8">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1585.5" y="462.2" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1596.5" y="471.8">T4</text></g>
 <text class="pmc-label" x="1502.6" y="493.1">3-Phosphoglycerate</text>
 <text class="pmc-label" x="1502.6" y="508.1">(3-PGA)</text>
 <text class="pmc-sub" x="1502.6" y="523.1">re-enters Calvin-Benson cycle</text>

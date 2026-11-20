@@ -3,7 +3,7 @@
 :root {
   --pmc-bg: #ffffff;
   --pmc-ink: #111827;
-  --pmc-ink-soft: #4b5563;
+  --pmc-ink-soft: #374151;
   --pmc-node-fill: #f9fafb;
   --pmc-node-stroke: #111827;
   --pmc-hairline: #9ca3af;
@@ -16,7 +16,7 @@
 :root[data-theme="dark"], body.dark-mode {
   --pmc-bg: #0b0f19;
   --pmc-ink: #f3f4f6;
-  --pmc-ink-soft: #9ca3af;
+  --pmc-ink-soft: #cbd5e1;
   --pmc-node-fill: #151d2e;
   --pmc-node-stroke: #f3f4f6;
   --pmc-hairline: #4b5563;
@@ -48,12 +48,13 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 
 /* Evidence Tier Badges */
 .tier-badge-bg { rx: 3px; ry: 3px; stroke-width: 0.5px; }
-.tier-badge-T1 { fill: #0072b2; stroke: #005a8e; }
-.tier-badge-T2 { fill: #009e73; stroke: #007a59; }
+.tier-badge-T1 { fill: #005a8e; stroke: #00446b; }
+.tier-badge-T2 { fill: #007a59; stroke: #005c43; }
 .tier-badge-T3 { fill: #e69f00; stroke: #b87f00; }
 .tier-badge-T4 { fill: #56b4e9; stroke: #3a97cc; }
-.tier-badge-T5 { fill: #9ca3af; stroke: #6b7280; }
+.tier-badge-T5 { fill: #e5e7eb; stroke: #9ca3af; }
 .tier-badge-text { font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }
+.tier-badge-text-dark { fill: #111827; }
 
 /* Bilayer Membrane Architectural Rails & Badges */
 .pmc-bilayer-rail { fill: url(#pmc-bilayer-pattern); opacity: 0.85; }
@@ -64,8 +65,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 /* Holo-Complex I Super-Assembly Halo in PMM-01 */
 .pmc-superassembly-halo { fill: rgba(0, 114, 178, 0.035); stroke: #0072b2; stroke-width: 1.5px; stroke-dasharray: 5 4; rx: 10px; ry: 10px; }
 :root[data-theme="dark"] .pmc-superassembly-halo, body.dark-mode .pmc-superassembly-halo { fill: rgba(86, 180, 233, 0.06); stroke: #56b4e9; }
-.pmc-superassembly-title { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; fill: #0072b2; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #56b4e9; }
+.pmc-superassembly-title { font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; fill: #005a8e; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #7dd3fc; }
 
 /* Catalytic Cofactor & Innovation Badges */
 .pmc-pill-bg { stroke-width: 0.8px; rx: 3px; ry: 3px; }
@@ -136,75 +137,75 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <rect class="pmc-compartment" x="1002.8" y="154.0" width="587.8" height="421.6" stroke="#3b2044" />
 <text class="pmc-compartment-label" x="1014.8" y="176.0">Nucleoplasm</text>
 <path class="pmc-edge pmc-edge-activates" d="M 270.2 251.9 L 318.3 251.9 Q 322.2 251.9 322.2 248.0 L 322.2 248.0 Q 322.2 244.1 326.2 244.1 L 374.2 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 605.2 244.1 L 649.2 244.1 Q 657.2 244.1 657.2 236.1 L 657.2 126.0 Q 657.2 118.0 665.2 118.0 L 1292.6 118.0 Q 1300.6 118.0 1300.6 126.0 L 1300.6 503.8 Q 1300.6 511.8 1308.6 511.8 L 1352.6 511.8" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 270.2 389.6 L 314.2 389.6 Q 322.2 389.6 322.2 381.6 L 322.2 374.2 Q 322.2 366.2 330.2 366.2 L 374.2 366.2" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 605.2 366.2 L 649.2 366.2 Q 657.2 366.2 657.2 358.2 L 657.2 110.0 Q 657.2 102.0 665.2 102.0 L 966.8 102.0 Q 974.8 102.0 974.8 110.0 L 974.8 236.1 Q 974.8 244.1 982.8 244.1 L 1026.8 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 1248.6 244.1 L 1352.6 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 270.2 519.6 L 314.2 519.6 Q 322.2 519.6 322.2 511.6 L 322.2 496.3 Q 322.2 488.3 330.2 488.3 L 374.2 488.3" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 605.2 488.3 L 709.2 488.3" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-activates" d="M 922.9 488.3 L 967.0 488.3 Q 974.8 488.3 974.8 496.1 L 974.8 496.1 Q 974.8 503.9 982.7 503.9 L 1026.8 503.9" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-inhibits" d="M 270.2 641.7 L 314.2 641.7 Q 322.2 641.7 322.2 633.7 L 322.2 626.2 Q 322.2 618.2 330.2 618.2 L 374.2 618.2" marker-end="url(#pmc-inhibit)" />
+<path class="pmc-edge pmc-edge-activates" d="M 605.2 618.2 L 649.2 618.2 Q 657.2 618.2 657.2 610.2 L 657.2 252.1 Q 657.2 244.1 665.2 244.1 L 709.2 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-metabolite_flux" d="M 816.0 276.1 L 816.0 334.1" marker-end="url(#pmc-arrow-green)" />
+<path class="pmc-edge pmc-edge-inhibits" d="M 922.9 366.2 L 970.9 366.2 Q 974.8 366.2 974.8 370.1 L 974.8 370.1 Q 974.8 374.0 978.8 374.0 L 1026.8 374.0" marker-end="url(#pmc-inhibit)" />
+<path class="pmc-edge pmc-edge-activates" d="M 1248.6 374.0 L 1352.6 374.0" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="280.0" y="239.0" width="84.6" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="322.2" y="251.0">grana sensing</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 605.2 244.1 L 649.2 244.1 Q 657.2 244.1 657.2 236.1 L 657.2 126.0 Q 657.2 118.0 665.2 118.0 L 1292.6 118.0 Q 1300.6 118.0 1300.6 126.0 L 1300.6 503.8 Q 1300.6 511.8 1308.6 511.8 L 1352.6 511.8" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="945.5" y="109.1" width="66.9" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="978.9" y="121.0">1O2 signal</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 270.2 389.6 L 314.2 389.6 Q 322.2 389.6 322.2 381.6 L 322.2 374.2 Q 322.2 366.2 330.2 366.2 L 374.2 366.2" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="288.8" y="363.0" width="66.9" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="322.2" y="375.9">preprotein</text>
 <text class="pmc-edge-label" x="322.2" y="386.4">stall</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 605.2 366.2 L 649.2 366.2 Q 657.2 366.2 657.2 358.2 L 657.2 110.0 Q 657.2 102.0 665.2 102.0 L 966.8 102.0 Q 974.8 102.0 974.8 110.0 L 974.8 236.1 Q 974.8 244.1 982.8 244.1 L 1026.8 244.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="779.7" y="93.1" width="72.8" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="816.0" y="105.0">ABI4 signal</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 1248.6 244.1 L 1352.6 244.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1267.1" y="229.2" width="66.9" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="1300.6" y="242.1">PhANGs</text>
 <text class="pmc-edge-label" x="1300.6" y="252.6">repression</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 270.2 519.6 L 314.2 519.6 Q 322.2 519.6 322.2 511.6 L 322.2 496.3 Q 322.2 488.3 330.2 488.3 L 374.2 488.3" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="282.9" y="489.1" width="78.7" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="322.2" y="501.9">MEcPP</text>
 <text class="pmc-edge-label" x="322.2" y="512.4">accumulation</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 605.2 488.3 L 709.2 488.3" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="632.6" y="473.4" width="49.2" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="657.2" y="486.3">cytosol</text>
 <text class="pmc-edge-label" x="657.2" y="496.8">export</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 922.9 488.3 L 967.0 488.3 Q 974.8 488.3 974.8 496.1 L 974.8 496.1 Q 974.8 503.9 982.7 503.9 L 1026.8 503.9" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="944.3" y="481.2" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="974.8" y="494.1">ICS1</text>
 <text class="pmc-edge-label" x="974.8" y="504.6">induction</text>
 </g>
-<path class="pmc-edge pmc-edge-inhibits" d="M 270.2 641.7 L 314.2 641.7 Q 322.2 641.7 322.2 633.7 L 322.2 626.2 Q 322.2 618.2 330.2 618.2 L 374.2 618.2" marker-end="url(#pmc-inhibit)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="291.7" y="615.1" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="322.2" y="628.0">cysteine</text>
 <text class="pmc-edge-label" x="322.2" y="638.5">oxidation</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 605.2 618.2 L 649.2 618.2 Q 657.2 618.2 657.2 610.2 L 657.2 252.1 Q 657.2 244.1 665.2 244.1 L 709.2 244.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="617.9" y="416.3" width="78.7" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="657.2" y="429.2">PAP</text>
 <text class="pmc-edge-label" x="657.2" y="439.7">accumulation</text>
 </g>
-<path class="pmc-edge pmc-edge-metabolite_flux" d="M 816.0 276.1 L 816.0 334.1" marker-end="url(#pmc-arrow-green)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="785.5" y="290.2" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="816.0" y="303.1">PAPST1</text>
 <text class="pmc-edge-label" x="816.0" y="313.6">transport</text>
 </g>
-<path class="pmc-edge pmc-edge-inhibits" d="M 922.9 366.2 L 970.9 366.2 Q 974.8 366.2 974.8 370.1 L 974.8 370.1 Q 974.8 374.0 978.8 374.0 L 1026.8 374.0" marker-end="url(#pmc-inhibit)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="941.4" y="355.2" width="66.9" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="974.8" y="368.1">XRN</text>
 <text class="pmc-edge-label" x="974.8" y="378.6">inhibition</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 1248.6 374.0 L 1352.6 374.0" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1270.1" y="359.1" width="61.0" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="1300.6" y="372.0">mRNA</text>
@@ -217,18 +218,18 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="167.1" y="278.9">PSII photoinhibition</text>
 </g>
 <g class="pmc-node-group" id="node-PLASTID_TRANSLATION_ARREST" data-node-id="PLASTID_TRANSLATION_ARREST" tabindex="0" role="button" aria-label="PLASTID_TRANSLATION_ARREST"><rect class="pmc-node tier-T4" x="64.0" y="349.8" width="206.2" height="79.8" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="242.2" y="355.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="253.2" y="365.2">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="242.2" y="355.8" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="253.2" y="365.2">T4</text></g>
 <text class="pmc-label" x="167.1" y="386.6">Plastid Translation</text>
 <text class="pmc-label" x="167.1" y="401.6">Defect</text>
 <text class="pmc-sub" x="167.1" y="416.6">lincomycin • norflurazon</text>
 </g>
 <g class="pmc-node-group" id="node-MEP_PATHWAY_BOTTLENECK" data-node-id="MEP_PATHWAY_BOTTLENECK" tabindex="0" role="button" aria-label="MEP_PATHWAY_BOTTLENECK"><rect class="pmc-node tier-T4" x="64.0" y="487.5" width="206.2" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="242.2" y="493.5" width="22.0" height="13.0" /><text class="tier-badge-text" x="253.2" y="503.0">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="242.2" y="493.5" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="253.2" y="503.0">T4</text></g>
 <text class="pmc-label" x="167.1" y="524.1">MEP Pathway Arrest</text>
 <text class="pmc-sub" x="167.1" y="539.1">isoprenoid pathway stress</text>
 </g>
 <g class="pmc-node-group" id="node-STROMAL_OXIDATIVE_STRESS" data-node-id="STROMAL_OXIDATIVE_STRESS" tabindex="0" role="button" aria-label="STROMAL_OXIDATIVE_STRESS"><rect class="pmc-node tier-T4" x="64.0" y="609.6" width="206.2" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="242.2" y="615.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="253.2" y="625.1">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="242.2" y="615.6" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="253.2" y="625.1">T4</text></g>
 <text class="pmc-label" x="167.1" y="646.2">Stromal Redox Oxidation</text>
 <text class="pmc-sub" x="167.1" y="661.2">drought • high light</text>
 </g>
@@ -264,7 +265,7 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="816.0" y="385.7">exports PAP across envelope</text>
 </g>
 <g class="pmc-node-group" id="node-MECPP_EXPORT_GATE" data-node-id="MECPP_EXPORT_GATE" tabindex="0" role="button" aria-label="MECPP_EXPORT_GATE"><rect class="pmc-node tier-T4" x="709.2" y="456.2" width="213.6" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="894.9" y="462.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="905.9" y="471.8">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="894.9" y="462.2" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="905.9" y="471.8">T4</text></g>
 <text class="pmc-label" x="816.0" y="492.8">MEcPP Envelope Export</text>
 <text class="pmc-sub" x="816.0" y="507.8">translocation to nucleus</text>
 </g>
@@ -280,23 +281,23 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="1137.7" y="401.0">inhibited by PAP</text>
 </g>
 <g class="pmc-node-group" id="node-ICS1_DEFENSE_PROMOTER" data-node-id="ICS1_DEFENSE_PROMOTER" tabindex="0" role="button" aria-label="ICS1_DEFENSE_PROMOTER"><rect class="pmc-node tier-T4" x="1026.8" y="471.9" width="221.8" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1220.6" y="477.9" width="22.0" height="13.0" /><text class="tier-badge-text" x="1231.6" y="487.4">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1220.6" y="477.9" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1231.6" y="487.4">T4</text></g>
 <text class="pmc-label" x="1137.7" y="508.4">ICS1 Defense Promoter</text>
 <text class="pmc-sub" x="1137.7" y="523.4">salicylic acid biosynthesis</text>
 </g>
 <g class="pmc-node-group" id="node-PHANGS_REPRESSED" data-node-id="PHANGS_REPRESSED" tabindex="0" role="button" aria-label="PHANGS_REPRESSED"><rect class="pmc-node tier-T4" x="1352.6" y="212.0" width="214.0" height="64.1" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1538.6" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1549.6" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1538.6" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1549.6" y="227.5">T4</text></g>
 <text class="pmc-label" x="1459.6" y="248.6">Repression of PhANGs</text>
 <text class="pmc-sub" x="1459.6" y="263.6">Lhcb, RbcS down-regulation</text>
 </g>
 <g class="pmc-node-group" id="node-DROUGHT_STRESS_INDUCED" data-node-id="DROUGHT_STRESS_INDUCED" tabindex="0" role="button" aria-label="DROUGHT_STRESS_INDUCED"><rect class="pmc-node tier-T4" x="1352.6" y="334.1" width="214.0" height="79.8" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1538.6" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1549.6" y="349.6">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1538.6" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1549.6" y="349.6">T4</text></g>
 <text class="pmc-label" x="1459.6" y="371.0">Drought / Osmotic Gene</text>
 <text class="pmc-label" x="1459.6" y="386.0">Induction</text>
 <text class="pmc-sub" x="1459.6" y="401.0">APX2, ZAT10 up-regulation</text>
 </g>
 <g class="pmc-node-group" id="node-PCD_ACCLIMATION_SWITCH" data-node-id="PCD_ACCLIMATION_SWITCH" tabindex="0" role="button" aria-label="PCD_ACCLIMATION_SWITCH"><rect class="pmc-node tier-T4" x="1352.6" y="471.9" width="214.0" height="79.8" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1538.6" y="477.9" width="22.0" height="13.0" /><text class="tier-badge-text" x="1549.6" y="487.4">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1538.6" y="477.9" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1549.6" y="487.4">T4</text></g>
 <text class="pmc-label" x="1459.6" y="508.8">Programmed Cell Death vs</text>
 <text class="pmc-label" x="1459.6" y="523.8">Acclimation</text>
 <text class="pmc-sub" x="1459.6" y="538.8">cell survival determination</text>

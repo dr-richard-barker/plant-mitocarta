@@ -3,7 +3,7 @@
 :root {
   --pmc-bg: #ffffff;
   --pmc-ink: #111827;
-  --pmc-ink-soft: #4b5563;
+  --pmc-ink-soft: #374151;
   --pmc-node-fill: #f9fafb;
   --pmc-node-stroke: #111827;
   --pmc-hairline: #9ca3af;
@@ -16,7 +16,7 @@
 :root[data-theme="dark"], body.dark-mode {
   --pmc-bg: #0b0f19;
   --pmc-ink: #f3f4f6;
-  --pmc-ink-soft: #9ca3af;
+  --pmc-ink-soft: #cbd5e1;
   --pmc-node-fill: #151d2e;
   --pmc-node-stroke: #f3f4f6;
   --pmc-hairline: #4b5563;
@@ -48,12 +48,13 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 
 /* Evidence Tier Badges */
 .tier-badge-bg { rx: 3px; ry: 3px; stroke-width: 0.5px; }
-.tier-badge-T1 { fill: #0072b2; stroke: #005a8e; }
-.tier-badge-T2 { fill: #009e73; stroke: #007a59; }
+.tier-badge-T1 { fill: #005a8e; stroke: #00446b; }
+.tier-badge-T2 { fill: #007a59; stroke: #005c43; }
 .tier-badge-T3 { fill: #e69f00; stroke: #b87f00; }
 .tier-badge-T4 { fill: #56b4e9; stroke: #3a97cc; }
-.tier-badge-T5 { fill: #9ca3af; stroke: #6b7280; }
+.tier-badge-T5 { fill: #e5e7eb; stroke: #9ca3af; }
 .tier-badge-text { font-size: 8px; font-weight: 800; fill: #ffffff; text-anchor: middle; font-family: monospace; }
+.tier-badge-text-dark { fill: #111827; }
 
 /* Bilayer Membrane Architectural Rails & Badges */
 .pmc-bilayer-rail { fill: url(#pmc-bilayer-pattern); opacity: 0.85; }
@@ -64,8 +65,8 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 /* Holo-Complex I Super-Assembly Halo in PMM-01 */
 .pmc-superassembly-halo { fill: rgba(0, 114, 178, 0.035); stroke: #0072b2; stroke-width: 1.5px; stroke-dasharray: 5 4; rx: 10px; ry: 10px; }
 :root[data-theme="dark"] .pmc-superassembly-halo, body.dark-mode .pmc-superassembly-halo { fill: rgba(86, 180, 233, 0.06); stroke: #56b4e9; }
-.pmc-superassembly-title { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; fill: #0072b2; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #56b4e9; }
+.pmc-superassembly-title { font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; fill: #005a8e; font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+:root[data-theme="dark"] .pmc-superassembly-title, body.dark-mode .pmc-superassembly-title { fill: #7dd3fc; }
 
 /* Catalytic Cofactor & Innovation Badges */
 .pmc-pill-bg { stroke-width: 0.8px; rx: 3px; ry: 3px; }
@@ -134,84 +135,84 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <rect class="pmc-compartment" x="1055.6" y="154.0" width="626.5" height="415.4" stroke="#5c3407" />
 <text class="pmc-compartment-label" x="1067.6" y="176.0">Mitochondrial Matrix</text>
 <path class="pmc-edge pmc-edge-activates" d="M 306.6 250.3 L 353.6 250.3 Q 358.6 250.3 358.6 255.3 L 358.6 255.3 Q 358.6 260.3 363.6 260.3 L 410.6 260.3" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 306.6 384.9 L 350.6 384.9 Q 358.6 384.9 358.6 392.9 L 358.6 396.9 Q 358.6 404.9 366.6 404.9 L 410.6 404.9" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 306.6 519.6 L 350.6 519.6 Q 358.6 519.6 358.6 511.6 L 358.6 126.0 Q 358.6 118.0 366.6 118.0 L 1019.6 118.0 Q 1027.6 118.0 1027.6 126.0 L 1027.6 236.1 Q 1027.6 244.1 1035.6 244.1 L 1079.6 244.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 641.6 260.3 L 690.5 260.3 Q 693.6 260.3 693.6 257.2 L 693.6 257.2 Q 693.6 254.1 696.7 254.1 L 745.6 254.1" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 641.6 260.3 L 685.6 260.3 Q 693.6 260.3 693.6 268.3 L 693.6 388.2 Q 693.6 396.2 701.6 396.2 L 745.6 396.2" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 641.6 260.3 L 685.6 260.3 Q 693.6 260.3 693.6 268.3 L 693.6 526.6 Q 693.6 534.6 701.6 534.6 L 745.6 534.6" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 641.6 404.9 L 685.6 404.9 Q 693.6 404.9 693.6 412.9 L 693.6 661.2 Q 693.6 669.2 701.6 669.2 L 745.6 669.2" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 306.6 250.3 L 350.6 250.3 Q 358.6 250.3 358.6 242.3 L 358.6 110.0 Q 358.6 102.0 366.6 102.0 L 1353.1 102.0 Q 1361.1 102.0 1361.1 110.0 L 1361.1 242.3 Q 1361.1 250.3 1369.1 250.3 L 1413.1 250.3" marker-end="url(#pmc-arrow-orange)" />
+<path class="pmc-edge pmc-edge-activates" d="M 975.6 254.1 L 1019.6 254.1 Q 1027.6 254.1 1027.6 246.1 L 1027.6 94.0 Q 1027.6 86.0 1035.6 86.0 L 1353.1 86.0 Q 1361.1 86.0 1361.1 94.0 L 1361.1 384.8 Q 1361.1 392.8 1369.1 392.8 L 1413.1 392.8" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="322.2" y="240.4" width="72.8" height="29.8" rx="4" />
 <text class="pmc-edge-label" x="358.6" y="253.3">orthology</text>
 <text class="pmc-edge-label" x="358.6" y="263.8">(58-85% id)</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 306.6 384.9 L 350.6 384.9 Q 358.6 384.9 358.6 392.9 L 358.6 396.9 Q 358.6 404.9 366.6 404.9 L 410.6 404.9" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="331.0" y="386.0" width="55.1" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="358.6" y="397.9">homology</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 306.6 519.6 L 350.6 519.6 Q 358.6 519.6 358.6 511.6 L 358.6 126.0 Q 358.6 118.0 366.6 118.0 L 1019.6 118.0 Q 1027.6 118.0 1027.6 126.0 L 1027.6 236.1 Q 1027.6 244.1 1035.6 244.1 L 1079.6 244.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="650.8" y="109.1" width="84.6" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="693.1" y="121.0">dual-targeted</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 641.6 260.3 L 690.5 260.3 Q 693.6 260.3 693.6 257.2 L 693.6 257.2 Q 693.6 254.1 696.7 254.1 L 745.6 254.1" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="660.1" y="248.2" width="66.9" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="693.6" y="260.2">AOX bypass</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 641.6 260.3 L 685.6 260.3 Q 693.6 260.3 693.6 268.3 L 693.6 388.2 Q 693.6 396.2 701.6 396.2 L 745.6 396.2" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="660.1" y="319.3" width="66.9" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="693.6" y="331.2">NDH bypass</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 641.6 260.3 L 685.6 260.3 Q 693.6 260.3 693.6 268.3 L 693.6 526.6 Q 693.6 534.6 701.6 534.6 L 745.6 534.6" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="657.2" y="388.5" width="72.8" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="693.6" y="400.4">CA assembly</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 641.6 404.9 L 685.6 404.9 Q 693.6 404.9 693.6 412.9 L 693.6 661.2 Q 693.6 669.2 701.6 669.2 L 745.6 669.2" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="642.5" y="462.1" width="102.2" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="693.6" y="474.1">photorespiration</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 306.6 250.3 L 350.6 250.3 Q 358.6 250.3 358.6 242.3 L 358.6 110.0 Q 358.6 102.0 366.6 102.0 L 1353.1 102.0 Q 1361.1 102.0 1361.1 110.0 L 1361.1 242.3 Q 1361.1 250.3 1369.1 250.3 L 1413.1 250.3" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="829.3" y="93.1" width="61.0" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="859.8" y="105.0">pathology</text>
 </g>
-<path class="pmc-edge pmc-edge-activates" d="M 975.6 254.1 L 1019.6 254.1 Q 1027.6 254.1 1027.6 246.1 L 1027.6 94.0 Q 1027.6 86.0 1035.6 86.0 L 1353.1 86.0 Q 1361.1 86.0 1361.1 94.0 L 1361.1 384.8 Q 1361.1 392.8 1369.1 392.8 L 1413.1 392.8" marker-end="url(#pmc-arrow-orange)" />
 <g class="pmc-edge-label-group">
 <rect class="pmc-edge-label-bg" x="1160.9" y="77.1" width="66.9" height="17.9" rx="4" />
 <text class="pmc-edge-label" x="1194.3" y="89.0">AOX rescue</text>
 </g>
 <g class="pmc-node-group" id="node-HUMAN_OXPHOS_CORE" data-node-id="HUMAN_OXPHOS_CORE" tabindex="0" role="button" aria-label="HUMAN_OXPHOS_CORE"><rect class="pmc-node tier-T4" x="64.0" y="212.0" width="242.6" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="278.6" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="289.6" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="278.6" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="289.6" y="227.5">T4</text></g>
 <text class="pmc-label" x="185.3" y="248.8">Human MitoCarta OXPHOS</text>
 <text class="pmc-sub" x="185.3" y="263.8">Complexes I-V core • 44 CI subunits •</text>
 <text class="pmc-sub" x="185.3" y="275.8">Leigh syndrome loci</text>
 </g>
 <g class="pmc-node-group" id="node-HUMAN_TCA_CYCLE" data-node-id="HUMAN_TCA_CYCLE" tabindex="0" role="button" aria-label="HUMAN_TCA_CYCLE"><rect class="pmc-node tier-T4" x="64.0" y="346.6" width="242.6" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="278.6" y="352.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="289.6" y="362.1">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="278.6" y="352.6" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="289.6" y="362.1">T4</text></g>
 <text class="pmc-label" x="185.3" y="383.4">Human MitoCarta TCA</text>
 <text class="pmc-sub" x="185.3" y="398.4">CS, ACO2, IDH3, OGDH, FH • strictly</text>
 <text class="pmc-sub" x="185.3" y="410.4">cyclic</text>
 </g>
 <g class="pmc-node-group" id="node-HUMAN_POLG_REPLICATION" data-node-id="HUMAN_POLG_REPLICATION" tabindex="0" role="button" aria-label="HUMAN_POLG_REPLICATION"><rect class="pmc-node tier-T4" x="64.0" y="481.2" width="242.6" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="278.6" y="487.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="289.6" y="496.8">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="278.6" y="487.2" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="289.6" y="496.8">T4</text></g>
 <text class="pmc-label" x="185.3" y="518.1">Human POLG / TWNK</text>
 <text class="pmc-sub" x="185.3" y="533.1">dedicated mitochondrial replication •</text>
 <text class="pmc-sub" x="185.3" y="545.1">PEO / Alpers</text>
 </g>
 <g class="pmc-node-group" id="node-PLANT_CONSERVED_OXPHOS" data-node-id="PLANT_CONSERVED_OXPHOS" tabindex="0" role="button" aria-label="PLANT_CONSERVED_OXPHOS"><rect class="pmc-node tier-T4" x="410.6" y="212.0" width="231.0" height="96.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="613.6" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="624.6" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="613.6" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="624.6" y="227.5">T4</text></g>
 <g class="pmc-badge-pill-group"><rect class="pmc-pill-bg pmc-pill-cofactor" x="486.0" y="289.6" width="80.2" height="13.0" rx="3" /><text class="pmc-pill-text pmc-pill-cofactor-text" x="526.1" y="299.1">Rieske 2Fe-2S</text></g>
 <text class="pmc-label" x="526.1" y="251.8">Plant Conserved Core (Q1)</text>
 <text class="pmc-sub" x="526.1" y="266.8">14 catalytic CI subunits • SDH1-4 •</text>
 <text class="pmc-sub" x="526.1" y="278.8">ATP synthase</text>
 </g>
 <g class="pmc-node-group" id="node-PLANT_CONSERVED_TCA" data-node-id="PLANT_CONSERVED_TCA" tabindex="0" role="button" aria-label="PLANT_CONSERVED_TCA"><rect class="pmc-node tier-T4" x="410.6" y="366.6" width="231.0" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="613.6" y="372.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="624.6" y="382.1">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="613.6" y="372.6" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="624.6" y="382.1">T4</text></g>
 <text class="pmc-label" x="526.1" y="403.4">Plant Conserved TCA (Q1)</text>
 <text class="pmc-sub" x="526.1" y="418.4">open/non-cyclic in light • exports</text>
 <text class="pmc-sub" x="526.1" y="430.4">citrate via DTC</text>
 </g>
 <g class="pmc-node-group" id="node-PLANT_FE_S_ISC_CORE" data-node-id="PLANT_FE_S_ISC_CORE" tabindex="0" role="button" aria-label="PLANT_FE_S_ISC_CORE"><rect class="pmc-node tier-T4" x="410.6" y="501.2" width="231.0" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="613.6" y="507.2" width="22.0" height="13.0" /><text class="tier-badge-text" x="624.6" y="516.8">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="613.6" y="507.2" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="624.6" y="516.8">T4</text></g>
 <text class="pmc-label" x="526.1" y="538.1">Plant ISC Machinery (Q1)</text>
 <text class="pmc-sub" x="526.1" y="553.1">NFS1, ISU1-3, ISA1 • conserved Fe-S</text>
 <text class="pmc-sub" x="526.1" y="565.1">biogenesis</text>
@@ -246,25 +247,25 @@ text { font-family: 'DejaVu Sans', 'Helvetica Neue', Helvetica, Arial, sans-seri
 <text class="pmc-sub" x="1194.3" y="263.6">replicates BOTH mito &amp; chloro DNA</text>
 </g>
 <g class="pmc-node-group" id="node-DUAL_TARGETED_AARS" data-node-id="DUAL_TARGETED_AARS" tabindex="0" role="button" aria-label="DUAL_TARGETED_AARS"><rect class="pmc-node tier-T4" x="1079.6" y="334.1" width="229.5" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1281.1" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text" x="1292.1" y="349.6">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1281.1" y="340.1" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1292.1" y="349.6">T4</text></g>
 <text class="pmc-label" x="1194.3" y="370.9">Dual-Targeted AARSs (Q3)</text>
 <text class="pmc-sub" x="1194.3" y="385.9">shared organellar aminoacyl-tRNA</text>
 <text class="pmc-sub" x="1194.3" y="397.9">synthetases</text>
 </g>
 <g class="pmc-node-group" id="node-EXPANDED_PPR_FAMILY" data-node-id="EXPANDED_PPR_FAMILY" tabindex="0" role="button" aria-label="EXPANDED_PPR_FAMILY"><rect class="pmc-node tier-T4" x="1079.6" y="468.8" width="229.5" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1281.1" y="474.8" width="22.0" height="13.0" /><text class="tier-badge-text" x="1292.1" y="484.2">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1281.1" y="474.8" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1292.1" y="484.2">T4</text></g>
 <text class="pmc-label" x="1194.3" y="505.6">Expanded PPR Family (Q4)</text>
 <text class="pmc-sub" x="1194.3" y="520.6">&gt;450 genes in Arabidopsis vs 7 in</text>
 <text class="pmc-sub" x="1194.3" y="532.6">humans • ~500 C-to-U RNA edits</text>
 </g>
 <g class="pmc-node-group" id="node-HUMAN_DISEASE_INSIGHTS" data-node-id="HUMAN_DISEASE_INSIGHTS" tabindex="0" role="button" aria-label="HUMAN_DISEASE_INSIGHTS"><rect class="pmc-node tier-T4" x="1413.1" y="212.0" width="245.0" height="76.6" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1630.1" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text" x="1641.1" y="227.5">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1630.1" y="218.0" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1641.1" y="227.5">T4</text></g>
 <text class="pmc-label" x="1535.6" y="248.8">Human Mitochondrial Medicine</text>
 <text class="pmc-sub" x="1535.6" y="263.8">cryo-EM catalytic structures inform</text>
 <text class="pmc-sub" x="1535.6" y="275.8">plant active sites</text>
 </g>
 <g class="pmc-node-group" id="node-AOX_HUMAN_RESCUE_POTENTIAL" data-node-id="AOX_HUMAN_RESCUE_POTENTIAL" tabindex="0" role="button" aria-label="AOX_HUMAN_RESCUE_POTENTIAL"><rect class="pmc-node tier-T4" x="1413.1" y="346.6" width="245.0" height="92.2" />
-<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1630.1" y="352.6" width="22.0" height="13.0" /><text class="tier-badge-text" x="1641.1" y="362.1">T4</text></g>
+<g class="pmc-tier-badge-group"><rect class="tier-badge-bg tier-badge-T4" x="1630.1" y="352.6" width="22.0" height="13.0" /><text class="tier-badge-text tier-badge-text-dark" x="1641.1" y="362.1">T4</text></g>
 <text class="pmc-label" x="1535.6" y="383.8">Plant AOX Rescues Human</text>
 <text class="pmc-label" x="1535.6" y="398.8">Disease</text>
 <text class="pmc-sub" x="1535.6" y="413.8">AOX expression in human cybrids</text>
